@@ -169,6 +169,7 @@ return [
         VOSTPT\API\Providers\AuthServiceProvider::class,
         VOSTPT\API\Providers\EventServiceProvider::class,
         VOSTPT\API\Providers\RouteServiceProvider::class,
+        VOSTPT\API\Providers\ServiceClientServiceProvider::class,
 
     ],
 
