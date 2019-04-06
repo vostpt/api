@@ -16,7 +16,7 @@ class EventServiceProvider extends ServiceProvider
     /**
      * {@inheritDoc}
      */
-    public function boot()
+    public function boot(): void
     {
         parent::boot();
 

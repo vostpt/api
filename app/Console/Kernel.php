@@ -12,23 +12,20 @@ class Kernel extends ConsoleKernel
     /**
      * {@inheritDoc}
      */
-    protected $commands = [
-        //
-    ];
+    protected $commands = [];
 
     /**
      * {@inheritDoc}
      */
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        //
     }
 
     /**
      * {@inheritDoc}
      */
-    protected function commands()
+    protected function commands(): void
     {
         $this->load(__DIR__.'/Commands');
 
