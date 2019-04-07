@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'VOST PT API'),
+    'name' => env('APP_NAME', 'VOST Portugal API'),
 
     /*
     |--------------------------------------------------------------------------
