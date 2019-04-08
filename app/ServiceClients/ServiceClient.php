@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\API\ServiceClients;
+namespace VOSTPT\ServiceClients;
 
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Psr7\Request;

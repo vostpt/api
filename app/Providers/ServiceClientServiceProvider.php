@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\API\Providers;
+namespace VOSTPT\Providers;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
-use VOSTPT\API\ServiceClients\Contracts\ProCivServiceClient as ProCivServiceClientContract;
-use VOSTPT\API\ServiceClients\ProCivServiceClient;
+use VOSTPT\ServiceClients\Contracts\ProCivServiceClient as ProCivServiceClientContract;
+use VOSTPT\ServiceClients\ProCivServiceClient;
 
 class ServiceClientServiceProvider extends ServiceProvider implements DeferrableProvider
 {

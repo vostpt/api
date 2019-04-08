@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\API\ServiceClients\Contracts;
+namespace VOSTPT\ServiceClients\Contracts;
 
 interface ProCivServiceClient extends ServiceClient
 {
