@@ -171,6 +171,7 @@ return [
         VOSTPT\Providers\EventServiceProvider::class,
         VOSTPT\Providers\ResponseServiceProvider::class,
         VOSTPT\Providers\RouteServiceProvider::class,
+        VOSTPT\Providers\ServiceClientServiceProvider::class,
 
     ],
 
