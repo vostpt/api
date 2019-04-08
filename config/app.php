@@ -147,6 +147,7 @@ return [
         Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
         Illuminate\Database\DatabaseServiceProvider::class,
         Illuminate\Encryption\EncryptionServiceProvider::class,
+        Illuminate\Filesystem\FilesystemServiceProvider::class,
         Illuminate\Foundation\Providers\FoundationServiceProvider::class,
         Illuminate\Hashing\HashServiceProvider::class,
         Illuminate\Mail\MailServiceProvider::class,
@@ -154,9 +155,9 @@ return [
         Illuminate\Pipeline\PipelineServiceProvider::class,
         Illuminate\Queue\QueueServiceProvider::class,
         Illuminate\Redis\RedisServiceProvider::class,
-        Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
+        Illuminate\View\ViewServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -165,11 +166,11 @@ return [
         /*
          * Application Service Providers...
          */
-        VOSTPT\API\Providers\AppServiceProvider::class,
-        VOSTPT\API\Providers\AuthServiceProvider::class,
-        VOSTPT\API\Providers\EventServiceProvider::class,
-        VOSTPT\API\Providers\RouteServiceProvider::class,
-        VOSTPT\API\Providers\ServiceClientServiceProvider::class,
+        VOSTPT\Providers\AppServiceProvider::class,
+        VOSTPT\Providers\AuthServiceProvider::class,
+        VOSTPT\Providers\EventServiceProvider::class,
+        VOSTPT\Providers\RouteServiceProvider::class,
+        VOSTPT\Providers\ServiceClientServiceProvider::class,
 
     ],
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\API\Models;
+namespace VOSTPT\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;

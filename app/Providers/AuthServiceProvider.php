@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\API\Providers;
+namespace VOSTPT\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 

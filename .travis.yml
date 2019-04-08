@@ -1,0 +1,37 @@
+language: php
+
+dist: xenial
+
+php:
+  - '7.2'
+
+matrix:
+  fast_finish: true
+
+sudo: true
+
+before_script:
+  # Install project dependencies
+  - composer install --no-interaction
+
+  # Clear everything
+  - php artisan optimize:clear
+
+  # Create optimised classmap
+  - composer dump-autoload -o
+
+  # Check coding standards
+  - composer cs-check app
+  - composer cs-check config
+  - composer cs-check database
+  - composer cs-check tests
+
+script:
+  - mkdir -p build/logs
+  - vendor/bin/phpunit --dump-xdebug-filter build/xdebug-filter.php
+  - vendor/bin/phpunit --prepend build/xdebug-filter.php --coverage-text --coverage-clover build/logs/clover.xml
+
+cache:
+  directories:
+    - vendor
+    - $HOME/.composer/cache

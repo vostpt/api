@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\API\Http\Middleware;
+namespace VOSTPT\Http\Middleware;
 
 use Fideloper\Proxy\TrustProxies as Middleware;
 use Illuminate\Http\Request;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
-use VOSTPT\API\Models\User;
+use VOSTPT\Models\User;
 
 /*
 |--------------------------------------------------------------------------

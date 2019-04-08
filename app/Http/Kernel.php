@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\API\Http;
+namespace VOSTPT\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
