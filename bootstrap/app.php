@@ -30,17 +30,17 @@ $app = new Illuminate\Foundation\Application(
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
-    VOSTPT\API\Http\Kernel::class
+    VOSTPT\Http\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    VOSTPT\API\Console\Kernel::class
+    VOSTPT\Console\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    VOSTPT\API\Exceptions\Handler::class
+    VOSTPT\Exceptions\Handler::class
 );
 
 /*

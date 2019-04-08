@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\API\Tests\Feature;
+namespace VOSTPT\Tests\Feature;
 
-use VOSTPT\API\Tests\TestCase;
+use VOSTPT\Tests\TestCase;
 
 class ExampleTest extends TestCase
 {

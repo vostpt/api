@@ -70,7 +70,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model'  => VOSTPT\API\Models\User::class,
+            'model'  => VOSTPT\Models\User::class,
         ],
 
         // 'users' => [
