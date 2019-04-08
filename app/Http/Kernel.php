@@ -28,6 +28,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
+            'json-api',
         ],
     ];
 
@@ -35,6 +36,7 @@ class Kernel extends HttpKernel
      * {@inheritDoc}
      */
     protected $routeMiddleware = [
+        'json-api' => Middleware\JsonApiRequest::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     ];
@@ -43,6 +45,7 @@ class Kernel extends HttpKernel
      * {@inheritDoc}
      */
     protected $middlewarePriority = [
+        Middleware\JsonApiRequest::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
     ];
 }

@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'VOST PT API'),
+    'name' => env('APP_NAME', 'VOST Portugal API'),
 
     /*
     |--------------------------------------------------------------------------
@@ -169,6 +169,7 @@ return [
         VOSTPT\Providers\AppServiceProvider::class,
         VOSTPT\Providers\AuthServiceProvider::class,
         VOSTPT\Providers\EventServiceProvider::class,
+        VOSTPT\Providers\ResponseServiceProvider::class,
         VOSTPT\Providers\RouteServiceProvider::class,
         VOSTPT\Providers\ServiceClientServiceProvider::class,
 
