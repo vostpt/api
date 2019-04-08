@@ -11,7 +11,7 @@ class ProCivServiceClient extends ServiceClient implements Contracts\ProCivServi
      */
     public function buildUrl(string $path, array $parameters, string $method): string
     {
-        return $this->getHostname(sprintf('_vti_bin/ARM.ANPC.UI/ANPC_SituacaoOperacional.svc/%s', trim($path, '/')));
+        return $this->getHostname(\sprintf('_vti_bin/ARM.ANPC.UI/ANPC_SituacaoOperacional.svc/%s', \trim($path, '/')));
     }
 
     /**

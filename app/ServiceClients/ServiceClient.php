@@ -36,12 +36,12 @@ abstract class ServiceClient implements Contracts\ServiceClient
      */
     public function __construct(HttpClient $httpClient, string $hostname)
     {
-        if (filter_var($hostname, FILTER_VALIDATE_URL) === false) {
+        if (\filter_var($hostname, FILTER_VALIDATE_URL) === false) {
             throw new InvalidArgumentException('Invalid hostname: '.$hostname);
         }
 
         $this->httpClient = $httpClient;
-        $this->hostname   = trim($hostname, '/');
+        $this->hostname   = \trim($hostname, '/');
     }
 
     /**
@@ -50,7 +50,7 @@ abstract class ServiceClient implements Contracts\ServiceClient
     public function getHostname(string $path = null): string
     {
         // Make sure trailing slashes are removed
-        return sprintf('%s/%s', $this->hostname, trim($path, '/'));
+        return \sprintf('%s/%s', $this->hostname, \trim($path, '/'));
     }
 
     /**
@@ -70,7 +70,7 @@ abstract class ServiceClient implements Contracts\ServiceClient
             throw new HttpException($code, $response->getReasonPhrase());
         }
 
-        return json_decode($response->getBody()->getContents(), true);
+        return \json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -81,7 +81,7 @@ abstract class ServiceClient implements Contracts\ServiceClient
      */
     protected function requiresBody(string $method): bool
     {
-        return \in_array(strtoupper($method), ['POST', 'PUT'], true);
+        return \in_array(\mb_strtoupper($method), ['POST', 'PUT'], true);
     }
 
     /**
@@ -93,7 +93,7 @@ abstract class ServiceClient implements Contracts\ServiceClient
 
         // POST/PUT parameters are sent in the body
         if ($this->requiresBody($method)) {
-            $body = json_encode($parameters);
+            $body = \json_encode($parameters);
         }
 
         $request = new Request($method, $url, $headers, $body ?? null);
