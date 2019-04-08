@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace VOSTPT\Tests;
 
 use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Foundation\Application;
 
 trait CreatesApplication
 {
@@ -14,7 +13,7 @@ trait CreatesApplication
      *
      * @return \Illuminate\Foundation\Application
      */
-    public function createApplication(): Application
+    public function createApplication()
     {
         $app = require __DIR__.'/../bootstrap/app.php';
 
