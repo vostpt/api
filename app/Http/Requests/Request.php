@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\API\Http\Requests;
+namespace VOSTPT\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;

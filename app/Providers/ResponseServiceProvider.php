@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\API\Providers;
+namespace VOSTPT\Providers;
 
 use Illuminate\Contracts\Routing\ResponseFactory as FactoryContract;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Support\ServiceProvider;
-use VOSTPT\API\Support\ResponseFactory;
+use VOSTPT\Support\ResponseFactory;
 
 class ResponseServiceProvider extends ServiceProvider
 {
