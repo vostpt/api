@@ -53,7 +53,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "VOSTPT\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "dev",
