@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\API\Tests;
+namespace VOSTPT\Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 

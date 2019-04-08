@@ -37,7 +37,7 @@ return [
     ],
 
     'stripe' => [
-        'model'   => VOSTPT\API\User::class,
+        'model'   => VOSTPT\User::class,
         'key'     => env('STRIPE_KEY'),
         'secret'  => env('STRIPE_SECRET'),
         'webhook' => [

@@ -166,11 +166,11 @@ return [
         /*
          * Application Service Providers...
          */
-        VOSTPT\API\Providers\AppServiceProvider::class,
-        VOSTPT\API\Providers\AuthServiceProvider::class,
-        VOSTPT\API\Providers\EventServiceProvider::class,
-        VOSTPT\API\Providers\ResponseServiceProvider::class,
-        VOSTPT\API\Providers\RouteServiceProvider::class,
+        VOSTPT\Providers\AppServiceProvider::class,
+        VOSTPT\Providers\AuthServiceProvider::class,
+        VOSTPT\Providers\EventServiceProvider::class,
+        VOSTPT\Providers\ResponseServiceProvider::class,
+        VOSTPT\Providers\RouteServiceProvider::class,
 
     ],
 

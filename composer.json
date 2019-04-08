@@ -45,7 +45,7 @@
     },
     "autoload": {
         "psr-4": {
-            "VOSTPT\\API\\": "app/"
+            "VOSTPT\\": "app/"
         },
         "classmap": [
             "database/seeds",
@@ -54,7 +54,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "VOSTPT\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "dev",

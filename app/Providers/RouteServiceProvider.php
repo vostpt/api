@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\API\Providers;
+namespace VOSTPT\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -11,7 +11,7 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * {@inheritDoc}
      */
-    protected $namespace = 'VOSTPT\API\Http\Controllers';
+    protected $namespace = 'VOSTPT\Http\Controllers';
 
     /**
      * {@inheritDoc}
