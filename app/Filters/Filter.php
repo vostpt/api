@@ -35,7 +35,7 @@ abstract class Filter implements Contracts\Filter
      *
      * @var int
      */
-    protected $itemsPerPage = 100;
+    protected $pageSize = 50;
 
     /**
      * Text search for filtering.
@@ -147,7 +147,7 @@ abstract class Filter implements Contracts\Filter
      */
     final public function getPageSize(): int
     {
-        return $this->itemsPerPage;
+        return $this->pageSize;
     }
 
     /**
@@ -159,7 +159,7 @@ abstract class Filter implements Contracts\Filter
             throw new OutOfBoundsException('The page size number must be equal or greater than one');
         }
 
-        $this->itemsPerPage = $items;
+        $this->pageSize = $items;
 
         return $this;
     }
@@ -248,7 +248,7 @@ abstract class Filter implements Contracts\Filter
             $this->sortColumn,
             $this->sortOrder,
             $this->pageNumber,
-            $this->itemsPerPage,
+            $this->pageSize,
             \implode(',', $this->search),
         ];
     }
