@@ -1,0 +1,16 @@
+description: Bad Request
+content:
+  application/vnd.api+json:
+    schema:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+                default: 400
+              detail:
+                type: string

@@ -1,0 +1,16 @@
+description: Not Found
+content:
+  application/vnd.api+json:
+    schema:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+                default: 404
+              detail:
+                type: string

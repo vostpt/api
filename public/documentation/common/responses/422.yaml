@@ -1,0 +1,18 @@
+description: Unprocessable Entity
+content:
+  application/vnd.api+json:
+    schema:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              detail:
+                type: string
+              meta:
+                type: object
+                properties:
+                  field:
+                    type: string
