@@ -9,12 +9,8 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
-        </testsuite>
-
-        <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
+        <testsuite name="UserController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/UserController</directory>
         </testsuite>
     </testsuites>
     <filter>
@@ -24,10 +20,16 @@
     </filter>
     <php>
         <server name="APP_ENV" value="testing"/>
+        <server name="APP_DEBUG" value="true"/>
+        <server name="APP_KEY" value="jqEQJBYvDujpmG3VPRYYVGVqEpX2DYf5"/>
+        <server name="JWT_SECRET" value="DXMcjZmgShcu0nhph7lPZmN2zIBDoNt8"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="array"/>
         <server name="MAIL_DRIVER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
-        <server name="SESSION_DRIVER" value="array"/>
+
+        <!-- Database -->
+        <env name="DB_CONNECTION" value="sqlite"/>
+        <env name="DB_DATABASE" value=":memory:"/>
     </php>
 </phpunit>
