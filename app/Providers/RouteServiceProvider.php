@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace VOSTPT\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,8 @@ class RouteServiceProvider extends ServiceProvider
     public function boot(): void
     {
         parent::boot();
+
+        $this->modelBinder();
     }
 
     /**
@@ -31,8 +34,6 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
-
-        //
     }
 
     /**
@@ -56,6 +57,34 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes(): void
     {
-        //
+        $this->app['router']->group(['middleware' => 'api'], function () {
+            require base_path('routes/api/users.php');
+        });
+    }
+
+    /**
+     * Model binder.
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     *
+     * @return void
+     */
+    protected function modelBinder(): void
+    {
+        $models = [
+            'user' => \VOSTPT\Repositories\Contracts\UserRepository::class,
+        ];
+
+        foreach ($models as $name => $repositoryContract) {
+            $this->app['router']->bind($name, function (string $id) use ($name, $repositoryContract) {
+                $repository = $this->app->make($repositoryContract);
+
+                if (! $model = $repository->findById((int) $id)) {
+                    throw new NotFoundHttpException(\sprintf('%s Not Found', \ucfirst($name)));
+                }
+
+                return $model;
+            });
+        }
     }
 }
