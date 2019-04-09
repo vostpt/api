@@ -11,7 +11,9 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * {@inheritDoc}
      */
-    protected $policies = [];
+    protected $policies = [
+        \VOSTPT\Models\User::class => \VOSTPT\Policies\UserPolicy::class,
+    ];
 
     /**
      * Register any authentication / authorization services.
@@ -21,7 +23,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerPolicies();
-
-        //
     }
 }
