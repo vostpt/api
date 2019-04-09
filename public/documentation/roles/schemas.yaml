@@ -1,0 +1,24 @@
+Role:
+  type: object
+  properties:
+    type:
+      type: string
+      default: roles
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        name:
+          type: string
+          example: admin
+        title:
+          type: string
+          example: Administrator
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
