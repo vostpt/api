@@ -29,6 +29,7 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
             'json-api',
+            'jwt-auth',
         ],
     ];
 
@@ -37,6 +38,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'json-api' => Middleware\JsonApiRequest::class,
+        'jwt-auth' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     ];
@@ -46,6 +48,7 @@ class Kernel extends HttpKernel
      */
     protected $middlewarePriority = [
         Middleware\JsonApiRequest::class,
+        \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
     ];
 }
