@@ -1,0 +1,9 @@
+name: order
+in: query
+description: Sorting order of the results
+schema:
+  type: string
+  enum:
+    - asc
+    - desc
+  default: desc

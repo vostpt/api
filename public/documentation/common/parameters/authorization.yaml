@@ -1,0 +1,6 @@
+name: Authorization
+in: header
+required: true
+schema:
+  type: string
+  example: Bearer <token>

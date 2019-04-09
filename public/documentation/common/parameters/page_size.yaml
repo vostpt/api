@@ -1,0 +1,7 @@
+name: page[size]
+in: query
+description: Items per result page
+schema:
+  type: integer
+  minimum: 1
+  default: 50
