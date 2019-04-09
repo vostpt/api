@@ -169,6 +169,7 @@ return [
         VOSTPT\Providers\AppServiceProvider::class,
         VOSTPT\Providers\AuthServiceProvider::class,
         VOSTPT\Providers\EventServiceProvider::class,
+        VOSTPT\Providers\FilterServiceProvider::class,
         VOSTPT\Providers\ResponseServiceProvider::class,
         VOSTPT\Providers\RouteServiceProvider::class,
         VOSTPT\Providers\ServiceClientServiceProvider::class,
