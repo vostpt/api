@@ -21,8 +21,6 @@ class RoleSerializer extends AbstractSerializer
         return [
             'name'       => $model->name,
             'title'      => $model->title,
-            'level'      => $model->level,
-            'scope'      => $model->scope,
             'created_at' => $model->created_at->toDateTimeString(),
             'updated_at' => $model->updated_at->toDateTimeString(),
         ];

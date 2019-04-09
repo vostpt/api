@@ -134,8 +134,6 @@ class ViewEndpointTest extends TestCase
                     'attributes' => [
                         'name',
                         'title',
-                        'level',
-                        'scope',
                         'created_at',
                         'updated_at',
                     ],
