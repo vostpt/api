@@ -1,0 +1,44 @@
+---
+openapi: 3.0.2
+info:
+  title: VOST Portugal API
+  description: Portuguese Virtual Operations Support Team API.
+  version: 1.0.0
+  contact:
+    name: VOST Portugal API Support
+    email: vostportugal@gmail.com
+  x-logo:
+    url: logo.png
+    altText: VOST Portugal logo
+
+servers:
+  - url: https://api.vost.pt
+    description: Production
+  - url: https://staging-api.vost.pt
+    description: Staging
+  - url: https://dev-api.vost.pt
+    description: Development
+
+tags:
+  - name: Users
+    description: System user operations
+
+x-tagGroups:
+  - name: User Management
+    tags:
+      - Users
+
+paths:
+  /users:
+    $ref: 'users/endpoints.yaml#/index'
+
+  /users/{id}:
+    $ref: 'users/endpoints.yaml#/view'
+
+components:
+  securitySchemes:
+    access_token:
+      description: Most endpoints will require authentication.
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
