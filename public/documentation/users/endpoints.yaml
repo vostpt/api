@@ -1,0 +1,128 @@
+index:
+  get:
+    tags:
+      - Users
+    security:
+      - access_token:
+          - admin
+    summary: Index users
+    description: Index the system users.
+    operationId: users::index
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+      - $ref: '../common/parameters/page_number.yaml'
+      - $ref: '../common/parameters/page_size.yaml'
+      - $ref: '../common/parameters/search.yaml'
+      - name: roles
+        in: query
+        description: Filter by associated roles
+        schema:
+          type: array
+          items:
+            enum:
+              - admin
+              - writer
+              - reader
+      - name: sort
+        in: query
+        description: Field used for sorting results
+        schema:
+          type: string
+          enum:
+            - email
+            - name
+            - surname
+            - created_at
+            - updated_at
+          default: created_at
+      - $ref: '../common/parameters/order.yaml'
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    first:
+                      type: string
+                      description: Link to the first page of results
+                    last:
+                      type: string
+                      description: Link to the last page of results
+                    prev:
+                      type: string
+                      description: Link to the previous page of results
+                    next:
+                      type: string
+                      description: Link to the next page of results
+                data:
+                  type: array
+                  items:
+                    $ref: 'schemas.yaml#/User'
+                meta:
+                  type: object
+                  properties:
+                    per_page:
+                      type: integer
+                      example: 10
+                    total:
+                      type: integer
+                      example: 100
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+view:
+  get:
+    tags:
+      - Users
+    security:
+      - access_token:
+        - admin
+    summary: View user
+    description: Retrieve a specific user record.
+    operationId: users::view
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+      - name: id
+        in: path
+        description: User id
+        required: true
+        schema:
+          type: string
+          example: 1
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/UserWithRelations'
+                included:
+                  type: array
+                  items:
+                    $ref: '../roles/schemas.yaml#/Role'
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
+      404:
+        $ref: '../common/responses/404.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
