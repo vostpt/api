@@ -24,7 +24,7 @@ php artisan jwt:secret
 ### Database
 Execute the migration and seeders:
 ```sh
-php artisan migration:refresh --seed
+php artisan migrate:refresh --seed
 ```
 
 ## Testing
