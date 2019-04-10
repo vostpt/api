@@ -83,7 +83,7 @@ index:
       422:
         $ref: '../common/responses/422.yaml'
 
-view:
+view-and-update:
   get:
     tags:
       - Users
@@ -126,3 +126,75 @@ view:
         $ref: '../common/responses/404.yaml'
       415:
         $ref: '../common/responses/415.yaml'
+
+  patch:
+    tags:
+      - Users
+    security:
+      - access_token:
+          - admin
+    summary: Update user
+    description: Update a user record.
+    operationId: users::update
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+      - name: id
+        in: path
+        description: User id
+        required: true
+        schema:
+          type: string
+          example: 1
+      - name: name
+        in: query
+        description: First name
+        schema:
+          type: string
+          maxLength: 255
+      - name: surname
+        in: query
+        description: Last name
+        schema:
+          type: string
+          maxLength: 255
+      - email:
+        in: query
+        description: Email address
+        schema:
+          type: string
+          format: email
+          example: fernando.pessoa@vost.pt
+      - password:
+        in: query
+        description: Password
+        schema:
+          type: string
+          format: password
+      - password_confirmation:
+        in: query
+        description: Password confirmation
+        schema:
+          type: string
+          format: password
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/UserWithRelations'
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
+      404:
+        $ref: '../common/responses/404.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
