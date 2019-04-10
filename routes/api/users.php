@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
 use VOSTPT\Http\Controllers\UserController;
+use VOSTPT\Http\Controllers\UserRoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,11 @@ Route::prefix('v1/users')->name('users::')->group(function () {
     Route::get('/', [
         'as'   => 'index',
         'uses' => UserController::class.'@index',
+    ]);
+
+    Route::get('/roles', [
+        'as'   => 'roles::index',
+        'uses' => UserRoleController::class.'@index',
     ]);
 
     Route::get('/{user}', [

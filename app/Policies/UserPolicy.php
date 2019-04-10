@@ -56,4 +56,16 @@ class UserPolicy
 
         throw new AccessDeniedHttpException('User cannot self update');
     }
+
+    /**
+     * Determine whether the User can retrieve User roles.
+     *
+     * @param User $user
+     *
+     * @return bool
+     */
+    public function retrieveRoles(User $user): bool
+    {
+        return $user->isAn(Role::ADMINISTRATOR);
+    }
 }
