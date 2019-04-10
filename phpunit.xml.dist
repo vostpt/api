@@ -12,6 +12,10 @@
         <testsuite name="UserController Integration Tests">
             <directory suffix="Test.php">./tests/Integration/Controllers/UserController</directory>
         </testsuite>
+
+        <testsuite name="UserRoleController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/UserRoleController</directory>
+        </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
