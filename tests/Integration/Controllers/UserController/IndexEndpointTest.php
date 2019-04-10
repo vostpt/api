@@ -215,15 +215,15 @@ class IndexEndpointTest extends TestCase
     public function indexDataProvider(): array
     {
         return [
-            'Admin' => [
+            'Administrator' => [
                 Role::ADMINISTRATOR,
                 200,
             ],
-            'Writer' => [
+            'Moderator' => [
                 Role::MODERATOR,
                 403,
             ],
-            'Reader' => [
+            'Contributor' => [
                 Role::CONTRIBUTOR,
                 403,
             ],

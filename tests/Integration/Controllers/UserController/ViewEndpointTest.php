@@ -172,15 +172,15 @@ class ViewEndpointTest extends TestCase
     public function viewDataProvider(): array
     {
         return [
-            'Admin' => [
+            'Administrator' => [
                 Role::ADMINISTRATOR,
                 200,
             ],
-            'Writer' => [
+            'Moderator' => [
                 Role::MODERATOR,
                 403,
             ],
-            'Reader' => [
+            'Contributor' => [
                 Role::CONTRIBUTOR,
                 403,
             ],
