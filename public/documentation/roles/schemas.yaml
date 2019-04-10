@@ -12,10 +12,10 @@ Role:
       properties:
         name:
           type: string
-          example: administrator
+          example: contributor
         title:
           type: string
-          example: Administrator
+          example: Data Contributor
         created_at:
           type: string
           format: date-time

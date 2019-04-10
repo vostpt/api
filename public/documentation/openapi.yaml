@@ -33,7 +33,7 @@ paths:
     $ref: 'users/endpoints.yaml#/roles-index'
 
   /users:
-    $ref: 'users/endpoints.yaml#/index'
+    $ref: 'users/endpoints.yaml#/index-and-create'
 
   /users/{id}:
     $ref: 'users/endpoints.yaml#/view-and-update'

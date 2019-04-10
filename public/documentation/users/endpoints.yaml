@@ -1,4 +1,4 @@
-index:
+index-and-create:
   get:
     tags:
       - Users
@@ -78,6 +78,70 @@ index:
         $ref: '../common/responses/401.yaml'
       403:
         $ref: '../common/responses/403.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+  post:
+    tags:
+      - Users
+    summary: Create user
+    description: Create a user record.
+    operationId: users::create
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - name: name
+        in: query
+        description: First name
+        required: true
+        schema:
+          type: string
+          maxLength: 255
+      - name: surname
+        in: query
+        description: Last name
+        required: true
+        schema:
+          type: string
+          maxLength: 255
+      - email:
+        in: query
+        description: Email address
+        required: true
+        schema:
+          type: string
+          format: email
+          example: fernando.pessoa@vost.pt
+      - password:
+        in: query
+        description: Password
+        required: true
+        schema:
+          type: string
+          format: password
+      - password_confirmation:
+        in: query
+        description: Password confirmation
+        required: true
+        schema:
+          type: string
+          format: password
+
+    responses:
+      201:
+        description: Created
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/UserWithRelations'
+                included:
+                  type: array
+                  items:
+                    $ref: '../roles/schemas.yaml#/Role'
       415:
         $ref: '../common/responses/415.yaml'
       422:
