@@ -44,7 +44,7 @@ class User extends Model implements Authenticatable, AuthorizableContract, JWTSu
      */
     public function getAuthPassword()
     {
-        return null;
+        return $this->attributes['password'];
     }
 
     /**
