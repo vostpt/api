@@ -120,7 +120,7 @@ class User extends Model implements Authenticatable, AuthorizableContract, JWTSu
      *
      * @return void
      */
-    public function setSurameAttribute(string $surname = null): void
+    public function setSurnameAttribute(string $surname = null): void
     {
         if ($surname && \mb_strlen($surname) > 255) {
             throw new LengthException('The surname cannot have more than 255 characters');
