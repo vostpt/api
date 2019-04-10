@@ -12,14 +12,6 @@ class Create extends Request
     /**
      * {@inheritDoc}
      */
-    public function authorize(): bool
-    {
-        return true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function rules(): array
     {
         return [
