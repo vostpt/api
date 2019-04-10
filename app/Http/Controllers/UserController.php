@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\Http\Controllers\User;
+namespace VOSTPT\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use VOSTPT\Filters\Contracts\UserFilter;
-use VOSTPT\Http\Controllers\Controller;
 use VOSTPT\Http\Requests\User\Index;
 use VOSTPT\Http\Requests\User\Update;
 use VOSTPT\Http\Requests\User\View;
