@@ -88,8 +88,7 @@ class ViewEndpointTest extends TestCase
      */
     public function itSuccessfullyViewsUser(): void
     {
-        $user = factory(User::class)->create();
-        $user->assign(Role::ADMIN);
+        $user = factory(User::class)->create()->assign(Role::ADMIN);
 
         $token = auth()->login($user);
 
@@ -152,8 +151,7 @@ class ViewEndpointTest extends TestCase
      */
     public function itVerifiesRoleAccessPermissionsToViewUser(string $role, int $status): void
     {
-        $user = factory(User::class)->create();
-        $user->assign($role);
+        $user = factory(User::class)->create()->assign($role);
 
         $token = auth()->login($user);
 
