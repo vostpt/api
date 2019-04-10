@@ -6,7 +6,7 @@ namespace VOSTPT\Models;
 
 class Role extends \Silber\Bouncer\Database\Role
 {
-    public const ADMIN  = 'admin';
-    public const WRITER = 'writer';
-    public const READER = 'reader';
+    public const ADMINISTRATOR = 'administrator';
+    public const MODERATOR     = 'moderator';
+    public const CONTRIBUTOR   = 'contributor';
 }

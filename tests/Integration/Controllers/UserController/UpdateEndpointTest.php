@@ -88,7 +88,7 @@ class UpdateEndpointTest extends TestCase
      */
     public function itFailsToUpdateUserWhenSelfUpdating(): void
     {
-        $user = factory(User::class)->create()->assign(Role::ADMIN);
+        $user = factory(User::class)->create()->assign(Role::ADMINISTRATOR);
 
         $token = auth()->login($user);
 
@@ -116,7 +116,7 @@ class UpdateEndpointTest extends TestCase
      */
     public function itFailsToUpdateUserDueToValidation(): void
     {
-        $user = factory(User::class)->create()->assign(Role::ADMIN);
+        $user = factory(User::class)->create()->assign(Role::ADMINISTRATOR);
 
         $anotherUser = factory(User::class)->create();
 
@@ -172,13 +172,13 @@ class UpdateEndpointTest extends TestCase
      */
     public function itSuccessfullyUpdatesUser(): void
     {
-        $user = factory(User::class)->create()->assign(Role::ADMIN);
+        $user = factory(User::class)->create()->assign(Role::ADMINISTRATOR);
 
         $anotherUser = factory(User::class)->create([
             'name'    => 'Alberto',
             'surname' => 'Caeiro',
             'email'   => 'alberto.caeiro@vost.pt',
-        ])->assign(Role::WRITER);
+        ])->assign(Role::MODERATOR);
 
         $this->assertDatabaseMissing('users', [
             'name'    => 'Fernando',
@@ -292,15 +292,15 @@ class UpdateEndpointTest extends TestCase
     {
         return [
             'Admin' => [
-                Role::ADMIN,
+                Role::ADMINISTRATOR,
                 200,
             ],
             'Writer' => [
-                Role::WRITER,
+                Role::MODERATOR,
                 403,
             ],
             'Reader' => [
-                Role::READER,
+                Role::CONTRIBUTOR,
                 403,
             ],
         ];

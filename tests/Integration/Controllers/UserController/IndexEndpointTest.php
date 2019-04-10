@@ -58,7 +58,7 @@ class IndexEndpointTest extends TestCase
      */
     public function itFailsToIndexUsersDueToValidation(): void
     {
-        $user = factory(User::class)->create()->assign(Role::ADMIN);
+        $user = factory(User::class)->create()->assign(Role::ADMINISTRATOR);
 
         $token = auth()->login($user);
 
@@ -113,7 +113,7 @@ class IndexEndpointTest extends TestCase
                     ],
                 ],
                 [
-                    'detail' => 'The roles.0 value must be one of: admin, reader, writer',
+                    'detail' => 'The roles.0 value must be one of: administrator, contributor, moderator',
                     'meta'   => [
                         'field' => 'roles.0',
                     ],
@@ -127,14 +127,14 @@ class IndexEndpointTest extends TestCase
      */
     public function itSuccessfullyIndexesUsers(): void
     {
-        $user = factory(User::class)->create()->assign(Role::ADMIN);
+        $user = factory(User::class)->create()->assign(Role::ADMINISTRATOR);
 
         $token = auth()->login($user);
 
         factory(User::class, 20)->create()->each(function (User $user) {
             $user->assign([
-                Role::WRITER,
-                Role::READER,
+                Role::MODERATOR,
+                Role::CONTRIBUTOR,
             ]);
         });
 
@@ -147,8 +147,8 @@ class IndexEndpointTest extends TestCase
             'sort'   => 'surname',
             'order'  => 'asc',
             'roles'  => [
-                Role::WRITER,
-                Role::READER,
+                Role::MODERATOR,
+                Role::CONTRIBUTOR,
             ],
         ], [
             'Content-Type'  => 'application/vnd.api+json',
@@ -216,15 +216,15 @@ class IndexEndpointTest extends TestCase
     {
         return [
             'Admin' => [
-                Role::ADMIN,
+                Role::ADMINISTRATOR,
                 200,
             ],
             'Writer' => [
-                Role::WRITER,
+                Role::MODERATOR,
                 403,
             ],
             'Reader' => [
-                Role::READER,
+                Role::CONTRIBUTOR,
                 403,
             ],
         ];

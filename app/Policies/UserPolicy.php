@@ -19,7 +19,7 @@ class UserPolicy
      */
     public function index(User $user): bool
     {
-        return $user->isAn(Role::ADMIN);
+        return $user->isAn(Role::ADMINISTRATOR);
     }
 
     /**
@@ -31,7 +31,7 @@ class UserPolicy
      */
     public function view(User $user): bool
     {
-        return $user->isAn(Role::ADMIN);
+        return $user->isAn(Role::ADMINISTRATOR);
     }
 
     /**
@@ -46,7 +46,7 @@ class UserPolicy
      */
     public function update(User $user, User $userToUpdate): bool
     {
-        if (! $user->isAn(Role::ADMIN)) {
+        if (! $user->isAn(Role::ADMINISTRATOR)) {
             return false;
         }
 

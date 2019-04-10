@@ -88,7 +88,7 @@ class ViewEndpointTest extends TestCase
      */
     public function itSuccessfullyViewsUser(): void
     {
-        $user = factory(User::class)->create()->assign(Role::ADMIN);
+        $user = factory(User::class)->create()->assign(Role::ADMINISTRATOR);
 
         $token = auth()->login($user);
 
@@ -173,15 +173,15 @@ class ViewEndpointTest extends TestCase
     {
         return [
             'Admin' => [
-                Role::ADMIN,
+                Role::ADMINISTRATOR,
                 200,
             ],
             'Writer' => [
-                Role::WRITER,
+                Role::MODERATOR,
                 403,
             ],
             'Reader' => [
-                Role::READER,
+                Role::CONTRIBUTOR,
                 403,
             ],
         ];

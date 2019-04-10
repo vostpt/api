@@ -12,7 +12,7 @@ Role:
       properties:
         name:
           type: string
-          example: admin
+          example: administrator
         title:
           type: string
           example: Administrator

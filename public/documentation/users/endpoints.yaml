@@ -4,7 +4,7 @@ index:
       - Users
     security:
       - access_token:
-          - admin
+          - administrator
     summary: Index users
     description: Index the system users.
     operationId: users::index
@@ -21,9 +21,9 @@ index:
           type: array
           items:
             enum:
-              - admin
-              - writer
-              - reader
+              - administrator
+              - moderator
+              - contributor
       - name: sort
         in: query
         description: Field used for sorting results
@@ -89,7 +89,7 @@ view-and-update:
       - Users
     security:
       - access_token:
-        - admin
+        - administrator
     summary: View user
     description: Retrieve a specific user record.
     operationId: users::view
@@ -132,7 +132,7 @@ view-and-update:
       - Users
     security:
       - access_token:
-          - admin
+          - administrator
     summary: Update user
     description: Update a user record.
     operationId: users::update
