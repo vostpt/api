@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace VOSTPT\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 use VOSTPT\Filters\Contracts\UserFilter;
+use VOSTPT\Http\Requests\User\Create;
 use VOSTPT\Http\Requests\User\Index;
 use VOSTPT\Http\Requests\User\Update;
 use VOSTPT\Http\Requests\User\View;
 use VOSTPT\Http\Serializers\UserSerializer;
+use VOSTPT\Models\Role;
 use VOSTPT\Models\User;
 use VOSTPT\Repositories\Contracts\UserRepository;
 
@@ -46,6 +49,36 @@ class UserController extends Controller
         $paginator = $this->createPaginator(User::class, $userRepository->createQueryBuilder(), $filter);
 
         return response()->paginator($paginator, new UserSerializer());
+    }
+
+    /**
+     * Create a User.
+     *
+     * @param Create $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function create(Create $request): JsonResponse
+    {
+        $user = DB::transaction(function () use ($request) {
+            $user = new User();
+
+            $user->name = $request->input('name');
+            $user->surname = $request->input('surname');
+            $user->email = $request->input('email');
+            $user->password = $request->input('password');
+
+            $user->save();
+
+            // Newly registered users are set as contributors
+            $user->assign(Role::CONTRIBUTOR);
+
+            return $user;
+        });
+
+        return response()->resource($user, new UserSerializer(), [
+            'roles',
+        ], 201);
     }
 
     /**

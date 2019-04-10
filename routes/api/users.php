@@ -17,20 +17,25 @@ Route::prefix('v1/users')->name('users::')->group(function () {
     Route::get('/', [
         'as'   => 'index',
         'uses' => UserController::class.'@index',
+    ])->middleware('jwt-auth');
+
+    Route::post('/', [
+        'as'   => 'create',
+        'uses' => UserController::class.'@create',
     ]);
 
     Route::get('/roles', [
         'as'   => 'roles::index',
         'uses' => UserRoleController::class.'@index',
-    ]);
+    ])->middleware('jwt-auth');
 
     Route::get('/{user}', [
         'as'   => 'view',
         'uses' => UserController::class.'@view',
-    ]);
+    ])->middleware('jwt-auth');
 
     Route::patch('/{user}', [
         'as'   => 'update',
         'uses' => UserController::class.'@update',
-    ]);
+    ])->middleware('jwt-auth');
 });
