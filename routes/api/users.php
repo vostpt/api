@@ -22,4 +22,9 @@ Route::prefix('v1/users')->name('users::')->group(function () {
         'as'   => 'view',
         'uses' => UserController::class.'@view',
     ]);
+
+    Route::patch('/{user}', [
+        'as'   => 'update',
+        'uses' => UserController::class.'@update',
+    ]);
 });

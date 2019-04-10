@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use VOSTPT\Filters\Contracts\UserFilter;
 use VOSTPT\Http\Controllers\Controller;
 use VOSTPT\Http\Requests\User\Index;
+use VOSTPT\Http\Requests\User\Update;
 use VOSTPT\Http\Requests\User\View;
 use VOSTPT\Http\Serializers\UserSerializer;
 use VOSTPT\Models\User;
@@ -58,6 +59,39 @@ class UserController extends Controller
      */
     public function view(View $request, User $user): JsonResponse
     {
+        return response()->resource($user, new UserSerializer(), [
+            'roles',
+        ]);
+    }
+
+    /**
+     * Update a User.
+     *
+     * @param Update $request
+     * @param User   $user
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Update $request, User $user): JsonResponse
+    {
+        if ($request->has('name')) {
+            $user->name = $request->input('name');
+        }
+
+        if ($request->has('surname')) {
+            $user->surname = $request->input('surname');
+        }
+
+        if ($request->has('email')) {
+            $user->email = $request->input('email');
+        }
+
+        if ($request->has('password')) {
+            $user->password = $request->input('password');
+        }
+
+        $user->save();
+
         return response()->resource($user, new UserSerializer(), [
             'roles',
         ]);
