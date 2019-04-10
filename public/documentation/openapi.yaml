@@ -29,6 +29,9 @@ x-tagGroups:
       - Users
 
 paths:
+  /users/roles:
+    $ref: 'users/endpoints.yaml#/roles-index'
+
   /users:
     $ref: 'users/endpoints.yaml#/index'
 

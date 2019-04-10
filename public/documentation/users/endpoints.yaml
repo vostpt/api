@@ -198,3 +198,35 @@ view-and-update:
         $ref: '../common/responses/415.yaml'
       422:
         $ref: '../common/responses/422.yaml'
+
+roles-index:
+  get:
+    tags:
+      - Users
+    security:
+      - access_token:
+          - administrator
+    summary: Get user roles
+    description: Retrieve the available user roles.
+    operationId: users::roles::index
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '../roles/schemas.yaml#/Role'
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
