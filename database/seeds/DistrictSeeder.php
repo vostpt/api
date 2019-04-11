@@ -17,83 +17,83 @@ class DistrictSeeder extends Seeder
         $districts = [
             [
                 'code' => '010000',
-                'name' => 'Aveiro',
+                'name' => 'AVEIRO',
             ],
             [
                 'code' => '020000',
-                'name' => 'Beja',
+                'name' => 'BEJA',
             ],
             [
                 'code' => '030000',
-                'name' => 'Braga',
+                'name' => 'BRAGA',
             ],
             [
                 'code' => '040000',
-                'name' => 'Bragança',
+                'name' => 'BRAGANÇA',
             ],
             [
                 'code' => '050000',
-                'name' => 'Castelo Branco',
+                'name' => 'CASTELO BRANCO',
             ],
             [
                 'code' => '060000',
-                'name' => 'Coimbra',
+                'name' => 'COIMBRA',
             ],
             [
                 'code' => '070000',
-                'name' => 'Évora',
+                'name' => 'ÉVORA',
             ],
             [
                 'code' => '080000',
-                'name' => 'Faro',
+                'name' => 'FARO',
             ],
             [
                 'code' => '090000',
-                'name' => 'Guarda',
+                'name' => 'GUARDA',
             ],
             [
                 'code' => '100000',
-                'name' => 'Leiria',
+                'name' => 'LEIRIA',
             ],
             [
                 'code' => '110000',
-                'name' => 'Lisboa',
+                'name' => 'LISBOA',
             ],
             [
                 'code' => '120000',
-                'name' => 'Portalegre',
+                'name' => 'PORTALEGRE',
             ],
             [
                 'code' => '130000',
-                'name' => 'Porto',
+                'name' => 'PORTO',
             ],
             [
                 'code' => '140000',
-                'name' => 'Santarém',
+                'name' => 'SANTARÉM',
             ],
             [
                 'code' => '150000',
-                'name' => 'Setúbal',
+                'name' => 'SETÚBAL',
             ],
             [
                 'code' => '160000',
-                'name' => 'Viana do Castelo',
+                'name' => 'VIANA DO CASTELO',
             ],
             [
                 'code' => '170000',
-                'name' => 'Vila Real',
+                'name' => 'VILA REAL',
             ],
             [
                 'code' => '180000',
-                'name' => 'Viseu',
+                'name' => 'VISEU',
             ],
             [
                 'code' => '300000',
-                'name' => 'Madeira',
+                'name' => 'MADEIRA',
             ],
             [
                 'code' => '400000',
-                'name' => 'Açores',
+                'name' => 'AÇORES',
             ],
         ];
 
