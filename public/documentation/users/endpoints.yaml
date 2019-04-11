@@ -222,25 +222,35 @@ view-and-update:
         schema:
           type: string
           maxLength: 255
-      - email:
+      - name: email
         in: query
         description: Email address
         schema:
           type: string
           format: email
           example: fernando.pessoa@vost.pt
-      - password:
+      - name: password
         in: query
         description: Password
         schema:
           type: string
           format: password
-      - password_confirmation:
+      - name: password_confirmation
         in: query
         description: Password confirmation
         schema:
           type: string
           format: password
+      - name: roles
+        in: query
+        description: User roles
+        schema:
+          type: array
+          items:
+            enum:
+              - administrator
+              - moderator
+              - contributor
 
     responses:
       200:
