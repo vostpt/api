@@ -14,7 +14,8 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register(): void
     {
         $repositories = [
-            \VOSTPT\Repositories\Contracts\UserRepository::class => \VOSTPT\Repositories\UserRepository::class,
+            \VOSTPT\Repositories\Contracts\DistrictRepository::class => \VOSTPT\Repositories\DistrictRepository::class,
+            \VOSTPT\Repositories\Contracts\UserRepository::class     => \VOSTPT\Repositories\UserRepository::class,
         ];
 
         foreach ($repositories as $interface => $concrete) {
