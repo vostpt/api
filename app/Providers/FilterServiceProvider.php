@@ -14,7 +14,8 @@ class FilterServiceProvider extends ServiceProvider
     public function register(): void
     {
         $filters = [
-            \VOSTPT\Filters\Contracts\UserFilter::class => \VOSTPT\Filters\UserFilter::class,
+            \VOSTPT\Filters\Contracts\DistrictFilter::class => \VOSTPT\Filters\DistrictFilter::class,
+            \VOSTPT\Filters\Contracts\UserFilter::class     => \VOSTPT\Filters\UserFilter::class,
         ];
 
         foreach ($filters as $interface => $concrete) {
