@@ -14,6 +14,7 @@ class FilterServiceProvider extends ServiceProvider
     public function register(): void
     {
         $filters = [
+            \VOSTPT\Filters\Contracts\CountyFilter::class   => \VOSTPT\Filters\CountyFilter::class,
             \VOSTPT\Filters\Contracts\DistrictFilter::class => \VOSTPT\Filters\DistrictFilter::class,
             \VOSTPT\Filters\Contracts\UserFilter::class     => \VOSTPT\Filters\UserFilter::class,
         ];
