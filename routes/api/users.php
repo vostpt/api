@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
 use VOSTPT\Http\Controllers\UserController;
+use VOSTPT\Http\Controllers\UserProfileController;
 use VOSTPT\Http\Controllers\UserRoleController;
 
 /*
@@ -23,6 +24,16 @@ Route::prefix('v1/users')->name('users::')->group(function () {
         'as'   => 'create',
         'uses' => UserController::class.'@create',
     ]);
+
+    Route::get('/profile', [
+        'as'   => 'profile::view',
+        'uses' => UserProfileController::class.'@view',
+    ])->middleware('jwt-auth');
+
+    Route::patch('/profile', [
+        'as'   => 'profile::update',
+        'uses' => UserProfileController::class.'@update',
+    ])->middleware('jwt-auth');
 
     Route::get('/roles', [
         'as'   => 'roles::index',
