@@ -80,4 +80,28 @@ class UserPolicy
     {
         return true;
     }
+
+    /**
+     * Determine whether the User can view the profile.
+     *
+     * @param User $user
+     *
+     * @return bool
+     */
+    public function viewProfile(User $user): bool
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the User can update the profile.
+     *
+     * @param User $user
+     *
+     * @return bool
+     */
+    public function updateProfile(User $user): bool
+    {
+        return true;
+    }
 }
