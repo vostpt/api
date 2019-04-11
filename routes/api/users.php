@@ -23,7 +23,7 @@ Route::prefix('v1/users')->name('users::')->group(function () {
     Route::post('/', [
         'as'   => 'create',
         'uses' => UserController::class.'@create',
-    ]);
+    ])->middleware('throttle:8,10');
 
     Route::get('/profile', [
         'as'   => 'profile::view',
