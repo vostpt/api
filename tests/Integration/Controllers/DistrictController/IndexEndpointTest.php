@@ -5,23 +5,12 @@ declare(strict_types=1);
 namespace VOSTPT\Tests\Integration\Controllers\DistrictController;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use VOSTPT\Models\District;
 use VOSTPT\Tests\Integration\TestCase;
 
 class IndexEndpointTest extends TestCase
 {
     use RefreshDatabase;
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->artisan('db:seed', [
-            '--class' => 'DistrictSeeder',
-        ]);
-    }
 
     /**
      * @test
@@ -102,6 +91,8 @@ class IndexEndpointTest extends TestCase
      */
     public function itSuccessfullyIndexesDistricts(): void
     {
+        factory(District::class, 20)->create();
+
         $response = $this->json('GET', route('districts::index'), [
             'deleted' => true,
             'page'    => [

@@ -5,25 +5,12 @@ declare(strict_types=1);
 namespace VOSTPT\Tests\Integration\Controllers\DistrictController;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use VOSTPT\Models\Role;
-use VOSTPT\Models\User;
+use VOSTPT\Models\District;
 use VOSTPT\Tests\Integration\TestCase;
 
 class ViewEndpointTest extends TestCase
 {
     use RefreshDatabase;
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->artisan('db:seed', [
-            '--class' => 'DistrictSeeder',
-        ]);
-    }
 
     /**
      * @test
@@ -52,7 +39,7 @@ class ViewEndpointTest extends TestCase
     public function itFailsToViewDistrictDueToRecordNotFound(): void
     {
         $response = $this->json('GET', route('districts::view', [
-            'district' => 123,
+            'district' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -74,15 +61,12 @@ class ViewEndpointTest extends TestCase
      */
     public function itSuccessfullyViewsDistrict(): void
     {
-        $user = factory(User::class)->create()->assign(Role::ADMINISTRATOR);
-
-        $token = auth()->login($user);
+        $district = factory(District::class)->create();
 
         $response = $this->json('GET', route('districts::view', [
-            'district' => 1,
+            'district' => $district->getKey(),
         ]), [], [
-            'Content-Type'  => 'application/vnd.api+json',
-            'Authorization' => \sprintf('Bearer %s', $token),
+            'Content-Type' => 'application/vnd.api+json',
         ]);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
