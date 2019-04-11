@@ -24,8 +24,6 @@ class Update extends Request
      */
     public function rules(): array
     {
-        $user = $this->route('user');
-
         return [
             'name' => [
                 'string',
@@ -39,7 +37,7 @@ class Update extends Request
                 'email',
                 'max:255',
                 Rule::unique('users', 'email')
-                    ->ignore($user->id, 'email'),
+                    ->ignore($this->route('user'), 'email'),
             ],
             'password' => [
                 'required_with:password_confirmation',
