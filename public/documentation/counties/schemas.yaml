@@ -1,0 +1,76 @@
+County:
+  type: object
+  properties:
+    type:
+      type: string
+      default: counties
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 080100
+        name:
+          type: string
+          example: Albufeira
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    links:
+      type: object
+      properties:
+        self:
+          type: string
+          description: Link to this page
+
+CountyWithRelations:
+  type: object
+  properties:
+    type:
+      type: string
+      default: counties
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 080100
+        name:
+          type: string
+          example: Albufeira
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    relationships:
+      type: object
+      properties:
+        district:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: districts
+                id:
+                  type: string
+                  example: 1
+    links:
+      type: object
+      properties:
+        self:
+          type: string
+          description: Link to this page
