@@ -20,6 +20,8 @@ servers:
     description: Development
 
 tags:
+  - name: Authentication
+    description: User authentication operations
   - name: Users
     description: System user operations
 
@@ -44,6 +46,9 @@ paths:
 
   /users/{id}:
     $ref: 'users/endpoints.yaml#/view-and-update'
+
+  /users/profile:
+    $ref: 'users/endpoints.yaml#/profile-view-and-update'
 
 components:
   securitySchemes:
