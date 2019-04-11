@@ -68,4 +68,16 @@ class UserPolicy
     {
         return $user->isAn(Role::ADMINISTRATOR);
     }
+
+    /**
+     * Determine whether the User can refresh an access token.
+     *
+     * @param User $user
+     *
+     * @return bool
+     */
+    public function refresh(User $user): bool
+    {
+        return true;
+    }
 }
