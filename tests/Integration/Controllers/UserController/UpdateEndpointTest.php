@@ -197,9 +197,11 @@ class UpdateEndpointTest extends TestCase
         $response = $this->json('PATCH', route('users::update', [
             'user' => $anotherUser->id,
         ]), [
-            'name'    => 'Fernando',
-            'surname' => 'Pessoa',
-            'email'   => 'fernando.pessoa@vost.pt',
+            'name'                  => 'Fernando',
+            'surname'               => 'Pessoa',
+            'email'                 => 'fernando.pessoa@vost.pt',
+            'password'              => 'absinto',
+            'password_confirmation' => 'absinto',
         ], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),
