@@ -1,0 +1,30 @@
+District:
+  type: object
+  properties:
+    type:
+      type: string
+      default: districts
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 080000
+        name:
+          type: string
+          example: Faro
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    links:
+      type: object
+      properties:
+        self:
+          type: string
+          description: Link to this page

@@ -7,7 +7,6 @@ authenticate:
     operationId: auth::authenticate
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
-      - $ref: '../common/parameters/authorization.yaml'
       - name: email
         in: query
         description: Email address

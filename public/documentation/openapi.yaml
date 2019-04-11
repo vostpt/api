@@ -22,16 +22,33 @@ servers:
 tags:
   - name: Authentication
     description: User authentication operations
+  - name: Districts
+    description: District operations
+  - name: Counties
+    description: County operations
+  - name: Parishes
+    description: Parish operations
   - name: Users
     description: System user operations
 
 x-tagGroups:
+  - name: Location Management
+    tags:
+      - Districts
+      - Counties
+      - Parishes
   - name: User Management
     tags:
       - Authentication
       - Users
 
 paths:
+  /districts:
+    $ref: 'districts/endpoints.yaml#/index'
+
+  /districts/{id}:
+    $ref: 'districts/endpoints.yaml#/view'
+
   /auth:
     $ref: 'auth/endpoints.yaml#/authenticate'
 
