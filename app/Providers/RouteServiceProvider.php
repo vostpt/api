@@ -58,6 +58,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes(): void
     {
         $this->app['router']->group(['middleware' => 'api'], function () {
+            require base_path('routes/api/auth.php');
             require base_path('routes/api/users.php');
         });
     }
