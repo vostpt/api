@@ -8,7 +8,7 @@ authenticate:
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
       - $ref: '../common/parameters/authorization.yaml'
-      - email:
+      - name: email
         in: query
         description: Email address
         required: true
@@ -16,7 +16,7 @@ authenticate:
           type: string
           format: email
           example: fernando.pessoa@vost.pt
-      - password:
+      - name: password
         in: query
         description: Password
         required: true
