@@ -1,0 +1,5 @@
+name: search
+in: query
+description: Subject to search for
+schema:
+  type: string

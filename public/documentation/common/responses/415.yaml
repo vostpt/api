@@ -1,0 +1,17 @@
+description: Unsupported Media Type
+content:
+  application/vnd.api+json:
+    schema:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: integer
+                default: 415
+              detail:
+                type: string
+                default: Wrong media type

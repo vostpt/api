@@ -1,0 +1,24 @@
+Role:
+  type: object
+  properties:
+    type:
+      type: string
+      default: roles
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        name:
+          type: string
+          example: contributor
+        title:
+          type: string
+          example: Data Contributor
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time

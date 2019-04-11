@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="AuthController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/AuthController</directory>
+        </testsuite>
+
+        <testsuite name="UserController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/UserController</directory>
+        </testsuite>
+
+        <testsuite name="UserProfileController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/UserProfileController</directory>
+        </testsuite>
+
+        <testsuite name="UserRoleController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/UserRoleController</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./app</directory>
+        </whitelist>
+    </filter>
+    <php>
+        <server name="APP_ENV" value="testing"/>
+        <server name="APP_DEBUG" value="true"/>
+        <server name="APP_KEY" value="jqEQJBYvDujpmG3VPRYYVGVqEpX2DYf5"/>
+        <server name="JWT_SECRET" value="DXMcjZmgShcu0nhph7lPZmN2zIBDoNt8"/>
+        <server name="BCRYPT_ROUNDS" value="4"/>
+        <server name="CACHE_DRIVER" value="array"/>
+        <server name="MAIL_DRIVER" value="array"/>
+        <server name="QUEUE_CONNECTION" value="sync"/>
+
+        <!-- Database -->
+        <env name="DB_CONNECTION" value="sqlite"/>
+        <env name="DB_DATABASE" value=":memory:"/>
+    </php>
+</phpunit>

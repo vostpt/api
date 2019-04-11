@@ -16,10 +16,15 @@ Generate an encryption key:
 php artisan key:generate
 ```
 
+Generate JWT secret key:
+```sh
+php artisan jwt:secret
+```
+
 ### Database
 Execute the migration and seeders:
 ```sh
-php artisan migration:refresh --seed
+php artisan migrate:refresh --seed
 ```
 
 ## Testing

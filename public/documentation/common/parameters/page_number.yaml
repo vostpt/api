@@ -1,0 +1,7 @@
+name: page[number]
+in: query
+description: Result page number
+schema:
+  type: integer
+  minimum: 1
+  default: 1

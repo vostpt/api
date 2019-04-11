@@ -1,0 +1,15 @@
+AccessToken:
+  type: object
+  properties:
+    meta:
+      type: object
+      properties:
+        access_token:
+          type: string
+          example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL3YxXC9hdXRoXC9yZWZyZXNoIiwiaWF0IjoxNTU0OTcwOTUzLCJleHAiOjE1NTQ5NzQ1NTMsIm5iZiI6MTU1NDk3MDk1MywianRpIjoiYTV1QmhSUXZXd3dYM2xWUiIsInN1YiI6MSwicHJ2IjoiN2IyOWQwZDhkMGU3ZDQ3ZjllM2FhNmQ3N2Q2NTJiNDZiMWEwNzUwOCIsImlkIjoxLCJuYW1lIjoiRGVzaGF3biIsInN1cm5hbWUiOiJCYXVjaCIsImVtYWlsIjoibW96ZWxsZS5zdHJvc2luQGV4YW1wbGUub3JnIiwicm9sZXMiOlsiYWRtaW5pc3RyYXRvciJdfQ.QmYfktTlX1sheCpZlb28KGnCClDv3Oe_FCz3rhPPXLOiwMxa2UYzkuqmXmUI9iwjXbPbSYUx8JckKWITi3kYww
+        token_type:
+          type: string
+          default: bearer
+        expires_in:
+          type: integer
+          example: 3600

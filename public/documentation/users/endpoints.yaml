@@ -1,0 +1,406 @@
+index-and-create:
+  get:
+    tags:
+      - Users
+    security:
+      - access_token:
+          - administrator
+    summary: Index users
+    description: Index the system users.
+    operationId: users::index
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+      - $ref: '../common/parameters/page_number.yaml'
+      - $ref: '../common/parameters/page_size.yaml'
+      - $ref: '../common/parameters/search.yaml'
+      - name: roles
+        in: query
+        description: Filter by associated roles
+        schema:
+          type: array
+          items:
+            enum:
+              - administrator
+              - moderator
+              - contributor
+      - name: sort
+        in: query
+        description: Field used for sorting results
+        schema:
+          type: string
+          enum:
+            - email
+            - name
+            - surname
+            - created_at
+            - updated_at
+          default: created_at
+      - $ref: '../common/parameters/order.yaml'
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    first:
+                      type: string
+                      description: Link to the first page of results
+                    last:
+                      type: string
+                      description: Link to the last page of results
+                    prev:
+                      type: string
+                      description: Link to the previous page of results
+                    next:
+                      type: string
+                      description: Link to the next page of results
+                data:
+                  type: array
+                  items:
+                    $ref: 'schemas.yaml#/User'
+                meta:
+                  type: object
+                  properties:
+                    per_page:
+                      type: integer
+                      example: 10
+                    total:
+                      type: integer
+                      example: 100
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+  post:
+    tags:
+      - Users
+    summary: Create user
+    description: Create a user record. This endpoint is rate limited to **4** requests for every **10** minutes.
+    operationId: users::create
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - name: name
+        in: query
+        description: First name
+        required: true
+        schema:
+          type: string
+          maxLength: 255
+      - name: surname
+        in: query
+        description: Last name
+        required: true
+        schema:
+          type: string
+          maxLength: 255
+      - name: email
+        in: query
+        description: Email address
+        required: true
+        schema:
+          type: string
+          format: email
+          example: fernando.pessoa@vost.pt
+      - name: password
+        in: query
+        description: Password
+        required: true
+        schema:
+          type: string
+          format: password
+      - name: password_confirmation
+        in: query
+        description: Password confirmation
+        required: true
+        schema:
+          type: string
+          format: password
+
+    responses:
+      201:
+        description: Created
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/UserWithRelations'
+                included:
+                  type: array
+                  items:
+                    $ref: '../roles/schemas.yaml#/Role'
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+      429:
+        $ref: '../common/responses/429.yaml'
+
+view-and-update:
+  get:
+    tags:
+      - Users
+    security:
+      - access_token:
+        - administrator
+    summary: View user
+    description: Retrieve a specific user record.
+    operationId: users::view
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+      - name: id
+        in: path
+        description: User id
+        required: true
+        schema:
+          type: string
+          example: 1
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/UserWithRelations'
+                included:
+                  type: array
+                  items:
+                    $ref: '../roles/schemas.yaml#/Role'
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
+      404:
+        $ref: '../common/responses/404.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+
+  patch:
+    tags:
+      - Users
+    security:
+      - access_token:
+          - administrator
+    summary: Update user
+    description: Update a user record.
+    operationId: users::update
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+      - name: id
+        in: path
+        description: User id
+        required: true
+        schema:
+          type: string
+          example: 1
+      - name: name
+        in: query
+        description: First name
+        schema:
+          type: string
+          maxLength: 255
+      - name: surname
+        in: query
+        description: Last name
+        schema:
+          type: string
+          maxLength: 255
+      - name: email
+        in: query
+        description: Email address
+        schema:
+          type: string
+          format: email
+          example: fernando.pessoa@vost.pt
+      - name: password
+        in: query
+        description: Password
+        schema:
+          type: string
+          format: password
+      - name: password_confirmation
+        in: query
+        description: Password confirmation
+        schema:
+          type: string
+          format: password
+      - name: roles
+        in: query
+        description: User roles
+        schema:
+          type: array
+          items:
+            enum:
+              - administrator
+              - moderator
+              - contributor
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/UserWithRelations'
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
+      404:
+        $ref: '../common/responses/404.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+profile-view-and-update:
+  get:
+    tags:
+      - Users
+    security:
+      - access_token:
+          - administrator
+          - moderator
+          - contributor
+    summary: View profile
+    description: Retrieve the user's profile.
+    operationId: users::profile::view
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/UserWithRelations'
+                included:
+                  type: array
+                  items:
+                    $ref: '../roles/schemas.yaml#/Role'
+      401:
+        $ref: '../common/responses/401.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+
+  patch:
+    tags:
+      - Users
+    security:
+      - access_token:
+          - administrator
+          - moderator
+          - contributor
+    summary: Update profile
+    description: Update the user's profile.
+    operationId: users::profile::update
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+      - name: name
+        in: query
+        description: First name
+        schema:
+          type: string
+          maxLength: 255
+      - name: surname
+        in: query
+        description: Last name
+        schema:
+          type: string
+          maxLength: 255
+      - name: email
+        in: query
+        description: Email address
+        schema:
+          type: string
+          format: email
+          example: fernando.pessoa@vost.pt
+      - name: password
+        in: query
+        description: Password
+        schema:
+          type: string
+          format: password
+      - name: password_confirmation
+        in: query
+        description: Password confirmation
+        schema:
+          type: string
+          format: password
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/UserWithRelations'
+      401:
+        $ref: '../common/responses/401.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+roles-index:
+  get:
+    tags:
+      - Users
+    security:
+      - access_token:
+          - administrator
+    summary: Get user roles
+    description: Retrieve the available user roles.
+    operationId: users::roles::index
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '../roles/schemas.yaml#/Role'
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
