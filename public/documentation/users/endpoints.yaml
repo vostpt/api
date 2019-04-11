@@ -87,7 +87,7 @@ index-and-create:
     tags:
       - Users
     summary: Create user
-    description: Create a user record.
+    description: Create a user record. This endpoint is rate limited to **4** requests for every **10** minutes.
     operationId: users::create
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
@@ -146,6 +146,8 @@ index-and-create:
         $ref: '../common/responses/415.yaml'
       422:
         $ref: '../common/responses/422.yaml'
+      429:
+        $ref: '../common/responses/429.yaml'
 
 view-and-update:
   get:
