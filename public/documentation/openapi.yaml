@@ -26,9 +26,16 @@ tags:
 x-tagGroups:
   - name: User Management
     tags:
+      - Authentication
       - Users
 
 paths:
+  /auth:
+    $ref: 'auth/endpoints.yaml#/authenticate'
+
+  /auth/refresh:
+    $ref: 'auth/endpoints.yaml#/refresh'
+
   /users/roles:
     $ref: 'users/endpoints.yaml#/roles-index'
 
