@@ -130,6 +130,10 @@ class UpdateEndpointTest extends TestCase
             'email'                 => 'invalid at email dot tld',
             'password'              => 'secret',
             'password_confirmation' => 'code',
+            'roles'                 => [
+                'admin',
+                'guest',
+            ],
         ], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),
@@ -161,6 +165,12 @@ class UpdateEndpointTest extends TestCase
                     'detail' => 'The password confirmation does not match.',
                     'meta'   => [
                         'field' => 'password',
+                    ],
+                ],
+                [
+                    'detail' => 'The selected roles.0 is invalid.',
+                    'meta'   => [
+                        'field' => 'roles.0',
                     ],
                 ],
             ],
@@ -202,6 +212,10 @@ class UpdateEndpointTest extends TestCase
             'email'                 => 'fernando.pessoa@vost.pt',
             'password'              => 'absinto',
             'password_confirmation' => 'absinto',
+            'roles'                 => [
+                Role::CONTRIBUTOR,
+                Role::ADMINISTRATOR,
+            ],
         ], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),

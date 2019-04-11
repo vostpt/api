@@ -106,23 +106,34 @@ class UserController extends Controller
      */
     public function update(Update $request, User $user): JsonResponse
     {
-        if ($request->has('name')) {
-            $user->name = $request->input('name');
-        }
+        $user = DB::transaction(function () use ($request, $user) {
+            if ($request->has('name')) {
+                $user->name = $request->input('name');
+            }
 
-        if ($request->has('surname')) {
-            $user->surname = $request->input('surname');
-        }
+            if ($request->has('surname')) {
+                $user->surname = $request->input('surname');
+            }
 
-        if ($request->has('email')) {
-            $user->email = $request->input('email');
-        }
+            if ($request->has('email')) {
+                $user->email = $request->input('email');
+            }
 
-        if ($request->has('password')) {
-            $user->password = $request->input('password');
-        }
+            if ($request->has('password')) {
+                $user->password = $request->input('password');
+            }
 
-        $user->save();
+            $user->save();
+
+            if ($request->has('roles')) {
+                // Remove current roles before new assignments
+                $user->retract($user->getRoles());
+
+                $user->assign($request->input('roles'));
+            }
+
+            return $user;
+        });
 
         return response()->resource($user, new UserSerializer(), [
             'roles',
