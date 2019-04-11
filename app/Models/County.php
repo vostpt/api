@@ -6,24 +6,24 @@ namespace VOSTPT\Models;
 
 use DomainException;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use LengthException;
 
-class District extends Model
+class County extends Model
 {
     /**
      * {@inheritDoc}
      */
-    protected $table = 'districts';
+    protected $table = 'counties';
 
     /**
-     * Associated Counties.
+     * Associated District.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function counties(): HasMany
+    public function district(): BelongsTo
     {
-        return $this->hasMany(County::class);
+        return $this->belongsTo(District::class);
     }
 
     /**
