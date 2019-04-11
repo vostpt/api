@@ -93,7 +93,7 @@ class ViewEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('GET', route('users::view', [
-            'user' => $user->id,
+            'user' => $user->getKey(),
         ]), [], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),
@@ -156,7 +156,7 @@ class ViewEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('GET', route('users::view', [
-            'user' => $user->id,
+            'user' => $user->getKey(),
         ]), [], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),
