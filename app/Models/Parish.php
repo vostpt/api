@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace VOSTPT\Models;
 
-use DomainException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use LengthException;
@@ -31,14 +30,14 @@ class Parish extends Model
      *
      * @param string $code
      *
-     * @return void
+     * @throws \LengthException
      *
-     * @throws \DomainException
+     * @return void
      */
     public function setCodeAttribute(string $code): void
     {
-        if (! \is_numeric($code)) {
-            throw new DomainException('The code must be numeric');
+        if (\mb_strlen($code) !== 6) {
+            throw new LengthException('The code must have 6 characters');
         }
 
         $this->attributes['code'] = $code;
