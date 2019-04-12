@@ -21,6 +21,10 @@
             <directory suffix="Test.php">./tests/Integration/Controllers/DistrictController</directory>
         </testsuite>
 
+        <testsuite name="ParishController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/ParishController</directory>
+        </testsuite>
+
         <testsuite name="UserController Integration Tests">
             <directory suffix="Test.php">./tests/Integration/Controllers/UserController</directory>
         </testsuite>
