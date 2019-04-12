@@ -19,7 +19,7 @@ class CountyController extends Controller
      *
      * @param Index            $request
      * @param CountyFilter     $filter
-     * @param CountyRepository $districtRepository
+     * @param CountyRepository $countyRepository
      *
      * @throws \InvalidArgumentException
      * @throws \OutOfBoundsException
@@ -27,7 +27,7 @@ class CountyController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Index $request, CountyFilter $filter, CountyRepository $districtRepository): JsonResponse
+    public function index(Index $request, CountyFilter $filter, CountyRepository $countyRepository): JsonResponse
     {
         $filter->setSortColumn($request->input('sort', $filter->getSortColumn()))
             ->setSortOrder($request->input('order', $filter->getSortOrder()))
@@ -38,7 +38,7 @@ class CountyController extends Controller
             $filter->withSearch($search);
         }
 
-        $paginator = $this->createPaginator(County::class, $districtRepository->createQueryBuilder(), $filter);
+        $paginator = $this->createPaginator(County::class, $countyRepository->createQueryBuilder(), $filter);
 
         return response()->paginator($paginator, new CountySerializer());
     }
@@ -47,13 +47,13 @@ class CountyController extends Controller
      * View a County.
      *
      * @param View   $request
-     * @param County $district
+     * @param County $county
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function view(View $request, County $district): JsonResponse
+    public function view(View $request, County $county): JsonResponse
     {
-        return response()->resource($district, new CountySerializer(), [
+        return response()->resource($county, new CountySerializer(), [
             'district',
         ]);
     }
