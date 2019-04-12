@@ -91,6 +91,10 @@ view:
               properties:
                 data:
                   $ref: 'schemas.yaml#/CountyWithRelations'
+                included:
+                  type: array
+                  items:
+                    $ref: '../districts/schemas.yaml#/District'
       404:
         $ref: '../common/responses/404.yaml'
       415:
