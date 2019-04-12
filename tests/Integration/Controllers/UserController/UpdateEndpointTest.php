@@ -93,7 +93,7 @@ class UpdateEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('PATCH', route('users::update', [
-            'user' => $user->id,
+            'user' => $user->getKey(),
         ]), [], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),
@@ -123,7 +123,7 @@ class UpdateEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('PATCH', route('users::update', [
-            'user' => $anotherUser->id,
+            'user' => $anotherUser->getKey(),
         ]), [
             'name'                  => \str_repeat('name', 70),
             'surname'               => \str_repeat('surname', 40),
@@ -205,7 +205,7 @@ class UpdateEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('PATCH', route('users::update', [
-            'user' => $anotherUser->id,
+            'user' => $anotherUser->getKey(),
         ]), [
             'name'                  => 'Fernando',
             'surname'               => 'Pessoa',
@@ -291,7 +291,7 @@ class UpdateEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('PATCH', route('users::update', [
-            'user' => $anotherUser->id,
+            'user' => $anotherUser->getKey(),
         ]), [], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),

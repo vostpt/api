@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace VOSTPT\Http\Serializers;
 
 use Tobscure\JsonApi\AbstractSerializer;
-use Tobscure\JsonApi\Collection;
 use Tobscure\JsonApi\Relationship;
-use VOSTPT\Models\User;
+use Tobscure\JsonApi\Resource;
+use VOSTPT\Models\Parish;
 
-class UserSerializer extends AbstractSerializer
+class ParishSerializer extends AbstractSerializer
 {
     /**
      * {@inheritDoc}
      */
-    protected $type = 'users';
+    protected $type = 'parishes';
 
     /**
      * {@inheritDoc}
@@ -22,8 +22,8 @@ class UserSerializer extends AbstractSerializer
     public function getLinks($model): array
     {
         return [
-            'self' => route('users::view', [
-                'user' => $model->getKey(),
+            'self' => route('parishes::view', [
+                'parish' => $model->getKey(),
             ]),
         ];
     }
@@ -34,23 +34,22 @@ class UserSerializer extends AbstractSerializer
     public function getAttributes($model, array $fields = null): array
     {
         return [
-            'email'      => $model->email,
+            'code'       => $model->code,
             'name'       => $model->name,
-            'surname'    => $model->surname,
             'created_at' => $model->created_at->toDateTimeString(),
             'updated_at' => $model->updated_at->toDateTimeString(),
         ];
     }
 
     /**
-     * Associated Roles.
+     * Associated County.
      *
-     * @param User $user
+     * @param Parish $parish
      *
      * @return \Tobscure\JsonApi\Relationship
      */
-    public function roles(User $user): Relationship
+    public function county(Parish $parish): Relationship
     {
-        return new Relationship(new Collection($user->roles()->get(), new RoleSerializer()));
+        return new Relationship(new Resource($parish->county()->first(), new CountySerializer()));
     }
 }

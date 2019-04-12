@@ -85,7 +85,7 @@ class User extends Model implements Authenticatable, AuthorizableContract, JWTSu
     public function getJWTCustomClaims(): array
     {
         return [
-            'id'      => $this->id,
+            'id'      => $this->getKey(),
             'name'    => $this->name,
             'surname' => $this->surname,
             'email'   => $this->email,
