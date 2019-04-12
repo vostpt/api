@@ -19,6 +19,6 @@ $factory->define(County::class, function (Faker $faker) {
             return factory(District::class)->create()->id;
         },
         'code' => $faker->unique()->numerify('######'),
-        'name' => $faker->unique()->name,
+        'name' => \sprintf('%s County', $faker->unique()->name),
     ];
 });
