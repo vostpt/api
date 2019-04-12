@@ -23,7 +23,7 @@ class CountySerializer extends AbstractSerializer
     {
         return [
             'self' => route('counties::view', [
-                'county' => $model->id,
+                'county' => $model->getKey(),
             ]),
         ];
     }
