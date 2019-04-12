@@ -55,6 +55,12 @@ paths:
   /counties/{id}:
     $ref: 'counties/endpoints.yaml#/view'
 
+  /parishes:
+    $ref: 'parishes/endpoints.yaml#/index'
+
+  /parishes/{id}:
+    $ref: 'parishes/endpoints.yaml#/view'
+
   /auth:
     $ref: 'auth/endpoints.yaml#/authenticate'
 
