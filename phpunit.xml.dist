@@ -9,6 +9,10 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
+        <testsuite name="AcronymController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/AcronymController</directory>
+        </testsuite>
+
         <testsuite name="AuthController Integration Tests">
             <directory suffix="Test.php">./tests/Integration/Controllers/AuthController</directory>
         </testsuite>

@@ -1,0 +1,235 @@
+index-and-create:
+  get:
+    tags:
+      - Acronyms
+    summary: Index acronyms
+    description: Index the available acronyms.
+    operationId: acronyms::index
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/page_number.yaml'
+      - $ref: '../common/parameters/page_size.yaml'
+      - $ref: '../common/parameters/search.yaml'
+      - name: sort
+        in: query
+        description: Field used for sorting results
+        schema:
+          type: string
+          enum:
+            - initials
+            - meaning
+            - created_at
+            - updated_at
+          default: created_at
+      - $ref: '../common/parameters/order.yaml'
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    first:
+                      type: string
+                      description: Link to the first page of results
+                    last:
+                      type: string
+                      description: Link to the last page of results
+                    prev:
+                      type: string
+                      description: Link to the previous page of results
+                    next:
+                      type: string
+                      description: Link to the next page of results
+                data:
+                  type: array
+                  items:
+                    $ref: 'schemas.yaml#/Acronym'
+                meta:
+                  type: object
+                  properties:
+                    per_page:
+                      type: integer
+                      example: 10
+                    total:
+                      type: integer
+                      example: 100
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+  post:
+    tags:
+      - Acronyms
+    security:
+      - access_token:
+          - administrator
+    summary: Create acronym
+    description: Create an acronym record.
+    operationId: acronyms::create
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+      - name: initials
+        in: query
+        description: Acronym initials
+        required: true
+        schema:
+          type: string
+          maxLength: 16
+      - name: meaning
+        in: query
+        description: Acronym meaning
+        required: true
+        schema:
+          type: string
+          maxLength: 255
+
+    responses:
+      201:
+        description: Created
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/Acronym'
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+view-update-and-delete:
+  get:
+    tags:
+      - Acronyms
+    summary: View acronym
+    description: Retrieve a specific acronym record.
+    operationId: acronyms::view
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - name: id
+        in: path
+        description: Acronym id
+        required: true
+        schema:
+          type: string
+          example: 1
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/Acronym'
+      404:
+        $ref: '../common/responses/404.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+
+  patch:
+    tags:
+      - Acronyms
+    security:
+      - access_token:
+          - administrator
+    summary: Update acronym
+    description: Update an acronym record.
+    operationId: acronyms::update
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+      - name: id
+        in: path
+        description: Acronym id
+        required: true
+        schema:
+          type: string
+          example: 1
+      - name: initials
+        in: query
+        description: Acronym initials
+        schema:
+          type: string
+          maxLength: 16
+      - name: meaning
+        in: query
+        description: Acronym meaning
+        schema:
+          type: string
+          maxLength: 255
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/Acronym'
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
+      404:
+        $ref: '../common/responses/404.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+  delete:
+    tags:
+      - Acronyms
+    security:
+      - access_token:
+          - administrator
+    summary: Delete acronym
+    description: Delete an acronym record.
+    operationId: acronyms::delete
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+      - name: id
+        in: path
+        description: Acronym id
+        required: true
+        schema:
+          type: string
+          example: 1
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/Acronym'
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
+      404:
+        $ref: '../common/responses/404.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'

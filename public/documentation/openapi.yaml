@@ -20,6 +20,8 @@ servers:
     description: Development
 
 tags:
+  - name: Acronyms
+    description: Acronym operations
   - name: Authentication
     description: User authentication operations
   - name: Districts
@@ -32,6 +34,9 @@ tags:
     description: System user operations
 
 x-tagGroups:
+  - name: Acronym Management
+    tags:
+      - Acronyms
   - name: Location Management
     tags:
       - Districts
@@ -43,6 +48,12 @@ x-tagGroups:
       - Users
 
 paths:
+  /acronyms:
+    $ref: 'acronyms/endpoints.yaml#/index-and-create'
+
+  /acronyms/{id}:
+    $ref: 'acronyms/endpoints.yaml#/view-update-and-delete'
+
   /districts:
     $ref: 'districts/endpoints.yaml#/index'
 
