@@ -1,4 +1,4 @@
-index:
+index-and-create:
   get:
     tags:
       - Acronyms
@@ -64,7 +64,53 @@ index:
       422:
         $ref: '../common/responses/422.yaml'
 
-view:
+  post:
+    tags:
+      - Acronyms
+    security:
+      - access_token:
+          - administrator
+    summary: Create acronym
+    description: Create an acronym record.
+    operationId: acronyms::create
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+      - name: initials
+        in: query
+        description: Acronym initials
+        required: true
+        schema:
+          type: string
+          maxLength: 16
+      - name: meaning
+        in: query
+        description: Acronym meaning
+        required: true
+        schema:
+          type: string
+          maxLength: 255
+
+    responses:
+      201:
+        description: Created
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/Acronym'
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+view-update-and-delete:
   get:
     tags:
       - Acronyms
@@ -91,6 +137,98 @@ view:
               properties:
                 data:
                   $ref: 'schemas.yaml#/Acronym'
+      404:
+        $ref: '../common/responses/404.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+
+  patch:
+    tags:
+      - Acronyms
+    security:
+      - access_token:
+          - administrator
+    summary: Update acronym
+    description: Update an acronym record.
+    operationId: acronyms::update
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+      - name: id
+        in: path
+        description: Acronym id
+        required: true
+        schema:
+          type: string
+          example: 1
+      - name: initials
+        in: query
+        description: Acronym initials
+        schema:
+          type: string
+          maxLength: 16
+      - name: meaning
+        in: query
+        description: Acronym meaning
+        schema:
+          type: string
+          maxLength: 255
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/Acronym'
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
+      404:
+        $ref: '../common/responses/404.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+  delete:
+    tags:
+      - Acronyms
+    security:
+      - access_token:
+          - administrator
+    summary: Delete acronym
+    description: Delete an acronym record.
+    operationId: acronyms::delete
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+      - name: id
+        in: path
+        description: Acronym id
+        required: true
+        schema:
+          type: string
+          example: 1
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/Acronym'
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
       404:
         $ref: '../common/responses/404.yaml'
       415:

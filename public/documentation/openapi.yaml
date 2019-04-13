@@ -49,10 +49,10 @@ x-tagGroups:
 
 paths:
   /acronyms:
-    $ref: 'acronyms/endpoints.yaml#/index'
+    $ref: 'acronyms/endpoints.yaml#/index-and-create'
 
   /acronyms/{id}:
-    $ref: 'acronyms/endpoints.yaml#/view'
+    $ref: 'acronyms/endpoints.yaml#/view-update-and-delete'
 
   /districts:
     $ref: 'districts/endpoints.yaml#/index'
