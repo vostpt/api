@@ -6,7 +6,10 @@ namespace VOSTPT\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use VOSTPT\Filters\Contracts\AcronymFilter;
+use VOSTPT\Http\Requests\Acronym\Create;
+use VOSTPT\Http\Requests\Acronym\Delete;
 use VOSTPT\Http\Requests\Acronym\Index;
+use VOSTPT\Http\Requests\Acronym\Update;
 use VOSTPT\Http\Requests\Acronym\View;
 use VOSTPT\Http\Serializers\AcronymSerializer;
 use VOSTPT\Models\Acronym;
@@ -44,6 +47,25 @@ class AcronymController extends Controller
     }
 
     /**
+     * Create an Acronym.
+     *
+     * @param Create $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function create(Create $request): JsonResponse
+    {
+        $acronym = new Acronym();
+
+        $acronym->initials = $request->input('initials');
+        $acronym->meaning  = $request->input('meaning');
+
+        $acronym->save();
+
+        return response()->resource($acronym, new AcronymSerializer(), [], 201);
+    }
+
+    /**
      * View an Acronym.
      *
      * @param View    $request
@@ -53,8 +75,46 @@ class AcronymController extends Controller
      */
     public function view(View $request, Acronym $acronym): JsonResponse
     {
-        return response()->resource($acronym, new AcronymSerializer(), [
-            'district',
-        ]);
+        return response()->resource($acronym, new AcronymSerializer());
+    }
+
+    /**
+     * Update an Acronym.
+     *
+     * @param Update  $request
+     * @param Acronym $acronym
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Update $request, Acronym $acronym): JsonResponse
+    {
+        if ($request->has('initials')) {
+            $acronym->initials = $request->input('initials');
+        }
+
+        if ($request->has('meaning')) {
+            $acronym->meaning = $request->input('meaning');
+        }
+
+        $acronym->save();
+
+        return response()->resource($acronym, new AcronymSerializer());
+    }
+
+    /**
+     * Delete an Acronym.
+     *
+     * @param Delete  $request
+     * @param Acronym $acronym
+     *
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * @throws \Exception
+     */
+    public function delete(Delete $request, Acronym $acronym): JsonResponse
+    {
+        $acronym->delete();
+
+        return response()->resource($acronym, new AcronymSerializer());
     }
 }
