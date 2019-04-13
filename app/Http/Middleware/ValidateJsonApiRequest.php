@@ -8,7 +8,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\UnsupportedMediaTypeHttpException;
 
-class JsonApiRequest
+class ValidateJsonApiRequest
 {
     /**
      * Handle an incoming request.
