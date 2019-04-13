@@ -1,0 +1,97 @@
+index:
+  get:
+    tags:
+      - Acronyms
+    summary: Index acronyms
+    description: Index the available acronyms.
+    operationId: acronyms::index
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/page_number.yaml'
+      - $ref: '../common/parameters/page_size.yaml'
+      - $ref: '../common/parameters/search.yaml'
+      - name: sort
+        in: query
+        description: Field used for sorting results
+        schema:
+          type: string
+          enum:
+            - initials
+            - meaning
+            - created_at
+            - updated_at
+          default: created_at
+      - $ref: '../common/parameters/order.yaml'
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    first:
+                      type: string
+                      description: Link to the first page of results
+                    last:
+                      type: string
+                      description: Link to the last page of results
+                    prev:
+                      type: string
+                      description: Link to the previous page of results
+                    next:
+                      type: string
+                      description: Link to the next page of results
+                data:
+                  type: array
+                  items:
+                    $ref: 'schemas.yaml#/Acronym'
+                meta:
+                  type: object
+                  properties:
+                    per_page:
+                      type: integer
+                      example: 10
+                    total:
+                      type: integer
+                      example: 100
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+view:
+  get:
+    tags:
+      - Acronyms
+    summary: View acronym
+    description: Retrieve a specific acronym record.
+    operationId: acronyms::view
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - name: id
+        in: path
+        description: Acronym id
+        required: true
+        schema:
+          type: string
+          example: 1
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/Acronym'
+      404:
+        $ref: '../common/responses/404.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
