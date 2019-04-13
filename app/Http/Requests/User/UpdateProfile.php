@@ -36,7 +36,7 @@ class UpdateProfile extends Request
                 'email',
                 'max:255',
                 Rule::unique('users', 'email')
-                    ->ignore($this->user(), 'email'),
+                    ->ignoreModel($this->user()),
             ],
             'password' => [
                 'required_with:password_confirmation',

@@ -37,7 +37,7 @@ class Update extends Request
                 'email',
                 'max:255',
                 Rule::unique('users', 'email')
-                    ->ignore($this->route('user'), 'email'),
+                    ->ignoreModel($this->route('user')),
             ],
             'password' => [
                 'required_with:password_confirmation',
