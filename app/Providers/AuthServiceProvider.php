@@ -12,7 +12,8 @@ class AuthServiceProvider extends ServiceProvider
      * {@inheritDoc}
      */
     protected $policies = [
-        \VOSTPT\Models\User::class => \VOSTPT\Policies\UserPolicy::class,
+        \VOSTPT\Models\Acronym::class => \VOSTPT\Policies\AcronymPolicy::class,
+        \VOSTPT\Models\User::class    => \VOSTPT\Policies\UserPolicy::class,
     ];
 
     /**
