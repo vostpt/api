@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DistrictSeeder::class);
         $this->call(CountySeeder::class);
         $this->call(ParishSeeder::class);
+        $this->call(AcronymSeeder::class);
     }
 }
