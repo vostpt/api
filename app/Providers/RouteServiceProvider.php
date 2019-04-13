@@ -58,6 +58,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes(): void
     {
         $this->app['router']->group(['middleware' => 'api'], function () {
+            require base_path('routes/api/acronyms.php');
             require base_path('routes/api/auth.php');
             require base_path('routes/api/counties.php');
             require base_path('routes/api/districts.php');
@@ -76,6 +77,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function modelBinder(): void
     {
         $models = [
+            'acronym'  => \VOSTPT\Repositories\Contracts\AcronymRepository::class,
             'county'   => \VOSTPT\Repositories\Contracts\CountyRepository::class,
             'district' => \VOSTPT\Repositories\Contracts\DistrictRepository::class,
             'parish'   => \VOSTPT\Repositories\Contracts\ParishRepository::class,
