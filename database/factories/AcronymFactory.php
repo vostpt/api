@@ -14,7 +14,7 @@ use VOSTPT\Models\Acronym;
 
 $factory->define(Acronym::class, function (Faker $faker) {
     return [
-        'initials' => $faker->unique()->word,
+        'initials' => $faker->unique()->lexify(),
         'meaning'  => $faker->unique()->sentence(),
     ];
 });
