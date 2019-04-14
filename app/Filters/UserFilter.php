@@ -97,8 +97,8 @@ class UserFilter extends Filter implements Contracts\UserFilter
         parent::apply($builder);
 
         // Apply User Role filtering
-        foreach ($this->roles as $role) {
-            $builder->whereIs($role);
+        if ($this->roles) {
+            $builder->whereIs(... $this->roles);
         }
     }
 
