@@ -55,7 +55,7 @@ class District extends Model
     public function setNameAttribute(string $name): void
     {
         if (\mb_strlen($name) > 255) {
-            throw new LengthException('The name cannot have more than 255 characters');
+            throw new LengthException('The name cannot exceed 255 characters');
         }
 
         $this->attributes['name'] = $name;
