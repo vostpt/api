@@ -22,6 +22,8 @@ class CreateCountiesTable extends Migration
             $table->string('code')->unique();
             $table->string('name');
 
+            $table->timestamps();
+
             $table->unique([
                 'district_id',
                 'name',
@@ -31,8 +33,6 @@ class CreateCountiesTable extends Migration
                 ->references('id')
                 ->on('districts')
                 ->onUpdate('cascade');
-
-            $table->timestamps();
         });
     }
 
