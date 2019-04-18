@@ -14,7 +14,7 @@ use VOSTPT\Models\ProCivOccurrenceType;
 
 $factory->define(ProCivOccurrenceType::class, function (Faker $faker) {
     return [
-        'code' => $faker->unique()->numerify('####'),
+        'code' => $faker->unique()->numberBetween(1000, 9999),
         'name' => $faker->unique()->sentence(),
     ];
 });
