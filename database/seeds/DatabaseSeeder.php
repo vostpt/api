@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CountySeeder::class);
         $this->call(ParishSeeder::class);
         $this->call(AcronymSeeder::class);
+        $this->call(ProCivOccurrenceTypeSeeder::class);
     }
 }
