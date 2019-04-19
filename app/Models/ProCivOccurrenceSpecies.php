@@ -23,7 +23,7 @@ class ProCivOccurrenceSpecies extends Model
      */
     public function family(): BelongsTo
     {
-        return $this->belongsTo(ProCivOccurrenceFamily::class);
+        return $this->belongsTo(ProCivOccurrenceFamily::class, 'family_id');
     }
 
     /**
