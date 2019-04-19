@@ -20,6 +20,14 @@ class Event extends Model
     /**
      * {@inheritDoc}
      */
+    protected $casts = [
+        'latitude'  => 'float',
+        'longitude' => 'float',
+    ];
+
+    /**
+     * {@inheritDoc}
+     */
     protected $dates = [
         'started_at',
         'ended_at',
