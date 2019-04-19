@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Database\Seeder;
+use VOSTPT\Models\ProCivOccurrenceSpecies;
 use VOSTPT\Models\ProCivOccurrenceType;
 
 class ProCivOccurrenceTypeSeeder extends Seeder
@@ -14,10 +15,16 @@ class ProCivOccurrenceTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        $occurrenceTypes = require 'data/prociv_occurrence_types.php';
+        $species = require 'data/prociv_occurrence_types.php';
 
-        foreach ($occurrenceTypes as $occurrenceType) {
-            factory(ProCivOccurrenceType::class)->create($occurrenceType);
+        foreach ($species as $code => $types) {
+            $parent = ProCivOccurrenceSpecies::where('code', $code)->first();
+
+            foreach ($types as $attributes) {
+                factory(ProCivOccurrenceType::class)->create(\array_merge($attributes, [
+                    'species_id' => $parent->id,
+                ]));
+            }
         }
     }
 }
