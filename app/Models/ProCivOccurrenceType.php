@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace VOSTPT\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use LengthException;
 
 class ProCivOccurrenceType extends Model
@@ -13,6 +14,16 @@ class ProCivOccurrenceType extends Model
      * {@inheritDoc}
      */
     protected $table = 'prociv_occurrence_types';
+
+    /**
+     * Associated Species.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function species(): BelongsTo
+    {
+        return $this->belongsTo(ProCivOccurrenceSpecies::class);
+    }
 
     /**
      * Set the code.
