@@ -18,7 +18,7 @@ class CreateProcivOccurrenceStatusesTable extends Migration
         Schema::create('prociv_occurrence_statuses', function (Blueprint $table) {
             $table->tinyIncrements('id');
 
-            $table->unsignedSmallInteger('code')->unique();
+            $table->unsignedTinyInteger('code')->unique();
             $table->string('name')->unique();
 
             $table->timestamps();
