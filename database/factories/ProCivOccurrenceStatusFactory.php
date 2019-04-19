@@ -7,7 +7,7 @@ use VOSTPT\Models\ProCivOccurrenceStatus;
 
 /*
 |--------------------------------------------------------------------------
-| ProCivOccurrenceType Factories
+| ProCivOccurrenceStatus Factories
 |--------------------------------------------------------------------------
 |
 */
