@@ -23,8 +23,8 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->text('description');
 
-            $table->decimal('latitude', 10, 7);
-            $table->decimal('longitude', 10, 7);
+            $table->decimal('latitude', 10, 8);
+            $table->decimal('longitude', 10, 8);
 
             $table->timestamp('started_at');
             $table->timestamp('ended_at')->nullable();
