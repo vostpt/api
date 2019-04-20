@@ -21,10 +21,13 @@ class CreateOccurrencesTable extends Migration
             $table->unsignedSmallInteger('parish_id');
             $table->string('locality');
 
-            $table->morphs('metadata');
+            $table->morphs('source');
 
-            $table->decimal('latitude', 10, 7);
-            $table->decimal('longitude', 10, 7);
+            $table->decimal('latitude', 10, 8);
+            $table->decimal('longitude', 10, 8);
+
+            $table->timestamp('started_at');
+            $table->timestamp('ended_at')->nullable();
 
             $table->timestamps();
 

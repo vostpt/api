@@ -22,8 +22,10 @@ $factory->define(Occurrence::class, function (Faker $faker) {
         'parish_id' => function () {
             return factory(Parish::class)->create()->id;
         },
-        'locality'  => $faker->sentence(),
-        'latitude'  => $faker->latitude,
-        'longitude' => $faker->longitude,
+        'locality'   => $faker->sentence(),
+        'latitude'   => $faker->latitude,
+        'longitude'  => $faker->longitude,
+        'started_at' => $faker->dateTime,
+        'ended_at'   => $faker->dateTime,
     ];
 });

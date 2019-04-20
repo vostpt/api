@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace VOSTPT\Models;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -22,6 +23,14 @@ class Occurrence extends Model
     protected $casts = [
         'latitude'  => 'float',
         'longitude' => 'float',
+    ];
+
+    /**
+     * {@inheritDoc}
+     */
+    protected $dates = [
+        'started_at',
+        'ended_at',
     ];
 
     /**
@@ -45,11 +54,11 @@ class Occurrence extends Model
     }
 
     /**
-     * Associated source metadata.
+     * Associated source.
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function metadata(): MorphTo
+    public function source(): MorphTo
     {
         return $this->morphTo();
     }
@@ -94,5 +103,29 @@ class Occurrence extends Model
     public function setLongitudeAttribute(float $longitude): void
     {
         $this->attributes['longitude'] = $longitude;
+    }
+
+    /**
+     * Set the Started at value.
+     *
+     * @param DateTime $startedAt
+     *
+     * @return void
+     */
+    public function setStartedAtAttribute(DateTime $startedAt): void
+    {
+        $this->attributes['started_at'] = $startedAt;
+    }
+
+    /**
+     * Set the Ended at value.
+     *
+     * @param DateTime $endedAt
+     *
+     * @return void
+     */
+    public function setEndedAtAttribute(DateTime $endedAt = null): void
+    {
+        $this->attributes['ended_at'] = $endedAt;
     }
 }
