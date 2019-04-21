@@ -39,4 +39,8 @@ return [
         'code' => 9,
         'name' => 'Encerrada',
     ],
+    [
+        'code' => 255,
+        'name' => 'Encerrada pela VOST Portugal',
+    ],
 ];
