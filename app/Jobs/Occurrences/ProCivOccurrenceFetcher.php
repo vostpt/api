@@ -66,19 +66,15 @@ class ProCivOccurrenceFetcher implements ShouldQueue
      */
     private function fetchOccurrences(): bool
     {
-        $this->logger->info('Fetching ProCiv occurrence history...');
+        $this->logger->info('Fetching ProCiv occurrences...');
 
         $response = $this->serviceClient->getOccurrenceHistory();
 
         foreach ($response['Data'] as $data) {
             DB::transaction(function () use ($data) {
                 if ($proCivOccurrence = ProCivOccurrence::where('remote_id', $data['Numero'])->first()) {
-                    $this->logger->info(\sprintf('Updating ProCiv occurrence %s', $data['Numero']));
-
                     $occurrence = $proCivOccurrence->occurrence;
                 } else {
-                    $this->logger->info(\sprintf('Creating ProCiv occurrence %s', $data['Numero']));
-
                     $proCivOccurrence = new ProCivOccurrence();
 
                     $proCivOccurrence->remote_id = $data['Numero'];
@@ -110,6 +106,15 @@ class ProCivOccurrenceFetcher implements ShouldQueue
 
                 $proCivOccurrence->save();
                 $proCivOccurrence->occurrence()->save($occurrence);
+
+                // Exclude unaffected records from the logs
+                if ($proCivOccurrence->wasRecentlyCreated || $proCivOccurrence->wasChanged()) {
+                    $this->logger->info(\sprintf(
+                        '%s ProCiv occurrence %s',
+                        $proCivOccurrence->wasRecentlyCreated ? 'Created' : 'Updated',
+                        $data['Numero']
+                    ));
+                }
             });
         }
 
