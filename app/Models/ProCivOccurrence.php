@@ -80,7 +80,7 @@ class ProCivOccurrence extends Model
         // A ProCivOccurrence is considered stalled, when the state isn't
         // set to closed and the last update was at least 1h ago
         return $query->whereHas('status', function ($query) {
-            $query->whereIn('code', [
+            $query->whereNotIn('code', [
                 ProCivOccurrenceStatus::CLOSED,
                 ProCivOccurrenceStatus::CLOSED_BY_VOST,
             ]);
