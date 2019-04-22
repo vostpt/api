@@ -2,45 +2,47 @@
 
 declare(strict_types=1);
 
+use VOSTPT\Models\ProCivOccurrenceStatus;
+
 return [
     [
-        'code' => 1,
+        'code' => ProCivOccurrenceStatus::FALSE_ALERT,
         'name' => 'Falso Alerta',
     ],
     [
-        'code' => 2,
+        'code' => ProCivOccurrenceStatus::SURVEILLANCE,
         'name' => 'Vigilância',
     ],
     [
-        'code' => 3,
+        'code' => ProCivOccurrenceStatus::DISPATCH,
         'name' => 'Despacho',
     ],
     [
-        'code' => 4,
+        'code' => ProCivOccurrenceStatus::FIRST_ALERT_DISPATCH,
         'name' => 'Despacho de 1º Alerta',
     ],
     [
-        'code' => 5,
+        'code' => ProCivOccurrenceStatus::ONGOING,
         'name' => 'Em Curso',
     ],
     [
-        'code' => 6,
+        'code' => ProCivOccurrenceStatus::ARRIVAL_AT_TO,
         'name' => 'Chegada ao TO',
     ],
     [
-        'code' => 7,
+        'code' => ProCivOccurrenceStatus::RESOLVING,
         'name' => 'Em Resolução',
     ],
     [
-        'code' => 8,
+        'code' => ProCivOccurrenceStatus::CONCLUSION,
         'name' => 'Conclusão',
     ],
     [
-        'code' => 9,
+        'code' => ProCivOccurrenceStatus::CLOSED,
         'name' => 'Encerrada',
     ],
     [
-        'code' => 255,
-        'name' => 'Encerrada pela VOST Portugal',
+        'code' => ProCivOccurrenceStatus::CLOSED_BY_VOST,
+        'name' => 'Encerrada pela VOST',
     ],
 ];

@@ -9,6 +9,17 @@ use LengthException;
 
 class ProCivOccurrenceStatus extends Model
 {
+    public const FALSE_ALERT          = 1;
+    public const SURVEILLANCE         = 2;
+    public const DISPATCH             = 3;
+    public const FIRST_ALERT_DISPATCH = 4;
+    public const ONGOING              = 5;
+    public const ARRIVAL_AT_TO        = 6;
+    public const RESOLVING            = 7;
+    public const CONCLUSION           = 8;
+    public const CLOSED               = 9;
+    public const CLOSED_BY_VOST       = 255;
+
     /**
      * {@inheritDoc}
      */
