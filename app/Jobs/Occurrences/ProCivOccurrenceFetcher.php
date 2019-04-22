@@ -26,6 +26,16 @@ class ProCivOccurrenceFetcher implements ShouldQueue
     use SerializesModels;
 
     /**
+     * @var ProCivServiceClient
+     */
+    private $serviceClient;
+
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
      * Execute the job.
      *
      * @param ProCivServiceClient      $serviceClient
@@ -37,18 +47,37 @@ class ProCivOccurrenceFetcher implements ShouldQueue
      */
     public function handle(ProCivServiceClient $serviceClient, LoggerInterface $logger): bool
     {
-        $logger->info('Fetching ProCiv occurrence history...');
+        $this->serviceClient = $serviceClient;
+        $this->logger        = $logger;
 
-        $response = $serviceClient->getOccurrenceHistory();
+        $this->fetchOccurrences();
+
+        $this->closeStalledOccurrences();
+
+        return true;
+    }
+
+    /**
+     * Fetch ProCiv occurrences.
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return bool
+     */
+    private function fetchOccurrences(): bool
+    {
+        $this->logger->info('Fetching ProCiv occurrence history...');
+
+        $response = $this->serviceClient->getOccurrenceHistory();
 
         foreach ($response['Data'] as $data) {
-            DB::transaction(function () use ($data, $logger) {
+            DB::transaction(function () use ($data) {
                 if ($proCivOccurrence = ProCivOccurrence::where('remote_id', $data['Numero'])->first()) {
-                    $logger->info(\sprintf('Updating ProCiv occurrence %s', $data['Numero']));
+                    $this->logger->info(\sprintf('Updating ProCiv occurrence %s', $data['Numero']));
 
                     $occurrence = $proCivOccurrence->occurrence;
                 } else {
-                    $logger->info(\sprintf('Creating ProCiv occurrence %s', $data['Numero']));
+                    $this->logger->info(\sprintf('Creating ProCiv occurrence %s', $data['Numero']));
 
                     $proCivOccurrence = new ProCivOccurrence();
 
@@ -84,9 +113,19 @@ class ProCivOccurrenceFetcher implements ShouldQueue
             });
         }
 
-        $logger->info('...done!');
+        $this->logger->info('...done!');
 
-        $logger->info('Closing stalled ProCiv occurrences...');
+        return true;
+    }
+
+    /**
+     * Close stalled ProCiv occurrences.
+     *
+     * @return bool
+     */
+    private function closeStalledOccurrences(): bool
+    {
+        $this->logger->info('Closing stalled ProCiv occurrences...');
 
         $closedByVostStatus = ProCivOccurrenceStatus::where('code', ProCivOccurrenceStatus::CLOSED_BY_VOST)->first();
 
@@ -94,10 +133,10 @@ class ProCivOccurrenceFetcher implements ShouldQueue
             $stalledProCivOccurrence->status()->associate($closedByVostStatus);
             $stalledProCivOccurrence->save();
 
-            $logger->info(\sprintf('ProCiv occurrence %s closed', $stalledProCivOccurrence->remote_id));
+            $this->logger->info(\sprintf('ProCiv occurrence %s closed', $stalledProCivOccurrence->remote_id));
         }
 
-        $logger->info('...done!');
+        $this->logger->info('...done!');
 
         return true;
     }
