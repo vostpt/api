@@ -15,6 +15,7 @@ use RuntimeException;
 use VOSTPT\Models\Occurrence;
 use VOSTPT\Models\Parish;
 use VOSTPT\Models\ProCivOccurrence;
+use VOSTPT\Models\ProCivOccurrenceLog;
 use VOSTPT\Models\ProCivOccurrenceStatus;
 use VOSTPT\Models\ProCivOccurrenceType;
 use VOSTPT\ServiceClients\Contracts\ProCivServiceClient;
@@ -51,6 +52,8 @@ class ProCivOccurrenceFetcher implements ShouldQueue
         $this->logger        = $logger;
 
         $this->fetchOccurrences();
+
+        $this->fetchOccurrenceSpecifics();
 
         $this->closeStalledOccurrences();
 
@@ -115,6 +118,82 @@ class ProCivOccurrenceFetcher implements ShouldQueue
                         $data['Numero']
                     ));
                 }
+            });
+        }
+
+        $this->logger->info('...done!');
+
+        return true;
+    }
+
+    /**
+     * Fetch ProCiv occurrence specifics.
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return bool
+     */
+    private function fetchOccurrenceSpecifics(): bool
+    {
+        $this->logger->info('Fetching ProCiv occurrence specifics...');
+
+        $response = $this->serviceClient->getMainOccurrences();
+
+        foreach ($response['Data'] as $data) {
+            DB::transaction(function () use ($data) {
+                $proCivOccurrence = ProCivOccurrence::where('remote_id', $data['Numero'])->first();
+
+                $this->logger->info(\sprintf('Storing ProCiv occurrence log for %s', $data['Numero']));
+
+                $proCivOccurrenceLog = new ProCivOccurrenceLog();
+
+                $proCivOccurrenceLog->rescue_operations_commander = $data['COS'];
+
+                $proCivOccurrenceLog->entities_at_the_theatre_of_operations = $data['EntidadesNoTO'];
+
+                $proCivOccurrenceLog->notes = $data['Notas'];
+
+                $proCivOccurrenceLog->operational_command_post = $data['PCO'];
+
+                $proCivOccurrenceLog->medium_aircrafts_involved = $data['NumAvioesMediosEnvolvidos'];
+                $proCivOccurrenceLog->heavy_aircrafts_involved = $data['NumAvioesPesadosEnvolvidos'];
+                $proCivOccurrenceLog->other_aircrafts_involved = $data['NumAvioesOutrosEnvolvidos'];
+
+                $proCivOccurrenceLog->medium_helicopters_involved = $data['NumHelicopterosLigeirosMediosEnvolvidos'];
+                $proCivOccurrenceLog->heavy_helicopters_involved = $data['NumHelicopterosPesadosEnvolvidos'];
+                $proCivOccurrenceLog->other_helicopters_involved = $data['NumHelicopterosOutrosEnvolvidos'];
+
+                $proCivOccurrenceLog->fire_fighter_assets_involved = $data['NumBombeirosEnvolvidos'];
+                $proCivOccurrenceLog->fire_fighter_operatives_involved = $data['NumBombeirosOperEnvolvidos'];
+
+                $proCivOccurrenceLog->special_fire_fighter_force_assets_involved = $data['NumFebEnvolvidos'];
+                $proCivOccurrenceLog->special_fire_fighter_force_operatives_involved = $data['NumFebOperEnvolvidos'];
+
+                $proCivOccurrenceLog->forest_sapper_assets_involved = $data['NumEsfEnvolvidos'];
+                $proCivOccurrenceLog->forest_sapper_operatives_involved = $data['NumEsfOperEnvolvidos'];
+
+                $proCivOccurrenceLog->armed_force_assets_involved = $data['NumFAAEnvolvidos'];
+                $proCivOccurrenceLog->armed_force_operatives_involved = $data['NumFAAOperEnvolvidos'];
+
+                $proCivOccurrenceLog->gips_assets_involved = $data['NumGNRGipsEnvolvidos'];
+                $proCivOccurrenceLog->gips_operatives_involved = $data['NumGNRGipsOperEnvolvidos'];
+
+                $proCivOccurrenceLog->gnr_assets_involved = $data['NumGNROutrosEnvolvidos'];
+                $proCivOccurrenceLog->gnr_operatives_involved = $data['NumGNROutrosOperEnvolvidos'];
+
+                $proCivOccurrenceLog->psp_assets_involved = $data['NumPSPEnvolvidos'];
+                $proCivOccurrenceLog->psp_operatives_involved = $data['NumPSPOperEnvolvidos'];
+
+                $proCivOccurrenceLog->reinforcement_groups_involved = $data['GruposReforcoEnvolvidos'];
+
+                $proCivOccurrenceLog->other_operatives_involved = $data['OutrosOperacionaisEnvolvidos'];
+
+                $proCivOccurrenceLog->state_of_affairs = $data['PontoSituacao'];
+                $proCivOccurrenceLog->state_of_affairs_description = $data['POSITDescricao'];
+
+                $proCivOccurrenceLog->active_previous_intervention_plan = $data['PPIAtivados'];
+
+                $proCivOccurrence->logs()->attach($proCivOccurrenceLog);
             });
         }
 
