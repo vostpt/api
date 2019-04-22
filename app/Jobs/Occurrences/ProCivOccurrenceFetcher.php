@@ -73,11 +73,11 @@ class ProCivOccurrenceFetcher implements ShouldQueue
                 $occurrence->started_at = $this->carbonise($data['DataOcorrencia']);
                 $occurrence->ended_at = $this->carbonise($data['DataFechoOperacional']);
 
-                $proCivOccurrence->ground_assets = $data['NumeroMeiosTerrestresEnvolvidos'];
-                $proCivOccurrence->ground_operatives = $data['NumeroOperacionaisTerrestresEnvolvidos'];
+                $proCivOccurrence->ground_assets_involved = $data['NumeroMeiosTerrestresEnvolvidos'];
+                $proCivOccurrence->ground_operatives_involved = $data['NumeroOperacionaisTerrestresEnvolvidos'];
 
-                $proCivOccurrence->aerial_assets = $data['NumeroMeiosAereosEnvolvidos'];
-                $proCivOccurrence->aerial_operatives = $data['NumeroOperacionaisAereosEnvolvidos'];
+                $proCivOccurrence->aerial_assets_involved = $data['NumeroMeiosAereosEnvolvidos'];
+                $proCivOccurrence->aerial_operatives_involved = $data['NumeroOperacionaisAereosEnvolvidos'];
 
                 $proCivOccurrence->save();
                 $proCivOccurrence->occurrence()->save($occurrence);

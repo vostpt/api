@@ -22,10 +22,10 @@ class ProCivOccurrence extends Model
      * {@inheritDoc}
      */
     protected $casts = [
-        'aerial_assets'     => 'int',
-        'aerial_operatives' => 'int',
-        'ground_assets'     => 'int',
-        'ground_operatives' => 'int',
+        'aerial_assets_involved'     => 'int',
+        'aerial_operatives_involved' => 'int',
+        'ground_assets_involved'     => 'int',
+        'ground_operatives_involved' => 'int',
     ];
 
     /**
@@ -86,65 +86,5 @@ class ProCivOccurrence extends Model
             ]);
         })
         ->where('updated_at', '<=', Carbon::now()->subHour());
-    }
-
-    /**
-     * Set the remote id.
-     *
-     * @param string $remoteId
-     *
-     * @return void
-     */
-    public function setRemoteIdAttribute(string $remoteId): void
-    {
-        $this->attributes['remote_id'] = $remoteId;
-    }
-
-    /**
-     * Set the ground assets.
-     *
-     * @param int $groundAssets
-     *
-     * @return void
-     */
-    public function setGroundAssetsAttribute(int $groundAssets): void
-    {
-        $this->attributes['ground_assets'] = $groundAssets;
-    }
-
-    /**
-     * Set the ground operatives.
-     *
-     * @param int $groundOperatives
-     *
-     * @return void
-     */
-    public function setGroundOperativesAttribute(int $groundOperatives): void
-    {
-        $this->attributes['ground_operatives'] = $groundOperatives;
-    }
-
-    /**
-     * Set the aerial assets.
-     *
-     * @param int $aerialAssets
-     *
-     * @return void
-     */
-    public function setAerialAssetsAttribute(int $aerialAssets): void
-    {
-        $this->attributes['aerial_assets'] = $aerialAssets;
-    }
-
-    /**
-     * Set the aerial operatives.
-     *
-     * @param int $aerialOperatives
-     *
-     * @return void
-     */
-    public function setAerialOperativesAttribute(int $aerialOperatives): void
-    {
-        $this->attributes['aerial_operatives'] = $aerialOperatives;
     }
 }

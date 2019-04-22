@@ -22,11 +22,11 @@ class CreateProcivOccurrencesTable extends Migration
 
             $table->string('remote_id')->unique();
 
-            $table->unsignedSmallInteger('ground_assets');
-            $table->unsignedSmallInteger('ground_operatives');
+            $table->unsignedSmallInteger('ground_assets_involved');
+            $table->unsignedSmallInteger('ground_operatives_involved');
 
-            $table->unsignedSmallInteger('aerial_assets');
-            $table->unsignedSmallInteger('aerial_operatives');
+            $table->unsignedSmallInteger('aerial_assets_involved');
+            $table->unsignedSmallInteger('aerial_operatives_involved');
 
             $table->timestamps();
 
