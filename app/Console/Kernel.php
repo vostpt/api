@@ -6,6 +6,7 @@ namespace VOSTPT\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use VOSTPT\Jobs\Occurrences\ProCivOccurrenceFetcher;
 
 class Kernel extends ConsoleKernel
 {
@@ -19,7 +20,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        //
+        $schedule->job(new ProCivOccurrenceFetcher())->everyFiveMinutes();
     }
 
     /**
