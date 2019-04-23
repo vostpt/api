@@ -17,6 +17,7 @@ class RepositoryServiceProvider extends ServiceProvider
             \VOSTPT\Repositories\Contracts\AcronymRepository::class  => \VOSTPT\Repositories\AcronymRepository::class,
             \VOSTPT\Repositories\Contracts\CountyRepository::class   => \VOSTPT\Repositories\CountyRepository::class,
             \VOSTPT\Repositories\Contracts\DistrictRepository::class => \VOSTPT\Repositories\DistrictRepository::class,
+            \VOSTPT\Repositories\Contracts\EventRepository::class    => \VOSTPT\Repositories\EventRepository::class,
             \VOSTPT\Repositories\Contracts\ParishRepository::class   => \VOSTPT\Repositories\ParishRepository::class,
             \VOSTPT\Repositories\Contracts\UserRepository::class     => \VOSTPT\Repositories\UserRepository::class,
         ];
