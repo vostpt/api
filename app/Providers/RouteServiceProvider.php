@@ -62,6 +62,7 @@ class RouteServiceProvider extends ServiceProvider
             require base_path('routes/api/auth.php');
             require base_path('routes/api/counties.php');
             require base_path('routes/api/districts.php');
+            require base_path('routes/api/events.php');
             require base_path('routes/api/parishes.php');
             require base_path('routes/api/users.php');
         });
@@ -80,6 +81,7 @@ class RouteServiceProvider extends ServiceProvider
             'acronym'  => \VOSTPT\Repositories\Contracts\AcronymRepository::class,
             'county'   => \VOSTPT\Repositories\Contracts\CountyRepository::class,
             'district' => \VOSTPT\Repositories\Contracts\DistrictRepository::class,
+            'event'    => \VOSTPT\Repositories\Contracts\EventRepository::class,
             'parish'   => \VOSTPT\Repositories\Contracts\ParishRepository::class,
             'user'     => \VOSTPT\Repositories\Contracts\UserRepository::class,
         ];
