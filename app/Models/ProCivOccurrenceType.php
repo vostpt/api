@@ -8,38 +8,32 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use LengthException;
 
-class County extends Model
+class ProCivOccurrenceType extends Model
 {
     /**
      * {@inheritDoc}
      */
-    protected $table = 'counties';
+    protected $table = 'prociv_occurrence_types';
 
     /**
-     * Associated District.
+     * Associated Species.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function district(): BelongsTo
+    public function species(): BelongsTo
     {
-        return $this->belongsTo(District::class);
+        return $this->belongsTo(ProCivOccurrenceSpecies::class, 'species_id');
     }
 
     /**
      * Set the code.
      *
-     * @param string $code
-     *
-     * @throws \LengthException
+     * @param int $code
      *
      * @return void
      */
-    public function setCodeAttribute(string $code): void
+    public function setCodeAttribute(int $code): void
     {
-        if (\mb_strlen($code) !== 6) {
-            throw new LengthException('The code must have 6 characters');
-        }
-
         $this->attributes['code'] = $code;
     }
 

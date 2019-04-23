@@ -105,7 +105,7 @@ class User extends Model implements Authenticatable, AuthorizableContract, JWTSu
     public function setNameAttribute(string $name): void
     {
         if ($name && \mb_strlen($name) > 255) {
-            throw new LengthException('The name cannot have more than 255 characters');
+            throw new LengthException('The name cannot exceed 255 characters');
         }
 
         $this->attributes['name'] = $name;

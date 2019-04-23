@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -429,11 +430,6 @@ return [
     ],
 
     [
-        'initials' => 'FFAA',
-        'meaning'  => 'Forças Armadas',
-    ],
-
-    [
         'initials' => 'GAUF',
         'meaning'  => 'Grupo de Análise e Uso do Fogo',
     ],
@@ -721,6 +717,11 @@ return [
     [
         'initials' => 'POSIT',
         'meaning'  => 'Ponto de Situação',
+    ],
+
+    [
+        'initials' => 'PPI',
+        'meaning'  => 'Plano Prévio de Intervenção',
     ],
 
     [

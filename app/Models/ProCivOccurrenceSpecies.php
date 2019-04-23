@@ -6,41 +6,34 @@ namespace VOSTPT\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use LengthException;
 
-class County extends Model
+class ProCivOccurrenceSpecies extends Model
 {
     /**
      * {@inheritDoc}
      */
-    protected $table = 'counties';
+    protected $table = 'prociv_occurrence_species';
 
     /**
-     * Associated District.
+     * Associated Family.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function district(): BelongsTo
+    public function family(): BelongsTo
     {
-        return $this->belongsTo(District::class);
+        return $this->belongsTo(ProCivOccurrenceFamily::class, 'family_id');
     }
 
     /**
-     * Set the code.
+     * Associated Types.
      *
-     * @param string $code
-     *
-     * @throws \LengthException
-     *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function setCodeAttribute(string $code): void
+    public function types(): HasMany
     {
-        if (\mb_strlen($code) !== 6) {
-            throw new LengthException('The code must have 6 characters');
-        }
-
-        $this->attributes['code'] = $code;
+        return $this->hasMany(ProCivOccurrenceType::class);
     }
 
     /**

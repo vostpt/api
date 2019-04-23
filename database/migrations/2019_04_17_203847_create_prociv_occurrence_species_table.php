@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateParishesTable extends Migration
+class CreateProcivOccurrenceSpeciesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,23 +15,23 @@ class CreateParishesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('parishes', function (Blueprint $table) {
-            $table->smallIncrements('id');
-            $table->unsignedSmallInteger('county_id');
+        Schema::create('prociv_occurrence_species', function (Blueprint $table) {
+            $table->tinyIncrements('id');
+            $table->unsignedTinyInteger('family_id');
 
-            $table->string('code')->unique();
+            $table->unsignedSmallInteger('code')->unique();
             $table->string('name');
 
             $table->timestamps();
 
             $table->unique([
-                'county_id',
+                'family_id',
                 'name',
             ]);
 
-            $table->foreign('county_id')
+            $table->foreign('family_id')
                 ->references('id')
-                ->on('counties')
+                ->on('prociv_occurrence_families')
                 ->onUpdate('cascade');
         });
     }
@@ -43,6 +43,6 @@ class CreateParishesTable extends Migration
      */
     public function down(): void
     {
-        Schema::drop('parishes');
+        Schema::drop('prociv_occurrence_species');
     }
 }

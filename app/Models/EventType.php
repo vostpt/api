@@ -8,39 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use LengthException;
 
-class District extends Model
+class EventType extends Model
 {
     /**
      * {@inheritDoc}
      */
-    protected $table = 'districts';
+    protected $table = 'event_types';
 
     /**
-     * Associated Counties.
+     * Associated Events.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function counties(): HasMany
+    public function events(): HasMany
     {
-        return $this->hasMany(County::class);
-    }
-
-    /**
-     * Set the code.
-     *
-     * @param string $code
-     *
-     * @throws \LengthException
-     *
-     * @return void
-     */
-    public function setCodeAttribute(string $code): void
-    {
-        if (\mb_strlen($code) !== 6) {
-            throw new LengthException('The code must have 6 characters');
-        }
-
-        $this->attributes['code'] = $code;
+        return $this->hasMany(Event::class);
     }
 
     /**

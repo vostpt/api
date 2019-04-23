@@ -5,41 +5,35 @@ declare(strict_types=1);
 namespace VOSTPT\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use LengthException;
 
-class County extends Model
+class ProCivOccurrenceStatus extends Model
 {
+    public const FALSE_ALERT          = 1;
+    public const SURVEILLANCE         = 2;
+    public const DISPATCH             = 3;
+    public const FIRST_ALERT_DISPATCH = 4;
+    public const ONGOING              = 5;
+    public const ARRIVAL_AT_TO        = 6;
+    public const RESOLVING            = 7;
+    public const CONCLUSION           = 8;
+    public const CLOSED               = 9;
+    public const CLOSED_BY_VOST       = 255;
+
     /**
      * {@inheritDoc}
      */
-    protected $table = 'counties';
-
-    /**
-     * Associated District.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function district(): BelongsTo
-    {
-        return $this->belongsTo(District::class);
-    }
+    protected $table = 'prociv_occurrence_statuses';
 
     /**
      * Set the code.
      *
-     * @param string $code
-     *
-     * @throws \LengthException
+     * @param int $code
      *
      * @return void
      */
-    public function setCodeAttribute(string $code): void
+    public function setCodeAttribute(int $code): void
     {
-        if (\mb_strlen($code) !== 6) {
-            throw new LengthException('The code must have 6 characters');
-        }
-
         $this->attributes['code'] = $code;
     }
 
