@@ -17,6 +17,7 @@ class FilterServiceProvider extends ServiceProvider
             \VOSTPT\Filters\Contracts\AcronymFilter::class  => \VOSTPT\Filters\AcronymFilter::class,
             \VOSTPT\Filters\Contracts\CountyFilter::class   => \VOSTPT\Filters\CountyFilter::class,
             \VOSTPT\Filters\Contracts\DistrictFilter::class => \VOSTPT\Filters\DistrictFilter::class,
+            \VOSTPT\Filters\Contracts\EventFilter::class    => \VOSTPT\Filters\EventFilter::class,
             \VOSTPT\Filters\Contracts\ParishFilter::class   => \VOSTPT\Filters\ParishFilter::class,
             \VOSTPT\Filters\Contracts\UserFilter::class     => \VOSTPT\Filters\UserFilter::class,
         ];
