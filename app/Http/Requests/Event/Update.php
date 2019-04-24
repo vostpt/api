@@ -14,7 +14,7 @@ class Update extends Request
      */
     public function authorize(): bool
     {
-        $event = $this->route('event');
+        $event = $this->route('Event');
 
         return $this->user()->can('update', $event);
     }

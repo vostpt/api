@@ -18,7 +18,7 @@ Route::prefix('v1/districts')->name('districts::')->group(function () {
         'uses' => DistrictController::class.'@index',
     ]);
 
-    Route::get('/{district}', [
+    Route::get('/{District}', [
         'as'   => 'view',
         'uses' => DistrictController::class.'@view',
     ]);

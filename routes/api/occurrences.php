@@ -18,7 +18,7 @@ Route::prefix('v1/occurrences')->name('occurrences::')->group(function () {
         'uses' => OccurrenceController::class.'@index',
     ]);
 
-    Route::get('/{occurrence}', [
+    Route::get('/{Occurrence}', [
         'as'   => 'view',
         'uses' => OccurrenceController::class.'@view',
     ]);

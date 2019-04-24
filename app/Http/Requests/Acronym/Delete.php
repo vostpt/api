@@ -13,7 +13,7 @@ class Delete extends Request
      */
     public function authorize(): bool
     {
-        $acronym = $this->route('acronym');
+        $acronym = $this->route('Acronym');
 
         return $this->user()->can('delete', $acronym);
     }

@@ -23,17 +23,17 @@ Route::prefix('v1/acronyms')->name('acronyms::')->group(function () {
         'uses' => AcronymController::class.'@create',
     ])->middleware('jwt-auth');
 
-    Route::get('/{acronym}', [
+    Route::get('/{Acronym}', [
         'as'   => 'view',
         'uses' => AcronymController::class.'@view',
     ]);
 
-    Route::patch('/{acronym}', [
+    Route::patch('/{Acronym}', [
         'as'   => 'update',
         'uses' => AcronymController::class.'@update',
     ])->middleware('jwt-auth');
 
-    Route::delete('/{acronym}', [
+    Route::delete('/{Acronym}', [
         'as'   => 'delete',
         'uses' => AcronymController::class.'@delete',
     ])->middleware('jwt-auth');

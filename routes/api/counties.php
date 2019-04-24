@@ -18,7 +18,7 @@ Route::prefix('v1/counties')->name('counties::')->group(function () {
         'uses' => CountyController::class.'@index',
     ]);
 
-    Route::get('/{county}', [
+    Route::get('/{County}', [
         'as'   => 'view',
         'uses' => CountyController::class.'@view',
     ]);

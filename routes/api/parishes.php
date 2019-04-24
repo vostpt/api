@@ -18,7 +18,7 @@ Route::prefix('v1/parishes')->name('parishes::')->group(function () {
         'uses' => ParishController::class.'@index',
     ]);
 
-    Route::get('/{parish}', [
+    Route::get('/{Parish}', [
         'as'   => 'view',
         'uses' => ParishController::class.'@view',
     ]);

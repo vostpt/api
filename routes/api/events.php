@@ -18,23 +18,22 @@ Route::prefix('v1/events')->name('events::')->group(function () {
         'uses' => EventController::class.'@index',
     ]);
 
-
     Route::post('/', [
         'as'   => 'create',
         'uses' => EventController::class.'@create',
     ])->middleware('jwt-auth');
 
-    Route::get('/{event}', [
+    Route::get('/{Event}', [
         'as'   => 'view',
         'uses' => EventController::class.'@view',
     ]);
 
-    Route::patch('/{event}', [
+    Route::patch('/{Event}', [
         'as'   => 'update',
         'uses' => EventController::class.'@update',
     ])->middleware('jwt-auth');
 
-    Route::delete('/{event}', [
+    Route::delete('/{Event}', [
         'as'   => 'delete',
         'uses' => EventController::class.'@delete',
     ])->middleware('jwt-auth');

@@ -14,7 +14,7 @@ class Update extends Request
      */
     public function authorize(): bool
     {
-        $acronym = $this->route('acronym');
+        $acronym = $this->route('Acronym');
 
         return $this->user()->can('update', $acronym);
     }
@@ -29,7 +29,7 @@ class Update extends Request
                 'string',
                 'max:16',
                 Rule::unique('acronyms', 'initials')
-                    ->ignoreModel($this->route('acronym')),
+                    ->ignoreModel($this->route('Acronym')),
             ],
             'meaning' => [
                 'string',

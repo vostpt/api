@@ -40,12 +40,12 @@ Route::prefix('v1/users')->name('users::')->group(function () {
         'uses' => UserRoleController::class.'@index',
     ])->middleware('jwt-auth');
 
-    Route::get('/{user}', [
+    Route::get('/{User}', [
         'as'   => 'view',
         'uses' => UserController::class.'@view',
     ])->middleware('jwt-auth');
 
-    Route::patch('/{user}', [
+    Route::patch('/{User}', [
         'as'   => 'update',
         'uses' => UserController::class.'@update',
     ])->middleware('jwt-auth');
