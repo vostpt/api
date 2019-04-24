@@ -20,7 +20,7 @@ class ViewEndpointTest extends TestCase
     public function itFailsToViewUserDueToInvalidContentTypeHeader(): void
     {
         $response = $this->json('GET', route('users::view', [
-            'user' => 123,
+            'User' => 123,
         ]));
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
@@ -41,7 +41,7 @@ class ViewEndpointTest extends TestCase
     public function itFailsToViewUserDueToMissingJwtToken(): void
     {
         $response = $this->json('GET', route('users::view', [
-            'user' => 123,
+            'User' => 123,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -66,7 +66,7 @@ class ViewEndpointTest extends TestCase
         $this->withoutMiddleware(Authenticate::class);
 
         $response = $this->json('GET', route('users::view', [
-            'user' => 123,
+            'User' => 123,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -93,7 +93,7 @@ class ViewEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('GET', route('users::view', [
-            'user' => $user->getKey(),
+            'User' => $user->getKey(),
         ]), [], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),
@@ -156,7 +156,7 @@ class ViewEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('GET', route('users::view', [
-            'user' => $user->getKey(),
+            'User' => $user->getKey(),
         ]), [], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),

@@ -18,7 +18,7 @@ class ViewEndpointTest extends TestCase
     public function itFailsToViewDistrictDueToInvalidContentTypeHeader(): void
     {
         $response = $this->json('GET', route('districts::view', [
-            'district' => 1,
+            'District' => 1,
         ]));
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
@@ -39,7 +39,7 @@ class ViewEndpointTest extends TestCase
     public function itFailsToViewDistrictDueToRecordNotFound(): void
     {
         $response = $this->json('GET', route('districts::view', [
-            'district' => 1,
+            'District' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -64,7 +64,7 @@ class ViewEndpointTest extends TestCase
         $district = factory(District::class)->create();
 
         $response = $this->json('GET', route('districts::view', [
-            'district' => $district->getKey(),
+            'District' => $district->getKey(),
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);

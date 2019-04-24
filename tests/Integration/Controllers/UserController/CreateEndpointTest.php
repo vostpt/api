@@ -16,9 +16,7 @@ class CreateEndpointTest extends TestCase
      */
     public function itFailsToCreateUserDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('POST', route('users::create', [
-            'user' => 1,
-        ]));
+        $response = $this->json('POST', route('users::create'));
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);

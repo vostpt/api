@@ -23,7 +23,7 @@ class DeleteEndpointTest extends TestCase
     public function itFailsToDeleteEventDueToInvalidContentTypeHeader(): void
     {
         $response = $this->json('DELETE', route('events::delete', [
-            'event' => 1,
+            'Event' => 1,
         ]));
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
@@ -44,7 +44,7 @@ class DeleteEndpointTest extends TestCase
     public function itFailsToDeleteEventDueToMissingJwtToken(): void
     {
         $response = $this->json('DELETE', route('events::delete', [
-            'event' => 1,
+            'Event' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -69,7 +69,7 @@ class DeleteEndpointTest extends TestCase
         $this->withoutMiddleware(Authenticate::class);
 
         $response = $this->json('DELETE', route('events::delete', [
-            'event' => 1,
+            'Event' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -104,7 +104,7 @@ class DeleteEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('DELETE', route('events::delete', [
-            'event' => $event->getKey(),
+            'Event' => $event->getKey(),
         ]), [], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),
@@ -150,7 +150,7 @@ class DeleteEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('DELETE', route('events::delete', [
-            'event' => $event->getKey(),
+            'Event' => $event->getKey(),
         ]), [], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),
@@ -242,7 +242,7 @@ class DeleteEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('DELETE', route('events::delete', [
-            'event' => $event->getKey(),
+            'Event' => $event->getKey(),
         ]), [], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),

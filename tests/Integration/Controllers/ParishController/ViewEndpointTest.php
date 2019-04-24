@@ -18,7 +18,7 @@ class ViewEndpointTest extends TestCase
     public function itFailsToViewParishDueToInvalidContentTypeHeader(): void
     {
         $response = $this->json('GET', route('parishes::view', [
-            'parish' => 1,
+            'Parish' => 1,
         ]));
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
@@ -39,7 +39,7 @@ class ViewEndpointTest extends TestCase
     public function itFailsToViewParishDueToRecordNotFound(): void
     {
         $response = $this->json('GET', route('parishes::view', [
-            'parish' => 1,
+            'Parish' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -64,7 +64,7 @@ class ViewEndpointTest extends TestCase
         $parish = factory(Parish::class)->create();
 
         $response = $this->json('GET', route('parishes::view', [
-            'parish' => $parish->getKey(),
+            'Parish' => $parish->getKey(),
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);

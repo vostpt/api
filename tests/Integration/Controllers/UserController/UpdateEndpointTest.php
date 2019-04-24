@@ -20,7 +20,7 @@ class UpdateEndpointTest extends TestCase
     public function itFailsToUpdateUserDueToInvalidContentTypeHeader(): void
     {
         $response = $this->json('PATCH', route('users::update', [
-            'user' => 1,
+            'User' => 1,
         ]));
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
@@ -41,7 +41,7 @@ class UpdateEndpointTest extends TestCase
     public function itFailsToUpdateUserDueToMissingJwtToken(): void
     {
         $response = $this->json('PATCH', route('users::update', [
-            'user' => 1,
+            'User' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -66,7 +66,7 @@ class UpdateEndpointTest extends TestCase
         $this->withoutMiddleware(Authenticate::class);
 
         $response = $this->json('PATCH', route('users::update', [
-            'user' => 1,
+            'User' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -93,7 +93,7 @@ class UpdateEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('PATCH', route('users::update', [
-            'user' => $user->getKey(),
+            'User' => $user->getKey(),
         ]), [], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),
@@ -123,7 +123,7 @@ class UpdateEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('PATCH', route('users::update', [
-            'user' => $anotherUser->getKey(),
+            'User' => $anotherUser->getKey(),
         ]), [
             'name'                  => \str_repeat('name', 70),
             'surname'               => \str_repeat('surname', 40),
@@ -205,7 +205,7 @@ class UpdateEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('PATCH', route('users::update', [
-            'user' => $anotherUser->getKey(),
+            'User' => $anotherUser->getKey(),
         ]), [
             'name'                  => 'Fernando',
             'surname'               => 'Pessoa',
@@ -291,7 +291,7 @@ class UpdateEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('PATCH', route('users::update', [
-            'user' => $anotherUser->getKey(),
+            'User' => $anotherUser->getKey(),
         ]), [], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),

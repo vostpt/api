@@ -23,7 +23,7 @@ class UpdateEndpointTest extends TestCase
     public function itFailsToUpdateEventDueToInvalidContentTypeHeader(): void
     {
         $response = $this->json('PATCH', route('events::update', [
-            'event' => 1,
+            'Event' => 1,
         ]));
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
@@ -44,7 +44,7 @@ class UpdateEndpointTest extends TestCase
     public function itFailsToUpdateEventDueToMissingJwtToken(): void
     {
         $response = $this->json('PATCH', route('events::update', [
-            'event' => 1,
+            'Event' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -69,7 +69,7 @@ class UpdateEndpointTest extends TestCase
         $this->withoutMiddleware(Authenticate::class);
 
         $response = $this->json('PATCH', route('events::update', [
-            'event' => 1,
+            'Event' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -98,7 +98,7 @@ class UpdateEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('PATCH', route('events::update', [
-            'event' => $event->getKey(),
+            'Event' => $event->getKey(),
         ]), [
             'type'        => 2,
             'parish'      => 2,
@@ -195,7 +195,7 @@ class UpdateEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('PATCH', route('events::update', [
-            'event' => $event->getKey(),
+            'Event' => $event->getKey(),
         ]), [
             'type'        => $eventType->getKey(),
             'parish'      => $parish->getKey(),
@@ -298,7 +298,7 @@ class UpdateEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('PATCH', route('events::update', [
-            'event' => $event->getKey(),
+            'Event' => $event->getKey(),
         ]), [], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),

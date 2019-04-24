@@ -18,9 +18,7 @@ class AuthenticateEndpointTest extends TestCase
      */
     public function itFailsToAuthenticateDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('POST', route('auth::authenticate', [
-            'user' => 1,
-        ]));
+        $response = $this->json('POST', route('auth::authenticate'));
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);

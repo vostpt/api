@@ -19,7 +19,7 @@ class ViewEndpointTest extends TestCase
     public function itFailsToViewProCivOccurrenceDueToInvalidContentTypeHeader(): void
     {
         $response = $this->json('GET', route('occurrences::prociv::view', [
-            'pro_civ_occurrence' => 1,
+            'ProCivOccurrence' => 1,
         ]));
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
@@ -40,7 +40,7 @@ class ViewEndpointTest extends TestCase
     public function itFailsToViewProCivOccurrenceDueToRecordNotFound(): void
     {
         $response = $this->json('GET', route('occurrences::prociv::view', [
-            'pro_civ_occurrence' => 1,
+            'ProCivOccurrence' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -67,7 +67,7 @@ class ViewEndpointTest extends TestCase
         $proCivOccurrence->occurrence()->save($occurrence);
 
         $response = $this->json('GET', route('occurrences::prociv::view', [
-            'pro_civ_occurrence' => $occurrence->getKey(),
+            'ProCivOccurrence' => $occurrence->getKey(),
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
