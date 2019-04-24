@@ -7,6 +7,8 @@ namespace VOSTPT\Tests\Integration\Controllers\EventController;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tymon\JWTAuth\Http\Middleware\Authenticate;
 use VOSTPT\Models\Event;
+use VOSTPT\Models\Occurrence;
+use VOSTPT\Models\ProCivOccurrence;
 use VOSTPT\Models\Role;
 use VOSTPT\Models\User;
 use VOSTPT\Tests\Integration\TestCase;
@@ -79,6 +81,42 @@ class DeleteEndpointTest extends TestCase
                 [
                     'status' => 404,
                     'detail' => 'Event Not Found',
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function itFailsToDeleteEventDueToAssociatedOccurrences(): void
+    {
+        $user = factory(User::class)->create()->assign(Role::ADMINISTRATOR);
+
+        $event = factory(Event::class)->create();
+
+        $occurrence = factory(Occurrence::class)->make([
+            'event_id' => $event->getKey(),
+        ]);
+
+        factory(ProCivOccurrence::class)->create()->occurrence()->save($occurrence);
+
+        $token = auth()->login($user);
+
+        $response = $this->json('DELETE', route('events::delete', [
+            'event' => $event->getKey(),
+        ]), [], [
+            'Content-Type'  => 'application/vnd.api+json',
+            'Authorization' => \sprintf('Bearer %s', $token),
+        ]);
+
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertStatus(403);
+        $response->assertJson([
+            'errors' => [
+                [
+                    'status' => 403,
+                    'detail' => 'Events with Occurrences cannot be deleted',
                 ],
             ],
         ]);
