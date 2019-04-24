@@ -63,6 +63,7 @@ class RouteServiceProvider extends ServiceProvider
             require base_path('routes/api/counties.php');
             require base_path('routes/api/districts.php');
             require base_path('routes/api/events.php');
+            require base_path('routes/api/occurrences.php');
             require base_path('routes/api/parishes.php');
             require base_path('routes/api/users.php');
         });
@@ -78,12 +79,13 @@ class RouteServiceProvider extends ServiceProvider
     protected function modelBinder(): void
     {
         $models = [
-            'acronym'  => \VOSTPT\Repositories\Contracts\AcronymRepository::class,
-            'county'   => \VOSTPT\Repositories\Contracts\CountyRepository::class,
-            'district' => \VOSTPT\Repositories\Contracts\DistrictRepository::class,
-            'event'    => \VOSTPT\Repositories\Contracts\EventRepository::class,
-            'parish'   => \VOSTPT\Repositories\Contracts\ParishRepository::class,
-            'user'     => \VOSTPT\Repositories\Contracts\UserRepository::class,
+            'acronym'    => \VOSTPT\Repositories\Contracts\AcronymRepository::class,
+            'county'     => \VOSTPT\Repositories\Contracts\CountyRepository::class,
+            'district'   => \VOSTPT\Repositories\Contracts\DistrictRepository::class,
+            'event'      => \VOSTPT\Repositories\Contracts\EventRepository::class,
+            'occurrence' => \VOSTPT\Repositories\Contracts\OccurrenceRepository::class,
+            'parish'     => \VOSTPT\Repositories\Contracts\ParishRepository::class,
+            'user'       => \VOSTPT\Repositories\Contracts\UserRepository::class,
         ];
 
         foreach ($models as $name => $repositoryContract) {
