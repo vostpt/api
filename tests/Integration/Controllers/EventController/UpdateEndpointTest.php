@@ -100,13 +100,14 @@ class UpdateEndpointTest extends TestCase
         $response = $this->json('PATCH', route('events::update', [
             'event' => $event->getKey(),
         ]), [
-            'type'       => 2,
-            'parish'     => 2,
-            'name'       => \str_repeat('Incêndio florestal de Pedrógão Grande', 10),
-            'latitude'   => '39 north',
-            'longitude'  => '8 west',
-            'started_at' => '2017-06-24 18:54:00',
-            'ended_at'   => '2017-06-17 16:51:00',
+            'type'        => 2,
+            'parish'      => 2,
+            'name'        => \str_repeat('Incêndio florestal de Pedrógão Grande', 10),
+            'description' => '',
+            'latitude'    => '39 north',
+            'longitude'   => '8 west',
+            'started_at'  => '2017-06-24 18:54:00',
+            'ended_at'    => '2017-06-17 16:51:00',
         ], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),
@@ -120,6 +121,12 @@ class UpdateEndpointTest extends TestCase
                     'detail' => 'The name may not be greater than 255 characters.',
                     'meta'   => [
                         'field' => 'name',
+                    ],
+                ],
+                [
+                    'detail' => 'The description must be a string.',
+                    'meta'   => [
+                        'field' => 'description',
                     ],
                 ],
                 [
