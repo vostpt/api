@@ -16,7 +16,7 @@ class ViewEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToViewCountyDueToInvalidContentTypeHeader(): void
+    public function itFailsToViewOccurrenceDueToInvalidContentTypeHeader(): void
     {
         $response = $this->json('GET', route('occurrences::view', [
             'occurrence' => 1,
@@ -37,7 +37,7 @@ class ViewEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToViewCountyDueToRecordNotFound(): void
+    public function itFailsToViewOccurrenceDueToRecordNotFound(): void
     {
         $response = $this->json('GET', route('occurrences::view', [
             'occurrence' => 1,
@@ -60,7 +60,7 @@ class ViewEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itSuccessfullyViewsCounty(): void
+    public function itSuccessfullyViewsOccurrence(): void
     {
         $occurrence       = factory(Occurrence::class)->make();
         $proCivOccurrence = factory(ProCivOccurrence::class)->create();
