@@ -120,8 +120,7 @@ class IndexEndpointTest extends TestCase
         ]);
 
         $response = $this->json('GET', route('events::index'), [
-            'deleted' => true,
-            'page'    => [
+            'page' => [
                 'number' => 2,
                 'size'   => 2,
             ],

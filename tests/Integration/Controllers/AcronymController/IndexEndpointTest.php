@@ -94,8 +94,7 @@ class IndexEndpointTest extends TestCase
         factory(Acronym::class, 20)->create();
 
         $response = $this->json('GET', route('acronyms::index'), [
-            'deleted' => true,
-            'page'    => [
+            'page' => [
                 'number' => 2,
                 'size'   => 2,
             ],

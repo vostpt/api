@@ -94,8 +94,7 @@ class IndexEndpointTest extends TestCase
         factory(Parish::class, 20)->create();
 
         $response = $this->json('GET', route('parishes::index'), [
-            'deleted' => true,
-            'page'    => [
+            'page' => [
                 'number' => 2,
                 'size'   => 2,
             ],
