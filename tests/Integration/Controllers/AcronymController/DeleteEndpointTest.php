@@ -133,7 +133,7 @@ class DeleteEndpointTest extends TestCase
 
     /**
      * @test
-     * @dataProvider updateDataProvider
+     * @dataProvider deleteDataProvider
      *
      * @param string $role
      * @param int    $status
@@ -160,7 +160,7 @@ class DeleteEndpointTest extends TestCase
     /**
      * @return array
      */
-    public function updateDataProvider(): array
+    public function deleteDataProvider(): array
     {
         return [
             'Administrator' => [
