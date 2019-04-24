@@ -128,6 +128,7 @@ class EventFilter extends Filter implements Contracts\EventFilter
     {
         return \array_merge(parent::getSignatureElements(), [
             \implode(',', $this->types),
+            \implode(',', $this->parishes),
         ]);
     }
 }

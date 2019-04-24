@@ -11,8 +11,6 @@ interface EventFilter extends Filter
      *
      * @param int[] $types
      *
-     * @throws \OutOfBoundsException
-     *
      * @return self
      */
     public function withTypes(int ...$types): self;
@@ -21,8 +19,6 @@ interface EventFilter extends Filter
      * Include parishes for filtering.
      *
      * @param int[] $parishes
-     *
-     * @throws \OutOfBoundsException
      *
      * @return self
      */
