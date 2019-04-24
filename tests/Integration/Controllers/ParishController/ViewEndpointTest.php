@@ -15,7 +15,7 @@ class ViewEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToViewCountyDueToInvalidContentTypeHeader(): void
+    public function itFailsToViewParishDueToInvalidContentTypeHeader(): void
     {
         $response = $this->json('GET', route('parishes::view', [
             'parish' => 1,
@@ -36,7 +36,7 @@ class ViewEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToViewCountyDueToRecordNotFound(): void
+    public function itFailsToViewParishDueToRecordNotFound(): void
     {
         $response = $this->json('GET', route('parishes::view', [
             'parish' => 1,
@@ -59,7 +59,7 @@ class ViewEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itSuccessfullyViewsCounty(): void
+    public function itSuccessfullyViewsParish(): void
     {
         $parish = factory(Parish::class)->create();
 
