@@ -29,7 +29,7 @@ before_script:
 script:
   - mkdir -p build/logs
   - vendor/bin/phpunit --dump-xdebug-filter build/xdebug-filter.php
-  - vendor/bin/phpunit --prepend build/xdebug-filter.php --coverage-text --coverage-clover build/logs/clover.xml
+  - vendor/bin/phpunit --testdox --prepend build/xdebug-filter.php --coverage-text --coverage-clover build/logs/clover.xml
 
 cache:
   directories:
