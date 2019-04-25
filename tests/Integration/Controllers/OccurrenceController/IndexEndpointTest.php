@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\OccurrenceController;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use VOSTPT\Models\Event;
 use VOSTPT\Models\Occurrence;
 use VOSTPT\Models\Parish;
 use VOSTPT\Models\ProCivOccurrence;
+use VOSTPT\Tests\Integration\RefreshDatabase;
 use VOSTPT\Tests\Integration\TestCase;
 
 class IndexEndpointTest extends TestCase

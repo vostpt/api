@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\AcronymController;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use VOSTPT\Models\Acronym;
+use VOSTPT\Tests\Integration\RefreshDatabase;
 use VOSTPT\Tests\Integration\TestCase;
 
 class IndexEndpointTest extends TestCase

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\EventController;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tymon\JWTAuth\Http\Middleware\Authenticate;
 use VOSTPT\Models\Event;
 use VOSTPT\Models\EventType;
 use VOSTPT\Models\Parish;
 use VOSTPT\Models\Role;
 use VOSTPT\Models\User;
+use VOSTPT\Tests\Integration\RefreshDatabase;
 use VOSTPT\Tests\Integration\TestCase;
 
 class UpdateEndpointTest extends TestCase

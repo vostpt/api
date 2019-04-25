@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\ProCivOccurrenceController;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use VOSTPT\Models\Occurrence;
 use VOSTPT\Models\ProCivOccurrence;
+use VOSTPT\Tests\Integration\RefreshDatabase;
 use VOSTPT\Tests\Integration\TestCase;
 
 class ViewEndpointTest extends TestCase

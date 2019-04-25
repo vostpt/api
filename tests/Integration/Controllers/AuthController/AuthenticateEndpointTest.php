@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\AuthController;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use VOSTPT\Models\Role;
 use VOSTPT\Models\User;
+use VOSTPT\Tests\Integration\RefreshDatabase;
 use VOSTPT\Tests\Integration\TestCase;
 
 class AuthenticateEndpointTest extends TestCase

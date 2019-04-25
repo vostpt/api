@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\UserController;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use VOSTPT\Tests\Integration\RefreshDatabase;
 use VOSTPT\Tests\Integration\TestCase;
 
 class CreateEndpointTest extends TestCase

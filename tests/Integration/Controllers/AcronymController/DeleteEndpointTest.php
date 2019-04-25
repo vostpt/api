@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\AcronymController;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tymon\JWTAuth\Http\Middleware\Authenticate;
 use VOSTPT\Models\Acronym;
 use VOSTPT\Models\Role;
 use VOSTPT\Models\User;
+use VOSTPT\Tests\Integration\RefreshDatabase;
 use VOSTPT\Tests\Integration\TestCase;
 
 class DeleteEndpointTest extends TestCase
