@@ -32,6 +32,12 @@ Event:
         updated_at:
           type: string
           format: date-time
+    links:
+      type: object
+      properties:
+        self:
+          type: string
+          description: Link to this page
 
 EventType:
   type: object
