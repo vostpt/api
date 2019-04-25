@@ -14,27 +14,27 @@ use VOSTPT\Http\Controllers\AcronymController;
 
 Route::prefix('v1/acronyms')->name('acronyms::')->group(function () {
     Route::get('/', [
-        'as'   => 'index',
-        'uses' => AcronymController::class.'@index',
-    ]);
+        AcronymController::class,
+        'index',
+    ])->name('index');
 
     Route::post('/', [
-        'as'   => 'create',
-        'uses' => AcronymController::class.'@create',
-    ])->middleware('jwt-auth');
+        AcronymController::class,
+        'create',
+    ])->name('create')->middleware('jwt-auth');
 
-    Route::get('/{acronym}', [
-        'as'   => 'view',
-        'uses' => AcronymController::class.'@view',
-    ]);
+    Route::get('/{Acronym}', [
+        AcronymController::class,
+        'view',
+    ])->name('view');
 
-    Route::patch('/{acronym}', [
-        'as'   => 'update',
-        'uses' => AcronymController::class.'@update',
-    ])->middleware('jwt-auth');
+    Route::patch('/{Acronym}', [
+        AcronymController::class,
+        'update',
+    ])->name('update')->middleware('jwt-auth');
 
-    Route::delete('/{acronym}', [
-        'as'   => 'delete',
-        'uses' => AcronymController::class.'@delete',
-    ])->middleware('jwt-auth');
+    Route::delete('/{Acronym}', [
+        AcronymController::class,
+        'delete',
+    ])->name('delete')->middleware('jwt-auth');
 });

@@ -12,11 +12,6 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * {@inheritDoc}
      */
-    protected $namespace = 'VOSTPT\Http\Controllers';
-
-    /**
-     * {@inheritDoc}
-     */
     public function boot(): void
     {
         parent::boot();
@@ -45,7 +40,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes(): void
     {
-        //
+        $this->app['router']->group(['middleware' => 'web'], function () {
+            require base_path('routes/web/fallback.php');
+        });
     }
 
     /**
@@ -62,6 +59,8 @@ class RouteServiceProvider extends ServiceProvider
             require base_path('routes/api/auth.php');
             require base_path('routes/api/counties.php');
             require base_path('routes/api/districts.php');
+            require base_path('routes/api/events.php');
+            require base_path('routes/api/occurrences.php');
             require base_path('routes/api/parishes.php');
             require base_path('routes/api/users.php');
         });
@@ -77,11 +76,14 @@ class RouteServiceProvider extends ServiceProvider
     protected function modelBinder(): void
     {
         $models = [
-            'acronym'  => \VOSTPT\Repositories\Contracts\AcronymRepository::class,
-            'county'   => \VOSTPT\Repositories\Contracts\CountyRepository::class,
-            'district' => \VOSTPT\Repositories\Contracts\DistrictRepository::class,
-            'parish'   => \VOSTPT\Repositories\Contracts\ParishRepository::class,
-            'user'     => \VOSTPT\Repositories\Contracts\UserRepository::class,
+            'Acronym'          => \VOSTPT\Repositories\Contracts\AcronymRepository::class,
+            'County'           => \VOSTPT\Repositories\Contracts\CountyRepository::class,
+            'District'         => \VOSTPT\Repositories\Contracts\DistrictRepository::class,
+            'Event'            => \VOSTPT\Repositories\Contracts\EventRepository::class,
+            'Occurrence'       => \VOSTPT\Repositories\Contracts\OccurrenceRepository::class,
+            'Parish'           => \VOSTPT\Repositories\Contracts\ParishRepository::class,
+            'ProCivOccurrence' => \VOSTPT\Repositories\Contracts\ProCivOccurrenceRepository::class,
+            'User'             => \VOSTPT\Repositories\Contracts\UserRepository::class,
         ];
 
         foreach ($models as $name => $repositoryContract) {
@@ -89,7 +91,7 @@ class RouteServiceProvider extends ServiceProvider
                 $repository = $this->app->make($repositoryContract);
 
                 if (! $model = $repository->findById((int) $id)) {
-                    throw new NotFoundHttpException(\sprintf('%s Not Found', \ucfirst($name)));
+                    throw new NotFoundHttpException(\sprintf('%s Not Found', $name));
                 }
 
                 return $model;

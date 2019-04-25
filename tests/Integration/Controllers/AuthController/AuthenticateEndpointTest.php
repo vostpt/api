@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\AuthController;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use VOSTPT\Models\Role;
 use VOSTPT\Models\User;
+use VOSTPT\Tests\Integration\RefreshDatabase;
 use VOSTPT\Tests\Integration\TestCase;
 
 class AuthenticateEndpointTest extends TestCase
@@ -18,9 +18,7 @@ class AuthenticateEndpointTest extends TestCase
      */
     public function itFailsToAuthenticateDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('POST', route('auth::authenticate', [
-            'user' => 1,
-        ]));
+        $response = $this->json('POST', route('auth::authenticate'));
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);

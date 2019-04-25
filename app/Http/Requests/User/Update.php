@@ -14,7 +14,7 @@ class Update extends Request
      */
     public function authorize(): bool
     {
-        $userToUpdate = $this->route('user');
+        $userToUpdate = $this->route('User');
 
         return $this->user()->can('update', $userToUpdate);
     }
@@ -37,7 +37,7 @@ class Update extends Request
                 'email',
                 'max:255',
                 Rule::unique('users', 'email')
-                    ->ignoreModel($this->route('user')),
+                    ->ignoreModel($this->route('User')),
             ],
             'password' => [
                 'required_with:password_confirmation',

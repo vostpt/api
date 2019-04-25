@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\AcronymController;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tymon\JWTAuth\Http\Middleware\Authenticate;
 use VOSTPT\Models\Acronym;
 use VOSTPT\Models\Role;
 use VOSTPT\Models\User;
+use VOSTPT\Tests\Integration\RefreshDatabase;
 use VOSTPT\Tests\Integration\TestCase;
 
 class UpdateEndpointTest extends TestCase
@@ -21,7 +21,7 @@ class UpdateEndpointTest extends TestCase
     public function itFailsToUpdateAcronymDueToInvalidContentTypeHeader(): void
     {
         $response = $this->json('PATCH', route('acronyms::update', [
-            'acronym' => 1,
+            'Acronym' => 1,
         ]));
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
@@ -42,7 +42,7 @@ class UpdateEndpointTest extends TestCase
     public function itFailsToUpdateAcronymDueToMissingJwtToken(): void
     {
         $response = $this->json('PATCH', route('acronyms::update', [
-            'acronym' => 1,
+            'Acronym' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -67,7 +67,7 @@ class UpdateEndpointTest extends TestCase
         $this->withoutMiddleware(Authenticate::class);
 
         $response = $this->json('PATCH', route('acronyms::update', [
-            'acronym' => 1,
+            'Acronym' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -100,7 +100,7 @@ class UpdateEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('PATCH', route('acronyms::update', [
-            'acronym' => $acronym->getKey(),
+            'Acronym' => $acronym->getKey(),
         ]), [
             'initials' => 'FAP',
             'meaning'  => \str_repeat('meaning', 40),
@@ -154,7 +154,7 @@ class UpdateEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('PATCH', route('acronyms::update', [
-            'acronym' => $acronym->getKey(),
+            'Acronym' => $acronym->getKey(),
         ]), [
             'initials' => 'GNR',
             'meaning'  => 'Guarda Nacional Republicana',
@@ -205,7 +205,7 @@ class UpdateEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('PATCH', route('acronyms::update', [
-            'acronym' => $acronym->getKey(),
+            'Acronym' => $acronym->getKey(),
         ]), [], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),

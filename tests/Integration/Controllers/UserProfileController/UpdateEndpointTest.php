@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\UserProfileController;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use VOSTPT\Models\Role;
 use VOSTPT\Models\User;
+use VOSTPT\Tests\Integration\RefreshDatabase;
 use VOSTPT\Tests\Integration\TestCase;
 
 class UpdateEndpointTest extends TestCase
@@ -18,9 +18,7 @@ class UpdateEndpointTest extends TestCase
      */
     public function itFailsToUpdateProfileDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('PATCH', route('users::profile::update', [
-            'user' => 1,
-        ]));
+        $response = $this->json('PATCH', route('users::profile::update'));
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -39,9 +37,7 @@ class UpdateEndpointTest extends TestCase
      */
     public function itFailsToUpdateProfileDueToMissingJwtToken(): void
     {
-        $response = $this->json('PATCH', route('users::profile::update', [
-            'user' => 1,
-        ]), [], [
+        $response = $this->json('PATCH', route('users::profile::update'), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
 

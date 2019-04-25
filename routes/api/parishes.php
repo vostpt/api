@@ -14,12 +14,12 @@ use VOSTPT\Http\Controllers\ParishController;
 
 Route::prefix('v1/parishes')->name('parishes::')->group(function () {
     Route::get('/', [
-        'as'   => 'index',
-        'uses' => ParishController::class.'@index',
-    ]);
+        ParishController::class,
+        'index',
+    ])->name('index');
 
-    Route::get('/{parish}', [
-        'as'   => 'view',
-        'uses' => ParishController::class.'@view',
-    ]);
+    Route::get('/{Parish}', [
+        ParishController::class,
+        'view',
+    ])->name('view');
 });

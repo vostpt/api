@@ -16,37 +16,37 @@ use VOSTPT\Http\Controllers\UserRoleController;
 
 Route::prefix('v1/users')->name('users::')->group(function () {
     Route::get('/', [
-        'as'   => 'index',
-        'uses' => UserController::class.'@index',
-    ])->middleware('jwt-auth');
+        UserController::class,
+        'index',
+    ])->name('index')->middleware('jwt-auth');
 
     Route::post('/', [
-        'as'   => 'create',
-        'uses' => UserController::class.'@create',
-    ])->middleware('throttle:8,10');
+        UserController::class,
+        'create',
+    ])->name('create')->middleware('throttle:8,10');
 
     Route::get('/profile', [
-        'as'   => 'profile::view',
-        'uses' => UserProfileController::class.'@view',
-    ])->middleware('jwt-auth');
+        UserProfileController::class,
+        'view',
+    ])->name('profile::view')->middleware('jwt-auth');
 
     Route::patch('/profile', [
-        'as'   => 'profile::update',
-        'uses' => UserProfileController::class.'@update',
-    ])->middleware('jwt-auth');
+        UserProfileController::class,
+        'update',
+    ])->name('profile::update')->middleware('jwt-auth');
 
     Route::get('/roles', [
-        'as'   => 'roles::index',
-        'uses' => UserRoleController::class.'@index',
-    ])->middleware('jwt-auth');
+        UserRoleController::class,
+        'index',
+    ])->name('roles::index')->middleware('jwt-auth');
 
-    Route::get('/{user}', [
-        'as'   => 'view',
-        'uses' => UserController::class.'@view',
-    ])->middleware('jwt-auth');
+    Route::get('/{User}', [
+        UserController::class,
+        'view',
+    ])->name('view')->middleware('jwt-auth');
 
-    Route::patch('/{user}', [
-        'as'   => 'update',
-        'uses' => UserController::class.'@update',
-    ])->middleware('jwt-auth');
+    Route::patch('/{User}', [
+        UserController::class,
+        'update',
+    ])->name('update')->middleware('jwt-auth');
 });

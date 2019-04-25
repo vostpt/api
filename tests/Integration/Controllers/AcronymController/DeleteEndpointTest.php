@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\AcronymController;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tymon\JWTAuth\Http\Middleware\Authenticate;
 use VOSTPT\Models\Acronym;
 use VOSTPT\Models\Role;
 use VOSTPT\Models\User;
+use VOSTPT\Tests\Integration\RefreshDatabase;
 use VOSTPT\Tests\Integration\TestCase;
 
 class DeleteEndpointTest extends TestCase
@@ -21,7 +21,7 @@ class DeleteEndpointTest extends TestCase
     public function itFailsToDeleteAcronymDueToInvalidContentTypeHeader(): void
     {
         $response = $this->json('DELETE', route('acronyms::delete', [
-            'acronym' => 1,
+            'Acronym' => 1,
         ]));
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
@@ -42,7 +42,7 @@ class DeleteEndpointTest extends TestCase
     public function itFailsToDeleteAcronymDueToMissingJwtToken(): void
     {
         $response = $this->json('DELETE', route('acronyms::delete', [
-            'acronym' => 1,
+            'Acronym' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -67,7 +67,7 @@ class DeleteEndpointTest extends TestCase
         $this->withoutMiddleware(Authenticate::class);
 
         $response = $this->json('DELETE', route('acronyms::delete', [
-            'acronym' => 1,
+            'Acronym' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -104,7 +104,7 @@ class DeleteEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('DELETE', route('acronyms::delete', [
-            'acronym' => $acronym->getKey(),
+            'Acronym' => $acronym->getKey(),
         ]), [], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),
@@ -133,7 +133,7 @@ class DeleteEndpointTest extends TestCase
 
     /**
      * @test
-     * @dataProvider updateDataProvider
+     * @dataProvider deleteDataProvider
      *
      * @param string $role
      * @param int    $status
@@ -147,7 +147,7 @@ class DeleteEndpointTest extends TestCase
         $token = auth()->login($user);
 
         $response = $this->json('DELETE', route('acronyms::delete', [
-            'acronym' => $acronym->getKey(),
+            'Acronym' => $acronym->getKey(),
         ]), [], [
             'Content-Type'  => 'application/vnd.api+json',
             'Authorization' => \sprintf('Bearer %s', $token),
@@ -160,7 +160,7 @@ class DeleteEndpointTest extends TestCase
     /**
      * @return array
      */
-    public function updateDataProvider(): array
+    public function deleteDataProvider(): array
     {
         return [
             'Administrator' => [

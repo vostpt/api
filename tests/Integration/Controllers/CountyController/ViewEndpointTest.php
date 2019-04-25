@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\CountyController;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use VOSTPT\Models\County;
+use VOSTPT\Tests\Integration\RefreshDatabase;
 use VOSTPT\Tests\Integration\TestCase;
 
 class ViewEndpointTest extends TestCase
@@ -18,7 +18,7 @@ class ViewEndpointTest extends TestCase
     public function itFailsToViewCountyDueToInvalidContentTypeHeader(): void
     {
         $response = $this->json('GET', route('counties::view', [
-            'county' => 1,
+            'County' => 1,
         ]));
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
@@ -39,7 +39,7 @@ class ViewEndpointTest extends TestCase
     public function itFailsToViewCountyDueToRecordNotFound(): void
     {
         $response = $this->json('GET', route('counties::view', [
-            'county' => 1,
+            'County' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -64,7 +64,7 @@ class ViewEndpointTest extends TestCase
         $county = factory(County::class)->create();
 
         $response = $this->json('GET', route('counties::view', [
-            'county' => $county->getKey(),
+            'County' => $county->getKey(),
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);

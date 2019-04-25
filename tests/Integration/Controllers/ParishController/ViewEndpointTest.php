@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\ParishController;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use VOSTPT\Models\Parish;
+use VOSTPT\Tests\Integration\RefreshDatabase;
 use VOSTPT\Tests\Integration\TestCase;
 
 class ViewEndpointTest extends TestCase
@@ -15,10 +15,10 @@ class ViewEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToViewCountyDueToInvalidContentTypeHeader(): void
+    public function itFailsToViewParishDueToInvalidContentTypeHeader(): void
     {
         $response = $this->json('GET', route('parishes::view', [
-            'parish' => 1,
+            'Parish' => 1,
         ]));
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
@@ -36,10 +36,10 @@ class ViewEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToViewCountyDueToRecordNotFound(): void
+    public function itFailsToViewParishDueToRecordNotFound(): void
     {
         $response = $this->json('GET', route('parishes::view', [
-            'parish' => 1,
+            'Parish' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -59,12 +59,12 @@ class ViewEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itSuccessfullyViewsCounty(): void
+    public function itSuccessfullyViewsParish(): void
     {
         $parish = factory(Parish::class)->create();
 
         $response = $this->json('GET', route('parishes::view', [
-            'parish' => $parish->getKey(),
+            'Parish' => $parish->getKey(),
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);

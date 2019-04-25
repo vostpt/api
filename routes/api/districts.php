@@ -14,12 +14,12 @@ use VOSTPT\Http\Controllers\DistrictController;
 
 Route::prefix('v1/districts')->name('districts::')->group(function () {
     Route::get('/', [
-        'as'   => 'index',
-        'uses' => DistrictController::class.'@index',
-    ]);
+        DistrictController::class,
+        'index',
+    ])->name('index');
 
-    Route::get('/{district}', [
-        'as'   => 'view',
-        'uses' => DistrictController::class.'@view',
-    ]);
+    Route::get('/{District}', [
+        DistrictController::class,
+        'view',
+    ])->name('view');
 });

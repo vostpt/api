@@ -14,12 +14,12 @@ use VOSTPT\Http\Controllers\AuthController;
 
 Route::prefix('v1/auth')->name('auth::')->group(function () {
     Route::post('/', [
-        'as'   => 'authenticate',
-        'uses' => AuthController::class.'@authenticate',
-    ]);
+        AuthController::class,
+        'authenticate',
+    ])->name('authenticate');
 
     Route::get('/refresh', [
-        'as'   => 'refresh',
-        'uses' => AuthController::class.'@refresh',
-    ])->middleware('jwt-auth');
+        AuthController::class,
+        'refresh',
+    ])->name('refresh')->middleware('jwt-auth');
 });

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\AcronymController;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use VOSTPT\Models\Acronym;
+use VOSTPT\Tests\Integration\RefreshDatabase;
 use VOSTPT\Tests\Integration\TestCase;
 
 class ViewEndpointTest extends TestCase
@@ -18,7 +18,7 @@ class ViewEndpointTest extends TestCase
     public function itFailsToViewAcronymDueToInvalidContentTypeHeader(): void
     {
         $response = $this->json('GET', route('acronyms::view', [
-            'acronym' => 1,
+            'Acronym' => 1,
         ]));
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
@@ -39,7 +39,7 @@ class ViewEndpointTest extends TestCase
     public function itFailsToViewAcronymDueToRecordNotFound(): void
     {
         $response = $this->json('GET', route('acronyms::view', [
-            'acronym' => 1,
+            'Acronym' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -64,7 +64,7 @@ class ViewEndpointTest extends TestCase
         $acronym = factory(Acronym::class)->create();
 
         $response = $this->json('GET', route('acronyms::view', [
-            'acronym' => $acronym->getKey(),
+            'Acronym' => $acronym->getKey(),
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
