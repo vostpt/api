@@ -40,7 +40,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes(): void
     {
-        //
+        $this->app['router']->group(['middleware' => 'web'], function () {
+            require base_path('routes/web/fallback.php');
+        });
     }
 
     /**
