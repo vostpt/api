@@ -37,7 +37,7 @@ class IndexEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToIndexOccurrencesDueToValidation(): void
+    public function itFailsToIndexOccurrencesDueToInvalidInput(): void
     {
         $response = $this->json('GET', route('occurrences::index'), [
             'page' => [

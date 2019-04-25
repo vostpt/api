@@ -39,7 +39,7 @@ class UpdateEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToUpdateAcronymDueToMissingJwtToken(): void
+    public function itFailsToUpdateAcronymDueToMissingAccessToken(): void
     {
         $response = $this->json('PATCH', route('acronyms::update', [
             'Acronym' => 1,
@@ -87,7 +87,7 @@ class UpdateEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToUpdateAcronymDueToValidation(): void
+    public function itFailsToUpdateAcronymDueToInvalidInput(): void
     {
         $user = factory(User::class)->create()->assign(Role::ADMINISTRATOR);
 

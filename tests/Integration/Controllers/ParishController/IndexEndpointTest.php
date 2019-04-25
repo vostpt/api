@@ -34,7 +34,7 @@ class IndexEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToIndexParishesDueToValidation(): void
+    public function itFailsToIndexParishesDueToInvalidInput(): void
     {
         $response = $this->json('GET', route('parishes::index'), [
             'page' => [

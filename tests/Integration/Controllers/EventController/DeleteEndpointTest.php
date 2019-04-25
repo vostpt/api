@@ -41,7 +41,7 @@ class DeleteEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToDeleteEventDueToMissingJwtToken(): void
+    public function itFailsToDeleteEventDueToMissingAccessToken(): void
     {
         $response = $this->json('DELETE', route('events::delete', [
             'Event' => 1,

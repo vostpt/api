@@ -39,7 +39,7 @@ class DeleteEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToDeleteAcronymDueToMissingJwtToken(): void
+    public function itFailsToDeleteAcronymDueToMissingAccessToken(): void
     {
         $response = $this->json('DELETE', route('acronyms::delete', [
             'Acronym' => 1,

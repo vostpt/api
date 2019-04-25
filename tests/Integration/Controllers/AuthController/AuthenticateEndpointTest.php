@@ -35,7 +35,7 @@ class AuthenticateEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToAuthenticateDueToValidation(): void
+    public function itFailsToAuthenticateDueToInvalidInput(): void
     {
         $response = $this->json('POST', route('auth::authenticate'), [
             'email' => 'invalid at email dot tld',

@@ -34,7 +34,7 @@ class IndexEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToIndexCountiesDueToValidation(): void
+    public function itFailsToIndexCountiesDueToInvalidInput(): void
     {
         $response = $this->json('GET', route('counties::index'), [
             'page' => [

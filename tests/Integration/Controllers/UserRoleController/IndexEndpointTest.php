@@ -35,7 +35,7 @@ class IndexEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToIndexUserRolesDueToMissingJwtToken(): void
+    public function itFailsToIndexUserRolesDueToMissingAccessToken(): void
     {
         $response = $this->json('GET', route('users::roles::index'), [], [
             'Content-Type' => 'application/vnd.api+json',

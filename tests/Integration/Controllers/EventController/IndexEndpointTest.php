@@ -36,7 +36,7 @@ class IndexEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToIndexEventsDueToValidation(): void
+    public function itFailsToIndexEventsDueToInvalidInput(): void
     {
         $response = $this->json('GET', route('events::index'), [
             'page' => [

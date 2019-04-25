@@ -38,7 +38,7 @@ class ViewEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToViewUserDueToMissingJwtToken(): void
+    public function itFailsToViewUserDueToMissingAccessToken(): void
     {
         $response = $this->json('GET', route('users::view', [
             'User' => 123,

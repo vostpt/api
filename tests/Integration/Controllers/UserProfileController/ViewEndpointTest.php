@@ -35,7 +35,7 @@ class ViewEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToViewProfileDueToMissingJwtToken(): void
+    public function itFailsToViewProfileDueToMissingAccessToken(): void
     {
         $response = $this->json('GET', route('users::profile::view'), [], [
             'Content-Type' => 'application/vnd.api+json',

@@ -35,7 +35,7 @@ class CreateEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsTCreateAcronymDueToMissingJwtToken(): void
+    public function itFailsToCreateAcronymDueToMissingAccessToken(): void
     {
         $response = $this->json('POST', route('acronyms::create'), [], [
             'Content-Type' => 'application/vnd.api+json',
@@ -56,7 +56,7 @@ class CreateEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToCreateAcronymDueToValidation(): void
+    public function itFailsToCreateAcronymDueToInvalidInput(): void
     {
         $user = factory(User::class)->create()->assign(Role::ADMINISTRATOR);
 

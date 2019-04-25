@@ -16,7 +16,7 @@ class RefreshEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToRefreshJwtTokenDueToInvalidContentTypeHeader(): void
+    public function itFailsToRefreshAccessTokenDueToInvalidContentTypeHeader(): void
     {
         $response = $this->json('GET', route('auth::refresh'));
 
@@ -35,7 +35,7 @@ class RefreshEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToRefreshJwtTokenDueToMissingJwtToken(): void
+    public function itFailsToRefreshAccessTokenDueToMissingAccessToken(): void
     {
         $response = $this->json('GET', route('auth::refresh'), [], [
             'Content-Type' => 'application/vnd.api+json',
@@ -56,7 +56,7 @@ class RefreshEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itSuccessfullyRefreshesJwtToken(): void
+    public function itSuccessfullyRefreshesAccessToken(): void
     {
         $user = factory(User::class)->create()->assign(Role::ADMINISTRATOR);
 
@@ -87,7 +87,7 @@ class RefreshEndpointTest extends TestCase
      * @param string $role
      * @param int    $status
      */
-    public function itVerifiesRoleAccessPermissionsToRefreshJwtToken(string $role, int $status): void
+    public function itVerifiesRoleAccessPermissionsToRefreshAccessToken(string $role, int $status): void
     {
         $user = factory(User::class)->create()->assign($role);
 

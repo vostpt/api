@@ -35,7 +35,7 @@ class IndexEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToIndexUsersDueToMissingJwtToken(): void
+    public function itFailsToIndexUsersDueToMissingAccessToken(): void
     {
         $response = $this->json('GET', route('users::index'), [], [
             'Content-Type' => 'application/vnd.api+json',
@@ -56,7 +56,7 @@ class IndexEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToIndexUsersDueToValidation(): void
+    public function itFailsToIndexUsersDueToInvalidInput(): void
     {
         $user = factory(User::class)->create()->assign(Role::ADMINISTRATOR);
 

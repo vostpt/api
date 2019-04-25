@@ -37,7 +37,7 @@ class CreateEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsTCreateEventDueToMissingJwtToken(): void
+    public function itFailsToCreateEventDueToMissingAccessToken(): void
     {
         $response = $this->json('POST', route('events::create'), [], [
             'Content-Type' => 'application/vnd.api+json',
@@ -58,7 +58,7 @@ class CreateEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToCreateEventDueToValidation(): void
+    public function itFailsToCreateEventDueToInvalidInput(): void
     {
         $user = factory(User::class)->create()->assign(Role::ADMINISTRATOR);
 

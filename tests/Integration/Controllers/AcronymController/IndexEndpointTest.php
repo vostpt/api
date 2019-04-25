@@ -34,7 +34,7 @@ class IndexEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToIndexAcronymsDueToValidation(): void
+    public function itFailsToIndexAcronymsDueToInvalidInput(): void
     {
         $response = $this->json('GET', route('acronyms::index'), [
             'page' => [

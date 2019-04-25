@@ -33,7 +33,7 @@ class CreateEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToCreateUserDueToValidation(): void
+    public function itFailsToCreateUserDueToInvalidInput(): void
     {
         $response = $this->json('POST', route('users::create'), [
             'name'                  => \str_repeat('name', 70),

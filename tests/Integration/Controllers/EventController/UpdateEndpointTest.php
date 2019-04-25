@@ -41,7 +41,7 @@ class UpdateEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToUpdateEventDueToMissingJwtToken(): void
+    public function itFailsToUpdateEventDueToMissingAccessToken(): void
     {
         $response = $this->json('PATCH', route('events::update', [
             'Event' => 1,
@@ -89,7 +89,7 @@ class UpdateEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToUpdateEventDueToValidation(): void
+    public function itFailsToUpdateEventDueToInvalidInput(): void
     {
         $user = factory(User::class)->create()->assign(Role::ADMINISTRATOR);
 
