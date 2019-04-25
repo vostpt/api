@@ -100,6 +100,12 @@ class ViewEndpointTest extends TestCase
                             'id',
                         ],
                     ],
+                    'source' => [
+                        'data' => [
+                            'type',
+                            'id',
+                        ],
+                    ],
                 ],
                 'links' => [
                     'self',
