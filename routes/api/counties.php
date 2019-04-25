@@ -14,12 +14,12 @@ use VOSTPT\Http\Controllers\CountyController;
 
 Route::prefix('v1/counties')->name('counties::')->group(function () {
     Route::get('/', [
-        'as'   => 'index',
-        'uses' => CountyController::class.'@index',
-    ]);
+        CountyController::class,
+        'index',
+    ])->name('index');
 
     Route::get('/{County}', [
-        'as'   => 'view',
-        'uses' => CountyController::class.'@view',
-    ]);
+        CountyController::class,
+        'view',
+    ])->name('view');
 });

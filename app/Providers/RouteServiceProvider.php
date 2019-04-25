@@ -12,11 +12,6 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * {@inheritDoc}
      */
-    protected $namespace = 'VOSTPT\Http\Controllers';
-
-    /**
-     * {@inheritDoc}
-     */
     public function boot(): void
     {
         parent::boot();

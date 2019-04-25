@@ -14,27 +14,27 @@ use VOSTPT\Http\Controllers\EventController;
 
 Route::prefix('v1/events')->name('events::')->group(function () {
     Route::get('/', [
-        'as'   => 'index',
-        'uses' => EventController::class.'@index',
-    ]);
+        EventController::class,
+        'index',
+    ])->name('index');
 
     Route::post('/', [
-        'as'   => 'create',
-        'uses' => EventController::class.'@create',
-    ])->middleware('jwt-auth');
+        EventController::class,
+        'create',
+    ])->name('create')->middleware('jwt-auth');
 
     Route::get('/{Event}', [
-        'as'   => 'view',
-        'uses' => EventController::class.'@view',
-    ]);
+        EventController::class,
+        'view',
+    ])->name('view');
 
     Route::patch('/{Event}', [
-        'as'   => 'update',
-        'uses' => EventController::class.'@update',
-    ])->middleware('jwt-auth');
+        EventController::class,
+        'update',
+    ])->name('update')->middleware('jwt-auth');
 
     Route::delete('/{Event}', [
-        'as'   => 'delete',
-        'uses' => EventController::class.'@delete',
-    ])->middleware('jwt-auth');
+        EventController::class,
+        'delete',
+    ])->name('delete')->middleware('jwt-auth');
 });

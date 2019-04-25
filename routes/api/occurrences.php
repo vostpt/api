@@ -15,17 +15,17 @@ use VOSTPT\Http\Controllers\ProCivOccurrenceController;
 
 Route::prefix('v1/occurrences')->name('occurrences::')->group(function () {
     Route::get('/', [
-        'as'   => 'index',
-        'uses' => OccurrenceController::class.'@index',
-    ]);
+        OccurrenceController::class,
+        'index',
+    ])->name('index');
 
     Route::get('/prociv/{ProCivOccurrence}', [
-        'as'   => 'prociv::view',
-        'uses' => ProCivOccurrenceController::class.'@view',
-    ]);
+        ProCivOccurrenceController::class,
+        'view',
+    ])->name('prociv::view');
 
     Route::get('/{Occurrence}', [
-        'as'   => 'view',
-        'uses' => OccurrenceController::class.'@view',
-    ]);
+        OccurrenceController::class,
+        'view',
+    ])->name('view');
 });
