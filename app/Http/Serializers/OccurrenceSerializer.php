@@ -24,7 +24,7 @@ class OccurrenceSerializer extends AbstractSerializer
     {
         return [
             'self' => route('occurrences::view', [
-                'occurrence' => $model->getKey(),
+                'Occurrence' => $model->getKey(),
             ]),
         ];
     }

@@ -20,7 +20,7 @@ class DistrictSerializer extends AbstractSerializer
     {
         return [
             'self' => route('districts::view', [
-                'district' => $model->getKey(),
+                'District' => $model->getKey(),
             ]),
         ];
     }

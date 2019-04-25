@@ -23,7 +23,7 @@ class ParishSerializer extends AbstractSerializer
     {
         return [
             'self' => route('parishes::view', [
-                'parish' => $model->getKey(),
+                'Parish' => $model->getKey(),
             ]),
         ];
     }

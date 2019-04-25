@@ -23,7 +23,7 @@ class UserSerializer extends AbstractSerializer
     {
         return [
             'self' => route('users::view', [
-                'user' => $model->getKey(),
+                'User' => $model->getKey(),
             ]),
         ];
     }

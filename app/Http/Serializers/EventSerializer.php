@@ -23,7 +23,7 @@ class EventSerializer extends AbstractSerializer
     {
         return [
             'self' => route('events::view', [
-                'event' => $model->getKey(),
+                'Event' => $model->getKey(),
             ]),
         ];
     }

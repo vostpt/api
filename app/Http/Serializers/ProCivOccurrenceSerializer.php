@@ -23,7 +23,7 @@ class ProCivOccurrenceSerializer extends AbstractSerializer
     {
         return [
             'self' => route('occurrences::prociv::view', [
-                'occurrence' => $model->getKey(),
+                'ProCivOccurrence' => $model->getKey(),
             ]),
         ];
     }
