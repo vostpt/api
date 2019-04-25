@@ -1,0 +1,124 @@
+Event:
+  type: object
+  properties:
+    type:
+      type: string
+      default: events
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        started_at:
+          type: string
+          format: date-time
+        ended_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+EventType:
+  type: object
+  properties:
+    type:
+      type: string
+      default: event_types
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Incêndio
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+EventWithRelations:
+  type: object
+  properties:
+    type:
+      type: string
+      default: events
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        started_at:
+          type: string
+          format: date-time
+        ended_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    relationships:
+      type: object
+      properties:
+        type:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: event_types
+                id:
+                  type: string
+                  example: 1
+        parish:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: parishes
+                id:
+                  type: string
+                  example: 1
+    links:
+      type: object
+      properties:
+        self:
+          type: string
+          description: Link to this page

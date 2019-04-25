@@ -1,0 +1,352 @@
+index-and-create:
+  get:
+    tags:
+      - Events
+    summary: Index events
+    description: Index the available events.
+    operationId: events::index
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/page_number.yaml'
+      - $ref: '../common/parameters/page_size.yaml'
+      - $ref: '../common/parameters/search.yaml'
+      - name: types
+        in: query
+        description: Filter by EventType ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: parishes
+        in: query
+        description: Filter by Parish ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: sort
+        in: query
+        description: Field used for sorting results
+        schema:
+          type: string
+          enum:
+            - name
+            - description
+            - latitude
+            - longitude
+            - started_at
+            - ended_at
+            - created_at
+            - updated_at
+          default: created_at
+      - $ref: '../common/parameters/order.yaml'
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    first:
+                      type: string
+                      description: Link to the first page of results
+                    last:
+                      type: string
+                      description: Link to the last page of results
+                    prev:
+                      type: string
+                      description: Link to the previous page of results
+                    next:
+                      type: string
+                      description: Link to the next page of results
+                data:
+                  type: array
+                  items:
+                    $ref: 'schemas.yaml#/Event'
+                meta:
+                  type: object
+                  properties:
+                    per_page:
+                      type: integer
+                      example: 10
+                    total:
+                      type: integer
+                      example: 100
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+  post:
+    tags:
+      - Events
+    security:
+      - access_token:
+          - administrator
+    summary: Create event
+    description: Create an event record.
+    operationId: events::create
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+      - name: type
+        in: query
+        description: EventType id
+        required: true
+        schema:
+          type: string
+          example: 1
+      - name: parish
+        in: query
+        description: Parish id
+        required: true
+        schema:
+          type: string
+          example: 1
+      - name: name
+        in: query
+        description: Event name
+        required: true
+        schema:
+          type: string
+          maxLength: 255
+      - name: description
+        in: query
+        description: Event description
+        required: true
+        schema:
+          type: string
+      - name: latitude
+        in: query
+        description: Event latitude
+        required: true
+        schema:
+          type: number
+          format: double
+      - name: longitude
+        in: query
+        description: Event longitude
+        required: true
+        schema:
+          type: number
+          format: double
+      - name: started_at
+        in: query
+        description: Event start date/time
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: ended_at
+        in: query
+        description: Event end date/time
+        schema:
+          type: string
+          format: date-time
+          nullable: true
+
+    responses:
+      201:
+        description: Created
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/EventWithRelations'
+                included:
+                  type: array
+                  items:
+                    - $ref: 'schemas.yaml#/EventType'
+                    - $ref: '../parishes/schemas.yaml#/Parish'
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+view-update-and-delete:
+  get:
+    tags:
+      - Events
+    summary: View event
+    description: Retrieve a specific event record.
+    operationId: events::view
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - name: id
+        in: path
+        description: Event id
+        required: true
+        schema:
+          type: string
+          example: 1
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/EventWithRelations'
+                included:
+                  type: array
+                  items:
+                    - $ref: 'schemas.yaml#/EventType'
+                    - $ref: '../parishes/schemas.yaml#/Parish'
+      404:
+        $ref: '../common/responses/404.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+
+  patch:
+    tags:
+      - Events
+    security:
+      - access_token:
+          - administrator
+    summary: Update event
+    description: Update an event record.
+    operationId: events::update
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+      - name: id
+        in: path
+        description: Event id
+        required: true
+        schema:
+          type: string
+          example: 1
+      - name: type
+        in: query
+        description: EventType id
+        schema:
+          type: string
+          example: 1
+      - name: parish
+        in: query
+        description: Parish id
+        schema:
+          type: string
+          example: 1
+      - name: name
+        in: query
+        description: Event name
+        schema:
+          type: string
+          maxLength: 255
+      - name: description
+        in: query
+        description: Event description
+        schema:
+          type: string
+      - name: latitude
+        in: query
+        description: Event latitude
+        schema:
+          type: number
+          format: double
+      - name: longitude
+        in: query
+        description: Event longitude
+        schema:
+          type: number
+          format: double
+      - name: started_at
+        in: query
+        description: Event start date/time
+        schema:
+          type: string
+          format: date-time
+      - name: ended_at
+        in: query
+        description: Event end date/time
+        schema:
+          type: string
+          format: date-time
+          nullable: true
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/EventWithRelations'
+                included:
+                  type: array
+                  items:
+                    - $ref: 'schemas.yaml#/EventType'
+                    - $ref: '../parishes/schemas.yaml#/Parish'
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
+      404:
+        $ref: '../common/responses/404.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+  delete:
+    tags:
+      - Events
+    security:
+      - access_token:
+          - administrator
+    summary: Delete event
+    description: Delete an event record.
+    operationId: events::delete
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+      - name: id
+        in: path
+        description: Event id
+        required: true
+        schema:
+          type: string
+          example: 1
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/EventWithRelations'
+                included:
+                  type: array
+                  items:
+                    - $ref: 'schemas.yaml#/EventType'
+                    - $ref: '../parishes/schemas.yaml#/Parish'
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
+      404:
+        $ref: '../common/responses/404.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'

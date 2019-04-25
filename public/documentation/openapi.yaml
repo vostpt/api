@@ -9,7 +9,7 @@ info:
     email: vostportugal@gmail.com
   x-logo:
     url: logo.png
-    altText: VOST Portugal logo
+    altText: VOST Portugal Logo
 
 servers:
   - url: https://api.vost.pt
@@ -24,10 +24,12 @@ tags:
     description: Acronym operations
   - name: Authentication
     description: User authentication operations
-  - name: Districts
-    description: District operations
   - name: Counties
     description: County operations
+  - name: Districts
+    description: District operations
+  - name: Events
+    description: Event operations
   - name: Parishes
     description: Parish operations
   - name: Users
@@ -37,6 +39,9 @@ x-tagGroups:
   - name: Acronym Management
     tags:
       - Acronyms
+  - name: Event Management
+    tags:
+      - Events
   - name: Location Management
     tags:
       - Districts
@@ -53,6 +58,12 @@ paths:
 
   /acronyms/{id}:
     $ref: 'acronyms/endpoints.yaml#/view-update-and-delete'
+
+  /events:
+    $ref: 'events/endpoints.yaml#/index-and-create'
+
+  /events/{id}:
+    $ref: 'events/endpoints.yaml#/view-update-and-delete'
 
   /districts:
     $ref: 'districts/endpoints.yaml#/index'
@@ -93,7 +104,7 @@ paths:
 components:
   securitySchemes:
     access_token:
-      description: Most endpoints will require authentication.
+      description: Some endpoints require authentication.
       type: http
       scheme: bearer
       bearerFormat: JWT
