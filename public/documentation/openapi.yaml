@@ -30,6 +30,8 @@ tags:
     description: District operations
   - name: Events
     description: Event operations
+  - name: Occurrences
+    description: Occurrence operations
   - name: Parishes
     description: Parish operations
   - name: Users
@@ -42,6 +44,7 @@ x-tagGroups:
   - name: Event Management
     tags:
       - Events
+      - Occurrences
   - name: Location Management
     tags:
       - Districts
@@ -64,6 +67,15 @@ paths:
 
   /events/{id}:
     $ref: 'events/endpoints.yaml#/view-update-and-delete'
+
+  /occurrences:
+    $ref: 'occurrences/endpoints.yaml#/index'
+
+  /occurrences/{id}:
+    $ref: 'occurrences/endpoints.yaml#/view'
+
+  /occurrences/prociv/{id}:
+    $ref: 'occurrences/endpoints.yaml#/prociv-view'
 
   /districts:
     $ref: 'districts/endpoints.yaml#/index'

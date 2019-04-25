@@ -1,0 +1,265 @@
+Occurrence:
+  type: object
+  properties:
+    type:
+      type: string
+      default: occurrences
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        locality:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        started_at:
+          type: string
+          format: date-time
+        ended_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    links:
+      type: object
+      properties:
+        self:
+          type: string
+          description: Link to this page
+
+OccurrenceWithRelations:
+  type: object
+  properties:
+    type:
+      type: string
+      default: occurrences
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        locality:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        started_at:
+          type: string
+          format: date-time
+        ended_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    relationships:
+      type: object
+      properties:
+        event:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: events
+                id:
+                  type: string
+                  example: 1
+        parish:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: parishes
+                id:
+                  type: string
+                  example: 1
+        source:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: prociv_occurrences
+                id:
+                  type: string
+                  example: 1
+    links:
+      type: object
+      properties:
+        self:
+          type: string
+          description: Link to this page
+
+ProCivOccurrence:
+  type: object
+  properties:
+    type:
+      type: string
+      default: prociv_occurrences
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        remote_id:
+          type: string
+          example: 2019123456789
+        ground_assets_involved:
+          type: integer
+        ground_operatives_involved:
+          type: integer
+        aerial_assets_involved:
+          type: integer
+        aerial_operatives_involved:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    links:
+      type: object
+      properties:
+        self:
+          type: string
+          description: Link to this page
+
+ProCivOccurrenceType:
+  type: object
+  properties:
+    type:
+      type: string
+      default: prociv_occurrence_types
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 9121
+        name:
+          type: string
+          example: Reconhecimento Aéreo
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+ProCivOccurrenceStatus:
+  type: object
+  properties:
+    type:
+      type: string
+      default: prociv_occurrence_statuses
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 5
+        name:
+          type: string
+          example: Em Curso
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+ProCivOccurrenceWithRelations:
+  type: object
+  properties:
+    type:
+      type: string
+      default: prociv_occurrences
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        remote_id:
+          type: string
+          example: 2019123456789
+        ground_assets_involved:
+          type: integer
+        ground_operatives_involved:
+          type: integer
+        aerial_assets_involved:
+          type: integer
+        aerial_operatives_involved:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    relationships:
+      type: object
+      properties:
+        type:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: prociv_occurrence_types
+                id:
+                  type: string
+                  example: 1
+        status:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: prociv_occurrence_statuses
+                id:
+                  type: string
+                  example: 1
+    links:
+      type: object
+      properties:
+        self:
+          type: string
+          description: Link to this page

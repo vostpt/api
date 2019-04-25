@@ -1,0 +1,160 @@
+index:
+  get:
+    tags:
+      - Occurrences
+    summary: Index occurrences
+    description: Index the available occurrences.
+    operationId: occurrences::index
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/page_number.yaml'
+      - $ref: '../common/parameters/page_size.yaml'
+      - $ref: '../common/parameters/search.yaml'
+      - name: events
+        in: query
+        description: Filter by Event ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: parishes
+        in: query
+        description: Filter by Parish ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: sort
+        in: query
+        description: Field used for sorting results
+        schema:
+          type: string
+          enum:
+            - locality
+            - latitude
+            - longitude
+            - started_at
+            - ended_at
+            - created_at
+            - updated_at
+          default: created_at
+      - $ref: '../common/parameters/order.yaml'
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    first:
+                      type: string
+                      description: Link to the first page of results
+                    last:
+                      type: string
+                      description: Link to the last page of results
+                    prev:
+                      type: string
+                      description: Link to the previous page of results
+                    next:
+                      type: string
+                      description: Link to the next page of results
+                data:
+                  type: array
+                  items:
+                    $ref: 'schemas.yaml#/Occurrence'
+                meta:
+                  type: object
+                  properties:
+                    per_page:
+                      type: integer
+                      example: 10
+                    total:
+                      type: integer
+                      example: 100
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+view:
+  get:
+    tags:
+      - Occurrences
+    summary: View occurrence
+    description: Retrieve a specific occurrence record.
+    operationId: occurrences::view
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - name: id
+        in: path
+        description: Occurrence id
+        required: true
+        schema:
+          type: string
+          example: 1
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/OccurrenceWithRelations'
+                included:
+                  type: array
+                  items:
+                    - $ref: '../events/schemas.yaml#/Event'
+                    - $ref: '../parishes/schemas.yaml#/Parish'
+                    - oneOf:
+                      - $ref: 'schemas.yaml#/ProCivOccurrence'
+      404:
+        $ref: '../common/responses/404.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+
+prociv-view:
+  get:
+    tags:
+      - Occurrences
+    summary: View ProCiv occurrence
+    description: Retrieve a specific ProCiv occurrence record.
+    operationId: occurrences::prociv::view
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - name: id
+        in: path
+        description: ProCivOccurrence id
+        required: true
+        schema:
+          type: string
+          example: 1
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/ProCivOccurrenceWithRelations'
+                included:
+                  type: array
+                  items:
+                    - $ref: 'schemas.yaml#/ProCivOccurrenceType'
+                    - $ref: 'schemas.yaml#/ProCivOccurrenceStatus'
+      404:
+        $ref: '../common/responses/404.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
