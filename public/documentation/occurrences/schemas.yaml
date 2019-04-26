@@ -115,42 +115,6 @@ OccurrenceWithRelations:
           type: string
           description: Link to this page
 
-ProCivOccurrence:
-  type: object
-  properties:
-    type:
-      type: string
-      default: prociv_occurrences
-    id:
-      type: string
-      example: 1
-    attributes:
-      type: object
-      properties:
-        remote_id:
-          type: string
-          example: 2019123456789
-        ground_assets_involved:
-          type: integer
-        ground_operatives_involved:
-          type: integer
-        aerial_assets_involved:
-          type: integer
-        aerial_operatives_involved:
-          type: integer
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-    links:
-      type: object
-      properties:
-        self:
-          type: string
-          description: Link to this page
-
 ProCivOccurrenceType:
   type: object
   properties:
@@ -257,9 +221,3 @@ ProCivOccurrenceWithRelations:
                 id:
                   type: string
                   example: 1
-    links:
-      type: object
-      properties:
-        self:
-          type: string
-          description: Link to this page

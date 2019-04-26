@@ -74,9 +74,6 @@ paths:
   /occurrences/{id}:
     $ref: 'occurrences/endpoints.yaml#/view'
 
-  /occurrences/prociv/{id}:
-    $ref: 'occurrences/endpoints.yaml#/prociv-view'
-
   /districts:
     $ref: 'districts/endpoints.yaml#/index'
 
