@@ -21,6 +21,25 @@ Generate JWT secret key:
 php artisan jwt:secret
 ```
 
+## Occurrences
+Some occurrences are ingested via third party API/web services. In order to fetch occurrence data, service clients are periodically executed.
+
+Make sure the main job scheduler is properly set:
+```txt
+* * * * * cd /path/to/the/api && php artisan schedule:run >> /dev/null 2>&1
+```
+
+### ProCiv occurrences
+By default, the `ProCivOccurrenceFetcher` job class is executed every 5 (five) minutes through the main scheduler.
+
+For local development and testing purposes, a command is also available:
+
+```sh
+php artisan fetch:prociv-occurrences
+```
+
+**>NOTE:** All Job/Command output is sent to the application log file (`storage/logs/laravel-YYYY-MM-DD.log`).
+
 ### Database
 Execute the migration and seeders:
 ```sh
