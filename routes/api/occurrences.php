@@ -22,4 +22,9 @@ Route::prefix('v1/occurrences')->name('occurrences::')->group(function () {
         OccurrenceController::class,
         'view',
     ])->name('view');
+
+    Route::patch('/{Occurrence}', [
+        OccurrenceController::class,
+        'update',
+    ])->name('update')->middleware('jwt-auth');
 });

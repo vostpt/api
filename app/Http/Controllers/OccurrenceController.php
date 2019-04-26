@@ -7,6 +7,7 @@ namespace VOSTPT\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use VOSTPT\Filters\Contracts\OccurrenceFilter;
 use VOSTPT\Http\Requests\Occurrence\Index;
+use VOSTPT\Http\Requests\Occurrence\Update;
 use VOSTPT\Http\Requests\Occurrence\View;
 use VOSTPT\Http\Serializers\OccurrenceSerializer;
 use VOSTPT\Models\Occurrence;
@@ -48,6 +49,38 @@ class OccurrenceController extends Controller
         $paginator = $this->createPaginator(Occurrence::class, $occurrenceRepository->createQueryBuilder(), $filter);
 
         return response()->paginator($paginator, new OccurrenceSerializer());
+    }
+
+    /**
+     * Update an Occurrence.
+     *
+     * @param Update     $request
+     * @param Occurrence $occurrence
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Update $request, Occurrence $occurrence): JsonResponse
+    {
+        if ($request->has('event')) {
+            $occurrence->event()->associate($request->input('event'));
+        }
+
+        $occurrence->save();
+
+        $relations = [
+            'event',
+            'parish',
+            'source',
+        ];
+
+        if ($occurrence->source instanceof ProCivOccurrence) {
+            $relations = \array_merge($relations, [
+                'source.type',
+                'source.status',
+            ]);
+        }
+
+        return response()->resource($occurrence, new OccurrenceSerializer(), $relations);
     }
 
     /**
