@@ -22,7 +22,7 @@ php artisan jwt:secret
 ```
 
 ## Occurrences
-Some occurrences are ingested via third party API/web services. In order to fetch occurrence data, service clients are periodically executed.
+Some occurrences are ingested from third party API/web services. In order to fetch those, service clients will be periodically executed.
 
 Make sure the main job scheduler is properly set:
 ```txt
