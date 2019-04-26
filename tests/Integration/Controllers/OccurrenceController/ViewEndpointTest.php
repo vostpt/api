@@ -62,9 +62,9 @@ class ViewEndpointTest extends TestCase
      */
     public function itSuccessfullyViewsOccurrenceWithProCivSource(): void
     {
-        $occurrence       = factory(Occurrence::class)->make();
-        $proCivOccurrence = factory(ProCivOccurrence::class)->create();
-        $proCivOccurrence->occurrence()->save($occurrence);
+        $occurrence = factory(Occurrence::class)->make();
+
+        factory(ProCivOccurrence::class)->create()->occurrence()->save($occurrence);
 
         $response = $this->json('GET', route('occurrences::view', [
             'Occurrence' => $occurrence->getKey(),
