@@ -60,7 +60,7 @@ class ViewEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itSuccessfullyViewsOccurrence(): void
+    public function itSuccessfullyViewsOccurrenceWithProCivSource(): void
     {
         $occurrence       = factory(Occurrence::class)->make();
         $proCivOccurrence = factory(ProCivOccurrence::class)->create();
@@ -154,8 +154,39 @@ class ViewEndpointTest extends TestCase
                         'created_at',
                         'updated_at',
                     ],
-                    'links' => [
-                        'self',
+                    'relationships' => [
+                        'type' => [
+                            'data' => [
+                                'type',
+                                'id',
+                            ],
+                        ],
+                        'status' => [
+                            'data' => [
+                                'type',
+                                'id',
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'type',
+                    'id',
+                    'attributes' => [
+                        'code',
+                        'name',
+                        'created_at',
+                        'updated_at',
+                    ],
+                ],
+                [
+                    'type',
+                    'id',
+                    'attributes' => [
+                        'code',
+                        'name',
+                        'created_at',
+                        'updated_at',
                     ],
                 ],
             ],

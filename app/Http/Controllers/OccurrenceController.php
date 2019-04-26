@@ -10,6 +10,7 @@ use VOSTPT\Http\Requests\Occurrence\Index;
 use VOSTPT\Http\Requests\Occurrence\View;
 use VOSTPT\Http\Serializers\OccurrenceSerializer;
 use VOSTPT\Models\Occurrence;
+use VOSTPT\Models\ProCivOccurrence;
 use VOSTPT\Repositories\Contracts\OccurrenceRepository;
 
 class OccurrenceController extends Controller
@@ -59,10 +60,19 @@ class OccurrenceController extends Controller
      */
     public function view(View $request, Occurrence $occurrence): JsonResponse
     {
-        return response()->resource($occurrence, new OccurrenceSerializer(), [
+        $relations = [
             'event',
             'parish',
             'source',
-        ]);
+        ];
+
+        if ($occurrence->source instanceof ProCivOccurrence) {
+            $relations = \array_merge($relations, [
+                'source.type',
+                'source.status',
+            ]);
+        }
+
+        return response()->resource($occurrence, new OccurrenceSerializer(), $relations);
     }
 }
