@@ -6,5 +6,12 @@ namespace VOSTPT\Filters\Contracts;
 
 interface ParishFilter extends Filter
 {
-    //
+    /**
+     * Include counties for filtering.
+     *
+     * @param int[] $counties
+     *
+     * @return self
+     */
+    public function withCounties(int ...$counties): self;
 }

@@ -4,8 +4,17 @@ declare(strict_types=1);
 
 namespace VOSTPT\Filters;
 
+use Illuminate\Database\Eloquent\Builder;
+
 class ParishFilter extends Filter implements Contracts\ParishFilter
 {
+    /**
+     * Counties for filtering.
+     *
+     * @var array
+     */
+    private $counties = [];
+
     /**
      * {@inheritDoc}
      */
@@ -50,5 +59,40 @@ class ParishFilter extends Filter implements Contracts\ParishFilter
             'parishes.created_at',
             'parishes.updated_at',
         ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withCounties(int ...$counties): Contracts\ParishFilter
+    {
+        $this->counties = \array_unique($counties, SORT_NUMERIC);
+
+        \sort($this->counties, SORT_NUMERIC);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function apply(Builder $builder): void
+    {
+        parent::apply($builder);
+
+        // Apply County filtering
+        if ($this->counties) {
+            $builder->whereIn('county_id', $this->counties);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSignatureElements(): array
+    {
+        return \array_merge(parent::getSignatureElements(), [
+            \implode(',', $this->counties),
+        ]);
     }
 }
