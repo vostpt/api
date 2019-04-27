@@ -83,7 +83,7 @@ index:
       422:
         $ref: '../common/responses/422.yaml'
 
-view:
+view-and-update:
   get:
     tags:
       - Occurrences
@@ -122,3 +122,59 @@ view:
         $ref: '../common/responses/404.yaml'
       415:
         $ref: '../common/responses/415.yaml'
+
+  patch:
+    tags:
+      - Occurrences
+    security:
+      - access_token:
+          - administrator
+          - moderator
+    summary: Update occurrence
+    description: Update an occurrence record.
+    operationId: occurrences::update
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+      - name: id
+        in: path
+        description: Occurrence id
+        required: true
+        schema:
+          type: string
+          example: 1
+      - name: event
+        in: query
+        description: Event id
+        schema:
+          type: string
+          example: 1
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/OccurrenceWithRelations'
+                included:
+                  type: array
+                  items:
+                    - $ref: '../events/schemas.yaml#/Event'
+                    - $ref: '../parishes/schemas.yaml#/Parish'
+                    - $ref: 'schemas.yaml#/ProCivOccurrenceWithRelations'
+                    - $ref: 'schemas.yaml#/ProCivOccurrenceType'
+                    - $ref: 'schemas.yaml#/ProCivOccurrenceStatus'
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
+      404:
+        $ref: '../common/responses/404.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'

@@ -72,7 +72,7 @@ paths:
     $ref: 'occurrences/endpoints.yaml#/index'
 
   /occurrences/{id}:
-    $ref: 'occurrences/endpoints.yaml#/view'
+    $ref: 'occurrences/endpoints.yaml#/view-and-update'
 
   /districts:
     $ref: 'districts/endpoints.yaml#/index'
