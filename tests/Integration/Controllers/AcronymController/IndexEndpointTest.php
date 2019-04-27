@@ -127,7 +127,7 @@ class IndexEndpointTest extends TestCase
                 ],
             ],
             'meta' => [
-                'per_page',
+                'items',
                 'total',
             ],
         ]);

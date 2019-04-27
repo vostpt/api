@@ -143,8 +143,8 @@ class ResponseFactory extends \Illuminate\Routing\ResponseFactory
         }
 
         $document->setMeta([
-            'per_page' => $paginator->perPage(),
-            'total'    => $paginator->total(),
+            'items' => $paginator->perPage(),
+            'total' => $paginator->total(),
         ]);
 
         return $this->json($document->toArray(), $status, $headers, $options);

@@ -53,7 +53,7 @@ index-and-create:
                 meta:
                   type: object
                   properties:
-                    per_page:
+                    items:
                       type: integer
                       example: 10
                     total:
