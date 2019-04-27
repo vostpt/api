@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace VOSTPT\Models;
 
+use DomainException;
 use Illuminate\Database\Eloquent\Model;
 use LengthException;
 
@@ -30,10 +31,16 @@ class ProCivOccurrenceStatus extends Model
      *
      * @param int $code
      *
+     * @throws \DomainException
+     *
      * @return void
      */
     public function setCodeAttribute(int $code): void
     {
+        if ($code < 1 || $code > 255) {
+            throw new DomainException('The code must be an integer between 1 and 255');
+        }
+
         $this->attributes['code'] = $code;
     }
 
