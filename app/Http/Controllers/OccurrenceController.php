@@ -31,8 +31,8 @@ class OccurrenceController extends Controller
     {
         $filter->setSortColumn($request->input('sort', $filter->getSortColumn()))
             ->setSortOrder($request->input('order', $filter->getSortOrder()))
-            ->setPageNumber((int) $request->input('page.number', 1))
-            ->setPageSize((int) $request->input('page.size', 50));
+            ->setPageNumber((int) $request->input('page.number', $filter->getPageNumber()))
+            ->setPageSize((int) $request->input('page.size', $filter->getPageSize()));
 
         if ($request->has('search')) {
             $filter->withSearch($request->input('search'));
