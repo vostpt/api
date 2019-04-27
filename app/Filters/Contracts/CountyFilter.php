@@ -6,5 +6,12 @@ namespace VOSTPT\Filters\Contracts;
 
 interface CountyFilter extends Filter
 {
-    //
+    /**
+     * Include districts for filtering.
+     *
+     * @param int[] $districts
+     *
+     * @return self
+     */
+    public function withDistricts(int ...$districts): self;
 }

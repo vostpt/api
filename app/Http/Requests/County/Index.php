@@ -25,6 +25,9 @@ class Index extends Request
             'search' => [
                 'string',
             ],
+            'districts.*' => [
+                Rule::exists('districts', 'id'),
+            ],
             'sort' => [
                 Rule::in(CountyFilter::getSortableColumns()),
             ],

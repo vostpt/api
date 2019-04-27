@@ -10,6 +10,14 @@ index:
       - $ref: '../common/parameters/page_number.yaml'
       - $ref: '../common/parameters/page_size.yaml'
       - $ref: '../common/parameters/search.yaml'
+      - name: districts
+        in: query
+        description: Filter by District ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
       - name: sort
         in: query
         description: Field used for sorting results

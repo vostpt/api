@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace VOSTPT\Tests\Integration\Controllers\CountyController;
 
 use VOSTPT\Models\County;
+use VOSTPT\Models\District;
 use VOSTPT\Tests\Integration\RefreshDatabase;
 use VOSTPT\Tests\Integration\TestCase;
 
@@ -41,9 +42,12 @@ class IndexEndpointTest extends TestCase
                 'number' => 'second',
                 'size'   => 'ten',
             ],
-            'search' => '',
-            'sort'   => 'id',
-            'order'  => 'up',
+            'search'    => '',
+            'districts' => [
+                1,
+            ],
+            'sort'  => 'id',
+            'order' => 'up',
         ], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -82,6 +86,12 @@ class IndexEndpointTest extends TestCase
                         'field' => 'order',
                     ],
                 ],
+                [
+                    'detail' => 'The selected districts.0 is invalid.',
+                    'meta'   => [
+                        'field' => 'districts.0',
+                    ],
+                ],
             ],
         ]);
     }
@@ -91,16 +101,23 @@ class IndexEndpointTest extends TestCase
      */
     public function itSuccessfullyIndexesCounties(): void
     {
-        factory(County::class, 20)->create();
+        $district = factory(District::class)->create();
+
+        factory(County::class, 20)->create([
+            'district_id' => $district->getKey(),
+        ]);
 
         $response = $this->json('GET', route('counties::index'), [
             'page' => [
                 'number' => 2,
                 'size'   => 2,
             ],
-            'search' => '0 1 2 3 4 5 6 7 8 9',
-            'sort'   => 'code',
-            'order'  => 'asc',
+            'search'    => '0 1 2 3 4 5 6 7 8 9',
+            'districts' => [
+                $district->getKey(),
+            ],
+            'sort'  => 'code',
+            'order' => 'asc',
         ], [
             'Content-Type' => 'application/vnd.api+json',
         ]);

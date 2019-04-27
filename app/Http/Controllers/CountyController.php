@@ -38,6 +38,10 @@ class CountyController extends Controller
             $filter->withSearch($request->input('search'));
         }
 
+        if ($request->has('districts')) {
+            $filter->withDistricts(...$request->input('districts', []));
+        }
+
         $paginator = $this->createPaginator(County::class, $countyRepository->createQueryBuilder(), $filter);
 
         return response()->paginator($paginator, new CountySerializer());
