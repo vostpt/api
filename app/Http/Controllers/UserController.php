@@ -42,8 +42,8 @@ class UserController extends Controller
             $filter->withSearch($search);
         }
 
-        if ($roles = $request->input('roles')) {
-            $filter->withRoles($roles);
+        if ($request->has('roles')) {
+            $filter->withRoles(...$request->input('roles', []));
         }
 
         $paginator = $this->createPaginator(User::class, $userRepository->createQueryBuilder(), $filter);

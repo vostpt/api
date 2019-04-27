@@ -70,7 +70,7 @@ class UserFilter extends Filter implements Contracts\UserFilter
     /**
      * {@inheritDoc}
      */
-    public function withRoles(array $roles): Contracts\UserFilter
+    public function withRoles(string ...$roles): Contracts\UserFilter
     {
         $availableRoles = Role::pluck('name')->all();
 

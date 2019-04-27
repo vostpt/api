@@ -9,11 +9,11 @@ interface UserFilter extends Filter
     /**
      * Include Roles for filtering.
      *
-     * @param array $roles
+     * @param string[] $roles
      *
      * @throws \OutOfBoundsException
      *
      * @return self
      */
-    public function withRoles(array $roles): self;
+    public function withRoles(string ...$roles): self;
 }
