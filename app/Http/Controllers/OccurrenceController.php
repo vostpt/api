@@ -7,9 +7,11 @@ namespace VOSTPT\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use VOSTPT\Filters\Contracts\OccurrenceFilter;
 use VOSTPT\Http\Requests\Occurrence\Index;
+use VOSTPT\Http\Requests\Occurrence\Update;
 use VOSTPT\Http\Requests\Occurrence\View;
 use VOSTPT\Http\Serializers\OccurrenceSerializer;
 use VOSTPT\Models\Occurrence;
+use VOSTPT\Models\ProCivOccurrence;
 use VOSTPT\Repositories\Contracts\OccurrenceRepository;
 
 class OccurrenceController extends Controller
@@ -50,6 +52,38 @@ class OccurrenceController extends Controller
     }
 
     /**
+     * Update an Occurrence.
+     *
+     * @param Update     $request
+     * @param Occurrence $occurrence
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Update $request, Occurrence $occurrence): JsonResponse
+    {
+        if ($request->has('event')) {
+            $occurrence->event()->associate($request->input('event'));
+        }
+
+        $occurrence->save();
+
+        $relations = [
+            'event',
+            'parish',
+            'source',
+        ];
+
+        if ($occurrence->source instanceof ProCivOccurrence) {
+            $relations = \array_merge($relations, [
+                'source.type',
+                'source.status',
+            ]);
+        }
+
+        return response()->resource($occurrence, new OccurrenceSerializer(), $relations);
+    }
+
+    /**
      * View an Occurrence.
      *
      * @param View       $request
@@ -59,10 +93,19 @@ class OccurrenceController extends Controller
      */
     public function view(View $request, Occurrence $occurrence): JsonResponse
     {
-        return response()->resource($occurrence, new OccurrenceSerializer(), [
+        $relations = [
             'event',
             'parish',
             'source',
-        ]);
+        ];
+
+        if ($occurrence->source instanceof ProCivOccurrence) {
+            $relations = \array_merge($relations, [
+                'source.type',
+                'source.status',
+            ]);
+        }
+
+        return response()->resource($occurrence, new OccurrenceSerializer(), $relations);
     }
 }

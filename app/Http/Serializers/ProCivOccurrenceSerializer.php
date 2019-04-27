@@ -19,18 +19,6 @@ class ProCivOccurrenceSerializer extends AbstractSerializer
     /**
      * {@inheritDoc}
      */
-    public function getLinks($model): array
-    {
-        return [
-            'self' => route('occurrences::prociv::view', [
-                'ProCivOccurrence' => $model->getKey(),
-            ]),
-        ];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getAttributes($model, array $fields = null): array
     {
         return [

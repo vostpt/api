@@ -83,7 +83,7 @@ index:
       422:
         $ref: '../common/responses/422.yaml'
 
-view:
+view-and-update:
   get:
     tags:
       - Occurrences
@@ -115,26 +115,37 @@ view:
                   items:
                     - $ref: '../events/schemas.yaml#/Event'
                     - $ref: '../parishes/schemas.yaml#/Parish'
-                    - oneOf:
-                      - $ref: 'schemas.yaml#/ProCivOccurrence'
+                    - $ref: 'schemas.yaml#/ProCivOccurrenceWithRelations'
+                    - $ref: 'schemas.yaml#/ProCivOccurrenceType'
+                    - $ref: 'schemas.yaml#/ProCivOccurrenceStatus'
       404:
         $ref: '../common/responses/404.yaml'
       415:
         $ref: '../common/responses/415.yaml'
 
-prociv-view:
-  get:
+  patch:
     tags:
       - Occurrences
-    summary: View ProCiv occurrence
-    description: Retrieve a specific ProCiv occurrence record.
-    operationId: occurrences::prociv::view
+    security:
+      - access_token:
+          - administrator
+          - moderator
+    summary: Update occurrence
+    description: Update an occurrence record.
+    operationId: occurrences::update
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
       - name: id
         in: path
-        description: ProCivOccurrence id
+        description: Occurrence id
         required: true
+        schema:
+          type: string
+          example: 1
+      - name: event
+        in: query
+        description: Event id
         schema:
           type: string
           example: 1
@@ -148,13 +159,22 @@ prociv-view:
               type: object
               properties:
                 data:
-                  $ref: 'schemas.yaml#/ProCivOccurrenceWithRelations'
+                  $ref: 'schemas.yaml#/OccurrenceWithRelations'
                 included:
                   type: array
                   items:
+                    - $ref: '../events/schemas.yaml#/Event'
+                    - $ref: '../parishes/schemas.yaml#/Parish'
+                    - $ref: 'schemas.yaml#/ProCivOccurrenceWithRelations'
                     - $ref: 'schemas.yaml#/ProCivOccurrenceType'
                     - $ref: 'schemas.yaml#/ProCivOccurrenceStatus'
+      401:
+        $ref: '../common/responses/401.yaml'
+      403:
+        $ref: '../common/responses/403.yaml'
       404:
         $ref: '../common/responses/404.yaml'
       415:
         $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'

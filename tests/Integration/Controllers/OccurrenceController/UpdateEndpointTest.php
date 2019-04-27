@@ -4,21 +4,25 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\OccurrenceController;
 
+use Tymon\JWTAuth\Http\Middleware\Authenticate;
+use VOSTPT\Models\Event;
 use VOSTPT\Models\Occurrence;
 use VOSTPT\Models\ProCivOccurrence;
+use VOSTPT\Models\Role;
+use VOSTPT\Models\User;
 use VOSTPT\Tests\Integration\RefreshDatabase;
 use VOSTPT\Tests\Integration\TestCase;
 
-class ViewEndpointTest extends TestCase
+class UpdateEndpointTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
      * @test
      */
-    public function itFailsToViewOccurrenceDueToInvalidContentTypeHeader(): void
+    public function itFailsToUpdateOccurrenceDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('GET', route('occurrences::view', [
+        $response = $this->json('PATCH', route('occurrences::update', [
             'Occurrence' => 1,
         ]));
 
@@ -37,9 +41,34 @@ class ViewEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToViewOccurrenceDueToRecordNotFound(): void
+    public function itFailsToUpdateOccurrenceDueToMissingAccessToken(): void
     {
-        $response = $this->json('GET', route('occurrences::view', [
+        $response = $this->json('PATCH', route('occurrences::update', [
+            'Occurrence' => 1,
+        ]), [], [
+            'Content-Type' => 'application/vnd.api+json',
+        ]);
+
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertStatus(401);
+        $response->assertJson([
+            'errors' => [
+                [
+                    'status' => 401,
+                    'detail' => 'Token not provided',
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function itFailsToUpdateOccurrenceDueToRecordNotFound(): void
+    {
+        $this->withoutMiddleware(Authenticate::class);
+
+        $response = $this->json('PATCH', route('occurrences::update', [
             'Occurrence' => 1,
         ]), [], [
             'Content-Type' => 'application/vnd.api+json',
@@ -60,16 +89,72 @@ class ViewEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itSuccessfullyViewsOccurrenceWithProCivSource(): void
+    public function itFailsToUpdateOccurrenceDueToInvalidInput(): void
     {
+        $user = factory(User::class)->create()->assign(Role::ADMINISTRATOR);
+
+        $occurrence = factory(Occurrence::class)->make([
+            'event_id' => null,
+        ]);
+
+        factory(ProCivOccurrence::class)->create()->occurrence()->save($occurrence);
+
+        $token = auth()->login($user);
+
+        $response = $this->json('PATCH', route('occurrences::update', [
+            'Occurrence' => $occurrence->getKey(),
+        ]), [
+            'event' => 1,
+        ], [
+            'Content-Type'  => 'application/vnd.api+json',
+            'Authorization' => \sprintf('Bearer %s', $token),
+        ]);
+
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertStatus(422);
+        $response->assertJson([
+            'errors' => [
+                [
+                    'detail' => 'The selected event is invalid.',
+                    'meta'   => [
+                        'field' => 'event',
+                    ],
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function itSuccessfullyUpdatesOccurrence(): void
+    {
+        $user = factory(User::class)->create()->assign(Role::ADMINISTRATOR);
+
+        $event = factory(Event::class)->create();
+
         $occurrence = factory(Occurrence::class)->make();
 
         factory(ProCivOccurrence::class)->create()->occurrence()->save($occurrence);
 
-        $response = $this->json('GET', route('occurrences::view', [
+        $this->assertDatabaseMissing('occurrences', [
+            'event_id' => $event->getKey(),
+        ]);
+
+        $token = auth()->login($user);
+
+        $response = $this->json('PATCH', route('occurrences::update', [
             'Occurrence' => $occurrence->getKey(),
-        ]), [], [
-            'Content-Type' => 'application/vnd.api+json',
+        ]), [
+            'event' => $event->getKey(),
+        ], [
+            'Content-Type'  => 'application/vnd.api+json',
+            'Authorization' => \sprintf('Bearer %s', $token),
+        ]);
+
+
+        $this->assertDatabaseHas('occurrences', [
+            'event_id' => $event->getKey(),
         ]);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
@@ -191,5 +276,54 @@ class ViewEndpointTest extends TestCase
                 ],
             ],
         ]);
+    }
+
+    /**
+     * @test
+     * @dataProvider updateDataProvider
+     *
+     * @param string $role
+     * @param int    $status
+     */
+    public function itVerifiesRoleAccessPermissionsToUpdateOccurrence(string $role, int $status): void
+    {
+        $user = factory(User::class)->create()->assign($role);
+
+        $occurrence = factory(Occurrence::class)->make();
+
+        factory(ProCivOccurrence::class)->create()->occurrence()->save($occurrence);
+
+        $token = auth()->login($user);
+
+        $response = $this->json('PATCH', route('occurrences::update', [
+            'Occurrence' => $occurrence->getKey(),
+        ]), [], [
+            'Content-Type'  => 'application/vnd.api+json',
+            'Authorization' => \sprintf('Bearer %s', $token),
+        ]);
+
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertStatus($status);
+    }
+
+    /**
+     * @return array
+     */
+    public function updateDataProvider(): array
+    {
+        return [
+            'Administrator' => [
+                Role::ADMINISTRATOR,
+                200,
+            ],
+            'Moderator' => [
+                Role::MODERATOR,
+                200,
+            ],
+            'Contributor' => [
+                Role::CONTRIBUTOR,
+                403,
+            ],
+        ];
     }
 }

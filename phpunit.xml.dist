@@ -29,16 +29,16 @@
             <directory suffix="Test.php">./tests/Integration/Controllers/EventController</directory>
         </testsuite>
 
+        <testsuite name="FallbackController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/FallbackController</directory>
+        </testsuite>
+
         <testsuite name="OccurrenceController Integration Tests">
             <directory suffix="Test.php">./tests/Integration/Controllers/OccurrenceController</directory>
         </testsuite>
 
         <testsuite name="ParishController Integration Tests">
             <directory suffix="Test.php">./tests/Integration/Controllers/ParishController</directory>
-        </testsuite>
-
-        <testsuite name="ProCivOccurrenceController Integration Tests">
-            <directory suffix="Test.php">./tests/Integration/Controllers/ProCivOccurrenceController</directory>
         </testsuite>
 
         <testsuite name="UserController Integration Tests">
