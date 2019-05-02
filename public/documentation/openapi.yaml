@@ -12,12 +12,8 @@ info:
     altText: VOST Portugal Logo
 
 servers:
-  - url: https://api.vost.pt
+  - url: https://api.vost.pt/v1
     description: Production
-  - url: https://staging-api.vost.pt
-    description: Staging
-  - url: https://dev-api.vost.pt
-    description: Development
 
 tags:
   - name: Acronyms
