@@ -13,7 +13,7 @@ interface OccurrenceFilter extends Filter
      *
      * @return self
      */
-    public function withEvents(int ...$events): self;
+    public function withEvents(...$events): self;
 
     /**
      * Include parishes for filtering.
@@ -22,5 +22,5 @@ interface OccurrenceFilter extends Filter
      *
      * @return self
      */
-    public function withParishes(int ...$parishes): self;
+    public function withParishes(...$parishes): self;
 }

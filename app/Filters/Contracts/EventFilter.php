@@ -13,7 +13,7 @@ interface EventFilter extends Filter
      *
      * @return self
      */
-    public function withTypes(int ...$types): self;
+    public function withTypes(...$types): self;
 
     /**
      * Include parishes for filtering.
@@ -22,5 +22,5 @@ interface EventFilter extends Filter
      *
      * @return self
      */
-    public function withParishes(int ...$parishes): self;
+    public function withParishes(...$parishes): self;
 }

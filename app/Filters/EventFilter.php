@@ -82,7 +82,7 @@ class EventFilter extends Filter implements Contracts\EventFilter
     /**
      * {@inheritDoc}
      */
-    public function withTypes(int ...$types): Contracts\EventFilter
+    public function withTypes(...$types): Contracts\EventFilter
     {
         $this->types = \array_unique($types, SORT_NUMERIC);
 
@@ -94,7 +94,7 @@ class EventFilter extends Filter implements Contracts\EventFilter
     /**
      * {@inheritDoc}
      */
-    public function withParishes(int ...$parishes): Contracts\EventFilter
+    public function withParishes(...$parishes): Contracts\EventFilter
     {
         $this->parishes = \array_unique($parishes, SORT_NUMERIC);
 

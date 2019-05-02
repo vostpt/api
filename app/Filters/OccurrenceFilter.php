@@ -79,7 +79,7 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
     /**
      * {@inheritDoc}
      */
-    public function withEvents(int ...$events): Contracts\OccurrenceFilter
+    public function withEvents(...$events): Contracts\OccurrenceFilter
     {
         $this->events = \array_unique($events, SORT_NUMERIC);
 
@@ -91,7 +91,7 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
     /**
      * {@inheritDoc}
      */
-    public function withParishes(int ...$parishes): Contracts\OccurrenceFilter
+    public function withParishes(...$parishes): Contracts\OccurrenceFilter
     {
         $this->parishes = \array_unique($parishes, SORT_NUMERIC);
 
