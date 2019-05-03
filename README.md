@@ -1,30 +1,31 @@
 ## VOST Portugal API
+Digital Volunteers in Emergency Situations
 
 ## Project setup
-The easiest way to use this API locally is with Docker.
+The easiest way to get the API started is through Docker compose.
 
 ### Container Matrix
  Service / Project | Container Name | Host:Port
 -------------------|----------------|--------------------------------------
  MariaDB           | vost_mariadb   | `localhost:3306`
  NGINX             | vost_nginx     | `localhost:80`
- API               | vost_api       | `localhost:80` / `api.vost.local:80`
+ VOST API          | vost_api       | `localhost:80` / `api.vost.local:80`
 
 ### Hostnames
-Make sure `api.vost.local` is in the the `/etc/hosts` file, so it can be resolved:
+Make sure to add `api.vost.local` to the `/etc/hosts` file, so it can be properly resolved:
 
-```ini
+```txt
 127.0.0.1 api.vost.local
 ```
 
 ### Running the infrastructure
-To start the API, simply type the following command from the project root:
+Kickstart the VOST API with the following command:
 
 ``sh
 docker-compose up --detach --build
 ``
 
-Once the services are all up and running, you should get the following output on the command line: 
+Once the services are all up and running, you should see the following output: 
 ```sh
 Starting vost_mariadb ... done
 Starting vost_api     ... done
@@ -32,13 +33,13 @@ Starting vost_nginx   ... done
 ```
 
 ### Command Line Interface
-In order to run commands (`composer`, `artisan`, ...) on the **API container**, log into a shell:
+In order to run commands (`composer`, `artisan`, ...) in the **API** container, log into it via:
 
 ```sh
 docker exec -it vost_api bash
 ```
 
-Once the infrastructure is running for the first time, finish up by installing the dependencies and setting the `.env` file.
+Once the infrastructure is running for the first time, finish up by installing the dependencies and setting `.env` file values.
 
 Install dependencies:
 ```sh
@@ -63,7 +64,7 @@ php artisan jwt:secret
 ## Occurrences
 Some occurrences are ingested from third party API/web services. In order to fetch those, service clients will be periodically executed.
 
-Make sure the main job scheduler is properly set:
+Make sure the main job scheduler is properly set in the system cron table:
 ```txt
 * * * * * cd /path/to/the/api && php artisan schedule:run >> /dev/null 2>&1
 ```
@@ -77,7 +78,7 @@ For local development and testing purposes, a command is also available:
 php artisan fetch:prociv-occurrences
 ```
 
-**>NOTE:** All Job/Command output is sent to the application log file (`storage/logs/laravel-YYYY-MM-DD.log`).
+>**NOTE:** All Job/Command output will be sent to the application log file (`storage/logs/laravel.log`).
 
 ### Database
 Execute the migration and seeders:
@@ -86,14 +87,13 @@ php artisan migrate:refresh --seed
 ```
 
 ## API documentation
-The documentation for the available API endpoints can be accessed at http://api.vost.local/documentation/
+Documentation for the available API endpoints can be accessed [locally](http://api.vost.local/documentation/) or [online](http://api.vost.pt/documentation/).
 
 ## Testing
 To run the tests, execute:
 
 ```sh
-vendor/bin/phpunit --dump-xdebug-filter xdebug-filter.php
-vendor/bin/phpunit --prepend xdebug-filter.php
+vendor/bin/phpunit --testdox
 ```
 
 ## Contributing
