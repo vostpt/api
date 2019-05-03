@@ -16,6 +16,7 @@ libmcrypt-dev
 
 # Install extensions
 RUN pecl install mcrypt-1.0.2 && docker-php-ext-enable mcrypt
+RUN pecl install xdebug-2.7.1 && docker-php-ext-enable xdebug
 
 RUN docker-php-ext-install pdo_mysql mbstring zip pcntl
 
