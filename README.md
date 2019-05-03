@@ -6,16 +6,16 @@ The easiest way to get the API started is through Docker compose.
 
 ### Container Matrix
  Service / Project | Container Name | Host:Port
--------------------|----------------|--------------------------------------
+-------------------|----------------|-------------------------------------
  MariaDB           | vost_mariadb   | `localhost:3306`
  NGINX             | vost_nginx     | `localhost:80`
- VOST API          | vost_api       | `localhost:80` / `api.vost.local:80`
+ VOST API          | vost_api       | `localhost:80` / `api.vost.test:80`
 
 ### Hostnames
-Make sure to add `api.vost.local` to the `/etc/hosts` file, so it can be properly resolved:
+Make sure to add `api.vost.test` to the `/etc/hosts` file, so it can be properly resolved:
 
 ```txt
-127.0.0.1 api.vost.local
+127.0.0.1 api.vost.test
 ```
 
 ### Running the infrastructure
@@ -87,7 +87,7 @@ php artisan migrate:refresh --seed
 ```
 
 ## API documentation
-Documentation for the available API endpoints can be accessed [locally](http://api.vost.local/documentation/) or [online](http://api.vost.pt/documentation/).
+Documentation for the available API endpoints can be accessed [locally](http://api.vost.test/documentation/) or [online](http://api.vost.pt/documentation/).
 
 ## Testing
 To run the tests, execute:

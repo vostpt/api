@@ -6,14 +6,14 @@ services:
     networks:
       vost_network:
         aliases:
-          - api.vost.local
+          - api.vost.test
     build:
       context: .
     ports:
       - '9000:9000'
-    working_dir: /var/www/api.vost.local
+    working_dir: /var/www/api.vost.test
     volumes:
-      - .:/var/www/api.vost.local
+      - .:/var/www/api.vost.test
     entrypoint: ./entrypoint.sh
 
   nginx:
@@ -25,7 +25,7 @@ services:
       - '80:80'
       - '443:443'
     volumes:
-      - .:/var/www/api.vost.local
+      - .:/var/www/api.vost.test
       - ./nginx/conf.d/:/etc/nginx/conf.d/
 
   mariadb:

@@ -1,6 +1,6 @@
 FROM php:7.2.17-fpm
 
-WORKDIR /var/www/api.vost.local
+WORKDIR /var/www/api.vost.test
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
