@@ -1,6 +1,45 @@
 ## VOST Portugal API
 
 ## Project setup
+The easiest way to use this API locally is with Docker.
+
+### Container Matrix
+ Service / Project | Container Name | Host:Port
+-------------------|----------------|--------------------------------------
+ MariaDB           | vost_mariadb   | `localhost:3306`
+ NGINX             | vost_nginx     | `localhost:80`
+ API               | vost_api       | `localhost:80` / `api.vost.local:80`
+
+### Hostnames
+Make sure `api.vost.local` is in the the `/etc/hosts` file, so it can be resolved:
+
+```ini
+127.0.0.1 api.vost.local
+```
+
+### Running the infrastructure
+To start the API, simply type the following command from the project root:
+
+``sh
+docker-compose up --detach --build
+``
+
+Once the services are all up and running, you should get the following output on the command line: 
+```sh
+Starting vost_mariadb ... done
+Starting vost_api     ... done
+Starting vost_nginx   ... done
+```
+
+### Command Line Interface
+In order to run commands (`composer`, `artisan`, ...) on the **API container**, log into a shell:
+
+```sh
+docker exec -it vost_api bash
+```
+
+Once the infrastructure is running for the first time, finish up by installing the dependencies and setting the `.env` file.
+
 Install dependencies:
 ```sh
 composer install
@@ -45,6 +84,9 @@ Execute the migration and seeders:
 ```sh
 php artisan migrate:refresh --seed
 ```
+
+## API documentation
+The documentation for the available API endpoints can be accessed at http://api.vost.local/documentation/
 
 ## Testing
 To run the tests, execute:
