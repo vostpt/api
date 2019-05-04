@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  api:
+    container_name: vost_api
+    networks:
+      vost_network:
+        aliases:
+          - api.vost.test
+    build:
+      context: .
+    ports:
+      - '9000:9000'
+    working_dir: /var/www/api.vost.test
+    volumes:
+      - .:/var/www/api.vost.test
+    entrypoint: ./entrypoint.sh
+
+  nginx:
+    container_name: vost_nginx
+    networks:
+      - vost_network
+    image: nginx:1.15.12-alpine
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - .:/var/www/api.vost.test
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+
+  mariadb:
+    container_name: vost_mariadb
+    networks:
+      - vost_network
+    image: mariadb:10.3.14
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: vost_api
+      MYSQL_ROOT_PASSWORD: root
+
+networks:
+  vost_network:
