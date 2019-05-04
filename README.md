@@ -21,9 +21,9 @@ Make sure to add `api.vost.test` to the `/etc/hosts` file, so it can be properly
 ### Running the infrastructure
 Kickstart the VOST API with the following command:
 
-``sh
+```sh
 docker-compose up --detach --build
-``
+```
 
 Once the services are all up and running, you should see the following output: 
 ```sh
