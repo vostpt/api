@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\OccurrenceController;
 
+use VOSTPT\Models\County;
+use VOSTPT\Models\District;
 use VOSTPT\Models\Event;
 use VOSTPT\Models\Occurrence;
 use VOSTPT\Models\Parish;
@@ -46,6 +48,12 @@ class IndexEndpointTest extends TestCase
             ],
             'search' => '',
             'events' => [
+                1,
+            ],
+            'districts' => [
+                1,
+            ],
+            'counties' => [
                 1,
             ],
             'parishes' => [
@@ -98,6 +106,18 @@ class IndexEndpointTest extends TestCase
                     ],
                 ],
                 [
+                    'detail' => 'The selected districts.0 is invalid.',
+                    'meta'   => [
+                        'field' => 'districts.0',
+                    ],
+                ],
+                [
+                    'detail' => 'The selected counties.0 is invalid.',
+                    'meta'   => [
+                        'field' => 'counties.0',
+                    ],
+                ],
+                [
                     'detail' => 'The selected parishes.0 is invalid.',
                     'meta'   => [
                         'field' => 'parishes.0',
@@ -112,8 +132,14 @@ class IndexEndpointTest extends TestCase
      */
     public function itSuccessfullyIndexesOccurrences(): void
     {
-        $event  = factory(Event::class)->create();
-        $parish = factory(Parish::class)->create();
+        $event    = factory(Event::class)->create();
+        $district = factory(District::class)->create();
+        $county   = factory(County::class)->create([
+            'district_id' => $district->getKey(),
+        ]);
+        $parish = factory(Parish::class)->create([
+            'county_id' => $county->getKey(),
+        ]);
 
         $occurrences = factory(Occurrence::class, 20)->make([
             'event_id'  => $event->getKey(),
@@ -131,6 +157,12 @@ class IndexEndpointTest extends TestCase
             ],
             'events' => [
                 $event->getKey(),
+            ],
+            'districts' => [
+                $district->getKey(),
+            ],
+            'counties' => [
+                $county->getKey(),
             ],
             'parishes' => [
                 $parish->getKey(),
