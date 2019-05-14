@@ -16,6 +16,24 @@ interface OccurrenceFilter extends Filter
     public function withEvents(...$events): self;
 
     /**
+     * Include districts for filtering.
+     *
+     * @param int[] $districts
+     *
+     * @return self
+     */
+    public function withDistricts(...$districts): self;
+
+    /**
+     * Include counties for filtering.
+     *
+     * @param int[] $counties
+     *
+     * @return self
+     */
+    public function withCounties(...$counties): self;
+
+    /**
      * Include parishes for filtering.
      *
      * @param int[] $parishes
