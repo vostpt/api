@@ -42,6 +42,14 @@ class OccurrenceController extends Controller
             $filter->withEvents(...$request->input('events', []));
         }
 
+        if ($request->has('districts')) {
+            $filter->withDistricts(...$request->input('districts', []));
+        }
+
+        if ($request->has('counties')) {
+            $filter->withCounties(...$request->input('counties', []));
+        }
+
         if ($request->has('parishes')) {
             $filter->withParishes(...$request->input('parishes', []));
         }

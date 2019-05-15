@@ -18,6 +18,22 @@ index:
           items:
             type: string
             example: 1
+      - name: districts
+        in: query
+        description: Filter by District ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: counties
+        in: query
+        description: Filter by County ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
       - name: parishes
         in: query
         description: Filter by Parish ids
