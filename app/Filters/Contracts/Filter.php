@@ -126,10 +126,11 @@ interface Filter
      * Add a search for filtering.
      *
      * @param string $text
+     * @param bool   $exactMatch
      *
      * @return self
      */
-    public function withSearch(string $text): self;
+    public function withSearch(string $text, bool $exactMatch = false): self;
 
     /**
      * Add relations to eager load.
