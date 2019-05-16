@@ -35,7 +35,7 @@ class OccurrenceController extends Controller
             ->setPageSize((int) $request->input('page.size', $filter->getPageSize()));
 
         if ($request->has('search')) {
-            $filter->withSearch($request->input('search'));
+            $filter->withSearch($request->input('search'), (bool) $request->input('exact', false));
         }
 
         if ($request->has('events')) {

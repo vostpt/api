@@ -45,6 +45,13 @@ abstract class Filter implements Contracts\Filter
     protected $search = [];
 
     /**
+     * Perform an exact match when searching?
+     *
+     * @var bool
+     */
+    protected $exactMatch = false;
+
+    /**
      * Relations to eager load.
      *
      * @var array
@@ -167,10 +174,12 @@ abstract class Filter implements Contracts\Filter
     /**
      * {@inheritDoc}
      */
-    public function withSearch(string $text): Contracts\Filter
+    public function withSearch(string $text, bool $exactMatch = false): Contracts\Filter
     {
+        $this->exactMatch = $exactMatch;
+
         // Normalise search patterns
-        foreach (\preg_split('/[\s\|,;]+/', $text, 0, PREG_SPLIT_NO_EMPTY) as $word) {
+        foreach (\preg_split('/\s+/', $text, 0, PREG_SPLIT_NO_EMPTY) as $word) {
             $this->search[] = \mb_strtolower(\str_replace('%', '\%', $word));
         }
 
@@ -189,6 +198,12 @@ abstract class Filter implements Contracts\Filter
         if ($this->search) {
             $builder->where(function (Builder $query) {
                 foreach (static::getSearchableColumns() as $column) {
+                    if ($this->exactMatch) {
+                        $query->orWhere($column, 'LIKE', \implode(' ', $this->search));
+
+                        continue;
+                    }
+
                     foreach ($this->search as $pattern) {
                         $query->orWhere($column, 'LIKE', "%$pattern%");
                     }
@@ -249,6 +264,7 @@ abstract class Filter implements Contracts\Filter
             $this->sortOrder,
             $this->pageNumber,
             $this->pageSize,
+            (int) $this->exactMatch,
             \implode(',', $this->search),
         ];
     }

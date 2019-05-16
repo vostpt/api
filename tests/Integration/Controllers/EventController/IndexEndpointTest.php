@@ -44,6 +44,7 @@ class IndexEndpointTest extends TestCase
                 'size'   => 'ten',
             ],
             'search' => '',
+            'exact'  => 'yes',
             'types'  => [
                 1,
             ],
@@ -76,6 +77,12 @@ class IndexEndpointTest extends TestCase
                     'detail' => 'The search must be a string.',
                     'meta'   => [
                         'field' => 'search',
+                    ],
+                ],
+                [
+                    'detail' => 'The exact field must be true or false.',
+                    'meta'   => [
+                        'field' => 'exact',
                     ],
                 ],
                 [

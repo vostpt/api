@@ -25,6 +25,9 @@ class Index extends Request
             'search' => [
                 'string',
             ],
+            'exact' => [
+                'boolean',
+            ],
             'events.*' => [
                 Rule::exists('events', 'id'),
             ],

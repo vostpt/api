@@ -38,7 +38,7 @@ class AcronymController extends Controller
             ->setPageSize((int) $request->input('page.size', $filter->getPageSize()));
 
         if ($request->has('search')) {
-            $filter->withSearch($request->input('search'));
+            $filter->withSearch($request->input('search'), (bool) $request->input('exact', false));
         }
 
         $paginator = $this->createPaginator(Acronym::class, $acronymRepository->createQueryBuilder(), $filter);
