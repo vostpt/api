@@ -42,6 +42,7 @@ class IndexEndpointTest extends TestCase
                 'size'   => 'ten',
             ],
             'search' => '',
+            'exact'  => 'yes',
             'sort'   => 'id',
             'order'  => 'up',
         ], [
@@ -68,6 +69,12 @@ class IndexEndpointTest extends TestCase
                     'detail' => 'The search must be a string.',
                     'meta'   => [
                         'field' => 'search',
+                    ],
+                ],
+                [
+                    'detail' => 'The exact field must be true or false.',
+                    'meta'   => [
+                        'field' => 'exact',
                     ],
                 ],
                 [
@@ -131,5 +138,52 @@ class IndexEndpointTest extends TestCase
                 'total',
             ],
         ]);
+    }
+
+    /**
+     * @test
+     * @dataProvider indexDataProvider
+     *
+     * @param bool $exact
+     * @param int  $results
+     */
+    public function itSuccessfullyIndexesWithAndWithoutExactMatch(bool $exact, int $results): void
+    {
+        factory(Acronym::class)->create([
+            'initials' => 'ANAC',
+        ]);
+        factory(Acronym::class)->create([
+            'initials' => 'ANACOM',
+        ]);
+
+        $response = $this->json('GET', route('acronyms::index'), [
+            'search' => 'anac',
+            'exact'  => $exact,
+            'sort'   => 'initials',
+            'order'  => 'asc',
+        ], [
+            'Content-Type' => 'application/vnd.api+json',
+        ]);
+
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertStatus(200);
+        $response->assertJsonCount($results, 'data');
+    }
+
+    /**
+     * @return array
+     */
+    public function indexDataProvider(): array
+    {
+        return [
+            'Wildcard match search' => [
+                false,
+                2,
+            ],
+            'Exact match search' => [
+                true,
+                1,
+            ],
+        ];
     }
 }
