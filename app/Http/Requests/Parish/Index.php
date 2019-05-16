@@ -25,6 +25,9 @@ class Index extends Request
             'search' => [
                 'string',
             ],
+            'exact' => [
+                'boolean',
+            ],
             'counties.*' => [
                 Rule::exists('counties', 'id'),
             ],

@@ -25,6 +25,9 @@ class Index extends Request
             'search' => [
                 'string',
             ],
+            'exact' => [
+                'boolean',
+            ],
             'sort' => [
                 Rule::in(AcronymFilter::getSortableColumns()),
             ],

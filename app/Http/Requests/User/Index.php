@@ -35,6 +35,9 @@ class Index extends Request
             'search' => [
                 'string',
             ],
+            'exact' => [
+                'boolean',
+            ],
             'sort' => [
                 Rule::in(UserFilter::getSortableColumns()),
             ],
