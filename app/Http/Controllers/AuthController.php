@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace VOSTPT\Http\Controllers;
 
+use Illuminate\Contracts\Auth\Factory as Auth;
+use Illuminate\Contracts\Cache\Repository as Cache;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use Tymon\JWTAuth\Manager as JWTManager;
+use Tymon\JWTAuth\Token;
 use VOSTPT\Http\Requests\Auth\Authenticate;
 use VOSTPT\Http\Requests\Auth\Refresh;
 use VOSTPT\Http\Requests\Auth\Verify;
@@ -13,19 +17,40 @@ use VOSTPT\Http\Requests\Auth\Verify;
 class AuthController extends Controller
 {
     /**
+     * JWT manager.
+     *
+     * @var JWTManager
+     */
+    private $jwtManager;
+
+    /**
+     * Auth controller constructor.
+     *
+     * @param Cache      $cache
+     * @param JWTManager $jwtManager
+     */
+    public function __construct(Cache $cache, JWTManager $jwtManager)
+    {
+        parent::__construct($cache);
+
+        $this->jwtManager = $jwtManager;
+    }
+
+    /**
      * Authenticate a User.
      *
      * @param Authenticate $request
+     * @param Auth         $auth
      *
      * @throws \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function authenticate(Authenticate $request): JsonResponse
+    public function authenticate(Authenticate $request, Auth $auth): JsonResponse
     {
         $credentials = $request->only('email', 'password');
 
-        if (! $token = auth()->attempt($credentials)) {
+        if (! $token = $auth->attempt($credentials)) {
             throw new UnauthorizedHttpException('Newauth realm="VOST PT"', 'Invalid credentials');
         }
 
@@ -36,12 +61,13 @@ class AuthController extends Controller
      * Refresh the access token of a User.
      *
      * @param Refresh $request
+     * @param Auth    $auth
      *
      * @return JsonResponse
      */
-    public function refresh(Refresh $request): JsonResponse
+    public function refresh(Refresh $request, Auth $auth): JsonResponse
     {
-        return $this->accessTokenResponse(auth()->refresh());
+        return $this->accessTokenResponse($auth->refresh());
     }
 
     /**
@@ -53,25 +79,26 @@ class AuthController extends Controller
      */
     public function verify(Verify $request): JsonResponse
     {
-        return response()->meta([
-            'expires_in' => auth()->payload()->get('exp') - \time(),
-        ]);
+        return $this->accessTokenResponse($request->bearerToken(), 200);
     }
 
     /**
      * Generate an access token response.
      *
      * @param string $token
+     * @param int    $status
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    private function accessTokenResponse(string $token): JsonResponse
+    private function accessTokenResponse(string $token, int $status = 201): JsonResponse
     {
+        $payload = $this->jwtManager->decode(new Token($token));
+
         return response()->meta([
             'access_token' => $token,
             'token_type'   => 'bearer',
-            'expires_in'   => auth()->factory()->getTTL() * 60,
-        ], 201, [
+            'expires_in'   => $payload->get('exp') - \time(),
+        ], $status, [
             'Cache-Control' => 'no-store',
             'Pragma'        => 'no-cache',
         ]);
