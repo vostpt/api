@@ -97,9 +97,13 @@ class VerifyEndpointTest extends TestCase
         ]);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertHeader('Cache-Control');
+        $response->assertHeader('Pragma', 'no-cache');
         $response->assertStatus(200);
         $response->assertJsonStructure([
             'meta' => [
+                'access_token',
+                'token_type',
                 'expires_in',
             ],
         ]);
