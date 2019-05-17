@@ -82,6 +82,18 @@ class UserPolicy
     }
 
     /**
+     * Determine whether the User can verify an access token.
+     *
+     * @param User $user
+     *
+     * @return bool
+     */
+    public function verify(User $user): bool
+    {
+        return true;
+    }
+
+    /**
      * Determine whether the User can view the profile.
      *
      * @param User $user
