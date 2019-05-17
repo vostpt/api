@@ -8,6 +8,8 @@ use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class Handler extends ExceptionHandler
 {
@@ -16,6 +18,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof JWTException) {
+            $exception = new UnauthorizedHttpException('Newauth realm="VOST PT"', $exception->getMessage(), $exception);
+        }
+
         if ($exception instanceof HttpException) {
             return response()->error($exception);
         }

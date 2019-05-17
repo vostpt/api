@@ -91,6 +91,9 @@ paths:
   /auth:
     $ref: 'auth/endpoints.yaml#/authenticate'
 
+  /auth/verify:
+    $ref: 'auth/endpoints.yaml#/verify'
+
   /auth/refresh:
     $ref: 'auth/endpoints.yaml#/refresh'
 

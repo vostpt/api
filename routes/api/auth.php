@@ -18,6 +18,11 @@ Route::prefix('v1/auth')->name('auth::')->group(function () {
         'authenticate',
     ])->name('authenticate');
 
+    Route::get('/verify', [
+        AuthController::class,
+        'verify',
+    ])->name('verify')->middleware('jwt-auth');
+
     Route::get('/refresh', [
         AuthController::class,
         'refresh',

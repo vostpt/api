@@ -37,6 +37,33 @@ authenticate:
       422:
         $ref: '../common/responses/422.yaml'
 
+verify:
+  get:
+    tags:
+      - Authentication
+    security:
+      - access_token:
+          - administrator
+          - moderator
+          - contributor
+    summary: Verify access token
+    description: Verify the user's access token.
+    operationId: auth::verify
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/authorization.yaml'
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: 'schemas.yaml#/AccessToken'
+      401:
+        $ref: '../common/responses/401.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+
 refresh:
   get:
     tags:
@@ -59,7 +86,7 @@ refresh:
           application/vnd.api+json:
             schema:
               $ref: 'schemas.yaml#/AccessToken'
-      403:
-        $ref: '../common/responses/403.yaml'
+      401:
+        $ref: '../common/responses/401.yaml'
       415:
         $ref: '../common/responses/415.yaml'
