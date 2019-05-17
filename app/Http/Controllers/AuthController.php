@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use VOSTPT\Http\Requests\Auth\Authenticate;
 use VOSTPT\Http\Requests\Auth\Refresh;
+use VOSTPT\Http\Requests\Auth\Verify;
 
 class AuthController extends Controller
 {
@@ -41,6 +42,20 @@ class AuthController extends Controller
     public function refresh(Refresh $request): JsonResponse
     {
         return $this->accessTokenResponse(auth()->refresh());
+    }
+
+    /**
+     * Verify the access token of a User.
+     *
+     * @param Verify $request
+     *
+     * @return JsonResponse
+     */
+    public function verify(Verify $request): JsonResponse
+    {
+        return response()->meta([
+            'expires_in' => auth()->payload()->get('exp') - \time(),
+        ]);
     }
 
     /**
