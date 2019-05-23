@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace VOSTPT\Http\Serializers;
 
 use Tobscure\JsonApi\AbstractSerializer;
-use Tobscure\JsonApi\Relationship;
-use Tobscure\JsonApi\Resource;
-use VOSTPT\Models\ProCivOccurrence;
 
 class ProCivOccurrenceSerializer extends AbstractSerializer
 {
@@ -30,29 +27,5 @@ class ProCivOccurrenceSerializer extends AbstractSerializer
             'created_at'                 => $model->created_at->toDateTimeString(),
             'updated_at'                 => $model->updated_at->toDateTimeString(),
         ];
-    }
-
-    /**
-     * Associated Type.
-     *
-     * @param ProCivOccurrence $proCivOccurrence
-     *
-     * @return \Tobscure\JsonApi\Relationship
-     */
-    public function type(ProCivOccurrence $proCivOccurrence): Relationship
-    {
-        return new Relationship(new Resource($proCivOccurrence->type()->first(), new ProCivOccurrenceTypeSerializer()));
-    }
-
-    /**
-     * Associated Status.
-     *
-     * @param ProCivOccurrence $proCivOccurrence
-     *
-     * @return \Tobscure\JsonApi\Relationship
-     */
-    public function status(ProCivOccurrence $proCivOccurrence): Relationship
-    {
-        return new Relationship(new Resource($proCivOccurrence->status()->first(), new ProCivOccurrenceStatusSerializer()));
     }
 }
