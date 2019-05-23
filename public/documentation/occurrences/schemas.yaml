@@ -30,6 +30,45 @@ Occurrence:
         updated_at:
           type: string
           format: date-time
+    relationships:
+      type: object
+      properties:
+        type:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: occurrence_types
+                id:
+                  type: string
+                  example: 1
+        status:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: occurrence_statuses
+                id:
+                  type: string
+                  example: 1
+        parish:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: parishes
+                id:
+                  type: string
+                  example: 1
     links:
       type: object
       properties:
@@ -84,6 +123,30 @@ OccurrenceWithRelations:
                 id:
                   type: string
                   example: 1
+        type:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: occurrence_types
+                id:
+                  type: string
+                  example: 1
+        status:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: occurrence_statuses
+                id:
+                  type: string
+                  example: 1
         parish:
           type: object
           properties:
@@ -115,12 +178,12 @@ OccurrenceWithRelations:
           type: string
           description: Link to this page
 
-ProCivOccurrenceType:
+OccurrenceType:
   type: object
   properties:
     type:
       type: string
-      default: prociv_occurrence_types
+      default: occurrence_types
     id:
       type: string
       example: 1
@@ -140,12 +203,12 @@ ProCivOccurrenceType:
           type: string
           format: date-time
 
-ProCivOccurrenceStatus:
+OccurrenceStatus:
   type: object
   properties:
     type:
       type: string
-      default: prociv_occurrence_statuses
+      default: occurrence_statuses
     id:
       type: string
       example: 1
@@ -165,7 +228,7 @@ ProCivOccurrenceStatus:
           type: string
           format: date-time
 
-ProCivOccurrenceWithRelations:
+ProCivOccurrence:
   type: object
   properties:
     type:
@@ -180,13 +243,13 @@ ProCivOccurrenceWithRelations:
         remote_id:
           type: string
           example: 2019123456789
-        ground_assets_involved:
+        ground_assets:
           type: integer
-        ground_operatives_involved:
+        ground_operatives:
           type: integer
-        aerial_assets_involved:
+        aerial_assets:
           type: integer
-        aerial_operatives_involved:
+        aerial_operatives:
           type: integer
         created_at:
           type: string
@@ -194,30 +257,3 @@ ProCivOccurrenceWithRelations:
         updated_at:
           type: string
           format: date-time
-    relationships:
-      type: object
-      properties:
-        type:
-          type: object
-          properties:
-            data:
-              type: object
-              properties:
-                type:
-                  type: string
-                  default: prociv_occurrence_types
-                id:
-                  type: string
-                  example: 1
-        status:
-          type: object
-          properties:
-            data:
-              type: object
-              properties:
-                type:
-                  type: string
-                  default: prociv_occurrence_statuses
-                id:
-                  type: string
-                  example: 1

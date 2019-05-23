@@ -86,6 +86,12 @@ index:
                   type: array
                   items:
                     $ref: 'schemas.yaml#/Occurrence'
+                included:
+                  type: array
+                  items:
+                    - $ref: 'schemas.yaml#/OccurrenceType'
+                    - $ref: 'schemas.yaml#/OccurrenceStatus'
+                    - $ref: '../parishes/schemas.yaml#/Parish'
                 meta:
                   type: object
                   properties:
@@ -131,10 +137,10 @@ view-and-update:
                   type: array
                   items:
                     - $ref: '../events/schemas.yaml#/Event'
+                    - $ref: 'schemas.yaml#/OccurrenceType'
+                    - $ref: 'schemas.yaml#/OccurrenceStatus'
                     - $ref: '../parishes/schemas.yaml#/Parish'
-                    - $ref: 'schemas.yaml#/ProCivOccurrenceWithRelations'
-                    - $ref: 'schemas.yaml#/ProCivOccurrenceType'
-                    - $ref: 'schemas.yaml#/ProCivOccurrenceStatus'
+                    - $ref: 'schemas.yaml#/ProCivOccurrence'
       404:
         $ref: '../common/responses/404.yaml'
       415:
@@ -181,10 +187,10 @@ view-and-update:
                   type: array
                   items:
                     - $ref: '../events/schemas.yaml#/Event'
+                    - $ref: 'schemas.yaml#/OccurrenceType'
+                    - $ref: 'schemas.yaml#/OccurrenceStatus'
                     - $ref: '../parishes/schemas.yaml#/Parish'
-                    - $ref: 'schemas.yaml#/ProCivOccurrenceWithRelations'
-                    - $ref: 'schemas.yaml#/ProCivOccurrenceType'
-                    - $ref: 'schemas.yaml#/ProCivOccurrenceStatus'
+                    - $ref: 'schemas.yaml#/ProCivOccurrence'
       401:
         $ref: '../common/responses/401.yaml'
       403:
