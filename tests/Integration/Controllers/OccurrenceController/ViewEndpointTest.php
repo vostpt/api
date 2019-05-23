@@ -64,7 +64,7 @@ class ViewEndpointTest extends TestCase
     {
         $occurrence = factory(Occurrence::class)->make();
 
-        factory(ProCivOccurrence::class)->create()->occurrence()->save($occurrence);
+        factory(ProCivOccurrence::class)->create()->parent()->save($occurrence);
 
         $response = $this->json('GET', route('occurrences::view', [
             'Occurrence' => $occurrence->getKey(),
@@ -89,6 +89,18 @@ class ViewEndpointTest extends TestCase
                 ],
                 'relationships' => [
                     'event' => [
+                        'data' => [
+                            'type',
+                            'id',
+                        ],
+                    ],
+                    'type' => [
+                        'data' => [
+                            'type',
+                            'id',
+                        ],
+                    ],
+                    'status' => [
                         'data' => [
                             'type',
                             'id',
@@ -138,6 +150,26 @@ class ViewEndpointTest extends TestCase
                         'created_at',
                         'updated_at',
                     ],
+                ],
+                [
+                    'type',
+                    'id',
+                    'attributes' => [
+                        'code',
+                        'name',
+                        'created_at',
+                        'updated_at',
+                    ],
+                ],
+                [
+                    'type',
+                    'id',
+                    'attributes' => [
+                        'code',
+                        'name',
+                        'created_at',
+                        'updated_at',
+                    ],
                     'links' => [
                         'self',
                     ],
@@ -151,40 +183,6 @@ class ViewEndpointTest extends TestCase
                         'ground_operatives_involved',
                         'aerial_assets_involved',
                         'aerial_operatives_involved',
-                        'created_at',
-                        'updated_at',
-                    ],
-                    'relationships' => [
-                        'type' => [
-                            'data' => [
-                                'type',
-                                'id',
-                            ],
-                        ],
-                        'status' => [
-                            'data' => [
-                                'type',
-                                'id',
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'type',
-                    'id',
-                    'attributes' => [
-                        'code',
-                        'name',
-                        'created_at',
-                        'updated_at',
-                    ],
-                ],
-                [
-                    'type',
-                    'id',
-                    'attributes' => [
-                        'code',
-                        'name',
                         'created_at',
                         'updated_at',
                     ],

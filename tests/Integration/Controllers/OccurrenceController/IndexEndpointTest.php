@@ -8,6 +8,8 @@ use VOSTPT\Models\County;
 use VOSTPT\Models\District;
 use VOSTPT\Models\Event;
 use VOSTPT\Models\Occurrence;
+use VOSTPT\Models\OccurrenceStatus;
+use VOSTPT\Models\OccurrenceType;
 use VOSTPT\Models\Parish;
 use VOSTPT\Models\ProCivOccurrence;
 use VOSTPT\Tests\Integration\RefreshDatabase;
@@ -140,6 +142,8 @@ class IndexEndpointTest extends TestCase
     public function itSuccessfullyIndexesOccurrences(): void
     {
         $event    = factory(Event::class)->create();
+        $type     = factory(OccurrenceType::class)->create();
+        $status   = factory(OccurrenceStatus::class)->create();
         $district = factory(District::class)->create();
         $county   = factory(County::class)->create([
             'district_id' => $district->getKey(),
@@ -150,11 +154,13 @@ class IndexEndpointTest extends TestCase
 
         $occurrences = factory(Occurrence::class, 20)->make([
             'event_id'  => $event->getKey(),
+            'type_id'   => $type->getKey(),
+            'status_id' => $status->getKey(),
             'parish_id' => $parish->getKey(),
         ]);
 
         factory(ProCivOccurrence::class, 20)->create()->each(function (ProCivOccurrence $proCivOccurrence, $index) use ($occurrences) {
-            $proCivOccurrence->occurrence()->save($occurrences[$index]);
+            $proCivOccurrence->parent()->save($occurrences[$index]);
         });
 
         $response = $this->json('GET', route('occurrences::index'), [
@@ -200,6 +206,61 @@ class IndexEndpointTest extends TestCase
                         'longitude',
                         'started_at',
                         'ended_at',
+                        'created_at',
+                        'updated_at',
+                    ],
+                    'relationships' => [
+                        'type' => [
+                            'data' => [
+                                'type',
+                                'id',
+                            ],
+                        ],
+                        'status' => [
+                            'data' => [
+                                'type',
+                                'id',
+                            ],
+                        ],
+                        'parish' => [
+                            'data' => [
+                                'type',
+                                'id',
+                            ],
+                        ],
+                    ],
+                    'links' => [
+                        'self',
+                    ],
+                ],
+            ],
+            'included' => [
+                [
+                    'type',
+                    'id',
+                    'attributes' => [
+                        'code',
+                        'name',
+                        'created_at',
+                        'updated_at',
+                    ],
+                ],
+                [
+                    'type',
+                    'id',
+                    'attributes' => [
+                        'code',
+                        'name',
+                        'created_at',
+                        'updated_at',
+                    ],
+                ],
+                [
+                    'type',
+                    'id',
+                    'attributes' => [
+                        'code',
+                        'name',
                         'created_at',
                         'updated_at',
                     ],

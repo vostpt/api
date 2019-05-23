@@ -99,7 +99,7 @@ class DeleteEndpointTest extends TestCase
             'event_id' => $event->getKey(),
         ]);
 
-        factory(ProCivOccurrence::class)->create()->occurrence()->save($occurrence);
+        factory(ProCivOccurrence::class)->create()->parent()->save($occurrence);
 
         $token = auth()->login($user);
 
