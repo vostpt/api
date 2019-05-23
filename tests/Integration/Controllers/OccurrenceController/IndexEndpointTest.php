@@ -53,6 +53,12 @@ class IndexEndpointTest extends TestCase
             'events' => [
                 1,
             ],
+            'types' => [
+                1,
+            ],
+            'statuses' => [
+                1,
+            ],
             'districts' => [
                 1,
             ],
@@ -115,6 +121,18 @@ class IndexEndpointTest extends TestCase
                     ],
                 ],
                 [
+                    'detail' => 'The selected types.0 is invalid.',
+                    'meta'   => [
+                        'field' => 'types.0',
+                    ],
+                ],
+                [
+                    'detail' => 'The selected statuses.0 is invalid.',
+                    'meta'   => [
+                        'field' => 'statuses.0',
+                    ],
+                ],
+                [
                     'detail' => 'The selected districts.0 is invalid.',
                     'meta'   => [
                         'field' => 'districts.0',
@@ -170,6 +188,12 @@ class IndexEndpointTest extends TestCase
             ],
             'events' => [
                 $event->getKey(),
+            ],
+            'types' => [
+                $type->getKey(),
+            ],
+            'statuses' => [
+                $status->getKey(),
             ],
             'districts' => [
                 $district->getKey(),

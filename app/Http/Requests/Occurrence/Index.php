@@ -31,6 +31,12 @@ class Index extends Request
             'events.*' => [
                 Rule::exists('events', 'id'),
             ],
+            'types.*' => [
+                Rule::exists('occurrence_types', 'id'),
+            ],
+            'statuses.*' => [
+                Rule::exists('occurrence_statuses', 'id'),
+            ],
             'districts.*' => [
                 Rule::exists('districts', 'id'),
             ],

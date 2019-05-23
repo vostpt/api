@@ -16,6 +16,20 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
     private $events = [];
 
     /**
+     * Types for filtering.
+     *
+     * @var array
+     */
+    private $types = [];
+
+    /**
+     * Statuses for filtering.
+     *
+     * @var array
+     */
+    private $statuses = [];
+
+    /**
      * Districts for filtering.
      *
      * @var array
@@ -109,6 +123,30 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
     /**
      * {@inheritDoc}
      */
+    public function withTypes(...$types): Contracts\OccurrenceFilter
+    {
+        $this->types = \array_unique($types, SORT_NUMERIC);
+
+        \sort($this->types, SORT_NUMERIC);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withStatuses(...$statuses): Contracts\OccurrenceFilter
+    {
+        $this->statuses = \array_unique($statuses, SORT_NUMERIC);
+
+        \sort($this->statuses, SORT_NUMERIC);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function withDistricts(...$districts): Contracts\OccurrenceFilter
     {
         $this->districts = \array_unique($districts, SORT_NUMERIC);
@@ -154,6 +192,16 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
             $builder->whereIn('event_id', $this->events);
         }
 
+        // Apply Type filtering
+        if ($this->types) {
+            $builder->whereIn('type_id', $this->types);
+        }
+
+        // Apply Status filtering
+        if ($this->statuses) {
+            $builder->whereIn('status_id', $this->statuses);
+        }
+
         // Apply common join statements
         if ($this->districts || $this->counties) {
             $builder->join('parishes', 'parishes.id', '=', 'occurrences.parish_id')
@@ -184,6 +232,8 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
     {
         return \array_merge(parent::getSignatureElements(), [
             \implode(',', $this->events),
+            \implode(',', $this->types),
+            \implode(',', $this->statuses),
             \implode(',', $this->districts),
             \implode(',', $this->counties),
             \implode(',', $this->parishes),

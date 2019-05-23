@@ -19,6 +19,22 @@ index:
           items:
             type: string
             example: 1
+      - name: types
+        in: query
+        description: Filter by Type ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: statuses
+        in: query
+        description: Filter by Status ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
       - name: districts
         in: query
         description: Filter by District ids
