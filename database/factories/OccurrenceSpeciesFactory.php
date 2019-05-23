@@ -3,20 +3,20 @@
 declare(strict_types=1);
 
 use Faker\Generator as Faker;
-use VOSTPT\Models\ProCivOccurrenceFamily;
-use VOSTPT\Models\ProCivOccurrenceSpecies;
+use VOSTPT\Models\OccurrenceFamily;
+use VOSTPT\Models\OccurrenceSpecies;
 
 /*
 |--------------------------------------------------------------------------
-| ProCivOccurrenceSpecies Factories
+| OccurrenceSpecies Factories
 |--------------------------------------------------------------------------
 |
 */
 
-$factory->define(ProCivOccurrenceSpecies::class, function (Faker $faker) {
+$factory->define(OccurrenceSpecies::class, function (Faker $faker) {
     return [
         'family_id' => function () {
-            return factory(ProCivOccurrenceFamily::class)->create()->id;
+            return factory(OccurrenceFamily::class)->create()->id;
         },
         'code' => $faker->unique()->numberBetween(1000, 9999),
         'name' => $faker->unique()->sentence(),

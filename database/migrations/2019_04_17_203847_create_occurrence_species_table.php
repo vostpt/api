@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProcivOccurrenceSpeciesTable extends Migration
+class CreateOccurrenceSpeciesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreateProcivOccurrenceSpeciesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('prociv_occurrence_species', function (Blueprint $table) {
+        Schema::create('occurrence_species', function (Blueprint $table) {
             $table->tinyIncrements('id');
             $table->unsignedTinyInteger('family_id');
 
@@ -31,7 +31,7 @@ class CreateProcivOccurrenceSpeciesTable extends Migration
 
             $table->foreign('family_id')
                 ->references('id')
-                ->on('prociv_occurrence_families')
+                ->on('occurrence_families')
                 ->onUpdate('cascade');
         });
     }
@@ -43,6 +43,6 @@ class CreateProcivOccurrenceSpeciesTable extends Migration
      */
     public function down(): void
     {
-        Schema::drop('prociv_occurrence_species');
+        Schema::drop('occurrence_species');
     }
 }

@@ -9,12 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use LengthException;
 
-class ProCivOccurrenceSpecies extends Model
+class OccurrenceSpecies extends Model
 {
     /**
      * {@inheritDoc}
      */
-    protected $table = 'prociv_occurrence_species';
+    protected $table = 'occurrence_species';
 
     /**
      * Associated Family.
@@ -23,7 +23,7 @@ class ProCivOccurrenceSpecies extends Model
      */
     public function family(): BelongsTo
     {
-        return $this->belongsTo(ProCivOccurrenceFamily::class, 'family_id');
+        return $this->belongsTo(OccurrenceFamily::class, 'family_id');
     }
 
     /**
@@ -33,7 +33,7 @@ class ProCivOccurrenceSpecies extends Model
      */
     public function types(): HasMany
     {
-        return $this->hasMany(ProCivOccurrenceType::class);
+        return $this->hasMany(OccurrenceType::class);
     }
 
     /**
