@@ -6,12 +6,12 @@ namespace VOSTPT\Http\Serializers;
 
 use Tobscure\JsonApi\AbstractSerializer;
 
-class ProCivOccurrenceTypeSerializer extends AbstractSerializer
+class OccurrenceStatusSerializer extends AbstractSerializer
 {
     /**
      * {@inheritDoc}
      */
-    protected $type = 'prociv_occurrence_types';
+    protected $type = 'occurrence_statuses';
 
     /**
      * {@inheritDoc}
