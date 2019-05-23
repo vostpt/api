@@ -11,7 +11,6 @@ use VOSTPT\Http\Requests\Occurrence\Update;
 use VOSTPT\Http\Requests\Occurrence\View;
 use VOSTPT\Http\Serializers\OccurrenceSerializer;
 use VOSTPT\Models\Occurrence;
-use VOSTPT\Models\ProCivOccurrence;
 use VOSTPT\Repositories\Contracts\OccurrenceRepository;
 
 class OccurrenceController extends Controller
@@ -56,7 +55,11 @@ class OccurrenceController extends Controller
 
         $paginator = $this->createPaginator(Occurrence::class, $occurrenceRepository->createQueryBuilder(), $filter);
 
-        return response()->paginator($paginator, new OccurrenceSerializer());
+        return response()->paginator($paginator, new OccurrenceSerializer(), [
+            'type',
+            'status',
+            'parish',
+        ]);
     }
 
     /**
@@ -75,20 +78,13 @@ class OccurrenceController extends Controller
 
         $occurrence->save();
 
-        $relations = [
+        return response()->resource($occurrence, new OccurrenceSerializer(), [
             'event',
+            'type',
+            'status',
             'parish',
             'source',
-        ];
-
-        if ($occurrence->source instanceof ProCivOccurrence) {
-            $relations = \array_merge($relations, [
-                'source.type',
-                'source.status',
-            ]);
-        }
-
-        return response()->resource($occurrence, new OccurrenceSerializer(), $relations);
+        ]);
     }
 
     /**
@@ -101,19 +97,12 @@ class OccurrenceController extends Controller
      */
     public function view(View $request, Occurrence $occurrence): JsonResponse
     {
-        $relations = [
+        return response()->resource($occurrence, new OccurrenceSerializer(), [
             'event',
+            'type',
+            'status',
             'parish',
             'source',
-        ];
-
-        if ($occurrence->source instanceof ProCivOccurrence) {
-            $relations = \array_merge($relations, [
-                'source.type',
-                'source.status',
-            ]);
-        }
-
-        return response()->resource($occurrence, new OccurrenceSerializer(), $relations);
+        ]);
     }
 }
