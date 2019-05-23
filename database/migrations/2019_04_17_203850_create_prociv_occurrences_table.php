@@ -17,9 +17,6 @@ class CreateProcivOccurrencesTable extends Migration
     {
         Schema::create('prociv_occurrences', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedTinyInteger('type_id');
-            $table->unsignedTinyInteger('status_id');
-
             $table->string('remote_id')->unique();
 
             $table->unsignedSmallInteger('ground_assets_involved');
@@ -29,16 +26,6 @@ class CreateProcivOccurrencesTable extends Migration
             $table->unsignedSmallInteger('aerial_operatives_involved');
 
             $table->timestamps();
-
-            $table->foreign('status_id')
-                ->references('id')
-                ->on('prociv_occurrence_statuses')
-                ->onUpdate('cascade');
-
-            $table->foreign('type_id')
-                ->references('id')
-                ->on('prociv_occurrence_types')
-                ->onUpdate('cascade');
         });
     }
 
