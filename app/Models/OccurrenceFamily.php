@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use LengthException;
 
-class ProCivOccurrenceFamily extends Model
+class OccurrenceFamily extends Model
 {
     /**
      * {@inheritDoc}
      */
-    protected $table = 'prociv_occurrence_families';
+    protected $table = 'occurrence_families';
 
     /**
      * Associated Species.
@@ -22,7 +22,7 @@ class ProCivOccurrenceFamily extends Model
      */
     public function species(): HasMany
     {
-        return $this->hasMany(ProCivOccurrenceSpecies::class);
+        return $this->hasMany(OccurrenceSpecies::class);
     }
 
     /**
