@@ -18,6 +18,8 @@ class CreateOccurrencesTable extends Migration
         Schema::create('occurrences', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('event_id')->nullable();
+            $table->unsignedTinyInteger('type_id');
+            $table->unsignedTinyInteger('status_id');
             $table->unsignedSmallInteger('parish_id');
             $table->string('locality');
 
@@ -34,6 +36,16 @@ class CreateOccurrencesTable extends Migration
             $table->foreign('event_id')
                 ->references('id')
                 ->on('events')
+                ->onUpdate('cascade');
+
+            $table->foreign('status_id')
+                ->references('id')
+                ->on('occurrence_statuses')
+                ->onUpdate('cascade');
+
+            $table->foreign('type_id')
+                ->references('id')
+                ->on('occurrence_types')
                 ->onUpdate('cascade');
 
             $table->foreign('parish_id')

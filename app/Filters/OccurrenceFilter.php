@@ -80,6 +80,10 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
     {
         return [
             'occurrences.id',
+            'occurrences.event_id',
+            'occurrences.type_id',
+            'occurrences.status_id',
+            'occurrences.parish_id',
             'occurrences.locality',
             'occurrences.latitude',
             'occurrences.longitude',

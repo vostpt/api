@@ -58,6 +58,30 @@ class OccurrenceSerializer extends AbstractSerializer
     }
 
     /**
+     * Associated Type.
+     *
+     * @param Occurrence $occurrence
+     *
+     * @return \Tobscure\JsonApi\Relationship
+     */
+    public function type(Occurrence $occurrence): Relationship
+    {
+        return new Relationship(new Resource($occurrence->type()->first(), new OccurrenceTypeSerializer()));
+    }
+
+    /**
+     * Associated Status.
+     *
+     * @param Occurrence $occurrence
+     *
+     * @return \Tobscure\JsonApi\Relationship
+     */
+    public function status(Occurrence $occurrence): Relationship
+    {
+        return new Relationship(new Resource($occurrence->status()->first(), new OccurrenceStatusSerializer()));
+    }
+
+    /**
      * Associated Parish.
      *
      * @param Occurrence $occurrence
