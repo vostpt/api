@@ -14,10 +14,10 @@ use VOSTPT\Models\ProCivOccurrence;
 
 $factory->define(ProCivOccurrence::class, function (Faker $faker) {
     return [
-        'remote_id'                  => $faker->unique()->numerify('#############'),
-        'ground_assets_involved'     => $faker->numberBetween(1, 8),
-        'ground_operatives_involved' => $faker->numberBetween(2, 8),
-        'aerial_assets_involved'     => $faker->numberBetween(0, 8),
-        'aerial_operatives_involved' => $faker->numberBetween(0, 8),
+        'remote_id'         => $faker->unique()->numerify('#############'),
+        'ground_assets'     => $faker->numberBetween(1, 8),
+        'ground_operatives' => $faker->numberBetween(2, 8),
+        'aerial_assets'     => $faker->numberBetween(0, 8),
+        'aerial_operatives' => $faker->numberBetween(0, 8),
     ];
 });

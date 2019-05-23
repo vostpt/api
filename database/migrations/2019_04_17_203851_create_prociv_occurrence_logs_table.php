@@ -25,38 +25,38 @@ class CreateProcivOccurrenceLogsTable extends Migration
 
             $table->string('operational_command_post');
 
-            $table->unsignedTinyInteger('medium_aircrafts_involved');
-            $table->unsignedTinyInteger('heavy_aircrafts_involved');
-            $table->unsignedTinyInteger('other_aircrafts_involved');
+            $table->unsignedTinyInteger('medium_aircrafts');
+            $table->unsignedTinyInteger('heavy_aircrafts');
+            $table->unsignedTinyInteger('other_aircrafts');
 
-            $table->unsignedTinyInteger('medium_helicopters_involved');
-            $table->unsignedTinyInteger('heavy_helicopters_involved');
-            $table->unsignedTinyInteger('other_helicopters_involved');
+            $table->unsignedTinyInteger('medium_helicopters');
+            $table->unsignedTinyInteger('heavy_helicopters');
+            $table->unsignedTinyInteger('other_helicopters');
 
-            $table->unsignedSmallInteger('fire_fighter_assets_involved');
-            $table->unsignedSmallInteger('fire_fighter_operatives_involved');
+            $table->unsignedSmallInteger('fire_fighter_assets');
+            $table->unsignedSmallInteger('fire_fighter_operatives');
 
-            $table->unsignedSmallInteger('special_fire_fighter_force_assets_involved');
-            $table->unsignedSmallInteger('special_fire_fighter_force_operatives_involved');
+            $table->unsignedSmallInteger('special_fire_fighter_force_assets');
+            $table->unsignedSmallInteger('special_fire_fighter_force_operatives');
 
-            $table->unsignedSmallInteger('forest_sapper_assets_involved');
-            $table->unsignedSmallInteger('forest_sapper_operatives_involved');
+            $table->unsignedSmallInteger('forest_sapper_assets');
+            $table->unsignedSmallInteger('forest_sapper_operatives');
 
-            $table->unsignedSmallInteger('armed_force_assets_involved');
-            $table->unsignedSmallInteger('armed_force_operatives_involved');
+            $table->unsignedSmallInteger('armed_force_assets');
+            $table->unsignedSmallInteger('armed_force_operatives');
 
-            $table->unsignedSmallInteger('gips_assets_involved');
-            $table->unsignedSmallInteger('gips_operatives_involved');
+            $table->unsignedSmallInteger('gips_assets');
+            $table->unsignedSmallInteger('gips_operatives');
 
-            $table->unsignedSmallInteger('gnr_assets_involved');
-            $table->unsignedSmallInteger('gnr_operatives_involved');
+            $table->unsignedSmallInteger('gnr_assets');
+            $table->unsignedSmallInteger('gnr_operatives');
 
-            $table->unsignedSmallInteger('psp_assets_involved');
-            $table->unsignedSmallInteger('psp_operatives_involved');
+            $table->unsignedSmallInteger('psp_assets');
+            $table->unsignedSmallInteger('psp_operatives');
 
-            $table->unsignedSmallInteger('other_operatives_involved');
+            $table->unsignedSmallInteger('other_operatives');
 
-            $table->string('reinforcement_groups_involved');
+            $table->string('reinforcement_groups');
 
             $table->string('state_of_affairs');
             $table->text('state_of_affairs_description');
