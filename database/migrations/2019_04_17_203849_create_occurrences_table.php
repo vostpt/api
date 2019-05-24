@@ -38,14 +38,14 @@ class CreateOccurrencesTable extends Migration
                 ->on('events')
                 ->onUpdate('cascade');
 
-            $table->foreign('status_id')
-                ->references('id')
-                ->on('occurrence_statuses')
-                ->onUpdate('cascade');
-
             $table->foreign('type_id')
                 ->references('id')
                 ->on('occurrence_types')
+                ->onUpdate('cascade');
+
+            $table->foreign('status_id')
+                ->references('id')
+                ->on('occurrence_statuses')
                 ->onUpdate('cascade');
 
             $table->foreign('parish_id')
