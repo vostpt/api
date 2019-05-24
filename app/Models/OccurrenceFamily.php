@@ -5,35 +5,24 @@ declare(strict_types=1);
 namespace VOSTPT\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use LengthException;
 
-class ProCivOccurrenceSpecies extends Model
+class OccurrenceFamily extends Model
 {
     /**
      * {@inheritDoc}
      */
-    protected $table = 'prociv_occurrence_species';
+    protected $table = 'occurrence_families';
 
     /**
-     * Associated Family.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function family(): BelongsTo
-    {
-        return $this->belongsTo(ProCivOccurrenceFamily::class, 'family_id');
-    }
-
-    /**
-     * Associated Types.
+     * Associated Species.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function types(): HasMany
+    public function species(): HasMany
     {
-        return $this->hasMany(ProCivOccurrenceType::class);
+        return $this->hasMany(OccurrenceSpecies::class);
     }
 
     /**

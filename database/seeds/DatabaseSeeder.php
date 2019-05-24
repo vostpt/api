@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
         $this->call(ParishSeeder::class);
         $this->call(AcronymSeeder::class);
         $this->call(EventTypeSeeder::class);
-        $this->call(ProCivOccurrenceStatusSeeder::class);
-        $this->call(ProCivOccurrenceFamilySeeder::class);
-        $this->call(ProCivOccurrenceSpeciesSeeder::class);
-        $this->call(ProCivOccurrenceTypeSeeder::class);
+        $this->call(OccurrenceStatusSeeder::class);
+        $this->call(OccurrenceFamilySeeder::class);
+        $this->call(OccurrenceSpeciesSeeder::class);
+        $this->call(OccurrenceTypeSeeder::class);
     }
 }

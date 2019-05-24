@@ -6,19 +6,19 @@ namespace VOSTPT\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
-use VOSTPT\Jobs\Occurrences\ProCivOccurrenceFetcher;
+use VOSTPT\Jobs\Occurrences\OccurrenceCloser;
 
-class ProCivOccurrenceFetchCommand extends Command
+class OccurrenceCloseCommand extends Command
 {
     /**
      * {@inheritDoc}
      */
-    protected $signature = 'fetch:prociv-occurrences';
+    protected $signature = 'occurrences:close';
 
     /**
      * {@inheritDoc}
      */
-    protected $description = 'Fetch ProCiv occurrences';
+    protected $description = 'Close stalled occurrences';
 
     /**
      * Execute the console command.
@@ -29,6 +29,6 @@ class ProCivOccurrenceFetchCommand extends Command
      */
     public function handle(BusDispatcher $dispatcher)
     {
-        return $dispatcher->dispatch(new ProCivOccurrenceFetcher());
+        return $dispatcher->dispatch(new OccurrenceCloser());
     }
 }

@@ -19,6 +19,22 @@ index:
           items:
             type: string
             example: 1
+      - name: types
+        in: query
+        description: Filter by Type ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: statuses
+        in: query
+        description: Filter by Status ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
       - name: districts
         in: query
         description: Filter by District ids
@@ -86,6 +102,12 @@ index:
                   type: array
                   items:
                     $ref: 'schemas.yaml#/Occurrence'
+                included:
+                  type: array
+                  items:
+                    - $ref: 'schemas.yaml#/OccurrenceType'
+                    - $ref: 'schemas.yaml#/OccurrenceStatus'
+                    - $ref: '../parishes/schemas.yaml#/Parish'
                 meta:
                   type: object
                   properties:
@@ -131,10 +153,10 @@ view-and-update:
                   type: array
                   items:
                     - $ref: '../events/schemas.yaml#/Event'
+                    - $ref: 'schemas.yaml#/OccurrenceType'
+                    - $ref: 'schemas.yaml#/OccurrenceStatus'
                     - $ref: '../parishes/schemas.yaml#/Parish'
-                    - $ref: 'schemas.yaml#/ProCivOccurrenceWithRelations'
-                    - $ref: 'schemas.yaml#/ProCivOccurrenceType'
-                    - $ref: 'schemas.yaml#/ProCivOccurrenceStatus'
+                    - $ref: 'schemas.yaml#/ProCivOccurrence'
       404:
         $ref: '../common/responses/404.yaml'
       415:
@@ -181,10 +203,10 @@ view-and-update:
                   type: array
                   items:
                     - $ref: '../events/schemas.yaml#/Event'
+                    - $ref: 'schemas.yaml#/OccurrenceType'
+                    - $ref: 'schemas.yaml#/OccurrenceStatus'
                     - $ref: '../parishes/schemas.yaml#/Parish'
-                    - $ref: 'schemas.yaml#/ProCivOccurrenceWithRelations'
-                    - $ref: 'schemas.yaml#/ProCivOccurrenceType'
-                    - $ref: 'schemas.yaml#/ProCivOccurrenceStatus'
+                    - $ref: 'schemas.yaml#/ProCivOccurrence'
       401:
         $ref: '../common/responses/401.yaml'
       403:

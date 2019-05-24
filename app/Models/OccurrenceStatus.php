@@ -8,7 +8,7 @@ use DomainException;
 use Illuminate\Database\Eloquent\Model;
 use LengthException;
 
-class ProCivOccurrenceStatus extends Model
+class OccurrenceStatus extends Model
 {
     public const FALSE_ALERT          = 1;
     public const SURVEILLANCE         = 2;
@@ -24,7 +24,7 @@ class ProCivOccurrenceStatus extends Model
     /**
      * {@inheritDoc}
      */
-    protected $table = 'prociv_occurrence_statuses';
+    protected $table = 'occurrence_statuses';
 
     /**
      * Set the code.

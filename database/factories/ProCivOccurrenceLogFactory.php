@@ -25,38 +25,38 @@ $factory->define(ProCivOccurrenceLog::class, function (Faker $faker) {
 
         'operational_command_post' => $faker->streetAddress,
 
-        'medium_aircrafts_involved' => $faker->numberBetween(0, 4),
-        'heavy_aircrafts_involved'  => $faker->numberBetween(0, 4),
-        'other_aircrafts_involved'  => $faker->numberBetween(0, 4),
+        'medium_aircrafts' => $faker->numberBetween(0, 4),
+        'heavy_aircrafts'  => $faker->numberBetween(0, 4),
+        'other_aircrafts'  => $faker->numberBetween(0, 4),
 
-        'medium_helicopters_involved' => $faker->numberBetween(0, 4),
-        'heavy_helicopters_involved'  => $faker->numberBetween(0, 4),
-        'other_helicopters_involved'  => $faker->numberBetween(0, 4),
+        'medium_helicopters' => $faker->numberBetween(0, 4),
+        'heavy_helicopters'  => $faker->numberBetween(0, 4),
+        'other_helicopters'  => $faker->numberBetween(0, 4),
 
-        'fire_fighter_assets_involved'     => $faker->numberBetween(4, 32),
-        'fire_fighter_operatives_involved' => $faker->numberBetween(8, 256),
+        'fire_fighter_assets'     => $faker->numberBetween(4, 32),
+        'fire_fighter_operatives' => $faker->numberBetween(8, 256),
 
-        'special_fire_fighter_force_assets_involved'     => $faker->numberBetween(0, 4),
-        'special_fire_fighter_force_operatives_involved' => $faker->numberBetween(0, 16),
+        'special_fire_fighter_force_assets'     => $faker->numberBetween(0, 4),
+        'special_fire_fighter_force_operatives' => $faker->numberBetween(0, 16),
 
-        'forest_sapper_assets_involved'     => $faker->numberBetween(0, 4),
-        'forest_sapper_operatives_involved' => $faker->numberBetween(0, 16),
+        'forest_sapper_assets'     => $faker->numberBetween(0, 4),
+        'forest_sapper_operatives' => $faker->numberBetween(0, 16),
 
-        'armed_force_assets_involved'     => $faker->numberBetween(0, 4),
-        'armed_force_operatives_involved' => $faker->numberBetween(0, 16),
+        'armed_force_assets'     => $faker->numberBetween(0, 4),
+        'armed_force_operatives' => $faker->numberBetween(0, 16),
 
-        'gips_assets_involved'     => $faker->numberBetween(0, 8),
-        'gips_operatives_involved' => $faker->numberBetween(0, 32),
+        'gips_assets'     => $faker->numberBetween(0, 8),
+        'gips_operatives' => $faker->numberBetween(0, 32),
 
-        'gnr_assets_involved'     => $faker->numberBetween(0, 8),
-        'gnr_operatives_involved' => $faker->numberBetween(0, 64),
+        'gnr_assets'     => $faker->numberBetween(0, 8),
+        'gnr_operatives' => $faker->numberBetween(0, 64),
 
-        'psp_assets_involved'     => $faker->numberBetween(0, 4),
-        'psp_operatives_involved' => $faker->numberBetween(0, 16),
+        'psp_assets'     => $faker->numberBetween(0, 4),
+        'psp_operatives' => $faker->numberBetween(0, 16),
 
-        'other_operatives_involved' => $faker->numberBetween(0, 16),
+        'other_operatives' => $faker->numberBetween(0, 16),
 
-        'reinforcement_groups_involved' => $faker->sentence,
+        'reinforcement_groups' => $faker->sentence,
 
         'state_of_affairs'             => $faker->sentence,
         'state_of_affairs_description' => $faker->paragraphs,

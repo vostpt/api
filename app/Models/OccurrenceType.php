@@ -9,12 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use LengthException;
 
-class ProCivOccurrenceType extends Model
+class OccurrenceType extends Model
 {
     /**
      * {@inheritDoc}
      */
-    protected $table = 'prociv_occurrence_types';
+    protected $table = 'occurrence_types';
 
     /**
      * Associated Species.
@@ -23,7 +23,7 @@ class ProCivOccurrenceType extends Model
      */
     public function species(): BelongsTo
     {
-        return $this->belongsTo(ProCivOccurrenceSpecies::class, 'species_id');
+        return $this->belongsTo(OccurrenceSpecies::class, 'species_id');
     }
 
     /**
