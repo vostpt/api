@@ -99,11 +99,11 @@ class OccurrenceFetcher implements ShouldQueue
                 $occurrence->started_at = $this->carbonise($data['DataOcorrencia']);
                 $occurrence->ended_at = $this->carbonise($data['DataFechoOperacional']);
 
-                $proCivOccurrence->ground_assets_involved = $data['NumeroMeiosTerrestresEnvolvidos'];
-                $proCivOccurrence->ground_operatives_involved = $data['NumeroOperacionaisTerrestresEnvolvidos'];
+                $proCivOccurrence->ground_assets = $data['NumeroMeiosTerrestresEnvolvidos'];
+                $proCivOccurrence->ground_operatives = $data['NumeroOperacionaisTerrestresEnvolvidos'];
 
-                $proCivOccurrence->aerial_assets_involved = $data['NumeroMeiosAereosEnvolvidos'];
-                $proCivOccurrence->aerial_operatives_involved = $data['NumeroOperacionaisAereosEnvolvidos'];
+                $proCivOccurrence->aerial_assets = $data['NumeroMeiosAereosEnvolvidos'];
+                $proCivOccurrence->aerial_operatives = $data['NumeroOperacionaisAereosEnvolvidos'];
 
                 $proCivOccurrence->save();
                 $proCivOccurrence->parent()->save($occurrence);
@@ -153,45 +153,45 @@ class OccurrenceFetcher implements ShouldQueue
 
                 $proCivOccurrenceLog->operational_command_post = $data['PCO'];
 
-                $proCivOccurrenceLog->medium_aircrafts_involved = $data['NumAvioesMediosEnvolvidos'];
-                $proCivOccurrenceLog->heavy_aircrafts_involved = $data['NumAvioesPesadosEnvolvidos'];
-                $proCivOccurrenceLog->other_aircrafts_involved = $data['NumAvioesOutrosEnvolvidos'];
+                $proCivOccurrenceLog->medium_aircrafts = $data['NumAvioesMediosEnvolvidos'];
+                $proCivOccurrenceLog->heavy_aircrafts = $data['NumAvioesPesadosEnvolvidos'];
+                $proCivOccurrenceLog->other_aircrafts = $data['NumAvioesOutrosEnvolvidos'];
 
-                $proCivOccurrenceLog->medium_helicopters_involved = $data['NumHelicopterosLigeirosMediosEnvolvidos'];
-                $proCivOccurrenceLog->heavy_helicopters_involved = $data['NumHelicopterosPesadosEnvolvidos'];
-                $proCivOccurrenceLog->other_helicopters_involved = $data['NumHelicopterosOutrosEnvolvidos'];
+                $proCivOccurrenceLog->medium_helicopters = $data['NumHelicopterosLigeirosMediosEnvolvidos'];
+                $proCivOccurrenceLog->heavy_helicopters = $data['NumHelicopterosPesadosEnvolvidos'];
+                $proCivOccurrenceLog->other_helicopters = $data['NumHelicopterosOutrosEnvolvidos'];
 
-                $proCivOccurrenceLog->fire_fighter_assets_involved = $data['NumBombeirosEnvolvidos'];
-                $proCivOccurrenceLog->fire_fighter_operatives_involved = $data['NumBombeirosOperEnvolvidos'];
+                $proCivOccurrenceLog->fire_fighter_assets = $data['NumBombeirosEnvolvidos'];
+                $proCivOccurrenceLog->fire_fighter_operatives = $data['NumBombeirosOperEnvolvidos'];
 
-                $proCivOccurrenceLog->special_fire_fighter_force_assets_involved = $data['NumFebEnvolvidos'];
-                $proCivOccurrenceLog->special_fire_fighter_force_operatives_involved = $data['NumFebOperEnvolvidos'];
+                $proCivOccurrenceLog->special_fire_fighter_force_assets = $data['NumFebEnvolvidos'];
+                $proCivOccurrenceLog->special_fire_fighter_force_operatives = $data['NumFebOperEnvolvidos'];
 
-                $proCivOccurrenceLog->forest_sapper_assets_involved = $data['NumEsfEnvolvidos'];
-                $proCivOccurrenceLog->forest_sapper_operatives_involved = $data['NumEsfOperEnvolvidos'];
+                $proCivOccurrenceLog->forest_sapper_assets = $data['NumEsfEnvolvidos'];
+                $proCivOccurrenceLog->forest_sapper_operatives = $data['NumEsfOperEnvolvidos'];
 
-                $proCivOccurrenceLog->armed_force_assets_involved = $data['NumFAAEnvolvidos'];
-                $proCivOccurrenceLog->armed_force_operatives_involved = $data['NumFAAOperEnvolvidos'];
+                $proCivOccurrenceLog->armed_force_assets = $data['NumFAAEnvolvidos'];
+                $proCivOccurrenceLog->armed_force_operatives = $data['NumFAAOperEnvolvidos'];
 
-                $proCivOccurrenceLog->gips_assets_involved = $data['NumGNRGipsEnvolvidos'];
-                $proCivOccurrenceLog->gips_operatives_involved = $data['NumGNRGipsOperEnvolvidos'];
+                $proCivOccurrenceLog->gips_assets = $data['NumGNRGipsEnvolvidos'];
+                $proCivOccurrenceLog->gips_operatives = $data['NumGNRGipsOperEnvolvidos'];
 
-                $proCivOccurrenceLog->gnr_assets_involved = $data['NumGNROutrosEnvolvidos'];
-                $proCivOccurrenceLog->gnr_operatives_involved = $data['NumGNROutrosOperEnvolvidos'];
+                $proCivOccurrenceLog->gnr_assets = $data['NumGNROutrosEnvolvidos'];
+                $proCivOccurrenceLog->gnr_operatives = $data['NumGNROutrosOperEnvolvidos'];
 
-                $proCivOccurrenceLog->psp_assets_involved = $data['NumPSPEnvolvidos'];
-                $proCivOccurrenceLog->psp_operatives_involved = $data['NumPSPOperEnvolvidos'];
+                $proCivOccurrenceLog->psp_assets = $data['NumPSPEnvolvidos'];
+                $proCivOccurrenceLog->psp_operatives = $data['NumPSPOperEnvolvidos'];
 
-                $proCivOccurrenceLog->reinforcement_groups_involved = $data['GruposReforcoEnvolvidos'];
+                $proCivOccurrenceLog->reinforcement_groups = $data['GruposReforcoEnvolvidos'];
 
-                $proCivOccurrenceLog->other_operatives_involved = $data['OutrosOperacionaisEnvolvidos'];
+                $proCivOccurrenceLog->other_operatives = $data['OutrosOperacionaisEnvolvidos'];
 
                 $proCivOccurrenceLog->state_of_affairs = $data['PontoSituacao'];
                 $proCivOccurrenceLog->state_of_affairs_description = $data['POSITDescricao'];
 
                 $proCivOccurrenceLog->active_previous_intervention_plan = $data['PPIAtivados'];
 
-                $proCivOccurrence->logs()->attach($proCivOccurrenceLog);
+                $proCivOccurrence->logs()->save($proCivOccurrenceLog);
             });
         }
 
