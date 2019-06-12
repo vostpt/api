@@ -87,6 +87,14 @@ abstract class ServiceClient implements Contracts\ServiceClient
     /**
      * {@inheritDoc}
      */
+    public function getDefaultHeaders(): array
+    {
+        return [];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function request(string $method, string $path, array $parameters = [], array $headers = [])
     {
         $url = $this->buildUrl($path, $parameters, $method);
@@ -96,7 +104,7 @@ abstract class ServiceClient implements Contracts\ServiceClient
             $body = \json_encode($parameters);
         }
 
-        $request = new Request($method, $url, $headers, $body ?? null);
+        $request = new Request($method, $url, \array_merge($headers, $this->getDefaultHeaders()), $body ?? null);
 
         $response = $this->httpClient->send($request);
 
