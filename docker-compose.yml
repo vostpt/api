@@ -20,7 +20,7 @@ services:
     container_name: vost_nginx
     networks:
       - vost_network
-    image: nginx:1.15.12-alpine
+    image: nginx:1.14.0-alpine
     ports:
       - '80:80'
       - '443:443'
@@ -32,12 +32,22 @@ services:
     container_name: vost_mariadb
     networks:
       - vost_network
-    image: mariadb:10.3.14
+    image: mariadb:10.4.6
     ports:
       - '3306:3306'
     environment:
       MYSQL_DATABASE: vost_api
       MYSQL_ROOT_PASSWORD: root
+
+  redis:
+    container_name: vost_redis
+    networks:
+      - vost_network
+    image: redis:4.0.9-alpine
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - '6379:6379'
 
 networks:
   vost_network:
