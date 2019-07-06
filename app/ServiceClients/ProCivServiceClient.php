@@ -17,12 +17,20 @@ class ProCivServiceClient extends ServiceClient implements Contracts\ProCivServi
     /**
      * {@inheritDoc}
      */
+    public function getDefaultHeaders(): array
+    {
+        return [
+            'Content-Type' => 'application/json',
+        ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getMainOccurrences(): array
     {
         $response = $this->post('GetMainOccurrences', [
             'allData' => true,
-        ], [
-            'Content-Type' => 'application/json',
         ]);
 
         return $response['GetMainOccurrencesResult']['ArrayInfo'][0] ?? [
@@ -38,8 +46,6 @@ class ProCivServiceClient extends ServiceClient implements Contracts\ProCivServi
     {
         $response = $this->post('GetHistoryOccurrencesByLocation', [
             'allData' => true,
-        ], [
-            'Content-Type' => 'application/json',
         ]);
 
         return $response['GetHistoryOccurrencesByLocationResult']['ArrayInfo'][0] ?? [

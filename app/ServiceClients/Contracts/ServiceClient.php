@@ -27,6 +27,13 @@ interface ServiceClient
     public function getHostname(string $path = null): string;
 
     /**
+     * Get the default headers to use on each request.
+     *
+     * @return array
+     */
+    public function getDefaultHeaders(): array;
+
+    /**
      * Perform an HTTP request.
      *
      * @param string $method
