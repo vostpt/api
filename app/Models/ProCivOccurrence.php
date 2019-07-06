@@ -42,6 +42,6 @@ class ProCivOccurrence extends Model
      */
     public function logs(): HasMany
     {
-        return $this->hasMany(ProCivOccurrenceLog::class);
+        return $this->hasMany(ProCivOccurrenceLog::class, 'occurrence_id');
     }
 }

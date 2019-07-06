@@ -54,7 +54,7 @@ class OccurrenceCloser implements ShouldQueue
             $stalledOccurrence->status()->associate($closedByVostStatus);
             $stalledOccurrence->save();
 
-            $this->logger->info(\sprintf('Occurrence %s closed', $stalledOccurrence->remote_id));
+            $this->logger->info(\sprintf('Occurrence #%s closed', $stalledOccurrence->id));
         }
 
         $this->logger->info('...done!');

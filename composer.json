@@ -20,6 +20,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "predis/predis": "^1.1",
         "silber/bouncer": "v1.0.0-rc.5",
         "tobscure/json-api": "^0.4.1",
         "tymon/jwt-auth": "1.0.0-rc.4.1"
@@ -39,7 +40,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": "7.2.17"
+            "php": "7.2.19"
         }
     },
     "extra": {
