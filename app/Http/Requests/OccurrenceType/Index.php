@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace VOSTPT\Http\Requests\OccurrenceType;
 
 use Illuminate\Validation\Rule;
-use VOSTPT\Filters\OccurrenceFilter;
+use VOSTPT\Filters\OccurrenceTypeFilter;
 use VOSTPT\Http\Requests\Request;
 
 class Index extends Request
@@ -32,10 +32,10 @@ class Index extends Request
                 Rule::exists('occurrence_species', 'id'),
             ],
             'sort' => [
-                Rule::in(OccurrenceFilter::getSortableColumns()),
+                Rule::in(OccurrenceTypeFilter::getSortableColumns()),
             ],
             'order' => [
-                Rule::in(OccurrenceFilter::getOrderValues()),
+                Rule::in(OccurrenceTypeFilter::getOrderValues()),
             ],
         ];
     }
