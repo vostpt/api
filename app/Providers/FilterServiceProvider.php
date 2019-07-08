@@ -22,6 +22,7 @@ class FilterServiceProvider extends ServiceProvider
             \VOSTPT\Filters\Contracts\OccurrenceFamilyFilter::class  => \VOSTPT\Filters\OccurrenceFamilyFilter::class,
             \VOSTPT\Filters\Contracts\OccurrenceFilter::class        => \VOSTPT\Filters\OccurrenceFilter::class,
             \VOSTPT\Filters\Contracts\OccurrenceSpeciesFilter::class => \VOSTPT\Filters\OccurrenceSpeciesFilter::class,
+            \VOSTPT\Filters\Contracts\OccurrenceStatusFilter::class  => \VOSTPT\Filters\OccurrenceStatusFilter::class,
             \VOSTPT\Filters\Contracts\OccurrenceTypeFilter::class    => \VOSTPT\Filters\OccurrenceTypeFilter::class,
             \VOSTPT\Filters\Contracts\UserFilter::class              => \VOSTPT\Filters\UserFilter::class,
         ];
