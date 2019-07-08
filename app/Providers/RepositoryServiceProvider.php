@@ -21,6 +21,7 @@ class RepositoryServiceProvider extends ServiceProvider
             \VOSTPT\Repositories\Contracts\OccurrenceFamilyRepository::class  => \VOSTPT\Repositories\OccurrenceFamilyRepository::class,
             \VOSTPT\Repositories\Contracts\OccurrenceRepository::class        => \VOSTPT\Repositories\OccurrenceRepository::class,
             \VOSTPT\Repositories\Contracts\OccurrenceSpeciesRepository::class => \VOSTPT\Repositories\OccurrenceSpeciesRepository::class,
+            \VOSTPT\Repositories\Contracts\OccurrenceStatusRepository::class  => \VOSTPT\Repositories\OccurrenceStatusRepository::class,
             \VOSTPT\Repositories\Contracts\OccurrenceTypeRepository::class    => \VOSTPT\Repositories\OccurrenceTypeRepository::class,
             \VOSTPT\Repositories\Contracts\ParishRepository::class            => \VOSTPT\Repositories\ParishRepository::class,
             \VOSTPT\Repositories\Contracts\UserRepository::class              => \VOSTPT\Repositories\UserRepository::class,
