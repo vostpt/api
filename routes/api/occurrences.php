@@ -42,7 +42,6 @@ Route::prefix('v1/occurrences')->name('occurrences::')->group(function () {
         'index',
     ])->name('statuses::index');
 
-
     Route::get('/{Occurrence}', [
         OccurrenceController::class,
         'view',
