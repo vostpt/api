@@ -70,6 +70,18 @@ paths:
   /occurrences/{id}:
     $ref: 'occurrences/endpoints.yaml#/view-and-update'
 
+  /occurrences/families:
+    $ref: 'occurrences/endpoints.yaml#/index-occurrence-families'
+
+  /occurrences/species:
+    $ref: 'occurrences/endpoints.yaml#/index-occurrence-species'
+
+  /occurrences/types:
+    $ref: 'occurrences/endpoints.yaml#/index-occurrence-types'
+
+  /occurrences/statuses:
+    $ref: 'occurrences/endpoints.yaml#/index-occurrence-statuses'
+
   /districts:
     $ref: 'districts/endpoints.yaml#/index'
 
