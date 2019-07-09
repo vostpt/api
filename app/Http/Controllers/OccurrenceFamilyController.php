@@ -6,7 +6,7 @@ namespace VOSTPT\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use VOSTPT\Filters\Contracts\OccurrenceFamilyFilter;
-use VOSTPT\Http\Requests\OccurrenceType\Index;
+use VOSTPT\Http\Requests\OccurrenceFamily\Index;
 use VOSTPT\Http\Serializers\OccurrenceFamilySerializer;
 use VOSTPT\Models\OccurrenceFamily;
 use VOSTPT\Repositories\Contracts\OccurrenceFamilyRepository;
