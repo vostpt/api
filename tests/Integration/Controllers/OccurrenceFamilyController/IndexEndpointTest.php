@@ -15,7 +15,7 @@ class IndexEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToOccurrenceFamiliesDueToInvalidContentTypeHeader(): void
+    public function itFailsToIndexOccurrenceFamiliesDueToInvalidContentTypeHeader(): void
     {
         $response = $this->json('GET', route('occurrences::families::index'));
 
@@ -34,7 +34,7 @@ class IndexEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToOccurrenceFamiliesDueToInvalidInput(): void
+    public function itFailsToIndexOccurrenceFamiliesDueToInvalidInput(): void
     {
         $response = $this->json('GET', route('occurrences::families::index'), [
             'page' => [

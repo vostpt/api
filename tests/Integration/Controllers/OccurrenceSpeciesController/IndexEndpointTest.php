@@ -106,7 +106,7 @@ class IndexEndpointTest extends TestCase
     /**
      * @test
      */
-    public function itSuccessfullyIndexeSpeciesOccurrences(): void
+    public function itSuccessfullyIndexesSpeciesOccurrences(): void
     {
         $family = factory(OccurrenceFamily::class)->create();
 
