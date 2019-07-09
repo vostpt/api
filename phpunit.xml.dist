@@ -37,6 +37,22 @@
             <directory suffix="Test.php">./tests/Integration/Controllers/OccurrenceController</directory>
         </testsuite>
 
+        <testsuite name="OccurrenceFamilyController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/OccurrenceFamilyController</directory>
+        </testsuite>
+
+        <testsuite name="OccurrenceSpeciesController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/OccurrenceSpeciesController</directory>
+        </testsuite>
+
+        <testsuite name="OccurrenceStatusController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/OccurrenceStatusController</directory>
+        </testsuite>
+
+        <testsuite name="OccurrenceTypeController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/OccurrenceTypeController</directory>
+        </testsuite>
+
         <testsuite name="ParishController Integration Tests">
             <directory suffix="Test.php">./tests/Integration/Controllers/ParishController</directory>
         </testsuite>
