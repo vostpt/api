@@ -178,6 +178,96 @@ OccurrenceWithRelations:
           type: string
           description: Link to this page
 
+OccurrenceFamily:
+  type: object
+  properties:
+    type:
+      type: string
+      default: occurrence_families
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 3000
+        name:
+          type: string
+          example: Riscos Mistos
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+OccurrenceSpecies:
+  type: object
+  properties:
+    type:
+      type: string
+      default: occurrence_species
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 3100
+        name:
+          type: string
+          example: Incêndios Rurais
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+OccurrenceSpeciesWithRelations:
+  type: object
+  properties:
+    type:
+      type: string
+      default: occurrence_species
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 3100
+        name:
+          type: string
+          example: Incêndios Rurais
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    relationships:
+      type: object
+      properties:
+        family:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: occurrence_families
+                id:
+                  type: string
+                  example: 1
+
 OccurrenceType:
   type: object
   properties:
@@ -192,16 +282,56 @@ OccurrenceType:
       properties:
         code:
           type: integer
-          example: 9121
+          example: 3103
         name:
           type: string
-          example: Reconhecimento Aéreo
+          example: Mato
         created_at:
           type: string
           format: date-time
         updated_at:
           type: string
           format: date-time
+
+OccurrenceTypeWithRelations:
+  type: object
+  properties:
+    type:
+      type: string
+      default: occurrence_types
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 3103
+        name:
+          type: string
+          example: Mato
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    relationships:
+      type: object
+      properties:
+        species:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: occurrence_species
+                id:
+                  type: string
+                  example: 1
 
 OccurrenceStatus:
   type: object

@@ -217,3 +217,295 @@ view-and-update:
         $ref: '../common/responses/415.yaml'
       422:
         $ref: '../common/responses/422.yaml'
+
+index-occurrence-families:
+  get:
+    tags:
+      - Occurrences
+    summary: Index occurrence families
+    description: Index the available occurrence families.
+    operationId: occurrences::families::index
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/page_number.yaml'
+      - $ref: '../common/parameters/page_size.yaml'
+      - $ref: '../common/parameters/search.yaml'
+      - $ref: '../common/parameters/exact.yaml'
+      - name: sort
+        in: query
+        description: Field used for sorting results
+        schema:
+          type: string
+          enum:
+            - code
+            - name
+            - created_at
+            - updated_at
+          default: created_at
+      - $ref: '../common/parameters/order.yaml'
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    first:
+                      type: string
+                      description: Link to the first page of results
+                    last:
+                      type: string
+                      description: Link to the last page of results
+                    prev:
+                      type: string
+                      description: Link to the previous page of results
+                    next:
+                      type: string
+                      description: Link to the next page of results
+                data:
+                  type: array
+                  items:
+                    $ref: 'schemas.yaml#/OccurrenceFamily'
+                meta:
+                  type: object
+                  properties:
+                    items:
+                      type: integer
+                      example: 10
+                    total:
+                      type: integer
+                      example: 100
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+index-occurrence-species:
+  get:
+    tags:
+      - Occurrences
+    summary: Index occurrence species
+    description: Index the available occurrence species.
+    operationId: occurrences::species::index
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/page_number.yaml'
+      - $ref: '../common/parameters/page_size.yaml'
+      - $ref: '../common/parameters/search.yaml'
+      - $ref: '../common/parameters/exact.yaml'
+      - name: families
+        in: query
+        description: Filter by OccurrenceFamily ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: sort
+        in: query
+        description: Field used for sorting results
+        schema:
+          type: string
+          enum:
+            - code
+            - name
+            - created_at
+            - updated_at
+          default: created_at
+      - $ref: '../common/parameters/order.yaml'
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    first:
+                      type: string
+                      description: Link to the first page of results
+                    last:
+                      type: string
+                      description: Link to the last page of results
+                    prev:
+                      type: string
+                      description: Link to the previous page of results
+                    next:
+                      type: string
+                      description: Link to the next page of results
+                data:
+                  type: array
+                  items:
+                    $ref: 'schemas.yaml#/OccurrenceSpeciesWithRelations'
+                included:
+                  type: array
+                  items:
+                    - $ref: 'schemas.yaml#/OccurrenceFamily'
+                meta:
+                  type: object
+                  properties:
+                    items:
+                      type: integer
+                      example: 10
+                    total:
+                      type: integer
+                      example: 100
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+index-occurrence-types:
+  get:
+    tags:
+      - Occurrences
+    summary: Index occurrence types
+    description: Index the available occurrence types.
+    operationId: occurrences::types::index
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/page_number.yaml'
+      - $ref: '../common/parameters/page_size.yaml'
+      - $ref: '../common/parameters/search.yaml'
+      - $ref: '../common/parameters/exact.yaml'
+      - name: species
+        in: query
+        description: Filter by OccurrenceSpecies ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: sort
+        in: query
+        description: Field used for sorting results
+        schema:
+          type: string
+          enum:
+            - code
+            - name
+            - created_at
+            - updated_at
+          default: created_at
+      - $ref: '../common/parameters/order.yaml'
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    first:
+                      type: string
+                      description: Link to the first page of results
+                    last:
+                      type: string
+                      description: Link to the last page of results
+                    prev:
+                      type: string
+                      description: Link to the previous page of results
+                    next:
+                      type: string
+                      description: Link to the next page of results
+                data:
+                  type: array
+                  items:
+                    $ref: 'schemas.yaml#/OccurrenceTypeWithRelations'
+                included:
+                  type: array
+                  items:
+                    - $ref: 'schemas.yaml#/OccurrenceSpecies'
+                meta:
+                  type: object
+                  properties:
+                    items:
+                      type: integer
+                      example: 10
+                    total:
+                      type: integer
+                      example: 100
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
+
+index-occurrence-statuses:
+  get:
+    tags:
+      - Occurrences
+    summary: Index occurrence statuses
+    description: Index the available occurrence statuses.
+    operationId: occurrences::statuses::index
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/page_number.yaml'
+      - $ref: '../common/parameters/page_size.yaml'
+      - $ref: '../common/parameters/search.yaml'
+      - $ref: '../common/parameters/exact.yaml'
+      - name: sort
+        in: query
+        description: Field used for sorting results
+        schema:
+          type: string
+          enum:
+            - code
+            - name
+            - created_at
+            - updated_at
+          default: created_at
+      - $ref: '../common/parameters/order.yaml'
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    first:
+                      type: string
+                      description: Link to the first page of results
+                    last:
+                      type: string
+                      description: Link to the last page of results
+                    prev:
+                      type: string
+                      description: Link to the previous page of results
+                    next:
+                      type: string
+                      description: Link to the next page of results
+                data:
+                  type: array
+                  items:
+                    $ref: 'schemas.yaml#/OccurrenceStatus'
+                meta:
+                  type: object
+                  properties:
+                    items:
+                      type: integer
+                      example: 10
+                    total:
+                      type: integer
+                      example: 100
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'

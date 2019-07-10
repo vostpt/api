@@ -7,14 +7,14 @@ namespace VOSTPT\Http\Serializers;
 use Tobscure\JsonApi\AbstractSerializer;
 use Tobscure\JsonApi\Relationship;
 use Tobscure\JsonApi\Resource;
-use VOSTPT\Models\OccurrenceType;
+use VOSTPT\Models\OccurrenceSpecies;
 
-class OccurrenceTypeSerializer extends AbstractSerializer
+class OccurrenceSpeciesSerializer extends AbstractSerializer
 {
     /**
      * {@inheritDoc}
      */
-    protected $type = 'occurrence_types';
+    protected $type = 'occurrence_species';
 
     /**
      * {@inheritDoc}
@@ -30,14 +30,14 @@ class OccurrenceTypeSerializer extends AbstractSerializer
     }
 
     /**
-     * Associated Species.
+     * Associated Family.
      *
-     * @param OccurrenceType $occurrenceType
+     * @param OccurrenceSpecies $occurrenceSpecies
      *
      * @return \Tobscure\JsonApi\Relationship
      */
-    public function species(OccurrenceType $occurrenceType): Relationship
+    public function family(OccurrenceSpecies $occurrenceSpecies): Relationship
     {
-        return new Relationship(new Resource($occurrenceType->species()->first(), new OccurrenceSpeciesSerializer()));
+        return new Relationship(new Resource($occurrenceSpecies->family()->first(), new OccurrenceFamilySerializer()));
     }
 }
