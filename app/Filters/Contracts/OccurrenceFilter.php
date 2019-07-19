@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace VOSTPT\Filters\Contracts;
 
+use Carbon\Carbon;
+
 interface OccurrenceFilter extends Filter
 {
     /**
@@ -59,4 +61,22 @@ interface OccurrenceFilter extends Filter
      * @return self
      */
     public function withParishes(...$parishes): self;
+
+    /**
+     * Include started at date for filtering.
+     *
+     * @param Carbon $startedAt
+     *
+     * @return self
+     */
+    public function withStartedAt(Carbon $startedAt): self;
+
+    /**
+     * Include ended at date for filtering.
+     *
+     * @param Carbon $endedAt
+     *
+     * @return self
+     */
+    public function withEndedAt(Carbon $endedAt): self;
 }
