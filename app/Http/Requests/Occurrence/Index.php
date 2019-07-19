@@ -15,7 +15,7 @@ class Index extends Request
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'page.number' => [
                 'integer',
             ],
@@ -46,6 +46,12 @@ class Index extends Request
             'parishes.*' => [
                 Rule::exists('parishes', 'id'),
             ],
+            'started_at' => [
+                'date_format:Y-m-d',
+            ],
+            'ended_at' => [
+                'date_format:Y-m-d',
+            ],
             'sort' => [
                 Rule::in(OccurrenceFilter::getSortableColumns()),
             ],
@@ -53,5 +59,20 @@ class Index extends Request
                 Rule::in(OccurrenceFilter::getOrderValues()),
             ],
         ];
+
+        if ($this->has('started_at', 'ended_at')) {
+            $rules = \array_merge_recursive($rules, [
+                'started_at' => [
+                    'date_format:Y-m-d',
+                    'before_or_equal:ended_at',
+                ],
+                'ended_at' => [
+                    'date_format:Y-m-d',
+                    'after_or_equal:started_at',
+                ],
+            ]);
+        }
+
+        return $rules;
     }
 }
