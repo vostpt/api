@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace VOSTPT\Filters;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
 class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
@@ -49,6 +50,20 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
      * @var array
      */
     private $parishes = [];
+
+    /**
+     * Started at date filtering.
+     *
+     * @var Carbon
+     */
+    private $startedAt;
+
+    /**
+     * Ended at date filtering.
+     *
+     * @var Carbon
+     */
+    private $endedAt;
 
     /**
      * {@inheritDoc}
@@ -183,6 +198,26 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
     /**
      * {@inheritDoc}
      */
+    public function withStartedAt(Carbon $startedAt): Contracts\OccurrenceFilter
+    {
+        $this->startedAt = $startedAt;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function withEndedAt(Carbon $endedAt): Contracts\OccurrenceFilter
+    {
+        $this->endedAt = $endedAt;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function apply(Builder $builder): void
     {
         parent::apply($builder);
@@ -223,6 +258,16 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
         if ($this->parishes) {
             $builder->whereIn('parish_id', $this->parishes);
         }
+
+        // Apply started at date filtering
+        if ($this->startedAt) {
+            $builder->whereDate('started_at', '>=', $this->startedAt->toDateString());
+        }
+
+        // Apply ended at date filtering
+        if ($this->endedAt) {
+            $builder->whereDate('ended_at', '<=', $this->endedAt->toDateString());
+        }
     }
 
     /**
@@ -237,6 +282,8 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
             \implode(',', $this->districts),
             \implode(',', $this->counties),
             \implode(',', $this->parishes),
+            $this->startedAt ? $this->startedAt->toDateTimeString() : null,
+            $this->endedAt ? $this->endedAt->toDateTimeString() : null,
         ]);
     }
 }

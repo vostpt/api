@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace VOSTPT\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use VOSTPT\Filters\Contracts\OccurrenceFilter;
 use VOSTPT\Http\Requests\Occurrence\Index;
@@ -59,6 +60,14 @@ class OccurrenceController extends Controller
 
         if ($request->has('parishes')) {
             $filter->withParishes(...$request->input('parishes', []));
+        }
+
+        if ($startedAt = $request->get('started_at')) {
+            $filter->withStartedAt(Carbon::parse($startedAt));
+        }
+
+        if ($endedAt = $request->get('ended_at')) {
+            $filter->withEndedAt(Carbon::parse($endedAt));
         }
 
         $paginator = $this->createPaginator(Occurrence::class, $occurrenceRepository->createQueryBuilder(), $filter);
