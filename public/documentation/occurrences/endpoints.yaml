@@ -59,20 +59,6 @@ index:
           items:
             type: string
             example: 1
-      - name: started_at
-        in: query
-        description: Start date
-        schema:
-          type: string
-          format: date
-          example: '2012-06-14'
-      - name: ended_at
-        in: query
-        description: End date
-        schema:
-          type: string
-          format: date
-          example: '2012-06-14'
       - name: sort
         in: query
         description: Field used for sorting results
