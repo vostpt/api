@@ -71,7 +71,7 @@ class WarningFetcher implements ShouldQueue
         $response = $this->serviceClient->getWarnings();
 
         foreach ($response['data'] as $data) {
-            $awarenessLevelId     = \mb_strtolower($data['awarenessLevelID']);
+            $awarenessLevelId   = \mb_strtolower($data['awarenessLevelID']);
             $awarenessIsAllowed = \in_array($awarenessLevelId, self::ALLOWED_AWARENESS_LEVELS, true);
             if (empty($awarenessLevelId) || ! $awarenessIsAllowed) {
                 continue;
@@ -99,7 +99,6 @@ class WarningFetcher implements ShouldQueue
                     $warning->text = ! empty($data['text']) ? $data['text'] : null;
                     $warning->awareness_type_name = $data['awarenessTypeName'];
                     $warning->zone_name = Arr::get($areasMap, $data['idAreaAviso'].'.zone');
-                    ;
                     $warning->area_id = $data['idAreaAviso'];
                     $warning->area_name = Arr::get($areasMap, $data['idAreaAviso'].'.area');
                     $warning->awareness_level_id = $awarenessLevelId;
