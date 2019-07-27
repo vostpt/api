@@ -6,7 +6,7 @@ namespace VOSTPT\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
-use VOSTPT\Jobs\Occurrences\Warnings\WarningFetcher;
+use VOSTPT\Jobs\Warnings\WarningFetcher;
 
 class WarningFetchCommand extends Command
 {
