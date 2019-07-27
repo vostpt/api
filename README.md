@@ -80,6 +80,22 @@ For local development and testing purposes, a command is also available:
 php artisan fetch:prociv-occurrences
 ```
 
+### Ipma warnings
+By default, the `WarningFetcher` job class is executed hourly through the main scheduler.
+
+For local development and testing purposes, a command is also available:
+
+```sh
+php artisan warnings:fetch
+```
+By default, the `WarningCloser` job class is executed every 5 (five) minutes through the main scheduler.
+
+For local development and testing purposes, a command is also available:
+
+```sh
+php artisan warnings:close
+```
+
 >**NOTE:** All Job/Command output will be sent to the application log file (`storage/logs/laravel.log`).
 
 ### Database
