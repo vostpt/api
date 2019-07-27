@@ -21,7 +21,8 @@ class CreateIpmaWarningsTable extends Migration
             $table->string('text')->nullable();
             $table->string('awareness_type_name');
             $table->string('awareness_level_id');
-            $table->string('id_area_warning');
+            $table->string('zone_name');
+            $table->string('area_id');
             $table->string('area_name');
             $table->dateTime('started_at');
             $table->dateTime('ended_at');

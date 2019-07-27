@@ -9,6 +9,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;
@@ -39,7 +40,7 @@ class WarningFetcher implements ShouldQueue
     /**
      * Execute the job.
      *
-     * @param IpmaServiceClient $serviceClient
+     * @param IpmaServiceClient        $serviceClient
      * @param \Psr\Log\LoggerInterface $logger
      *
      * @return bool
@@ -57,7 +58,7 @@ class WarningFetcher implements ShouldQueue
     }
 
     /**
-     * Fetch ProCiv occurrences.
+     * Fetch Ipma warnings.
      *
      * @return bool
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -70,20 +71,19 @@ class WarningFetcher implements ShouldQueue
         $response = $this->serviceClient->getWarnings();
 
         foreach ($response['data'] as $data) {
-
-            // The awareness level must be present, we only store yellow and red warnings.
-            if (empty($data['awarenessLevelID']) || ! \in_array($data['awarenessLevelID'], self::ALLOWED_AWARENESS_LEVELS, true)) {
+            $awarenessLevelId     = \mb_strtolower($data['awarenessLevelID']);
+            $awarenessIsAllowed = \in_array($awarenessLevelId, self::ALLOWED_AWARENESS_LEVELS, true);
+            if (empty($awarenessLevelId) || ! $awarenessIsAllowed) {
                 continue;
             }
 
-            DB::transaction(function () use ($data) {
+            DB::transaction(function () use ($data, $awarenessLevelId) {
                 $startedAt = $this->carbonise($data['startTime'])->toDateTimeString();
                 $endedAt = $this->carbonise($data['endTime'])->toDateTimeString();
 
-                // check if the warning already exists on our DB.
                 $warningExists = IpmaWarning::query()
-                    ->where('id_area_warning', $data['idAreaAviso'])
-                    ->where('awareness_level_id', $data['awarenessLevelID'])
+                    ->where('area_id', $data['idAreaAviso'])
+                    ->where('awareness_level_id', $awarenessLevelId)
                     ->where('is_active', 1)
                     ->where('started_at', '<=', $startedAt)
                     ->where('ended_at', '>', $startedAt)
@@ -92,15 +92,17 @@ class WarningFetcher implements ShouldQueue
                     ->first();
 
                 if (! $warningExists) {
-                    $areasMap = config('ipma.areas');
+                    $areasMap = config('ipma.areas', []);
 
                     $warning = new IpmaWarning();
                     $warning->uuid = Uuid::uuid4();
                     $warning->text = ! empty($data['text']) ? $data['text'] : null;
                     $warning->awareness_type_name = $data['awarenessTypeName'];
-                    $warning->id_area_warning = $data['idAreaAviso'];
-                    $warning->area_name = $areasMap[$data['idAreaAviso']] ?? '';
-                    $warning->awareness_level_id = $data['awarenessLevelID'];
+                    $warning->zone_name = Arr::get($areasMap, $data['idAreaAviso'].'.zone');
+                    ;
+                    $warning->area_id = $data['idAreaAviso'];
+                    $warning->area_name = Arr::get($areasMap, $data['idAreaAviso'].'.area');
+                    $warning->awareness_level_id = $awarenessLevelId;
                     $warning->started_at = $startedAt;
                     $warning->ended_at = $endedAt;
                     $warning->save();
@@ -112,7 +114,6 @@ class WarningFetcher implements ShouldQueue
                 }
             });
         }
-
         $this->logger->info('...done!');
 
         return true;
