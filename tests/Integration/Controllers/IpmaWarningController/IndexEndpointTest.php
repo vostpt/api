@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\IpmaWarningController;
 
-use VOSTPT\Models\Role;
-use VOSTPT\Models\User;
 use VOSTPT\Tests\Integration\RefreshDatabase;
 use VOSTPT\Tests\Integration\TestCase;
 
@@ -38,7 +36,7 @@ class IndexEndpointTest extends TestCase
     public function itSuccessfullyIndexesIpmaWarning(): void
     {
         $response = $this->json('GET', route('ipma::warnings::index'), [], [
-            'Content-Type'  => 'application/vnd.api+json',
+            'Content-Type' => 'application/vnd.api+json',
         ]);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
