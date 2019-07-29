@@ -13,23 +13,24 @@ class IpmaWarningSerializer extends AbstractSerializer
      */
     protected $type = 'ipma_warnings';
 
+    public function getId($model)
+    {
+        return $model['id'];
+    }
+
     /**
      * {@inheritDoc}
      */
     public function getAttributes($model, array $fields = null): array
     {
         return [
-            'uuid'                => $model->uuid,
-            'text'                => $model->text,
-            'awareness_type_name' => $model->awareness_type_name,
-            'awareness_level_id'  => $model->awareness_level_id,
-            'zone_name'           => $model->zone_name,
-            'area_id'             => $model->area_id,
-            'area_name'           => $model->area_name,
-            'started_at'          => $model->started_at,
-            'ended_at'            => $model->ended_at,
-            'created_at'          => $model->created_at->toDateTimeString(),
-            'updated_at'          => $model->updated_at->toDateTimeString(),
+            'description'         => $model['text'],
+            'awareness_type_name' => $model['awarenessTypeName'],
+            'awareness_level_id'  => \mb_strtoupper($model['awarenessLevelID']),
+            'region'              => $model['region'],
+            'county'              => $model['county'],
+            'started_at'          => $model['started_at'],
+            'ended_at'            => $model['ended_at'],
         ];
     }
 }

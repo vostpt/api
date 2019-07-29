@@ -8,7 +8,6 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use VOSTPT\Jobs\Occurrences\OccurrenceCloser;
 use VOSTPT\Jobs\Occurrences\OccurrenceFetcher;
-use VOSTPT\Jobs\Warnings\WarningCloser;
 use VOSTPT\Jobs\Warnings\WarningFetcher;
 
 class Kernel extends ConsoleKernel
@@ -25,8 +24,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->job(new OccurrenceFetcher())->everyFiveMinutes();
         $schedule->job(new OccurrenceCloser())->everyThirtyMinutes();
-        $schedule->job(new WarningFetcher())->hourly();
-        $schedule->job(new WarningCloser())->everyFiveMinutes();
+        $schedule->job(new WarningFetcher())->everyThirtyMinutes();
     }
 
     /**

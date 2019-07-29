@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace VOSTPT\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cache;
+use Tobscure\JsonApi\Collection;
+use Tobscure\JsonApi\Document;
 use VOSTPT\Http\Serializers\IpmaWarningSerializer;
-use VOSTPT\Models\IpmaWarning;
 
 class IpmaWarningController extends Controller
 {
@@ -17,7 +19,14 @@ class IpmaWarningController extends Controller
      */
     public function index(): JsonResponse
     {
-        $data = IpmaWarning::query()->where('is_active', 1)->get();
-        return response()->collection($data, new IpmaWarningSerializer());
+        $data = ['data' => []];
+
+        if (Cache::has('ipma_warnings')) {
+            $ipmaWarnings           = Cache::get('ipma_warnings');
+            $ipmaWarningsCollection = (new Collection($ipmaWarnings, new IpmaWarningSerializer()));
+            $data                   = new Document($ipmaWarningsCollection);
+        }
+
+        return response()->json($data);
     }
 }

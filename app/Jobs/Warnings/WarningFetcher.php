@@ -10,10 +10,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;
-use VOSTPT\Models\IpmaWarning;
+use VOSTPT\Models\County;
 use VOSTPT\ServiceClients\Contracts\IpmaServiceClient;
 
 class WarningFetcher implements ShouldQueue
@@ -25,6 +25,35 @@ class WarningFetcher implements ShouldQueue
     const ALLOWED_AWARENESS_LEVELS = [
         'yellow',
         'red',
+    ];
+
+    // This array will map the Ipma areaId code to County id on the DB (counties table).
+    const AREA_CODES_MAP = [
+        'AVR' => 5,
+        'BJA' => 24,
+        'BRG' => 36,
+        'BGC' => 49,
+        'CBO' => 61,
+        'CBR' => 73,
+        'EVR' => 92,
+        'FAR' => 106,
+        'GDA' => 124,
+        'LRA' => 140,
+        'LSB' => 153,
+        'PTG' => 177,
+        'PTO' => 190,
+        'STM' => 212,
+        'STB' => 229,
+        'VCT' => 239,
+        'VRL' => 254,
+        'VIS' => 277,
+        'MCN' => 288, // Madeira - Costa Norte (São Vicente)
+        'MCS' => 281, // Madeira - Costa Sul (Funchal)
+        'MRM' => 287, // Madeira - R. Montanhosas (Santana)
+        'MPS' => 289, // Madeira - Porto Santo
+        'AOR' => 293, // Açores - Grupo Oriental (Ponta Delgada)
+        'ACE' => 300, // Açores - Grupo Central (Calheta de São Jorge)
+        'AOC' => 307, // Açores - Grupo Ocidental (Santa Cruz das Flores)
     ];
 
     /**
@@ -70,62 +99,46 @@ class WarningFetcher implements ShouldQueue
 
         $response = $this->serviceClient->getWarnings();
 
-        foreach ($response['data'] as $data) {
-            $awarenessLevelId   = \mb_strtolower($data['awarenessLevelID']);
-            $awarenessIsAllowed = \in_array($awarenessLevelId, self::ALLOWED_AWARENESS_LEVELS, true);
-            if (empty($awarenessLevelId) || ! $awarenessIsAllowed) {
-                continue;
-            }
-
-            DB::transaction(function () use ($data, $awarenessLevelId) {
-                $startedAt = $this->carbonise($data['startTime'])->toDateTimeString();
-                $endedAt = $this->carbonise($data['endTime'])->toDateTimeString();
-
-                $warningExists = IpmaWarning::query()
-                    ->where('area_id', $data['idAreaAviso'])
-                    ->where('awareness_level_id', $awarenessLevelId)
-                    ->where('is_active', 1)
-                    ->where('started_at', '<=', $startedAt)
-                    ->where('ended_at', '>', $startedAt)
-                    ->where('started_at', '<', $endedAt)
-                    ->where('ended_at', '>=', $endedAt)
-                    ->first();
-
-                if (! $warningExists) {
-                    $areasMap = config('ipma.areas', []);
-
-                    $warning = new IpmaWarning();
-                    $warning->uuid = Uuid::uuid4();
-                    $warning->text = ! empty($data['text']) ? $data['text'] : null;
-                    $warning->awareness_type_name = $data['awarenessTypeName'];
-                    $warning->zone_name = Arr::get($areasMap, $data['idAreaAviso'].'.zone');
-                    $warning->area_id = $data['idAreaAviso'];
-                    $warning->area_name = Arr::get($areasMap, $data['idAreaAviso'].'.area');
-                    $warning->awareness_level_id = $awarenessLevelId;
-                    $warning->started_at = $startedAt;
-                    $warning->ended_at = $endedAt;
-                    $warning->save();
-
-                    $this->logger->info(\sprintf(
-                        'Created Ipma warning %s',
-                        $warning->id
-                    ));
+        $ipmaWarnings = collect($response['data'])
+            ->filter(function ($value) {
+                if (! empty($value['awarenessLevelID'])) {
+                    $awarenessLevelId = \mb_strtolower($value['awarenessLevelID']);
+                    $awarenessIsAllowed = \in_array($awarenessLevelId, self::ALLOWED_AWARENESS_LEVELS, true);
+                    if ($awarenessIsAllowed) {
+                        return $value;
+                    }
                 }
+            })->map(function ($item) {
+                // get aux data
+                $countyId = Arr::get(self::AREA_CODES_MAP, $item['idAreaAviso']);
+                $county = County::find($countyId);
+                $district = $county->district;
+                $region = ! \in_array($district->id, [19, 20], true) ? 'CONTINENTE' : $district->name;
+
+                // set/modify attributtes
+                $item['id'] = Uuid::uuid4()->toString();
+                $item['region'] = $region;
+                $item['county'] = $county->name;
+                $item['started_at'] = $this->carbonise($item['startTime'])->toDateTimeString();
+                $item['ended_at'] = $this->carbonise($item['endTime'])->toDateTimeString();
+
+                return $item;
             });
+
+        if (Cache::has('ipma_warnings')) {
+            Cache::forget('ipma_warnings');
         }
+
+        Cache::forever('ipma_warnings', $ipmaWarnings);
+
         $this->logger->info('...done!');
 
         return true;
     }
 
     /**
-     * Create a Carbon object from a date string.
-     *
-     * @param string $dateTime
-     *
-     * @return Carbon
-     * @throws \RuntimeException
-     *
+     * @param string|null $dateTime
+     * @return Carbon|null
      */
     private function carbonise(string $dateTime = null): ?Carbon
     {
