@@ -25,21 +25,6 @@ class IpmaWarningSerializer extends AbstractSerializer
     /**
      * {@inheritDoc}
      */
-    public function getLinks($item): array
-    {
-        return [
-            'county' => route('counties::view', [
-                'County' => $item['county_id'],
-            ]),
-            'district' => route('districts::view', [
-                'District' => $item['district_id'],
-            ]),
-        ];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getAttributes($item, array $fields = null): array
     {
         return [
