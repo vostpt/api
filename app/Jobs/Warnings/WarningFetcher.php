@@ -112,13 +112,11 @@ class WarningFetcher implements ShouldQueue
                 // get aux data
                 $countyId = Arr::get(self::AREA_CODES_MAP, $item['idAreaAviso']);
                 $county = County::find($countyId);
-                $district = $county->district;
-                $region = ! \in_array($district->id, [19, 20], true) ? 'CONTINENTE' : $district->name;
 
                 // set/modify attributtes
                 $item['id'] = Uuid::uuid4()->toString();
-                $item['region'] = $region;
-                $item['county'] = $county->name;
+                $item['district_id'] = $county->district->id;
+                $item['county_id'] = $county->id;
                 $item['started_at'] = $this->carbonise($item['startTime'])->toDateTimeString();
                 $item['ended_at'] = $this->carbonise($item['endTime'])->toDateTimeString();
 

@@ -21,11 +21,12 @@ class IpmaWarningController extends Controller
     {
         $ipmaWarnings = [];
 
-        if (Cache::has('ipma_warnings')) {
-            $ipmaWarnings = Cache::get('ipma_warnings');
+        if ($this->cache->has('ipma_warnings')) {
+            $ipmaWarnings = $this->cache->get('ipma_warnings');
         }
 
-        $ipmaWarningsCollection = (new Collection($ipmaWarnings, new IpmaWarningSerializer()));
+        $ipmaWarningsCollection = (new Collection($ipmaWarnings, new IpmaWarningSerializer()))
+            ->with(['county', 'district']);
         $data                   = new Document($ipmaWarningsCollection);
 
         return response()->json($data);
