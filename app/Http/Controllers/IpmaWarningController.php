@@ -19,13 +19,14 @@ class IpmaWarningController extends Controller
      */
     public function index(): JsonResponse
     {
-        $data = ['data' => []];
+        $ipmaWarnings = [];
 
         if (Cache::has('ipma_warnings')) {
-            $ipmaWarnings           = Cache::get('ipma_warnings');
-            $ipmaWarningsCollection = (new Collection($ipmaWarnings, new IpmaWarningSerializer()));
-            $data                   = new Document($ipmaWarningsCollection);
+            $ipmaWarnings = Cache::get('ipma_warnings');
         }
+
+        $ipmaWarningsCollection = (new Collection($ipmaWarnings, new IpmaWarningSerializer()));
+        $data                   = new Document($ipmaWarningsCollection);
 
         return response()->json($data);
     }
