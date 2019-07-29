@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Controllers\OccurrenceController;
 
+use Carbon\Carbon;
 use VOSTPT\Models\County;
 use VOSTPT\Models\District;
 use VOSTPT\Models\Event;
@@ -68,8 +69,10 @@ class IndexEndpointTest extends TestCase
             'parishes' => [
                 1,
             ],
-            'sort'  => 'id',
-            'order' => 'up',
+            'started_at' => '2000-12-31',
+            'ended_at'   => '2000-01-01',
+            'sort'       => 'id',
+            'order'      => 'up',
         ], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
@@ -100,6 +103,18 @@ class IndexEndpointTest extends TestCase
                     'detail' => 'The exact field must be true or false.',
                     'meta'   => [
                         'field' => 'exact',
+                    ],
+                ],
+                [
+                    'detail' => 'The started at must be a date before or equal to ended at.',
+                    'meta'   => [
+                        'field' => 'started_at',
+                    ],
+                ],
+                [
+                    'detail' => 'The ended at must be a date after or equal to started at.',
+                    'meta'   => [
+                        'field' => 'ended_at',
                     ],
                 ],
                 [
@@ -170,11 +185,16 @@ class IndexEndpointTest extends TestCase
             'county_id' => $county->getKey(),
         ]);
 
+        $yesterday = Carbon::yesterday();
+        $today     = Carbon::now();
+
         $occurrences = factory(Occurrence::class, 20)->make([
-            'event_id'  => $event->getKey(),
-            'type_id'   => $type->getKey(),
-            'status_id' => $status->getKey(),
-            'parish_id' => $parish->getKey(),
+            'event_id'   => $event->getKey(),
+            'type_id'    => $type->getKey(),
+            'status_id'  => $status->getKey(),
+            'parish_id'  => $parish->getKey(),
+            'started_at' => $yesterday,
+            'ended_at'   => $today,
         ]);
 
         factory(ProCivOccurrence::class, 20)->create()->each(function (ProCivOccurrence $proCivOccurrence, $index) use ($occurrences) {
@@ -204,9 +224,11 @@ class IndexEndpointTest extends TestCase
             'parishes' => [
                 $parish->getKey(),
             ],
-            'search' => '0 1 2 3 4 5 6 7 8 9',
-            'sort'   => 'locality',
-            'order'  => 'asc',
+            'started_at' => $yesterday->toDateString(),
+            'ended_at'   => $today->toDateString(),
+            'search'     => '0 1 2 3 4 5 6 7 8 9',
+            'sort'       => 'locality',
+            'order'      => 'asc',
         ], [
             'Content-Type' => 'application/vnd.api+json',
         ]);
