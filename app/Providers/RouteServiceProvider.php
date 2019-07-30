@@ -55,12 +55,12 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes(): void
     {
         $this->app['router']->group(['middleware' => 'api'], function () {
-            require base_path('routes/api/ipma.php');
             require base_path('routes/api/acronyms.php');
             require base_path('routes/api/auth.php');
             require base_path('routes/api/counties.php');
             require base_path('routes/api/districts.php');
             require base_path('routes/api/events.php');
+            require base_path('routes/api/ipma.php');
             require base_path('routes/api/occurrences.php');
             require base_path('routes/api/parishes.php');
             require base_path('routes/api/users.php');
