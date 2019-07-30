@@ -27,8 +27,11 @@ class WarningFetcher implements ShouldQueue
         'red',
     ];
 
-    // This array will map the Ipma areaId code to County id on the DB (counties table).
-    const AREA_CODES_MAP = [
+    /**
+     * Best effort IPMA Area to County mapper
+     * @see http://api.ipma.pt/open-data/distrits-islands.json
+     */
+    private const COUNTY_MAPPER = [
         'AVR' => 5,
         'BJA' => 24,
         'BRG' => 36,
@@ -39,7 +42,7 @@ class WarningFetcher implements ShouldQueue
         'FAR' => 106,
         'GDA' => 124,
         'LRA' => 140,
-        'LSB' => 153,
+        'LSB' => 153, // Continente [Lisboa, Lisboa - Jardim Botânico]
         'PTG' => 177,
         'PTO' => 190,
         'STM' => 212,
@@ -48,12 +51,12 @@ class WarningFetcher implements ShouldQueue
         'VRL' => 254,
         'VIS' => 277,
         'MCN' => 288, // Madeira - Costa Norte (São Vicente)
-        'MCS' => 281, // Madeira - Costa Sul (Funchal)
+        'MCS' => 281, // Madeira - Costa Sul [Funchal]
         'MRM' => 287, // Madeira - R. Montanhosas (Santana)
         'MPS' => 289, // Madeira - Porto Santo
-        'AOR' => 293, // Açores - Grupo Oriental (Ponta Delgada)
-        'ACE' => 300, // Açores - Grupo Central (Calheta de São Jorge)
-        'AOC' => 307, // Açores - Grupo Ocidental (Santa Cruz das Flores)
+        'AOR' => 293, // Açores - Grupo Oriental [Ponta Delgada, Vila do Porto]
+        'ACE' => 297, // Açores - Grupo Central [Angra do Heroísmo, Santa Cruz da Graciosa, Velas, Madalena, Horta]
+        'AOC' => 307, // Açores - Grupo Ocidental [Santa Cruz das Flores, Vila do Corvo]
     ];
 
     /**
