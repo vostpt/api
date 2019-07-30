@@ -68,6 +68,10 @@
         <testsuite name="UserRoleController Integration Tests">
             <directory suffix="Test.php">./tests/Integration/Controllers/UserRoleController</directory>
         </testsuite>
+
+        <testsuite name="WarningController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/WarningController</directory>
+        </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
@@ -80,7 +84,7 @@
         <server name="APP_KEY" value="jqEQJBYvDujpmG3VPRYYVGVqEpX2DYf5"/>
         <server name="JWT_SECRET" value="DXMcjZmgShcu0nhph7lPZmN2zIBDoNt8"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
-        <server name="CACHE_DRIVER" value="array"/>
+        <server name="CACHE_DRIVER" value="redis"/>
         <server name="MAIL_DRIVER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
 
