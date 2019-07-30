@@ -6,6 +6,7 @@ namespace VOSTPT\Jobs\Warnings;
 
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Cache\Repository as Cache;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\SerializesModels;
@@ -70,19 +71,26 @@ class WarningFetcher implements ShouldQueue
     private $logger;
 
     /**
+     * Cache implementation.
+     *
+     * @var \Illuminate\Contracts\Cache\Repository
+     */
+    protected $cache;
+
+    /**
      * Execute the job.
      *
-     * @param IpmaServiceClient        $serviceClient
-     * @param \Psr\Log\LoggerInterface $logger
+     * @param IpmaServiceClient                      $serviceClient
+     * @param \Psr\Log\LoggerInterface               $logger
+     * @param \Illuminate\Contracts\Cache\Repository $cache
      *
      * @return bool
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      */
-    public function handle(IpmaServiceClient $serviceClient, LoggerInterface $logger): bool
+    public function handle(IpmaServiceClient $serviceClient, LoggerInterface $logger, Cache $cache): bool
     {
         $this->serviceClient = $serviceClient;
         $this->logger        = $logger;
+        $this->cache         = $cache;
 
         $this->fetchIpmaWarnings();
 
