@@ -32,6 +32,8 @@ tags:
     description: Parish operations
   - name: Users
     description: System user operations
+  - name: Warnings
+    description: IPMA warning operations
 
 x-tagGroups:
   - name: Acronym Management
@@ -50,6 +52,9 @@ x-tagGroups:
     tags:
       - Authentication
       - Users
+  - name: Warning Management
+    tags:
+        - Warnings
 
 paths:
   /acronyms:
@@ -120,6 +125,9 @@ paths:
 
   /users/profile:
     $ref: 'users/endpoints.yaml#/profile-view-and-update'
+
+  /ipma/warnings:
+      $ref: 'warnings/endpoints.yaml#/index'
 
 components:
   securitySchemes:

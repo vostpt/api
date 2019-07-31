@@ -60,6 +60,7 @@ class RouteServiceProvider extends ServiceProvider
             require base_path('routes/api/counties.php');
             require base_path('routes/api/districts.php');
             require base_path('routes/api/events.php');
+            require base_path('routes/api/ipma.php');
             require base_path('routes/api/occurrences.php');
             require base_path('routes/api/parishes.php');
             require base_path('routes/api/users.php');

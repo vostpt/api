@@ -1,0 +1,29 @@
+index:
+  get:
+    tags:
+      - Warnings
+    summary: Index warnings
+    description: Index the available warnings.
+    operationId: warnings::index
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: 'schemas.yaml#/WarningWithRelations'
+                included:
+                    type: array
+                    items:
+                        - $ref: '../counties/schemas.yaml#/CountyWithRelations'
+                        - $ref: '../districts/schemas.yaml#/District'
+      415:
+        $ref: '../common/responses/415.yaml'

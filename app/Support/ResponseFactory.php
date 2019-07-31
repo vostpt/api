@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace VOSTPT\Support;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Collection as LaravelCollection;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -83,7 +83,7 @@ class ResponseFactory extends \Illuminate\Routing\ResponseFactory
     /**
      * JSON API Collection response.
      *
-     * @param EloquentCollection $collection
+     * @param LaravelCollection  $collection
      * @param AbstractSerializer $serializer
      * @param array              $relationships
      * @param int                $status
@@ -93,7 +93,7 @@ class ResponseFactory extends \Illuminate\Routing\ResponseFactory
      * @return \Illuminate\Http\JsonResponse
      */
     public function collection(
-        EloquentCollection $collection,
+        LaravelCollection $collection,
         AbstractSerializer $serializer,
         array $relationships = [],
         int $status = 200,
