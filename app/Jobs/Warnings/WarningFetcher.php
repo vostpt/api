@@ -22,6 +22,13 @@ class WarningFetcher implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
+    /**
+     * Awareness levels.
+     *
+     * Yellow: Weather sensitive activities may be affected
+     * Orange: Weather conditions involving moderate to high risk
+     * Red:    Weather conditions involving high risk
+     */
     private const ALLOWED_AWARENESS_LEVELS = [
         'yellow',
         'orange',
@@ -29,7 +36,8 @@ class WarningFetcher implements ShouldQueue
     ];
 
     /**
-     * Best effort IPMA Area to County mapper
+     * Best effort IPMA Area to County mapper.
+     *
      * @see http://api.ipma.pt/open-data/distrits-islands.json
      */
     private const COUNTY_MAPPER = [
@@ -43,7 +51,7 @@ class WarningFetcher implements ShouldQueue
         'FAR' => 106,
         'GDA' => 124,
         'LRA' => 140,
-        'LSB' => 153, // Continente [Lisboa, Lisboa - Jardim Botânico]
+        'LSB' => 153, // Mainland [Lisboa, Lisboa - Jardim Botânico]
         'PTG' => 177,
         'PTO' => 190,
         'STM' => 212,
