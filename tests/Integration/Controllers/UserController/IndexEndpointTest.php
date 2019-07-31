@@ -18,7 +18,9 @@ class IndexEndpointTest extends TestCase
      */
     public function itFailsToIndexUsersDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('GET', route('users::index'));
+        $response = $this->json('GET', route('users::index'), [], [
+            'Content-Type' => 'application/vnd.api+json;charset=utf-8',
+        ]);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -26,7 +28,28 @@ class IndexEndpointTest extends TestCase
             'errors' => [
                 [
                     'status' => 415,
-                    'detail' => 'Wrong media type',
+                    'detail' => 'Unsupported media type',
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function itFailsToIndexUsersDueToInvalidAcceptHeader(): void
+    {
+        $response = $this->json('GET', route('users::index'), [], [
+            'Accept' => 'application/vnd.api+json;charset=utf-8',
+        ]);
+
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertStatus(406);
+        $response->assertJson([
+            'errors' => [
+                [
+                    'status' => 406,
+                    'detail' => 'Not acceptable',
                 ],
             ],
         ]);

@@ -18,7 +18,9 @@ class AuthenticateEndpointTest extends TestCase
      */
     public function itFailsToAuthenticateDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('POST', route('auth::authenticate'));
+        $response = $this->json('POST', route('auth::authenticate'), [], [
+            'Content-Type' => 'application/vnd.api+json;charset=utf-8',
+        ]);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -26,7 +28,28 @@ class AuthenticateEndpointTest extends TestCase
             'errors' => [
                 [
                     'status' => 415,
-                    'detail' => 'Wrong media type',
+                    'detail' => 'Unsupported media type',
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function itFailsToAuthenticateDueToInvalidAcceptHeader(): void
+    {
+        $response = $this->json('POST', route('auth::authenticate'), [], [
+            'Accept' => 'application/vnd.api+json;charset=utf-8',
+        ]);
+
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertStatus(406);
+        $response->assertJson([
+            'errors' => [
+                [
+                    'status' => 406,
+                    'detail' => 'Not acceptable',
                 ],
             ],
         ]);

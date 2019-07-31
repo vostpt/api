@@ -18,7 +18,9 @@ class IndexEndpointTest extends TestCase
      */
     public function itFailsToIndexOccurrenceSpeciesDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('GET', route('occurrences::species::index'));
+        $response = $this->json('GET', route('occurrences::species::index'), [], [
+            'Content-Type' => 'application/vnd.api+json;charset=utf-8',
+        ]);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -26,7 +28,28 @@ class IndexEndpointTest extends TestCase
             'errors' => [
                 [
                     'status' => 415,
-                    'detail' => 'Wrong media type',
+                    'detail' => 'Unsupported media type',
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function itFailsToIndexOccurrenceSpeciesDueToInvalidAcceptHeader(): void
+    {
+        $response = $this->json('GET', route('occurrences::species::index'), [], [
+            'Accept' => 'application/vnd.api+json;charset=utf-8',
+        ]);
+
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertStatus(406);
+        $response->assertJson([
+            'errors' => [
+                [
+                    'status' => 406,
+                    'detail' => 'Not acceptable',
                 ],
             ],
         ]);

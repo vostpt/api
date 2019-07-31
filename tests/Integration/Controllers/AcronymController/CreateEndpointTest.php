@@ -18,7 +18,9 @@ class CreateEndpointTest extends TestCase
      */
     public function itFailsToCreateAcronymDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('POST', route('acronyms::create'));
+        $response = $this->json('POST', route('acronyms::create'), [], [
+            'Content-Type' => 'application/vnd.api+json;charset=utf-8',
+        ]);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -26,7 +28,28 @@ class CreateEndpointTest extends TestCase
             'errors' => [
                 [
                     'status' => 415,
-                    'detail' => 'Wrong media type',
+                    'detail' => 'Unsupported media type',
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function itFailsToCreateAcronymDueToInvalidAcceptHeader(): void
+    {
+        $response = $this->json('POST', route('acronyms::create'), [], [
+            'Accept' => 'application/vnd.api+json;charset=utf-8',
+        ]);
+
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertStatus(406);
+        $response->assertJson([
+            'errors' => [
+                [
+                    'status' => 406,
+                    'detail' => 'Not acceptable',
                 ],
             ],
         ]);

@@ -19,7 +19,9 @@ class ViewEndpointTest extends TestCase
     {
         $response = $this->json('GET', route('events::view', [
             'Event' => 1,
-        ]));
+        ]), [], [
+            'Content-Type' => 'application/vnd.api+json;charset=utf-8',
+        ]);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -27,7 +29,30 @@ class ViewEndpointTest extends TestCase
             'errors' => [
                 [
                     'status' => 415,
-                    'detail' => 'Wrong media type',
+                    'detail' => 'Unsupported media type',
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function itFailsToViewEventDueToInvalidAcceptHeader(): void
+    {
+        $response = $this->json('GET', route('events::view', [
+            'Event' => 1,
+        ]), [], [
+            'Accept' => 'application/vnd.api+json;charset=utf-8',
+        ]);
+
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertStatus(406);
+        $response->assertJson([
+            'errors' => [
+                [
+                    'status' => 406,
+                    'detail' => 'Not acceptable',
                 ],
             ],
         ]);
