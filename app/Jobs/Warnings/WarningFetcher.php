@@ -24,6 +24,7 @@ class WarningFetcher implements ShouldQueue
 
     private const ALLOWED_AWARENESS_LEVELS = [
         'yellow',
+        'orange',
         'red',
     ];
 
