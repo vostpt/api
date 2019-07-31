@@ -7,6 +7,7 @@ index:
     operationId: warnings::index
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
 
     responses:
       200:
@@ -25,5 +26,7 @@ index:
                     items:
                         - $ref: '../counties/schemas.yaml#/CountyWithRelations'
                         - $ref: '../districts/schemas.yaml#/District'
+      406:
+          $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'

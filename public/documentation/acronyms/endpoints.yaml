@@ -7,6 +7,7 @@ index-and-create:
     operationId: acronyms::index
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/page_number.yaml'
       - $ref: '../common/parameters/page_size.yaml'
       - $ref: '../common/parameters/search.yaml'
@@ -60,6 +61,8 @@ index-and-create:
                     total:
                       type: integer
                       example: 100
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
       422:
@@ -76,6 +79,7 @@ index-and-create:
     operationId: acronyms::create
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/authorization.yaml'
       - name: initials
         in: query
@@ -106,6 +110,8 @@ index-and-create:
         $ref: '../common/responses/401.yaml'
       403:
         $ref: '../common/responses/403.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
       422:
@@ -120,6 +126,7 @@ view-update-and-delete:
     operationId: acronyms::view
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - name: id
         in: path
         description: Acronym id
@@ -140,6 +147,8 @@ view-update-and-delete:
                   $ref: 'schemas.yaml#/Acronym'
       404:
         $ref: '../common/responses/404.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
 
@@ -154,6 +163,7 @@ view-update-and-delete:
     operationId: acronyms::update
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/authorization.yaml'
       - name: id
         in: path
@@ -191,6 +201,8 @@ view-update-and-delete:
         $ref: '../common/responses/403.yaml'
       404:
         $ref: '../common/responses/404.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
       422:
@@ -207,6 +219,7 @@ view-update-and-delete:
     operationId: acronyms::delete
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/authorization.yaml'
       - name: id
         in: path
@@ -232,5 +245,7 @@ view-update-and-delete:
         $ref: '../common/responses/403.yaml'
       404:
         $ref: '../common/responses/404.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
