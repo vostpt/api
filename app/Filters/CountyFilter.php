@@ -54,6 +54,7 @@ class CountyFilter extends Filter implements Contracts\CountyFilter
     {
         return [
             'counties.id',
+            'counties.district_id',
             'counties.code',
             'counties.name',
             'counties.created_at',

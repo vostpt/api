@@ -59,7 +59,11 @@ index:
                 data:
                   type: array
                   items:
-                    $ref: 'schemas.yaml#/County'
+                    $ref: 'schemas.yaml#/CountyWithRelations'
+                included:
+                  type: array
+                  items:
+                    $ref: '../districts/schemas.yaml#/District'
                 meta:
                   type: object
                   properties:

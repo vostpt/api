@@ -50,7 +50,7 @@ class UserPolicy
             return false;
         }
 
-        if ($user->getKey() !== $userToUpdate->getKey()) {
+        if ($user->isNot($userToUpdate)) {
             return true;
         }
 
