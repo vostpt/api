@@ -18,9 +18,7 @@ class UpdateEndpointTest extends TestCase
      */
     public function itFailsToUpdateProfileDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('PATCH', route('users::profile::update'), [], [
-            'Content-Type' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('PATCH', route('users::profile::update'), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -39,9 +37,7 @@ class UpdateEndpointTest extends TestCase
      */
     public function itFailsToUpdateProfileDueToInvalidAcceptHeader(): void
     {
-        $response = $this->json('PATCH', route('users::profile::update'), [], [
-            'Accept' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('PATCH', route('users::profile::update'), [], static::INVALID_ACCEPT_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(406);
@@ -60,9 +56,7 @@ class UpdateEndpointTest extends TestCase
      */
     public function itFailsToUpdateProfileDueToMissingAccessToken(): void
     {
-        $response = $this->json('PATCH', route('users::profile::update'), [], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        $response = $this->json('PATCH', route('users::profile::update'), [], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(401);

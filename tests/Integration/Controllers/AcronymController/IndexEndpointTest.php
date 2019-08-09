@@ -17,9 +17,7 @@ class IndexEndpointTest extends TestCase
      */
     public function itFailsToIndexAcronymsDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('GET', route('acronyms::index'), [], [
-            'Content-Type' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('GET', route('acronyms::index'), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -38,9 +36,7 @@ class IndexEndpointTest extends TestCase
      */
     public function itFailsToIndexAcronymsDueToInvalidAcceptHeader(): void
     {
-        $response = $this->json('GET', route('acronyms::index'), [], [
-            'Accept' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('GET', route('acronyms::index'), [], static::INVALID_ACCEPT_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(406);
@@ -68,9 +64,7 @@ class IndexEndpointTest extends TestCase
             'exact'  => 'yes',
             'sort'   => 'id',
             'order'  => 'up',
-        ], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(422);
@@ -131,9 +125,7 @@ class IndexEndpointTest extends TestCase
             'search' => 'a b c d e f g i j k l m n o p q r s',
             'sort'   => 'initials',
             'order'  => 'asc',
-        ], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(200);
@@ -184,9 +176,7 @@ class IndexEndpointTest extends TestCase
             'exact'  => $exact,
             'sort'   => 'initials',
             'order'  => 'asc',
-        ], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(200);

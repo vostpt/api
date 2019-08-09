@@ -25,9 +25,7 @@ class IndexEndpointTest extends TestCase
      */
     public function itFailsToIndexOccurrencesDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('GET', route('occurrences::index'), [], [
-            'Content-Type' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('GET', route('occurrences::index'), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -46,9 +44,7 @@ class IndexEndpointTest extends TestCase
      */
     public function itFailsToIndexOccurrencesDueToInvalidAcceptHeader(): void
     {
-        $response = $this->json('GET', route('occurrences::index'), [], [
-            'Accept' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('GET', route('occurrences::index'), [], static::INVALID_ACCEPT_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(406);
@@ -96,9 +92,7 @@ class IndexEndpointTest extends TestCase
             'ended_at'   => '2000-01-01',
             'sort'       => 'id',
             'order'      => 'up',
-        ], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(422);
@@ -252,9 +246,7 @@ class IndexEndpointTest extends TestCase
             'search'     => '0 1 2 3 4 5 6 7 8 9',
             'sort'       => 'locality',
             'order'      => 'asc',
-        ], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(200);

@@ -16,9 +16,7 @@ class CreateEndpointTest extends TestCase
      */
     public function itFailsToCreateUserDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('POST', route('users::create'), [], [
-            'Content-Type' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('POST', route('users::create'), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -37,9 +35,7 @@ class CreateEndpointTest extends TestCase
      */
     public function itFailsToCreateUserDueToInvalidAcceptHeader(): void
     {
-        $response = $this->json('POST', route('users::create'), [], [
-            'Accept' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('POST', route('users::create'), [], static::INVALID_ACCEPT_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(406);
@@ -64,9 +60,7 @@ class CreateEndpointTest extends TestCase
             'email'                 => 'invalid at email dot tld',
             'password'              => 'secret',
             'password_confirmation' => 'code',
-        ], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(422);
@@ -116,9 +110,7 @@ class CreateEndpointTest extends TestCase
             'email'                 => 'fernando.pessoa@vost.pt',
             'password'              => 'absinto',
             'password_confirmation' => 'absinto',
-        ], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ], static::VALID_CONTENT_TYPE_HEADER);
 
         $this->assertDatabaseHas('users', [
             'name'    => 'Fernando',

@@ -18,9 +18,7 @@ class IndexEndpointTest extends TestCase
      */
     public function itFailsToIndexUserRolesDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('GET', route('users::roles::index'), [], [
-            'Content-Type' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('GET', route('users::roles::index'), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -39,9 +37,7 @@ class IndexEndpointTest extends TestCase
      */
     public function itFailsToIndexUserRolesDueToInvalidAcceptHeader(): void
     {
-        $response = $this->json('GET', route('users::roles::index'), [], [
-            'Accept' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('GET', route('users::roles::index'), [], static::INVALID_ACCEPT_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(406);
@@ -60,9 +56,7 @@ class IndexEndpointTest extends TestCase
      */
     public function itFailsToIndexUserRolesDueToMissingAccessToken(): void
     {
-        $response = $this->json('GET', route('users::roles::index'), [], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        $response = $this->json('GET', route('users::roles::index'), [], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(401);

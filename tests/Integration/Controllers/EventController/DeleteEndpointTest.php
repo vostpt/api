@@ -24,9 +24,7 @@ class DeleteEndpointTest extends TestCase
     {
         $response = $this->json('DELETE', route('events::delete', [
             'Event' => 1,
-        ]), [], [
-            'Content-Type' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        ]), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -47,9 +45,7 @@ class DeleteEndpointTest extends TestCase
     {
         $response = $this->json('DELETE', route('events::delete', [
             'Event' => 1,
-        ]), [], [
-            'Accept' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        ]), [], static::INVALID_ACCEPT_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(406);
@@ -70,9 +66,7 @@ class DeleteEndpointTest extends TestCase
     {
         $response = $this->json('DELETE', route('events::delete', [
             'Event' => 1,
-        ]), [], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ]), [], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(401);
@@ -95,9 +89,7 @@ class DeleteEndpointTest extends TestCase
 
         $response = $this->json('DELETE', route('events::delete', [
             'Event' => 1,
-        ]), [], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ]), [], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(404);

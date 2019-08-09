@@ -18,9 +18,7 @@ class CreateEndpointTest extends TestCase
      */
     public function itFailsToCreateAcronymDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('POST', route('acronyms::create'), [], [
-            'Content-Type' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('POST', route('acronyms::create'), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -39,9 +37,7 @@ class CreateEndpointTest extends TestCase
      */
     public function itFailsToCreateAcronymDueToInvalidAcceptHeader(): void
     {
-        $response = $this->json('POST', route('acronyms::create'), [], [
-            'Accept' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('POST', route('acronyms::create'), [], static::INVALID_ACCEPT_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(406);
@@ -60,9 +56,7 @@ class CreateEndpointTest extends TestCase
      */
     public function itFailsToCreateAcronymDueToMissingAccessToken(): void
     {
-        $response = $this->json('POST', route('acronyms::create'), [], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        $response = $this->json('POST', route('acronyms::create'), [], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(401);

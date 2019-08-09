@@ -18,9 +18,7 @@ class RefreshEndpointTest extends TestCase
      */
     public function itFailsToRefreshAccessTokenDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('GET', route('auth::refresh'), [], [
-            'Content-Type' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('GET', route('auth::refresh'), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -39,9 +37,7 @@ class RefreshEndpointTest extends TestCase
      */
     public function itFailsToRefreshAccessTokenDueToInvalidAcceptHeader(): void
     {
-        $response = $this->json('GET', route('auth::refresh'), [], [
-            'Accept' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('GET', route('auth::refresh'), [], static::INVALID_ACCEPT_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(406);
@@ -60,9 +56,7 @@ class RefreshEndpointTest extends TestCase
      */
     public function itFailsToRefreshAccessTokenDueToMissingAccessToken(): void
     {
-        $response = $this->json('GET', route('auth::refresh'), [], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        $response = $this->json('GET', route('auth::refresh'), [], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(401);

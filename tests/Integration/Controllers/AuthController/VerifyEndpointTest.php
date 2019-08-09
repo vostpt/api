@@ -18,9 +18,7 @@ class VerifyEndpointTest extends TestCase
      */
     public function itFailsToVerifyAccessTokenDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('GET', route('auth::verify'), [], [
-            'Content-Type' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('GET', route('auth::verify'), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -39,9 +37,7 @@ class VerifyEndpointTest extends TestCase
      */
     public function itFailsToVerifyAccessTokenDueToInvalidAcceptHeader(): void
     {
-        $response = $this->json('GET', route('auth::verify'), [], [
-            'Accept' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('GET', route('auth::verify'), [], static::INVALID_ACCEPT_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(406);
@@ -60,9 +56,7 @@ class VerifyEndpointTest extends TestCase
      */
     public function itFailsToVerifyAccessTokenDueToMissingAccessToken(): void
     {
-        $response = $this->json('GET', route('auth::verify'), [], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        $response = $this->json('GET', route('auth::verify'), [], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(401);

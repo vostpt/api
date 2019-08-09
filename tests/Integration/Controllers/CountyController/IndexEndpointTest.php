@@ -18,9 +18,7 @@ class IndexEndpointTest extends TestCase
      */
     public function itFailsToIndexCountiesDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('GET', route('counties::index'), [], [
-            'Content-Type' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('GET', route('counties::index'), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -39,9 +37,7 @@ class IndexEndpointTest extends TestCase
      */
     public function itFailsToIndexCountiesDueToInvalidAcceptHeader(): void
     {
-        $response = $this->json('GET', route('counties::index'), [], [
-            'Accept' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('GET', route('counties::index'), [], static::INVALID_ACCEPT_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(406);
@@ -72,9 +68,7 @@ class IndexEndpointTest extends TestCase
             ],
             'sort'  => 'id',
             'order' => 'up',
-        ], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(422);
@@ -148,9 +142,7 @@ class IndexEndpointTest extends TestCase
             ],
             'sort'  => 'code',
             'order' => 'asc',
-        ], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(200);

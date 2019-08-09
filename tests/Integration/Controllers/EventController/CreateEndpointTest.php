@@ -20,9 +20,7 @@ class CreateEndpointTest extends TestCase
      */
     public function itFailsToCreateEventDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('POST', route('events::create'), [], [
-            'Content-Type' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('POST', route('events::create'), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -41,9 +39,7 @@ class CreateEndpointTest extends TestCase
      */
     public function itFailsToCreateEventDueToInvalidAcceptHeader(): void
     {
-        $response = $this->json('POST', route('events::create'), [], [
-            'Accept' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('POST', route('events::create'), [], static::INVALID_ACCEPT_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(406);
@@ -62,9 +58,7 @@ class CreateEndpointTest extends TestCase
      */
     public function itFailsToCreateEventDueToMissingAccessToken(): void
     {
-        $response = $this->json('POST', route('events::create'), [], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        $response = $this->json('POST', route('events::create'), [], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(401);

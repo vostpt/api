@@ -18,9 +18,7 @@ class IndexEndpointTest extends TestCase
      */
     public function itFailsToIndexUsersDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('GET', route('users::index'), [], [
-            'Content-Type' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('GET', route('users::index'), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -39,9 +37,7 @@ class IndexEndpointTest extends TestCase
      */
     public function itFailsToIndexUsersDueToInvalidAcceptHeader(): void
     {
-        $response = $this->json('GET', route('users::index'), [], [
-            'Accept' => 'application/vnd.api+json;charset=utf-8',
-        ]);
+        $response = $this->json('GET', route('users::index'), [], static::INVALID_ACCEPT_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(406);
@@ -60,9 +56,7 @@ class IndexEndpointTest extends TestCase
      */
     public function itFailsToIndexUsersDueToMissingAccessToken(): void
     {
-        $response = $this->json('GET', route('users::index'), [], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        $response = $this->json('GET', route('users::index'), [], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(401);
