@@ -31,6 +31,9 @@ script:
   - vendor/bin/phpunit --dump-xdebug-filter build/xdebug-filter.php
   - vendor/bin/phpunit --testdox --prepend build/xdebug-filter.php --coverage-text --coverage-clover build/logs/clover.xml
 
+after_success:
+  - vendor/bin/php-coveralls -v
+
 cache:
   directories:
     - vendor
