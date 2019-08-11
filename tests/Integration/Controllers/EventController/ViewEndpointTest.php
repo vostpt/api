@@ -19,7 +19,7 @@ class ViewEndpointTest extends TestCase
     {
         $response = $this->json('GET', route('events::view', [
             'Event' => 1,
-        ]));
+        ]), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -27,7 +27,28 @@ class ViewEndpointTest extends TestCase
             'errors' => [
                 [
                     'status' => 415,
-                    'detail' => 'Wrong media type',
+                    'detail' => 'Unsupported media type',
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function itFailsToViewEventDueToInvalidAcceptHeader(): void
+    {
+        $response = $this->json('GET', route('events::view', [
+            'Event' => 1,
+        ]), [], static::INVALID_ACCEPT_HEADER);
+
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertStatus(406);
+        $response->assertJson([
+            'errors' => [
+                [
+                    'status' => 406,
+                    'detail' => 'Not acceptable',
                 ],
             ],
         ]);
@@ -40,9 +61,7 @@ class ViewEndpointTest extends TestCase
     {
         $response = $this->json('GET', route('events::view', [
             'Event' => 1,
-        ]), [], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ]), [], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(404);
@@ -65,9 +84,7 @@ class ViewEndpointTest extends TestCase
 
         $response = $this->json('GET', route('events::view', [
             'Event' => $event->getKey(),
-        ]), [], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ]), [], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(200);

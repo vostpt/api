@@ -18,7 +18,7 @@ class RefreshEndpointTest extends TestCase
      */
     public function itFailsToRefreshAccessTokenDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('GET', route('auth::refresh'));
+        $response = $this->json('GET', route('auth::refresh'), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -26,7 +26,26 @@ class RefreshEndpointTest extends TestCase
             'errors' => [
                 [
                     'status' => 415,
-                    'detail' => 'Wrong media type',
+                    'detail' => 'Unsupported media type',
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function itFailsToRefreshAccessTokenDueToInvalidAcceptHeader(): void
+    {
+        $response = $this->json('GET', route('auth::refresh'), [], static::INVALID_ACCEPT_HEADER);
+
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertStatus(406);
+        $response->assertJson([
+            'errors' => [
+                [
+                    'status' => 406,
+                    'detail' => 'Not acceptable',
                 ],
             ],
         ]);
@@ -37,9 +56,7 @@ class RefreshEndpointTest extends TestCase
      */
     public function itFailsToRefreshAccessTokenDueToMissingAccessToken(): void
     {
-        $response = $this->json('GET', route('auth::refresh'), [], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        $response = $this->json('GET', route('auth::refresh'), [], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(401);

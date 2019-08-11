@@ -18,7 +18,7 @@ class UpdateEndpointTest extends TestCase
      */
     public function itFailsToUpdateProfileDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('PATCH', route('users::profile::update'));
+        $response = $this->json('PATCH', route('users::profile::update'), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -26,7 +26,26 @@ class UpdateEndpointTest extends TestCase
             'errors' => [
                 [
                     'status' => 415,
-                    'detail' => 'Wrong media type',
+                    'detail' => 'Unsupported media type',
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function itFailsToUpdateProfileDueToInvalidAcceptHeader(): void
+    {
+        $response = $this->json('PATCH', route('users::profile::update'), [], static::INVALID_ACCEPT_HEADER);
+
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertStatus(406);
+        $response->assertJson([
+            'errors' => [
+                [
+                    'status' => 406,
+                    'detail' => 'Not acceptable',
                 ],
             ],
         ]);
@@ -37,9 +56,7 @@ class UpdateEndpointTest extends TestCase
      */
     public function itFailsToUpdateProfileDueToMissingAccessToken(): void
     {
-        $response = $this->json('PATCH', route('users::profile::update'), [], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        $response = $this->json('PATCH', route('users::profile::update'), [], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(401);

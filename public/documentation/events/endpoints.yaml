@@ -7,6 +7,7 @@ index-and-create:
     operationId: events::index
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/page_number.yaml'
       - $ref: '../common/parameters/page_size.yaml'
       - $ref: '../common/parameters/search.yaml'
@@ -80,6 +81,8 @@ index-and-create:
                     total:
                       type: integer
                       example: 100
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
       422:
@@ -96,6 +99,7 @@ index-and-create:
     operationId: events::create
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/authorization.yaml'
       - name: type
         in: query
@@ -172,6 +176,8 @@ index-and-create:
         $ref: '../common/responses/401.yaml'
       403:
         $ref: '../common/responses/403.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
       422:
@@ -186,6 +192,7 @@ view-update-and-delete:
     operationId: events::view
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - name: id
         in: path
         description: Event id
@@ -211,6 +218,8 @@ view-update-and-delete:
                     - $ref: '../parishes/schemas.yaml#/Parish'
       404:
         $ref: '../common/responses/404.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
 
@@ -225,6 +234,7 @@ view-update-and-delete:
     operationId: events::update
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/authorization.yaml'
       - name: id
         in: path
@@ -303,6 +313,8 @@ view-update-and-delete:
         $ref: '../common/responses/403.yaml'
       404:
         $ref: '../common/responses/404.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
       422:
@@ -319,6 +331,7 @@ view-update-and-delete:
     operationId: events::delete
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/authorization.yaml'
       - name: id
         in: path
@@ -349,5 +362,7 @@ view-update-and-delete:
         $ref: '../common/responses/403.yaml'
       404:
         $ref: '../common/responses/404.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'

@@ -20,7 +20,7 @@ class IndexEndpointTest extends TestCase
      */
     public function itFailsToIndexWarningsDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('GET', route('ipma::warnings::index'));
+        $response = $this->json('GET', route('ipma::warnings::index'), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -28,7 +28,26 @@ class IndexEndpointTest extends TestCase
             'errors' => [
                 [
                     'status' => 415,
-                    'detail' => 'Wrong media type',
+                    'detail' => 'Unsupported media type',
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function itFailsToIndexWarningsDueToInvalidAcceptHeader(): void
+    {
+        $response = $this->json('GET', route('ipma::warnings::index'), [], static::INVALID_ACCEPT_HEADER);
+
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertStatus(406);
+        $response->assertJson([
+            'errors' => [
+                [
+                    'status' => 406,
+                    'detail' => 'Not acceptable',
                 ],
             ],
         ]);
@@ -54,9 +73,7 @@ class IndexEndpointTest extends TestCase
                 ],
             ]);
 
-        $response = $this->json('GET', route('ipma::warnings::index'), [], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        $response = $this->json('GET', route('ipma::warnings::index'), [], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(200);

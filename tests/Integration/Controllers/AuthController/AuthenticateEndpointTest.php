@@ -18,7 +18,7 @@ class AuthenticateEndpointTest extends TestCase
      */
     public function itFailsToAuthenticateDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('POST', route('auth::authenticate'));
+        $response = $this->json('POST', route('auth::authenticate'), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -26,7 +26,26 @@ class AuthenticateEndpointTest extends TestCase
             'errors' => [
                 [
                     'status' => 415,
-                    'detail' => 'Wrong media type',
+                    'detail' => 'Unsupported media type',
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function itFailsToAuthenticateDueToInvalidAcceptHeader(): void
+    {
+        $response = $this->json('POST', route('auth::authenticate'), [], static::INVALID_ACCEPT_HEADER);
+
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertStatus(406);
+        $response->assertJson([
+            'errors' => [
+                [
+                    'status' => 406,
+                    'detail' => 'Not acceptable',
                 ],
             ],
         ]);
@@ -39,9 +58,7 @@ class AuthenticateEndpointTest extends TestCase
     {
         $response = $this->json('POST', route('auth::authenticate'), [
             'email' => 'invalid at email dot tld',
-        ], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(422);
@@ -71,9 +88,7 @@ class AuthenticateEndpointTest extends TestCase
         $response = $this->json('POST', route('auth::authenticate'), [
             'email'    => 'fernando.pessoa@vost.pt',
             'password' => 'absinto',
-        ], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(401);
@@ -100,9 +115,7 @@ class AuthenticateEndpointTest extends TestCase
         $response = $this->json('POST', route('auth::authenticate'), [
             'email'    => 'fernando.pessoa@vost.pt',
             'password' => 'absinto',
-        ], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertHeader('Cache-Control');

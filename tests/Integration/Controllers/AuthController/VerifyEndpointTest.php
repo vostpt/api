@@ -18,7 +18,7 @@ class VerifyEndpointTest extends TestCase
      */
     public function itFailsToVerifyAccessTokenDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('GET', route('auth::verify'));
+        $response = $this->json('GET', route('auth::verify'), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -26,7 +26,26 @@ class VerifyEndpointTest extends TestCase
             'errors' => [
                 [
                     'status' => 415,
-                    'detail' => 'Wrong media type',
+                    'detail' => 'Unsupported media type',
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function itFailsToVerifyAccessTokenDueToInvalidAcceptHeader(): void
+    {
+        $response = $this->json('GET', route('auth::verify'), [], static::INVALID_ACCEPT_HEADER);
+
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertStatus(406);
+        $response->assertJson([
+            'errors' => [
+                [
+                    'status' => 406,
+                    'detail' => 'Not acceptable',
                 ],
             ],
         ]);
@@ -37,9 +56,7 @@ class VerifyEndpointTest extends TestCase
      */
     public function itFailsToVerifyAccessTokenDueToMissingAccessToken(): void
     {
-        $response = $this->json('GET', route('auth::verify'), [], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        $response = $this->json('GET', route('auth::verify'), [], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(401);

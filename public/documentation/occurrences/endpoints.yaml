@@ -7,6 +7,7 @@ index:
     operationId: occurrences::index
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/page_number.yaml'
       - $ref: '../common/parameters/page_size.yaml'
       - $ref: '../common/parameters/search.yaml'
@@ -131,6 +132,8 @@ index:
                     total:
                       type: integer
                       example: 100
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
       422:
@@ -145,6 +148,7 @@ view-and-update:
     operationId: occurrences::view
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - name: id
         in: path
         description: Occurrence id
@@ -173,6 +177,8 @@ view-and-update:
                     - $ref: 'schemas.yaml#/ProCivOccurrence'
       404:
         $ref: '../common/responses/404.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
 
@@ -188,6 +194,7 @@ view-and-update:
     operationId: occurrences::update
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/authorization.yaml'
       - name: id
         in: path
@@ -227,6 +234,8 @@ view-and-update:
         $ref: '../common/responses/403.yaml'
       404:
         $ref: '../common/responses/404.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
       422:
@@ -241,6 +250,7 @@ index-occurrence-families:
     operationId: occurrences::families::index
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/page_number.yaml'
       - $ref: '../common/parameters/page_size.yaml'
       - $ref: '../common/parameters/search.yaml'
@@ -294,6 +304,8 @@ index-occurrence-families:
                     total:
                       type: integer
                       example: 100
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
       422:
@@ -308,6 +320,7 @@ index-occurrence-species:
     operationId: occurrences::species::index
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/page_number.yaml'
       - $ref: '../common/parameters/page_size.yaml'
       - $ref: '../common/parameters/search.yaml'
@@ -373,6 +386,8 @@ index-occurrence-species:
                     total:
                       type: integer
                       example: 100
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
       422:
@@ -387,6 +402,7 @@ index-occurrence-types:
     operationId: occurrences::types::index
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/page_number.yaml'
       - $ref: '../common/parameters/page_size.yaml'
       - $ref: '../common/parameters/search.yaml'
@@ -452,6 +468,8 @@ index-occurrence-types:
                     total:
                       type: integer
                       example: 100
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
       422:
@@ -466,6 +484,7 @@ index-occurrence-statuses:
     operationId: occurrences::statuses::index
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/page_number.yaml'
       - $ref: '../common/parameters/page_size.yaml'
       - $ref: '../common/parameters/search.yaml'
@@ -519,6 +538,8 @@ index-occurrence-statuses:
                     total:
                       type: integer
                       example: 100
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
       422:

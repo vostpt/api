@@ -10,6 +10,7 @@ index-and-create:
     operationId: users::index
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/authorization.yaml'
       - $ref: '../common/parameters/page_number.yaml'
       - $ref: '../common/parameters/page_size.yaml'
@@ -79,6 +80,8 @@ index-and-create:
         $ref: '../common/responses/401.yaml'
       403:
         $ref: '../common/responses/403.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
       422:
@@ -92,6 +95,7 @@ index-and-create:
     operationId: users::create
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - name: name
         in: query
         description: First name
@@ -143,6 +147,8 @@ index-and-create:
                   type: array
                   items:
                     $ref: '../roles/schemas.yaml#/Role'
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
       422:
@@ -162,6 +168,7 @@ view-and-update:
     operationId: users::view
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/authorization.yaml'
       - name: id
         in: path
@@ -191,6 +198,8 @@ view-and-update:
         $ref: '../common/responses/403.yaml'
       404:
         $ref: '../common/responses/404.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
 
@@ -205,6 +214,7 @@ view-and-update:
     operationId: users::update
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/authorization.yaml'
       - name: id
         in: path
@@ -271,6 +281,8 @@ view-and-update:
         $ref: '../common/responses/403.yaml'
       404:
         $ref: '../common/responses/404.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
       422:
@@ -290,6 +302,7 @@ profile-view-and-update:
     operationId: users::profile::view
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/authorization.yaml'
 
     responses:
@@ -308,6 +321,8 @@ profile-view-and-update:
                     $ref: '../roles/schemas.yaml#/Role'
       401:
         $ref: '../common/responses/401.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
 
@@ -324,6 +339,7 @@ profile-view-and-update:
     operationId: users::profile::update
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/authorization.yaml'
       - name: name
         in: query
@@ -369,6 +385,8 @@ profile-view-and-update:
                   $ref: 'schemas.yaml#/UserWithRelations'
       401:
         $ref: '../common/responses/401.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
       422:
@@ -386,6 +404,7 @@ roles-index:
     operationId: users::roles::index
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/authorization.yaml'
     responses:
       200:
@@ -403,5 +422,7 @@ roles-index:
         $ref: '../common/responses/401.yaml'
       403:
         $ref: '../common/responses/403.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'

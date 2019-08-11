@@ -16,7 +16,7 @@ class CreateEndpointTest extends TestCase
      */
     public function itFailsToCreateUserDueToInvalidContentTypeHeader(): void
     {
-        $response = $this->json('POST', route('users::create'));
+        $response = $this->json('POST', route('users::create'), [], static::INVALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(415);
@@ -24,7 +24,26 @@ class CreateEndpointTest extends TestCase
             'errors' => [
                 [
                     'status' => 415,
-                    'detail' => 'Wrong media type',
+                    'detail' => 'Unsupported media type',
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function itFailsToCreateUserDueToInvalidAcceptHeader(): void
+    {
+        $response = $this->json('POST', route('users::create'), [], static::INVALID_ACCEPT_HEADER);
+
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
+        $response->assertStatus(406);
+        $response->assertJson([
+            'errors' => [
+                [
+                    'status' => 406,
+                    'detail' => 'Not acceptable',
                 ],
             ],
         ]);
@@ -41,9 +60,7 @@ class CreateEndpointTest extends TestCase
             'email'                 => 'invalid at email dot tld',
             'password'              => 'secret',
             'password_confirmation' => 'code',
-        ], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
         $response->assertStatus(422);
@@ -93,9 +110,7 @@ class CreateEndpointTest extends TestCase
             'email'                 => 'fernando.pessoa@vost.pt',
             'password'              => 'absinto',
             'password_confirmation' => 'absinto',
-        ], [
-            'Content-Type' => 'application/vnd.api+json',
-        ]);
+        ], static::VALID_CONTENT_TYPE_HEADER);
 
         $this->assertDatabaseHas('users', [
             'name'    => 'Fernando',
