@@ -1,7 +1,7 @@
 ## VOST Portugal API
 Digital Volunteers in Emergency Situations
 
-[![Build Status](https://travis-ci.com/vostpt/api.svg?branch=master)](https://travis-ci.com/vostpt/api)
+[![Build Status](https://travis-ci.com/vostpt/api.svg?branch=master)](https://travis-ci.com/vostpt/api) [![Coverage Status](https://coveralls.io/repos/github/vostpt/api/badge.svg?branch=master)](https://coveralls.io/github/vostpt/api?branch=master)
 
 ## Project setup
 The easiest way to get the API started is through Docker compose.
