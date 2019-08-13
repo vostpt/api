@@ -78,9 +78,12 @@ class OccurrenceReport extends Report
 
         $this->filter->apply($builder);
 
+        if (! joined($builder, 'parishes')) {
+            $builder->join('parishes', 'parishes.id', '=', 'occurrences.parish_id');
+        }
+
         $builder->join('occurrence_types', 'occurrence_types.id', '=', 'occurrences.type_id')
             ->join('occurrence_statuses', 'occurrence_statuses.id', '=', 'occurrences.status_id')
-            ->join('parishes', 'parishes.id', '=', 'occurrences.parish_id')
             ->join('prociv_occurrences', 'prociv_occurrences.id', '=', 'occurrences.source_id')
             ->leftJoin('prociv_occurrence_logs', function (JoinClause $join) {
                 $join->on('prociv_occurrence_logs.occurrence_id', '=', 'prociv_occurrences.id')
