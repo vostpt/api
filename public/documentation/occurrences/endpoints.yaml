@@ -544,3 +544,150 @@ index-occurrence-statuses:
         $ref: '../common/responses/415.yaml'
       422:
         $ref: '../common/responses/422.yaml'
+
+reports-generate:
+  get:
+    tags:
+      - Occurrences
+    summary: Generate occurrence reports
+    description: Generate occurrence report in CSV format.
+    operationId: occurrences::reports::generate
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
+      - $ref: '../common/parameters/search.yaml'
+      - $ref: '../common/parameters/exact.yaml'
+      - name: events
+        in: query
+        description: Filter by Event ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: types
+        in: query
+        description: Filter by Type ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: statuses
+        in: query
+        description: Filter by Status ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: districts
+        in: query
+        description: Filter by District ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: counties
+        in: query
+        description: Filter by County ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: parishes
+        in: query
+        description: Filter by Parish ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: started_at
+        in: query
+        description: Start date
+        schema:
+          type: string
+          format: date
+          example: '2012-06-14'
+      - name: ended_at
+        in: query
+        description: End date
+        schema:
+          type: string
+          format: date
+          example: '2012-06-14'
+      - name: sort
+        in: query
+        description: Field used for sorting results
+        schema:
+          type: string
+          enum:
+            - locality
+            - latitude
+            - longitude
+            - started_at
+            - ended_at
+            - created_at
+            - updated_at
+          default: created_at
+      - $ref: '../common/parameters/order.yaml'
+    responses:
+      202:
+        description: Accepted
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                meta:
+                 type: object
+                 properties:
+                   report:
+                    type: object
+                    properties:
+                      signature:
+                        type: string
+                        example: 1032b4d9ab7fb745fc8bb32ffb5f33c227551048
+                      ready:
+                        type: boolean
+                        example: true
+      406:
+        $ref: '../common/responses/406.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+
+reports-download:
+  get:
+    tags:
+      - Occurrences
+    summary: Download occurrence report
+    description: Download a generated occurrence report (ZIP compressed).
+    operationId: occurrences::reports::download
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
+      - name: signature
+        in: path
+        description: SHA1 signature of the generated report
+        required: true
+        schema:
+          type: string
+          minLength: 40
+          maxLength: 40
+    responses:
+      200:
+        description: OK
+        content:
+          application/zip:
+           schema:
+              type: string
+              format: binary
+      404:
+        $ref: '../common/responses/404.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'

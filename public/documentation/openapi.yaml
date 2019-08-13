@@ -87,6 +87,12 @@ paths:
   /occurrences/statuses:
     $ref: 'occurrences/endpoints.yaml#/index-occurrence-statuses'
 
+  /occurrences/reports/generate:
+      $ref: 'occurrences/endpoints.yaml#/reports-generate'
+
+  /occurrences/reports/{signature}:
+      $ref: 'occurrences/endpoints.yaml#/reports-download'
+
   /districts:
     $ref: 'districts/endpoints.yaml#/index'
 
