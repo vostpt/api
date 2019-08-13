@@ -658,6 +658,8 @@ reports-generate:
         $ref: '../common/responses/406.yaml'
       415:
         $ref: '../common/responses/415.yaml'
+      422:
+        $ref: '../common/responses/422.yaml'
 
 reports-download:
   get:
