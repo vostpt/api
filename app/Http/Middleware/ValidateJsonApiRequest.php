@@ -28,13 +28,13 @@ class ValidateJsonApiRequest
     {
         $contentTypeHeader = $request->header('Content-Type');
 
-        if ($contentTypeHeader !== self::MEDIA_TYPE && \mb_stripos($contentTypeHeader, self::MEDIA_TYPE) !== false) {
+        if ($contentTypeHeader && $contentTypeHeader !== self::MEDIA_TYPE && \mb_stripos($contentTypeHeader, self::MEDIA_TYPE) !== false) {
             throw new UnsupportedMediaTypeHttpException('Unsupported media type');
         }
 
         $acceptHeader = $request->header('Accept');
 
-        if ($acceptHeader !== self::MEDIA_TYPE && \mb_stripos($acceptHeader, self::MEDIA_TYPE) !== false) {
+        if ($acceptHeader && $acceptHeader !== self::MEDIA_TYPE && \mb_stripos($acceptHeader, self::MEDIA_TYPE) !== false) {
             throw new NotAcceptableHttpException('Not acceptable');
         }
 
