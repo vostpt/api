@@ -6,8 +6,9 @@ namespace VOSTPT\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
+use Illuminate\Contracts\Cache\Repository as Cache;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use VOSTPT\Filters\Contracts\OccurrenceFilter;
@@ -19,6 +20,24 @@ use VOSTPT\Repositories\Contracts\OccurrenceRepository;
 
 class OccurrenceReportController extends Controller
 {
+    /**
+     * Filesystem instance.
+     *
+     * @var \Illuminate\Contracts\Filesystem\Filesystem
+     */
+    private $filesystem;
+
+    /**
+     * @param Cache      $cache
+     * @param Filesystem $filesystem
+     */
+    public function __construct(Cache $cache, Filesystem $filesystem)
+    {
+        parent::__construct($cache);
+
+        $this->filesystem = $filesystem;
+    }
+
     /**
      * Create an Occurrence report.
      *
@@ -79,7 +98,7 @@ class OccurrenceReportController extends Controller
             $filter->withEndedAt(Carbon::parse($endedAt));
         }
 
-        $report = new OccurrenceReport($occurrenceRepository, $filter, Storage::disk('local'));
+        $report = new OccurrenceReport($occurrenceRepository, $filter, $this->filesystem);
 
         $dispatcher->dispatch(new ReportGenerator($report));
 
@@ -106,11 +125,11 @@ class OccurrenceReportController extends Controller
     {
         $zipFileName = OccurrenceReport::getFileName($signature, true);
 
-        if (! Storage::disk('local')->exists($zipFileName)) {
+        if (! $this->filesystem->exists($zipFileName)) {
             throw new NotFoundHttpException('Occurrence Report Not Found');
         }
 
-        return response()->download(Storage::disk('local')->url($zipFileName), \sprintf(
+        return response()->download($this->filesystem->url($zipFileName), \sprintf(
             'occurrence_report_%s.zip',
             \date('Y_m_d_H_i_s')
         ));
