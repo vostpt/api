@@ -11,6 +11,7 @@ The easiest way to get the API started is through Docker compose.
 -------------------|----------------|-------------------------------------
  MariaDB           | vost_mariadb   | `localhost:3306`
  NGINX             | vost_nginx     | `localhost:80`
+ Redis             | vost_redis     | `localhost:6379`
  VOST API          | vost_api       | `localhost:80` / `api.vost.test:80`
 
 ### Hostnames
@@ -29,9 +30,10 @@ docker-compose up --detach --build
 
 Once the services are all up and running, you should see the following output: 
 ```sh
-Starting vost_mariadb ... done
 Starting vost_api     ... done
 Starting vost_nginx   ... done
+Starting vost_redis   ... done
+Starting vost_mariadb ... done
 ```
 
 ### Command Line Interface
@@ -80,20 +82,13 @@ For local development and testing purposes, a command is also available:
 php artisan fetch:prociv-occurrences
 ```
 
-### Ipma warnings
-By default, the `WarningFetcher` job class is executed hourly through the main scheduler.
+### IPMA warnings
+By default, the `WarningFetcher` job class is executed every 30 (thirty) minutes through the main scheduler.
 
 For local development and testing purposes, a command is also available:
 
 ```sh
-php artisan warnings:fetch
-```
-By default, the `WarningCloser` job class is executed every 5 (five) minutes through the main scheduler.
-
-For local development and testing purposes, a command is also available:
-
-```sh
-php artisan warnings:close
+php artisan fetch:warnings
 ```
 
 >**NOTE:** All Job/Command output will be sent to the application log file (`storage/logs/laravel.log`).
