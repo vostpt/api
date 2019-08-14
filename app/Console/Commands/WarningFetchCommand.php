@@ -13,7 +13,7 @@ class WarningFetchCommand extends Command
     /**
      * {@inheritDoc}
      */
-    protected $signature = 'warnings:fetch';
+    protected $signature = 'fetch:warnings';
 
     /**
      * {@inheritDoc}
