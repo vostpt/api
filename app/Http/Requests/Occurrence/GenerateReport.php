@@ -57,11 +57,9 @@ class GenerateReport extends Request
         if ($this->has('started_at', 'ended_at')) {
             $rules = \array_merge_recursive($rules, [
                 'started_at' => [
-                    'date_format:Y-m-d',
                     'before_or_equal:ended_at',
                 ],
                 'ended_at' => [
-                    'date_format:Y-m-d',
                     'after_or_equal:started_at',
                 ],
             ]);
