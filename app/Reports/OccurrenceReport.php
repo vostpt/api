@@ -14,7 +14,7 @@ class OccurrenceReport extends Report
      */
     public function getHeader(): array
     {
-        return \array_merge([
+        return [
             'ID',
             'Event ID',
             'Type',
@@ -66,7 +66,7 @@ class OccurrenceReport extends Report
             'ProCiv State Of Affairs',
             'ProCiv State Of Affairs Description',
             'ProCiv Active Previous Intervention Plan',
-        ]);
+        ];
     }
 
     /**
