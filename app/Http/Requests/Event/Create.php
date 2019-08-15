@@ -62,12 +62,9 @@ class Create extends Request
         if ($this->has('ended_at')) {
             $rules = \array_merge_recursive($rules, [
                 'started_at' => [
-                    'required',
-                    'date_format:Y-m-d H:i:s',
                     'before_or_equal:ended_at',
                 ],
                 'ended_at' => [
-                    'date_format:Y-m-d H:i:s',
                     'after_or_equal:started_at',
                 ],
             ]);
