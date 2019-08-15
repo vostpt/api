@@ -12,7 +12,6 @@ use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use VOSTPT\Filters\Contracts\OccurrenceFilter;
-use VOSTPT\Http\Requests\Occurrence\DownloadReport;
 use VOSTPT\Http\Requests\Occurrence\GenerateReport;
 use VOSTPT\Jobs\Report\ReportGenerator;
 use VOSTPT\Reports\OccurrenceReport;
@@ -113,15 +112,14 @@ class OccurrenceReportController extends Controller
     /**
      * Download an Occurrence report.
      *
-     * @param DownloadReport $request
-     * @param string         $signature
+     * @param string $signature
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @throws \UnexpectedValueException
      *
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public function download(DownloadReport $request, string $signature): BinaryFileResponse
+    public function download(string $signature): BinaryFileResponse
     {
         $zipFileName = OccurrenceReport::getFileName($signature, true);
 
