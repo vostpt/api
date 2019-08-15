@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Route;
 use VOSTPT\Http\Controllers\OccurrenceController;
 use VOSTPT\Http\Controllers\OccurrenceFamilyController;
+use VOSTPT\Http\Controllers\OccurrenceReportController;
 use VOSTPT\Http\Controllers\OccurrenceSpeciesController;
 use VOSTPT\Http\Controllers\OccurrenceStatusController;
 use VOSTPT\Http\Controllers\OccurrenceTypeController;
@@ -17,6 +18,16 @@ use VOSTPT\Http\Controllers\OccurrenceTypeController;
 */
 
 Route::prefix('v1/occurrences')->name('occurrences::')->group(function () {
+    Route::get('/reports', [
+        OccurrenceReportController::class,
+        'generate',
+    ])->name('reports::generate');
+
+    Route::get('/reports/{signature}', [
+        OccurrenceReportController::class,
+        'download',
+    ])->name('reports::download');
+
     Route::get('/', [
         OccurrenceController::class,
         'index',

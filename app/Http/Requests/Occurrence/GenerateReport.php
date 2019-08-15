@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 use VOSTPT\Filters\OccurrenceFilter;
 use VOSTPT\Http\Requests\Request;
 
-class Index extends Request
+class GenerateReport extends Request
 {
     /**
      * {@inheritDoc}
@@ -16,12 +16,6 @@ class Index extends Request
     public function rules(): array
     {
         $rules = [
-            'page.number' => [
-                'integer',
-            ],
-            'page.size' => [
-                'integer',
-            ],
             'search' => [
                 'string',
             ],
