@@ -1,53 +1,54 @@
-version: '3'
+version: '3.7'
 
 services:
-  api:
-    container_name: vost_api
+  nginx:
+    container_name: vost_nginx
+    image: nginx:1.14.0-alpine
+    ports:
+      - 80:80
+    volumes:
+      - ./.docker/nginx/conf.d:/etc/nginx/conf.d:ro
+      - .:/var/www/html/api.vost.test
+    restart: unless-stopped
     networks:
       vost_network:
         aliases:
           - api.vost.test
-    build:
-      context: .
-    ports:
-      - '9000:9000'
-    working_dir: /var/www/api.vost.test
-    volumes:
-      - .:/var/www/api.vost.test
-    entrypoint: ./entrypoint.sh
 
-  nginx:
-    container_name: vost_nginx
+  api:
+    container_name: vost_api
+    build: .docker/php
+    user: "1000:1000"
+    expose:
+      - 9000
+    volumes:
+      - .:/var/www/html/api.vost.test
+    restart: unless-stopped
     networks:
       - vost_network
-    image: nginx:1.14.0-alpine
-    ports:
-      - '80:80'
-      - '443:443'
-    volumes:
-      - .:/var/www/api.vost.test
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
 
   mariadb:
     container_name: vost_mariadb
-    networks:
-      - vost_network
     image: mariadb:10.4.6
     ports:
-      - '3306:3306'
+      - 3306:3306
     environment:
       MYSQL_DATABASE: vost_api
       MYSQL_ROOT_PASSWORD: root
+    restart: unless-stopped
+    networks:
+      - vost_network
 
   redis:
     container_name: vost_redis
-    networks:
-      - vost_network
     image: redis:4.0.9-alpine
+    ports:
+      - 6379:6379
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
-    ports:
-      - '6379:6379'
+    restart: unless-stopped
+    networks:
+      - vost_network
 
 networks:
   vost_network:
