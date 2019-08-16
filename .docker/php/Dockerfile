@@ -1,4 +1,4 @@
-FROM php:7.2.21-fpm
+FROM php:7.2.19-fpm
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -28,4 +28,4 @@ COPY conf/zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-WORKDIR /var/www/html/api.vost.test
+WORKDIR /var/www/api.vost.test
