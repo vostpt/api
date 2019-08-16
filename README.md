@@ -10,9 +10,8 @@ The easiest way to get the API started is through Docker compose.
  Service / Project | Container Name | Host:Port
 -------------------|----------------|-------------------------------------
  MariaDB           | vost_mariadb   | `localhost:3306`
- NGINX             | vost_nginx     | `localhost:80`
+ NGINX             | vost_nginx     | `localhost:80` / `api.vost.test:80`
  Redis             | vost_redis     | `localhost:6379`
- VOST API          | vost_api       | `localhost:80` / `api.vost.test:80`
 
 ### Hostnames
 Make sure to add `api.vost.test` to the `/etc/hosts` file, so it can be properly resolved:
