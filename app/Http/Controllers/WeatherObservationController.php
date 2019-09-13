@@ -52,11 +52,11 @@ class WeatherObservationController extends Controller
             $filter->withStations(...$request->input('stations', []));
         }
 
-        if ($from = $request->get('from')) {
+        if ($from = $request->get('timestamp_from')) {
             $filter->withTimestampFrom(Carbon::parse($from));
         }
 
-        if ($to = $request->get('to')) {
+        if ($to = $request->get('timestamp_to')) {
             $filter->withTimestampTo(Carbon::parse($to));
         }
 
