@@ -249,6 +249,27 @@ class IndexEndpointTest extends TestCase
                         'created_at',
                         'updated_at',
                     ],
+                    'relationships' => [
+                        'county' => [
+                            'data' => [
+                                'id',
+                                'type',
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'type',
+                    'id',
+                    'attributes' => [
+                        'code',
+                        'name',
+                        'created_at',
+                        'updated_at',
+                    ],
+                    'links' => [
+                        'self',
+                    ],
                 ],
             ],
             'meta' => [

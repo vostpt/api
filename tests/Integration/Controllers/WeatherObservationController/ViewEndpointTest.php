@@ -124,6 +124,27 @@ class ViewEndpointTest extends TestCase
                         'created_at',
                         'updated_at',
                     ],
+                    'relationships' => [
+                        'county' => [
+                            'data' => [
+                                'type',
+                                'id',
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'type',
+                    'id',
+                    'attributes' => [
+                        'code',
+                        'name',
+                        'created_at',
+                        'updated_at',
+                    ],
+                    'links' => [
+                        'self',
+                    ],
                 ],
             ],
         ]);
