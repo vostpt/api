@@ -22,7 +22,7 @@ class ParishSeeder extends Seeder
 
             foreach ($parishes as $parish) {
                 factory(Parish::class)->create(\array_merge($parish, [
-                    'county_id' => $county->id,
+                    'county_id' => $county->getKey(),
                 ]));
             }
         }

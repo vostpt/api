@@ -22,7 +22,7 @@ class OccurrenceSpeciesSeeder extends Seeder
 
             foreach ($species as $attributes) {
                 factory(OccurrenceSpecies::class)->create(\array_merge($attributes, [
-                    'family_id' => $parent->id,
+                    'family_id' => $parent->getKey(),
                 ]));
             }
         }
