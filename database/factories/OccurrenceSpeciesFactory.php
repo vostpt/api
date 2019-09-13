@@ -16,7 +16,7 @@ use VOSTPT\Models\OccurrenceSpecies;
 $factory->define(OccurrenceSpecies::class, function (Faker $faker) {
     return [
         'family_id' => function () {
-            return factory(OccurrenceFamily::class)->create()->id;
+            return factory(OccurrenceFamily::class)->create()->getKey();
         },
         'code' => $faker->unique()->numberBetween(1000, 9999),
         'name' => $faker->unique()->sentence(),

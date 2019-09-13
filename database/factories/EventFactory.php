@@ -17,10 +17,10 @@ use VOSTPT\Models\Parish;
 $factory->define(Event::class, function (Faker $faker) {
     return [
         'type_id' => function () {
-            return factory(EventType::class)->create()->id;
+            return factory(EventType::class)->create()->getKey();
         },
         'parish_id' => function () {
-            return factory(Parish::class)->create()->id;
+            return factory(Parish::class)->create()->getKey();
         },
         'name'        => $faker->sentence(),
         'description' => $faker->paragraph,
