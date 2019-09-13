@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\Jobs\Warnings;
+namespace VOSTPT\Jobs\Ipma;
 
 use Carbon\Carbon;
 use GuzzleHttp\Exception\GuzzleException;
@@ -14,7 +14,7 @@ use Illuminate\Queue\SerializesModels;
 use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;
 use VOSTPT\Models\County;
-use VOSTPT\ServiceClients\Contracts\IpmaServiceClient;
+use VOSTPT\ServiceClients\Contracts\IpmaApiServiceClient;
 
 class WarningFetcher implements ShouldQueue
 {
@@ -69,7 +69,7 @@ class WarningFetcher implements ShouldQueue
     ];
 
     /**
-     * @var IpmaServiceClient
+     * @var IpmaApiServiceClient
      */
     private $serviceClient;
 
@@ -88,13 +88,13 @@ class WarningFetcher implements ShouldQueue
     /**
      * Execute the job.
      *
-     * @param IpmaServiceClient                      $serviceClient
+     * @param IpmaApiServiceClient                   $serviceClient
      * @param \Psr\Log\LoggerInterface               $logger
      * @param \Illuminate\Contracts\Cache\Repository $cache
      *
      * @return bool
      */
-    public function handle(IpmaServiceClient $serviceClient, LoggerInterface $logger, Cache $cache): bool
+    public function handle(IpmaApiServiceClient $serviceClient, LoggerInterface $logger, Cache $cache): bool
     {
         $this->serviceClient = $serviceClient;
         $this->logger        = $logger;
@@ -115,14 +115,14 @@ class WarningFetcher implements ShouldQueue
         $this->logger->info('Fetching IPMA warnings...');
 
         try {
-            $response = $this->serviceClient->getWarnings();
+            $results = $this->serviceClient->getWarnings();
         } catch (GuzzleException $exception) {
             $this->logger->error($exception->getMessage());
 
             return false;
         }
 
-        $warnings = collect($response['data'])
+        $warnings = collect($results)
             ->filter(function (array $warning) {
                 return \in_array($warning['awarenessLevelID'], self::ALLOWED_AWARENESS_LEVELS, true);
             })->map(function (array $warning) {
