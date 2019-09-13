@@ -7,13 +7,13 @@ namespace VOSTPT\ServiceClients\Contracts;
 interface IpmaApiServiceClient extends ServiceClient
 {
     /**
-     * Get forecast warnings.
+     * Get warnings.
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
      * @return array
      */
-    public function getForecastWarnings(): array;
+    public function getWarnings(): array;
 
     /**
      * Get surface observations.

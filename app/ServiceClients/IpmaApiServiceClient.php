@@ -9,7 +9,7 @@ class IpmaApiServiceClient extends ServiceClient implements Contracts\IpmaApiSer
     /**
      * {@inheritDoc}
      */
-    public function getForecastWarnings(): array
+    public function getWarnings(): array
     {
         return $this->get('json/warnings_www.json');
     }
