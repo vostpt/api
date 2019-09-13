@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\Tests\Integration\Controllers\WarningController;
+namespace VOSTPT\Tests\Integration\Controllers\IpmaWarningController;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
