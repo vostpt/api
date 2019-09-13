@@ -64,6 +64,7 @@ class WeatherObservationController extends Controller
 
         return response()->paginator($paginator, new WeatherObservationSerializer(), [
             'station',
+            'station.county',
         ]);
     }
 
@@ -79,6 +80,7 @@ class WeatherObservationController extends Controller
     {
         return response()->resource($weatherObservation, new WeatherObservationSerializer(), [
             'station',
+            'station.county',
         ]);
     }
 }
