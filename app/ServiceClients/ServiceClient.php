@@ -47,6 +47,14 @@ abstract class ServiceClient implements Contracts\ServiceClient
     /**
      * {@inheritDoc}
      */
+    public function buildUrl(string $path, array $parameters, string $method): string
+    {
+        return $this->getHostname($path);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getHostname(string $path = null): string
     {
         // Make sure trailing slashes are removed
