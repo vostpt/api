@@ -4,16 +4,8 @@ declare(strict_types=1);
 
 namespace VOSTPT\ServiceClients;
 
-class ProCivServiceClient extends ServiceClient implements Contracts\ProCivServiceClient
+class ProCivWebsiteServiceClient extends ServiceClient implements Contracts\ProCivWebsiteServiceClient
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function buildUrl(string $path, array $parameters, string $method): string
-    {
-        return $this->getHostname($path);
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -29,7 +21,7 @@ class ProCivServiceClient extends ServiceClient implements Contracts\ProCivServi
      */
     public function getMainOccurrences(): array
     {
-        $response = $this->post('GetMainOccurrences', [
+        $response = $this->post('_vti_bin/ARM.ANPC.UI/ANPC_SituacaoOperacional.svc/GetMainOccurrences', [
             'allData' => true,
         ]);
 
@@ -44,7 +36,7 @@ class ProCivServiceClient extends ServiceClient implements Contracts\ProCivServi
      */
     public function getOccurrenceHistory(): array
     {
-        $response = $this->post('GetHistoryOccurrencesByLocation', [
+        $response = $this->post('_vti_bin/ARM.ANPC.UI/ANPC_SituacaoOperacional.svc/GetHistoryOccurrencesByLocation', [
             'allData' => true,
         ]);
 

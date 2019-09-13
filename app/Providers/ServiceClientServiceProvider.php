@@ -8,10 +8,10 @@ use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
-use VOSTPT\ServiceClients\Contracts\IpmaServiceClient as IpmaServiceClientContract;
-use VOSTPT\ServiceClients\Contracts\ProCivServiceClient as ProCivServiceClientContract;
-use VOSTPT\ServiceClients\IpmaServiceClient;
-use VOSTPT\ServiceClients\ProCivServiceClient;
+use VOSTPT\ServiceClients\Contracts\IpmaApiServiceClient as IpmaApiServiceClientContract;
+use VOSTPT\ServiceClients\Contracts\ProCivWebsiteServiceClient as ProCivWebsiteServiceClientContract;
+use VOSTPT\ServiceClients\IpmaApiServiceClient;
+use VOSTPT\ServiceClients\ProCivWebsiteServiceClient;
 
 class ServiceClientServiceProvider extends ServiceProvider implements DeferrableProvider
 {
@@ -20,24 +20,24 @@ class ServiceClientServiceProvider extends ServiceProvider implements Deferrable
      */
     public function register(): void
     {
-        // IPMA service client
-        $this->app->singleton(IpmaServiceClientContract::class, function ($app) {
+        // IPMA API service client
+        $this->app->singleton(IpmaApiServiceClientContract::class, function ($app) {
             $client = new Client([
                 // Do not throw exceptions on HTTP 4xx/5xx status
                 RequestOptions::HTTP_ERRORS => false,
             ]);
 
-            return new IpmaServiceClient($client, $app['config']['services.ipma.hostname']);
+            return new IpmaApiServiceClient($client, $app['config']['services.ipma.api.hostname']);
         });
 
-        // ProCiv service client
-        $this->app->singleton(ProCivServiceClientContract::class, function ($app) {
+        // ProCiv Website service client
+        $this->app->singleton(ProCivWebsiteServiceClientContract::class, function ($app) {
             $client = new Client([
                 // Do not throw exceptions on HTTP 4xx/5xx status
                 RequestOptions::HTTP_ERRORS => false,
             ]);
 
-            return new ProCivServiceClient($client, $app['config']['services.prociv.hostname']);
+            return new ProCivWebsiteServiceClient($client, $app['config']['services.prociv.website.hostname']);
         });
     }
 
@@ -47,8 +47,8 @@ class ServiceClientServiceProvider extends ServiceProvider implements Deferrable
     public function provides(): array
     {
         return [
-            IpmaServiceClientContract::class,
-            ProCivServiceClientContract::class,
+            IpmaApiServiceClientContract::class,
+            ProCivWebsiteServiceClientContract::class,
         ];
     }
 }

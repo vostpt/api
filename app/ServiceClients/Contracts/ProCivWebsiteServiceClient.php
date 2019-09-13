@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace VOSTPT\ServiceClients\Contracts;
 
-interface ProCivServiceClient extends ServiceClient
+interface ProCivWebsiteServiceClient extends ServiceClient
 {
     /**
      * Get main occurrences.
