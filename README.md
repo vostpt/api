@@ -73,12 +73,12 @@ Make sure the main job scheduler is properly set in the system cron table:
 ```
 
 ### ProCiv occurrences
-By default, the `ProCivOccurrenceFetcher` job class is executed every 5 (five) minutes through the main scheduler.
+By default, the `OccurrenceFetcher` job class is executed every 5 (five) minutes through the main scheduler.
 
 For local development and testing purposes, a command is also available:
 
 ```sh
-php artisan fetch:prociv-occurrences
+php artisan prociv:fetch:occurrences
 ```
 
 ### IPMA warnings
@@ -87,7 +87,16 @@ By default, the `WarningFetcher` job class is executed every 30 (thirty) minutes
 For local development and testing purposes, a command is also available:
 
 ```sh
-php artisan fetch:warnings
+php artisan ipma:fetch:warnings
+```
+
+### IPMA surface observations
+By default, the `SurfaceObservationFetcher` job class is executed every 30 (thirty) minutes through the main scheduler.
+
+For local development and testing purposes, a command is also available:
+
+```sh
+php artisan ipma:fetch:surface-observations
 ```
 
 >**NOTE:** All Job/Command output will be sent to the application log file (`storage/logs/laravel.log`).
