@@ -11,7 +11,9 @@ return [
     ],
 
     'prociv' => [
-        'hostname' => env('PROCIV_HOSTNAME'),
+        'website' => [
+            'hostname' => env('PROCIV_WEBSITE_HOSTNAME'),
+        ],
     ],
 
 ];
