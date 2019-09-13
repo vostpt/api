@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(OccurrenceFamilySeeder::class);
         $this->call(OccurrenceSpeciesSeeder::class);
         $this->call(OccurrenceTypeSeeder::class);
+        $this->call(IpmaStationAndSensorSeeder::class);
     }
 }
