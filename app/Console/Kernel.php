@@ -6,6 +6,7 @@ namespace VOSTPT\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use VOSTPT\Jobs\Ipma\SurfaceObservationFetcher;
 use VOSTPT\Jobs\Ipma\WarningFetcher;
 use VOSTPT\Jobs\ProCiv\OccurrenceCloser;
 use VOSTPT\Jobs\ProCiv\OccurrenceFetcher;
@@ -25,6 +26,7 @@ class Kernel extends ConsoleKernel
         $schedule->job(new OccurrenceFetcher())->everyFiveMinutes();
         $schedule->job(new OccurrenceCloser())->everyThirtyMinutes();
         $schedule->job(new WarningFetcher())->everyThirtyMinutes();
+        $schedule->job(new SurfaceObservationFetcher())->everyThirtyMinutes();
     }
 
     /**
