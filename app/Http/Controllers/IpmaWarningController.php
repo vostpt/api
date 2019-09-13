@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 use VOSTPT\Http\Requests\Warning\Index;
 use VOSTPT\Http\Serializers\WarningSerializer;
 
-class WarningController extends Controller
+class IpmaWarningController extends Controller
 {
     /**
      * Index IPMA warnings.
