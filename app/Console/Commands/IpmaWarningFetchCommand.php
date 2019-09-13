@@ -6,19 +6,19 @@ namespace VOSTPT\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
-use VOSTPT\Jobs\Warnings\WarningFetcher;
+use VOSTPT\Jobs\Ipma\WarningFetcher;
 
-class WarningFetchCommand extends Command
+class IpmaWarningFetchCommand extends Command
 {
     /**
      * {@inheritDoc}
      */
-    protected $signature = 'fetch:warnings';
+    protected $signature = 'ipma:fetch:warnings';
 
     /**
      * {@inheritDoc}
      */
-    protected $description = 'Fetch warnings';
+    protected $description = 'Fetch IPMA warnings';
 
     /**
      * Execute the console command.
@@ -29,6 +29,6 @@ class WarningFetchCommand extends Command
      */
     public function handle(BusDispatcher $dispatcher)
     {
-        return $dispatcher->dispatch(new WarningFetcher());
+        return $dispatcher->dispatchNow(new WarningFetcher());
     }
 }
