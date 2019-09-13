@@ -33,6 +33,10 @@
             <directory suffix="Test.php">./tests/Integration/Controllers/FallbackController</directory>
         </testsuite>
 
+        <testsuite name="IpmaWarningController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/IpmaWarningController</directory>
+        </testsuite>
+
         <testsuite name="OccurrenceController Integration Tests">
             <directory suffix="Test.php">./tests/Integration/Controllers/OccurrenceController</directory>
         </testsuite>
@@ -73,8 +77,8 @@
             <directory suffix="Test.php">./tests/Integration/Controllers/UserRoleController</directory>
         </testsuite>
 
-        <testsuite name="WarningController Integration Tests">
-            <directory suffix="Test.php">./tests/Integration/Controllers/WarningController</directory>
+        <testsuite name="WeatherObservationController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/WeatherObservationController</directory>
         </testsuite>
     </testsuites>
     <filter>
