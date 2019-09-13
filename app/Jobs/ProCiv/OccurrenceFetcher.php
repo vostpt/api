@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\Jobs\Occurrences;
+namespace VOSTPT\Jobs\ProCiv;
 
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
@@ -18,7 +18,7 @@ use VOSTPT\Models\OccurrenceType;
 use VOSTPT\Models\Parish;
 use VOSTPT\Models\ProCivOccurrence;
 use VOSTPT\Models\ProCivOccurrenceLog;
-use VOSTPT\ServiceClients\Contracts\ProCivServiceClient;
+use VOSTPT\ServiceClients\Contracts\ProCivWebsiteServiceClient;
 
 class OccurrenceFetcher implements ShouldQueue
 {
@@ -27,7 +27,7 @@ class OccurrenceFetcher implements ShouldQueue
     use SerializesModels;
 
     /**
-     * @var ProCivServiceClient
+     * @var ProCivWebsiteServiceClient
      */
     private $serviceClient;
 
@@ -39,14 +39,14 @@ class OccurrenceFetcher implements ShouldQueue
     /**
      * Execute the job.
      *
-     * @param ProCivServiceClient      $serviceClient
-     * @param \Psr\Log\LoggerInterface $logger
+     * @param ProCivWebsiteServiceClient $serviceClient
+     * @param \Psr\Log\LoggerInterface   $logger
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
      * @return bool
      */
-    public function handle(ProCivServiceClient $serviceClient, LoggerInterface $logger): bool
+    public function handle(ProCivWebsiteServiceClient $serviceClient, LoggerInterface $logger): bool
     {
         $this->serviceClient = $serviceClient;
         $this->logger        = $logger;

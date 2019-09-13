@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\Jobs\Occurrences;
+namespace VOSTPT\Jobs\ProCiv;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
