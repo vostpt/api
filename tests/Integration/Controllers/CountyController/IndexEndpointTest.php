@@ -6,12 +6,12 @@ namespace VOSTPT\Tests\Integration\Controllers\CountyController;
 
 use VOSTPT\Models\County;
 use VOSTPT\Models\District;
-use VOSTPT\Tests\Integration\RefreshDatabase;
+use VOSTPT\Tests\Integration\RefreshDatabaseWithRoles;
 use VOSTPT\Tests\Integration\TestCase;
 
 class IndexEndpointTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabaseWithRoles;
 
     /**
      * @test

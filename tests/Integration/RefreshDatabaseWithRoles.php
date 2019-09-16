@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration;
 
-trait RefreshDatabase
+trait RefreshDatabaseWithRoles
 {
     use \Illuminate\Foundation\Testing\RefreshDatabase;
 

@@ -7,12 +7,12 @@ namespace VOSTPT\Tests\Integration\Controllers\EventController;
 use VOSTPT\Models\Event;
 use VOSTPT\Models\EventType;
 use VOSTPT\Models\Parish;
-use VOSTPT\Tests\Integration\RefreshDatabase;
+use VOSTPT\Tests\Integration\RefreshDatabaseWithRoles;
 use VOSTPT\Tests\Integration\TestCase;
 
 class IndexEndpointTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabaseWithRoles;
 
     /**
      * @test

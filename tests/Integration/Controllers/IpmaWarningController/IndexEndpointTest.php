@@ -8,12 +8,12 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Ramsey\Uuid\Uuid;
 use VOSTPT\Models\County;
-use VOSTPT\Tests\Integration\RefreshDatabase;
+use VOSTPT\Tests\Integration\RefreshDatabaseWithRoles;
 use VOSTPT\Tests\Integration\TestCase;
 
 class IndexEndpointTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabaseWithRoles;
 
     /**
      * @test
