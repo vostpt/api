@@ -171,6 +171,7 @@ return [
         VOSTPT\Providers\AuthServiceProvider::class,
         VOSTPT\Providers\EventServiceProvider::class,
         VOSTPT\Providers\FilterServiceProvider::class,
+        VOSTPT\Providers\GuzzleClientServiceProvider::class,
         VOSTPT\Providers\RepositoryServiceProvider::class,
         VOSTPT\Providers\ResponseServiceProvider::class,
         VOSTPT\Providers\RouteServiceProvider::class,
