@@ -16,4 +16,14 @@ class CountyRepository extends Repository implements Contracts\CountyRepository
     {
         return County::query();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function findByCode(string $code): ?County
+    {
+        return $this->createQueryBuilder()
+            ->where('code', $code)
+            ->first();
+    }
 }
