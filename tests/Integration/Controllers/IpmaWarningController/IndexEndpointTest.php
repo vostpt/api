@@ -61,17 +61,17 @@ class IndexEndpointTest extends TestCase
         $county = factory(County::class)->create();
 
         Cache::forever('ipma_warnings', [
-                [
-                    'text'              => 'Rajadas até 75 km/h, em especial no litoral e nas terras altas.',
-                    'awarenessTypeName' => 'Vento',
-                    'idAreaAviso'       => 'LSB',
-                    'awarenessLevelID'  => 'yellow',
-                    'id'                => Uuid::uuid4(),
-                    'county'            => $county,
-                    'started_at'        => Carbon::now(),
-                    'ended_at'          => Carbon::now()->addHour(),
-                ],
-            ]);
+            [
+                'text'              => 'Rajadas até 75 km/h, em especial no litoral e nas terras altas.',
+                'awarenessTypeName' => 'Vento',
+                'idAreaAviso'       => 'LSB',
+                'awarenessLevelID'  => 'yellow',
+                'id'                => Uuid::uuid4(),
+                'county'            => $county,
+                'started_at'        => Carbon::now(),
+                'ended_at'          => Carbon::now()->addHour(),
+            ],
+        ]);
 
         $response = $this->json('GET', route('ipma::warnings::index'), [], static::VALID_CONTENT_TYPE_HEADER);
 
