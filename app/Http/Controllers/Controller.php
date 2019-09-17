@@ -53,9 +53,13 @@ abstract class Controller
             return $builder->paginate(
                 $filter->getPageSize(),
                 $filter->getColumns(),
-                'page',
+                'page[number]',
                 $filter->getPageNumber()
-            );
+            )->appends([
+                'page[size]' => $filter->getPageSize(),
+                'sort'       => $filter->getSortColumn(),
+                'order'      => $filter->getSortOrder(),
+            ]);
         });
     }
 }
