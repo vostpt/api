@@ -9,14 +9,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Psr\Log\LoggerInterface;
-use VOSTPT\Models\Occurrence;
 use VOSTPT\Models\OccurrenceStatus;
+use VOSTPT\Repositories\Contracts\OccurrenceRepository;
 
 class OccurrenceCloser implements ShouldQueue
 {
     use Dispatchable;
     use Queueable;
     use SerializesModels;
+
+    /**
+     * @var OccurrenceRepository
+     */
+    private $occurrenceRepository;
 
     /**
      * @var LoggerInterface
@@ -26,13 +31,15 @@ class OccurrenceCloser implements ShouldQueue
     /**
      * Execute the job.
      *
+     * @param OccurrenceRepository     $occurrenceRepository
      * @param \Psr\Log\LoggerInterface $logger
      *
      * @return bool
      */
-    public function handle(LoggerInterface $logger): bool
+    public function handle(OccurrenceRepository $occurrenceRepository, LoggerInterface $logger): bool
     {
-        $this->logger = $logger;
+        $this->occurrenceRepository = $occurrenceRepository;
+        $this->logger               = $logger;
 
         $this->closeStalledOccurrences();
 
@@ -50,7 +57,7 @@ class OccurrenceCloser implements ShouldQueue
 
         $closedByVostStatus = OccurrenceStatus::where('code', OccurrenceStatus::CLOSED_BY_VOST)->first();
 
-        foreach (Occurrence::stalled()->get() as $stalledOccurrence) {
+        foreach ($this->occurrenceRepository->getStalled() as $stalledOccurrence) {
             $stalledOccurrence->status()->associate($closedByVostStatus);
             $stalledOccurrence->save();
 
