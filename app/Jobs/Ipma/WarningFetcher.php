@@ -14,6 +14,7 @@ use Illuminate\Queue\SerializesModels;
 use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;
 use VOSTPT\Models\County;
+use VOSTPT\Repositories\Contracts\CountyRepository;
 use VOSTPT\ServiceClients\Contracts\IpmaApiServiceClient;
 
 class WarningFetcher implements ShouldQueue
@@ -36,42 +37,47 @@ class WarningFetcher implements ShouldQueue
     ];
 
     /**
-     * Best effort IPMA Area to County mapper.
+     * Best effort IPMA Area to County code mapper.
      *
      * @see http://api.ipma.pt/open-data/distrits-islands.json
      */
     private const COUNTY_MAPPER = [
-        'AVR' => 5,
-        'BJA' => 24,
-        'BRG' => 36,
-        'BGC' => 49,
-        'CBO' => 61,
-        'CBR' => 73,
-        'EVR' => 92,
-        'FAR' => 106,
-        'GDA' => 124,
-        'LRA' => 140,
-        'LSB' => 153, // Mainland [Lisboa, Lisboa - Jardim Botânico]
-        'PTG' => 177,
-        'PTO' => 190,
-        'STM' => 212,
-        'STB' => 229,
-        'VCT' => 239,
-        'VRL' => 254,
-        'VIS' => 277,
-        'MCN' => 288, // Madeira - Costa Norte [São Vicente]
-        'MCS' => 281, // Madeira - Costa Sul [Funchal]
-        'MRM' => 287, // Madeira - R. Montanhosas [Santana)]
-        'MPS' => 289, // Madeira - Porto Santo
-        'AOR' => 293, // Açores - Grupo Oriental [Ponta Delgada, Vila do Porto]
-        'ACE' => 297, // Açores - Grupo Central [Angra do Heroísmo, Santa Cruz da Graciosa, Velas, Madalena, Horta]
-        'AOC' => 307, // Açores - Grupo Ocidental [Santa Cruz das Flores, Vila do Corvo]
+        'AVR' => '010500',
+        'BJA' => '020500',
+        'BRG' => '030300',
+        'BGC' => '040200',
+        'CBO' => '050200',
+        'CBR' => '060300',
+        'EVR' => '070500',
+        'FAR' => '080500',
+        'GDA' => '090700',
+        'LRA' => '100900',
+        'LSB' => '110600', // Mainland [Lisboa, Lisboa - Jardim Botânico]
+        'PTG' => '121400',
+        'PTO' => '131200',
+        'STM' => '141600',
+        'STB' => '151200',
+        'VCT' => '160900',
+        'VRL' => '171400',
+        'VIS' => '182300',
+        'MCN' => '311000', // Madeira - Costa Norte [São Vicente]
+        'MCS' => '310300', // Madeira - Costa Sul [Funchal]
+        'MRM' => '310900', // Madeira - R. Montanhosas [Santana)]
+        'MPS' => '320100', // Madeira - Porto Santo
+        'AOR' => '420300', // Açores - Grupo Oriental [Ponta Delgada, Vila do Porto]
+        'ACE' => '430100', // Açores - Grupo Central [Angra do Heroísmo, Santa Cruz da Graciosa, Velas, Madalena, Horta]
+        'AOC' => '480200', // Açores - Grupo Ocidental [Santa Cruz das Flores, Vila do Corvo]
     ];
 
     /**
      * @var IpmaApiServiceClient
      */
     private $serviceClient;
+
+    /**
+     * @var CountyRepository
+     */
+    private $countyRepository;
 
     /**
      * @var LoggerInterface
@@ -83,22 +89,33 @@ class WarningFetcher implements ShouldQueue
      *
      * @var \Illuminate\Contracts\Cache\Repository
      */
-    protected $cache;
+    private $cache;
+
+    /**
+     * @var array
+     */
+    private $counties = [];
 
     /**
      * Execute the job.
      *
      * @param IpmaApiServiceClient                   $serviceClient
+     * @param CountyRepository                       $countyRepository
      * @param \Psr\Log\LoggerInterface               $logger
      * @param \Illuminate\Contracts\Cache\Repository $cache
      *
      * @return bool
      */
-    public function handle(IpmaApiServiceClient $serviceClient, LoggerInterface $logger, Cache $cache): bool
-    {
-        $this->serviceClient = $serviceClient;
-        $this->logger        = $logger;
-        $this->cache         = $cache;
+    public function handle(
+        IpmaApiServiceClient $serviceClient,
+        CountyRepository $countyRepository,
+        LoggerInterface $logger,
+        Cache $cache
+    ): bool {
+        $this->serviceClient    = $serviceClient;
+        $this->countyRepository = $countyRepository;
+        $this->logger           = $logger;
+        $this->cache            = $cache;
 
         $this->fetchIpmaWarnings();
 
@@ -128,7 +145,7 @@ class WarningFetcher implements ShouldQueue
             })->map(function (array $warning) {
                 return \array_merge($warning, [
                     'id'         => Uuid::uuid4()->toString(),
-                    'county'     => County::find(self::COUNTY_MAPPER[$warning['idAreaAviso']]),
+                    'county'     => $this->getCounty(self::COUNTY_MAPPER[$warning['idAreaAviso']]),
                     'started_at' => Carbon::parse($warning['startTime']),
                     'ended_at'   => Carbon::parse($warning['endTime']),
                 ]);
@@ -139,5 +156,25 @@ class WarningFetcher implements ShouldQueue
         $this->logger->info('...done!');
 
         return true;
+    }
+
+    /**
+     * @param string $ipmaCountyId
+     *
+     * @return County
+     */
+    private function getCounty(string $ipmaCountyId): ?County
+    {
+        if (\array_key_exists($ipmaCountyId, $this->counties)) {
+            return $this->counties[$ipmaCountyId];
+        }
+
+        if ($county = $this->countyRepository->findByCode($ipmaCountyId)) {
+            $this->counties[$ipmaCountyId] = $county;
+
+            return $county;
+        }
+
+        return null;
     }
 }
