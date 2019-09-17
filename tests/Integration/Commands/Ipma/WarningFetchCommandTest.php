@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VOSTPT\Tests\Integration\Controllers\UserController;
+namespace VOSTPT\Tests\Integration\Commands\Ipma;
 
 use GuzzleHttp\Client;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -56,6 +56,6 @@ class WarningFetchCommandTest extends TestCase
 
         $logger = $this->app[LoggerInterface::class];
 
-        $this->assertTrue($logger->hasRecordThatContains('Client error: `GET http://api.ipma.pt/json/warnings_www.json` resulted in a `404 Not Found`', 'error'));
+        $this->assertTrue($logger->hasRecordThatContains('Client error: `GET https://api.ipma.pt/json/warnings_www.json` resulted in a `404 Not Found`', 'error'));
     }
 }

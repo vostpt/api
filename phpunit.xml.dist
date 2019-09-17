@@ -100,6 +100,10 @@
         <server name="MAIL_DRIVER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
 
+        <!-- Services -->
+        <server name="IPMA_API_HOSTNAME" value="https://api.ipma.pt"/>
+        <server name="PROCIV_WEBSITE_HOSTNAME" value="http://www.prociv.pt"/>
+
         <!-- Database -->
         <env name="DB_CONNECTION" value="sqlite"/>
         <env name="DB_DATABASE" value=":memory:"/>
