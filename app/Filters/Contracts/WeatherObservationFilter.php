@@ -36,7 +36,7 @@ interface WeatherObservationFilter extends Filter
     public function withStations(...$stations): self;
 
     /**
-     * Include started at date for filtering.
+     * Include timestamp from for filtering.
      *
      * @param Carbon $from
      *
@@ -45,7 +45,7 @@ interface WeatherObservationFilter extends Filter
     public function withTimestampFrom(Carbon $from): self;
 
     /**
-     * Include ended at date for filtering.
+     * Include timestamp to for filtering.
      *
      * @param Carbon $to
      *
