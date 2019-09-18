@@ -142,6 +142,6 @@ class WeatherObservation extends Model
      */
     public function setRadiationAttribute(float $radiation): void
     {
-        $this->attributes['radiation'] = $radiation === -99.0 ? null : $radiation;
+        $this->attributes['radiation'] = $radiation === static::READING_ERROR ? null : $radiation;
     }
 }
