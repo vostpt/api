@@ -16,4 +16,14 @@ class OccurrenceTypeRepository extends Repository implements Contracts\Occurrenc
     {
         return OccurrenceType::query();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function findByCode(string $code): ?OccurrenceType
+    {
+        return $this->createQueryBuilder()
+            ->where('code', $code)
+            ->first();
+    }
 }
