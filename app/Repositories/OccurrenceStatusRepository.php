@@ -16,4 +16,14 @@ class OccurrenceStatusRepository extends Repository implements Contracts\Occurre
     {
         return OccurrenceStatus::query();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function findByCode(int $code): ?OccurrenceStatus
+    {
+        return $this->createQueryBuilder()
+            ->where('code', $code)
+            ->first();
+    }
 }
