@@ -13,11 +13,12 @@ use Illuminate\Support\Facades\DB;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 use VOSTPT\Models\Occurrence;
-use VOSTPT\Models\OccurrenceStatus;
-use VOSTPT\Models\OccurrenceType;
-use VOSTPT\Models\Parish;
 use VOSTPT\Models\ProCivOccurrence;
 use VOSTPT\Models\ProCivOccurrenceLog;
+use VOSTPT\Repositories\Contracts\OccurrenceStatusRepository;
+use VOSTPT\Repositories\Contracts\OccurrenceTypeRepository;
+use VOSTPT\Repositories\Contracts\ParishRepository;
+use VOSTPT\Repositories\Contracts\ProCivOccurrenceRepository;
 use VOSTPT\ServiceClients\Contracts\ProCivWebsiteServiceClient;
 
 class OccurrenceFetcher implements ShouldQueue
@@ -32,6 +33,26 @@ class OccurrenceFetcher implements ShouldQueue
     private $serviceClient;
 
     /**
+     * @var ProCivOccurrenceRepository
+     */
+    private $proCivOccurrenceRepository;
+
+    /**
+     * @var OccurrenceStatusRepository
+     */
+    private $occurrenceStatusRepository;
+
+    /**
+     * @var OccurrenceTypeRepository
+     */
+    private $occurrenceTypeRepository;
+
+    /**
+     * @var ParishRepository
+     */
+    private $parishRepository;
+
+    /**
      * @var LoggerInterface
      */
     private $logger;
@@ -40,16 +61,30 @@ class OccurrenceFetcher implements ShouldQueue
      * Execute the job.
      *
      * @param ProCivWebsiteServiceClient $serviceClient
+     * @param ProCivOccurrenceRepository $proCivOccurrenceRepository
+     * @param OccurrenceStatusRepository $occurrenceStatusRepository
+     * @param OccurrenceTypeRepository   $occurrenceTypeRepository
+     * @param ParishRepository           $parishRepository
      * @param \Psr\Log\LoggerInterface   $logger
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
      * @return bool
      */
-    public function handle(ProCivWebsiteServiceClient $serviceClient, LoggerInterface $logger): bool
-    {
-        $this->serviceClient = $serviceClient;
-        $this->logger        = $logger;
+    public function handle(
+        ProCivWebsiteServiceClient $serviceClient,
+        ProCivOccurrenceRepository $proCivOccurrenceRepository,
+        OccurrenceStatusRepository $occurrenceStatusRepository,
+        OccurrenceTypeRepository $occurrenceTypeRepository,
+        ParishRepository $parishRepository,
+        LoggerInterface $logger
+    ): bool {
+        $this->serviceClient              = $serviceClient;
+        $this->proCivOccurrenceRepository = $proCivOccurrenceRepository;
+        $this->occurrenceStatusRepository = $occurrenceStatusRepository;
+        $this->occurrenceTypeRepository   = $occurrenceTypeRepository;
+        $this->parishRepository           = $parishRepository;
+        $this->logger                     = $logger;
 
         $this->fetchProCivOccurrences();
 
@@ -73,7 +108,7 @@ class OccurrenceFetcher implements ShouldQueue
 
         foreach ($response['Data'] as $data) {
             DB::transaction(function () use ($data) {
-                if ($proCivOccurrence = ProCivOccurrence::where('remote_id', $data['Numero'])->first()) {
+                if ($proCivOccurrence = $this->proCivOccurrenceRepository->findByRemoteId($data['Numero'])) {
                     $occurrence = $proCivOccurrence->parent;
                 } else {
                     $proCivOccurrence = new ProCivOccurrence();
@@ -83,13 +118,13 @@ class OccurrenceFetcher implements ShouldQueue
                     $occurrence = new Occurrence();
                 }
 
-                $status = OccurrenceStatus::where('code', $data['EstadoOcorrenciaID'])->first();
+                $status = $this->occurrenceStatusRepository->findByCode($data['EstadoOcorrenciaID']);
                 $occurrence->status()->associate($status);
 
-                $type = OccurrenceType::where('code', $data['Natureza']['Codigo'])->first();
+                $type = $this->occurrenceTypeRepository->findByCode($data['Natureza']['Codigo']);
                 $occurrence->type()->associate($type);
 
-                $parish = Parish::where('code', $data['Freguesia']['DICOFRE'])->first();
+                $parish = $this->parishRepository->findByCode($data['Freguesia']['DICOFRE']);
                 $occurrence->parish()->associate($parish);
                 $occurrence->locality = $data['Localidade'];
 
@@ -139,7 +174,7 @@ class OccurrenceFetcher implements ShouldQueue
 
         foreach ($response['Data'] as $data) {
             DB::transaction(function () use ($data) {
-                $proCivOccurrence = ProCivOccurrence::where('remote_id', $data['Numero'])->first();
+                $proCivOccurrence = $this->proCivOccurrenceRepository->findByRemoteId($data['Numero']);
 
                 $this->logger->info(\sprintf('Storing ProCiv occurrence log for %s', $data['Numero']));
 
