@@ -16,4 +16,14 @@ class ProCivOccurrenceRepository extends Repository implements Contracts\ProCivO
     {
         return ProCivOccurrence::query();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function findByRemoteId(string $id): ?ProCivOccurrence
+    {
+        return $this->createQueryBuilder()
+            ->where('remote_id', $id)
+            ->first();
+    }
 }
