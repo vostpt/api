@@ -1,0 +1,187 @@
+Station:
+  type: object
+  properties:
+    type:
+      type: string
+      default: weather_stations
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        entity:
+          type: string
+          example: IPMA
+        name:
+          type: string
+          example: Faro / Aeroporto
+        serial:
+          type: string
+          example: 554
+        created_at:
+            type: string
+            format: date-time
+        updated_at:
+            type: string
+            format: date-time
+    relationships:
+      type: object
+      properties:
+        county:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: counties
+                id:
+                  type: string
+                  example: 1
+
+Observation:
+  type: object
+  properties:
+    type:
+      type: string
+      default: weather_observations
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        temperature:
+          type: number
+          format: double
+          example: 24.6
+        humidity:
+          type: integer
+          format: int32
+          example: 46
+        wind_speed:
+          type: double
+          format: double
+          example: 11.2
+        wind_direction:
+          type: string
+          enum:
+              - N
+              - NE
+              - E
+              - SE
+              - S
+              - SW
+              - W
+              - NW
+        precipitation:
+            type: double
+            format: double
+            example: 0.0
+        atmospheric_pressure:
+          type: double
+          format: double
+          example: 1016.1
+        radiation:
+          type: double
+          format: double
+          example: 2592.2
+        timestamp:
+            type: string
+            format: date-time
+        created_at:
+            type: string
+            format: date-time
+        updated_at:
+            type: string
+            format: date-time
+    relationships:
+      type: object
+      properties:
+        station:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: weather_stations
+                id:
+                  type: string
+                  example: 1
+
+ObservationWithRelations:
+  type: object
+  properties:
+    type:
+      type: string
+      default: weather_observations
+    id:
+      type: string
+      example: 1
+    attributes:
+      type: object
+      properties:
+        temperature:
+          type: number
+          format: double
+          example: 24.6
+        humidity:
+          type: integer
+          format: int32
+          example: 46
+        wind_speed:
+          type: double
+          format: double
+          example: 11.2
+        wind_direction:
+          type: string
+          enum:
+              - N
+              - NE
+              - E
+              - SE
+              - S
+              - SW
+              - W
+              - NW
+        precipitation:
+            type: double
+            format: double
+            example: 0.0
+        atmospheric_pressure:
+          type: double
+          format: double
+          example: 1016.1
+        radiation:
+          type: double
+          format: double
+          example: 2592.2
+        timestamp:
+            type: string
+            format: date-time
+        created_at:
+            type: string
+            format: date-time
+        updated_at:
+            type: string
+            format: date-time
+    relationships:
+      type: object
+      properties:
+        station:
+          type: object
+          properties:
+            data:
+              type: object
+              properties:
+                type:
+                  type: string
+                  default: weather_stations
+                id:
+                  type: string
+                  example: 1
+

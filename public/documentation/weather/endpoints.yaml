@@ -1,0 +1,155 @@
+index:
+  get:
+    tags:
+      - Observations
+    summary: Index weather observations
+    description: Index the available weather observations.
+    operationId: weather::observations::index
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
+      - $ref: '../common/parameters/page_number.yaml'
+      - $ref: '../common/parameters/page_size.yaml'
+      - $ref: '../common/parameters/search.yaml'
+      - $ref: '../common/parameters/exact.yaml'
+      - name: districts
+        in: query
+        description: Filter by District ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: counties
+        in: query
+        description: Filter by County ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: parishes
+        in: query
+        description: Filter by Parish ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: stations
+        in: query
+        description: Filter by WeatherStation ids
+        schema:
+          type: array
+          items:
+            type: string
+            example: 1
+      - name: timestamp_from
+        in: query
+        description: From timestamp onward
+        schema:
+          type: string
+          format: date
+          example: '2012-06-14'
+      - name: timestamp_to
+        in: query
+        description: Up to timestamp
+        schema:
+          type: string
+          format: date
+          example: '2012-06-14'
+      - name: sort
+        in: query
+        description: Field used for sorting results
+        schema:
+          type: string
+          enum:
+            - temperature
+            - humidity
+            - wind_speed
+            - wind_direction
+            - radiation
+            - timestamp
+            - created_at
+            - updated_at
+          default: created_at
+      - $ref: '../common/parameters/order.yaml'
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    first:
+                      type: string
+                      description: Link to the first page of results
+                    last:
+                      type: string
+                      description: Link to the last page of results
+                    prev:
+                     type: string
+                     description: Link to the previous page of results
+                    next:
+                     type: string
+                     description: Link to the next page of results
+                data:
+                  type: array
+                  items:
+                    $ref: 'schemas.yaml#/Observation'
+                included:
+                    type: array
+                    items:
+                        - $ref: 'schemas.yaml#/Station'
+                        - $ref: '../counties/schemas.yaml#/County'
+      406:
+          $ref: '../common/responses/406.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
+      422:
+          $ref: '../common/responses/422.yaml'
+
+view:
+  get:
+    tags:
+      - Observations
+    summary: View weather observation
+    description: Retrieve a specific weather observation record.
+    operationId: weather::observations::view
+    parameters:
+      - $ref: '../common/parameters/content_type.yaml'
+      - $ref: '../common/parameters/accept.yaml'
+      - name: id
+        in: path
+        description: WeatherObservation id
+        required: true
+        schema:
+          type: string
+          example: 1
+
+    responses:
+      200:
+        description: OK
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: 'schemas.yaml#/ObservationWithRelations'
+                included:
+                  type: array
+                  items:
+                    - $ref: 'schemas.yaml#/Station'
+                    - $ref: '../counties/schemas.yaml#/County'
+      404:
+        $ref: '../common/responses/404.yaml'
+      406:
+        $ref: '../common/responses/406.yaml'
+      415:
+        $ref: '../common/responses/415.yaml'
