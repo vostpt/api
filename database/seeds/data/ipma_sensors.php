@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+/**
+ * @see https://www.ipma.pt/pt/enciclopedia/redes.observacao/meteo/eoms-list.json
+ */
 return [
     [
         'station_number' => 501,
