@@ -12,10 +12,10 @@ Parish:
       properties:
         code:
           type: integer
-          example: 080805
+          example: 080506
         name:
           type: string
-          example: Quarteira
+          example: Montenegro
         created_at:
           type: string
           format: date-time
@@ -43,10 +43,10 @@ ParishWithRelations:
       properties:
         code:
           type: integer
-          example: 080805
+          example: 080506
         name:
           type: string
-          example: Quarteira
+          example: Montenegro
         created_at:
           type: string
           format: date-time
