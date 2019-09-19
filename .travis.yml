@@ -1,6 +1,6 @@
 language: php
 
-dist: xenial
+dist: bionic
 
 php:
   - '7.2'
@@ -9,6 +9,9 @@ matrix:
   fast_finish: true
 
 sudo: true
+
+before_install:
+  - echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 before_script:
   # Install project dependencies
