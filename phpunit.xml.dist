@@ -9,6 +9,14 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
+        <testsuite name="IPMA Commands Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Commands/Ipma</directory>
+        </testsuite>
+
+        <testsuite name="ProCiv Commands Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Commands/ProCiv</directory>
+        </testsuite>
+
         <testsuite name="AcronymController Integration Tests">
             <directory suffix="Test.php">./tests/Integration/Controllers/AcronymController</directory>
         </testsuite>
@@ -31,6 +39,10 @@
 
         <testsuite name="FallbackController Integration Tests">
             <directory suffix="Test.php">./tests/Integration/Controllers/FallbackController</directory>
+        </testsuite>
+
+        <testsuite name="IpmaWarningController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/IpmaWarningController</directory>
         </testsuite>
 
         <testsuite name="OccurrenceController Integration Tests">
@@ -73,8 +85,8 @@
             <directory suffix="Test.php">./tests/Integration/Controllers/UserRoleController</directory>
         </testsuite>
 
-        <testsuite name="WarningController Integration Tests">
-            <directory suffix="Test.php">./tests/Integration/Controllers/WarningController</directory>
+        <testsuite name="WeatherObservationController Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Controllers/WeatherObservationController</directory>
         </testsuite>
     </testsuites>
     <filter>
@@ -91,6 +103,10 @@
         <server name="CACHE_DRIVER" value="array"/>
         <server name="MAIL_DRIVER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
+
+        <!-- Services -->
+        <server name="IPMA_API_HOSTNAME" value="https://api.ipma.pt"/>
+        <server name="PROCIV_WEBSITE_HOSTNAME" value="http://www.prociv.pt"/>
 
         <!-- Database -->
         <env name="DB_CONNECTION" value="sqlite"/>

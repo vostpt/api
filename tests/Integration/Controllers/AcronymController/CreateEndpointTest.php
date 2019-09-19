@@ -6,12 +6,12 @@ namespace VOSTPT\Tests\Integration\Controllers\AcronymController;
 
 use VOSTPT\Models\Role;
 use VOSTPT\Models\User;
-use VOSTPT\Tests\Integration\RefreshDatabase;
+use VOSTPT\Tests\Integration\RefreshDatabaseWithRoles;
 use VOSTPT\Tests\Integration\TestCase;
 
 class CreateEndpointTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabaseWithRoles;
 
     /**
      * @test

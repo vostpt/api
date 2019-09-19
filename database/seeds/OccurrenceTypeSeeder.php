@@ -22,7 +22,7 @@ class OccurrenceTypeSeeder extends Seeder
 
             foreach ($types as $attributes) {
                 factory(OccurrenceType::class)->create(\array_merge($attributes, [
-                    'species_id' => $parent->id,
+                    'species_id' => $parent->getKey(),
                 ]));
             }
         }

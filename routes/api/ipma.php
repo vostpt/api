@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use VOSTPT\Http\Controllers\WarningController;
+use VOSTPT\Http\Controllers\IpmaWarningController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +14,7 @@ use VOSTPT\Http\Controllers\WarningController;
 
 Route::prefix('v1/ipma')->name('ipma::')->group(function () {
     Route::get('/warnings', [
-        WarningController::class,
+        IpmaWarningController::class,
         'index',
     ])->name('warnings::index');
 });

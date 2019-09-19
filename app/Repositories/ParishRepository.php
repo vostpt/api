@@ -16,4 +16,14 @@ class ParishRepository extends Repository implements Contracts\ParishRepository
     {
         return Parish::query();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function findByCode(string $code): ?Parish
+    {
+        return $this->createQueryBuilder()
+            ->where('code', $code)
+            ->first();
+    }
 }

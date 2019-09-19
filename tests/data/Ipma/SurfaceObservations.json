@@ -1,0 +1,71 @@
+{
+    "1975-07-25T16:25": {
+        "123": {
+            "intensidadeVentoKM": 32.4,
+            "temperatura": 27.5,
+            "radiacao": 3012.9,
+            "idDireccVento": 2,
+            "precAcumulada": 0.0,
+            "intensidadeVento": 9.0,
+            "humidade": 38.0,
+            "pressao": 1020.9
+        },
+        "456": {
+            "intensidadeVentoKM": 32.4,
+            "temperatura": 27.5,
+            "radiacao": 3012.9,
+            "idDireccVento": 2,
+            "precAcumulada": 0.0,
+            "intensidadeVento": 9.0,
+            "humidade": 38.0,
+            "pressao": 1020.9
+        },
+        "789": null
+    },
+    "1981-12-16T03:33": {
+        "123": {
+            "intensidadeVentoKM": 32.4,
+            "temperatura": 27.5,
+            "radiacao": 3012.9,
+            "idDireccVento": 2,
+            "precAcumulada": 0.0,
+            "intensidadeVento": 9.0,
+            "humidade": 38.0,
+            "pressao": 1020.9
+        },
+        "456": {
+            "intensidadeVentoKM": 32.4,
+            "temperatura": 27.5,
+            "radiacao": 3012.9,
+            "idDireccVento": 2,
+            "precAcumulada": 0.0,
+            "intensidadeVento": 9.0,
+            "humidade": 38.0,
+            "pressao": 1020.9
+        },
+        "789": null
+    },
+    "2012-06-14T15:03": {
+        "123": {
+            "intensidadeVentoKM": 32.4,
+            "temperatura": 27.5,
+            "radiacao": 3012.9,
+            "idDireccVento": 2,
+            "precAcumulada": 0.0,
+            "intensidadeVento": 9.0,
+            "humidade": 38.0,
+            "pressao": 1020.9
+        },
+        "456": {
+            "intensidadeVentoKM": 32.4,
+            "temperatura": 27.5,
+            "radiacao": 3012.9,
+            "idDireccVento": 2,
+            "precAcumulada": 0.0,
+            "intensidadeVento": 9.0,
+            "humidade": 38.0,
+            "pressao": 1020.9
+        },
+        "789": null
+    }
+}

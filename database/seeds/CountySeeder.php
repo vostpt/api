@@ -22,7 +22,7 @@ class CountySeeder extends Seeder
 
             foreach ($counties as $county) {
                 factory(County::class)->create(\array_merge($county, [
-                    'district_id' => $district->id,
+                    'district_id' => $district->getKey(),
                 ]));
             }
         }

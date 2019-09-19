@@ -5,11 +5,15 @@ declare(strict_types=1);
 return [
 
     'ipma' => [
-        'hostname' => env('IPMA_HOSTNAME'),
+        'api' => [
+            'hostname' => env('IPMA_API_HOSTNAME'),
+        ],
     ],
 
     'prociv' => [
-        'hostname' => env('PROCIV_HOSTNAME'),
+        'website' => [
+            'hostname' => env('PROCIV_WEBSITE_HOSTNAME'),
+        ],
     ],
 
 ];

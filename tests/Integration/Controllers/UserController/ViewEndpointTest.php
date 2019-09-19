@@ -7,12 +7,12 @@ namespace VOSTPT\Tests\Integration\Controllers\UserController;
 use Tymon\JWTAuth\Http\Middleware\Authenticate;
 use VOSTPT\Models\Role;
 use VOSTPT\Models\User;
-use VOSTPT\Tests\Integration\RefreshDatabase;
+use VOSTPT\Tests\Integration\RefreshDatabaseWithRoles;
 use VOSTPT\Tests\Integration\TestCase;
 
 class ViewEndpointTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabaseWithRoles;
 
     /**
      * @test

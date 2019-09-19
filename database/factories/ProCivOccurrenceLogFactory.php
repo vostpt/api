@@ -16,7 +16,7 @@ use VOSTPT\Models\ProCivOccurrenceLog;
 $factory->define(ProCivOccurrenceLog::class, function (Faker $faker) {
     return [
         'occurrence_id' => function () {
-            return factory(ProCivOccurrence::class)->create()->id;
+            return factory(ProCivOccurrence::class)->create()->getKey();
         },
 
         'rescue_operations_commander'           => $faker->name,

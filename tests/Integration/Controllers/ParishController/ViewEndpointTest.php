@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace VOSTPT\Tests\Integration\Controllers\ParishController;
 
 use VOSTPT\Models\Parish;
-use VOSTPT\Tests\Integration\RefreshDatabase;
+use VOSTPT\Tests\Integration\RefreshDatabaseWithRoles;
 use VOSTPT\Tests\Integration\TestCase;
 
 class ViewEndpointTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabaseWithRoles;
 
     /**
      * @test

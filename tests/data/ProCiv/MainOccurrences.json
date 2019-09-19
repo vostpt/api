@@ -1,0 +1,78 @@
+{
+    "GetMainOccurrencesResult": {
+        "__type": "PageContainerOfSitOpOcorrenciaSignificativaSwu7WJvj:#ARM.SP20013.Framework.DI.Entities",
+        "ArrayInfo": [{
+            "Data": [{
+                "Numero": "2019170027060",
+                "COS":  "2º Comandante Operacional Distrital de Viseu",
+
+                "EntidadesNoTO": "Presidente da Câmara Municipal de Tabuaço.",
+
+                "Notas": "N/A",
+
+                "PCO": "Instalado junto ao Miradouro de Nossa Senhora da Conceição (N 41º 06' 45''   W 007º 33' 57'').",
+
+                "NumAvioesMediosEnvolvidos": "2",
+                "NumAvioesPesadosEnvolvidos": "2",
+                "NumAvioesOutrosEnvolvidos": "1",
+
+                "NumHelicopterosLigeirosMediosEnvolvidos": "0",
+                "NumHelicopterosPesadosEnvolvidos": "1",
+                "NumHelicopterosOutrosEnvolvidos": "0",
+
+                "NumBombeirosEnvolvidos": "39",
+                "NumBombeirosOperEnvolvidos": "123",
+
+                "NumFebEnvolvidos": "23",
+                "NumFebOperEnvolvidos": "78",
+
+                "NumEsfEnvolvidos": "3",
+                "NumEsfOperEnvolvidos": "15",
+
+                "NumFAAEnvolvidos": "0",
+                "NumFAAOperEnvolvidos": "0",
+
+                "NumGNRGipsEnvolvidos": "7",
+                "NumGNRGipsOperEnvolvidos": "26",
+
+                "NumGNROutrosEnvolvidos": "2",
+                "NumGNROutrosOperEnvolvidos": "3",
+
+                "NumPSPEnvolvidos": "0",
+                "NumPSPOperEnvolvidos": "0",
+
+                "GruposReforcoEnvolvidos": "EAUF 02 FEPC, GRIF 01 e GRIF 02 FEPC, GRIF 01  Coimbra, GRIF 01 Vila Real, CATA Viseu.",
+
+                "OutrosOperacionaisEnvolvidos": "8",
+
+                "PontoSituacao": "",
+                "POSITDescricao": "Incêndio dominado.",
+
+                "PPIAtivados": ""
+            }],
+            "Total": 1
+        }],
+        "Labels": [],
+        "UserInfo": null,
+        "Variables": [{
+            "Key": "incendios",
+            "Value": "207,208,209"
+        }, {
+            "Key": "meteorologia",
+            "Value": "215,219,220,221,222,224,225,229,256,267,268,273"
+        }],
+        "arrayInfo": [{
+            "Data": [],
+            "Total": 0
+        }],
+        "labels": [],
+        "user": null,
+        "vars": [{
+            "Key": "incendios",
+            "Value": "207,208,209"
+        }, {
+            "Key": "meteorologia",
+            "Value": "215,219,220,221,222,224,225,229,256,267,268,273"
+        }]
+    }
+}

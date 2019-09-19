@@ -12,10 +12,10 @@ County:
       properties:
         code:
           type: integer
-          example: 080800
+          example: 080500
         name:
           type: string
-          example: Loulé
+          example: Faro
         created_at:
           type: string
           format: date-time
@@ -43,10 +43,10 @@ CountyWithRelations:
       properties:
         code:
           type: integer
-          example: 080800
+          example: 080500
         name:
           type: string
-          example: Loulé
+          example: Faro
         created_at:
           type: string
           format: date-time

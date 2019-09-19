@@ -13,12 +13,12 @@ use VOSTPT\Models\OccurrenceStatus;
 use VOSTPT\Models\OccurrenceType;
 use VOSTPT\Models\Parish;
 use VOSTPT\Models\ProCivOccurrence;
-use VOSTPT\Tests\Integration\RefreshDatabase;
+use VOSTPT\Tests\Integration\RefreshDatabaseWithRoles;
 use VOSTPT\Tests\Integration\TestCase;
 
 class IndexEndpointTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabaseWithRoles;
 
     /**
      * @test

@@ -34,6 +34,8 @@ tags:
     description: System user operations
   - name: Warnings
     description: IPMA warning operations
+  - name: Observations
+    description: Weather observation operations
 
 x-tagGroups:
   - name: Acronym Management
@@ -52,9 +54,12 @@ x-tagGroups:
     tags:
       - Authentication
       - Users
-  - name: Warning Management
+  - name: IPMA
     tags:
         - Warnings
+  - name: Weather
+    tags:
+        - Observations
 
 paths:
   /acronyms:
@@ -133,7 +138,13 @@ paths:
     $ref: 'users/endpoints.yaml#/profile-view-and-update'
 
   /ipma/warnings:
-      $ref: 'warnings/endpoints.yaml#/index'
+      $ref: 'ipma/endpoints.yaml#/index'
+
+  /weather/observations:
+      $ref: 'weather/endpoints.yaml#/index'
+
+  /weather/observations/{id}:
+      $ref: 'weather/endpoints.yaml#/view'
 
 components:
   securitySchemes:
