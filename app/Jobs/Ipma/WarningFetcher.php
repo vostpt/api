@@ -62,7 +62,7 @@ class WarningFetcher implements ShouldQueue
         'VIS' => '182300',
         'MCN' => '311000', // Madeira - Costa Norte [São Vicente]
         'MCS' => '310300', // Madeira - Costa Sul [Funchal]
-        'MRM' => '310900', // Madeira - R. Montanhosas [Santana)]
+        'MRM' => '310900', // Madeira - R. Montanhosas [Santana]
         'MPS' => '320100', // Madeira - Porto Santo
         'AOR' => '420300', // Açores - Grupo Oriental [Ponta Delgada, Vila do Porto]
         'ACE' => '430100', // Açores - Grupo Central [Angra do Heroísmo, Santa Cruz da Graciosa, Velas, Madalena, Horta]
