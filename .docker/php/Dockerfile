@@ -21,7 +21,8 @@ RUN docker-php-ext-install \
 RUN pecl channel-update pecl.php.net \
     && printf "\n" | pecl install mcrypt-1.0.2 \
     && printf "\n" | pecl install xdebug-2.7.2 \
-    && docker-php-ext-enable mcrypt xdebug
+    && printf "\n" | pecl install redis-3.1.6 \
+    && docker-php-ext-enable mcrypt xdebug redis
 
 COPY conf/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 COPY conf/zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
