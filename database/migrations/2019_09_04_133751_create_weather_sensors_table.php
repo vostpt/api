@@ -22,7 +22,7 @@ class CreateWeatherSensorsTable extends Migration
             $table->string('type');
 
             $table->decimal('latitude', 10, 8);
-            $table->decimal('longitude', 10, 8);
+            $table->decimal('longitude', 11, 8);
 
             $table->unsignedSmallInteger('altitude');
 

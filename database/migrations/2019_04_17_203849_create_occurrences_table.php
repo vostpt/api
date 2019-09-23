@@ -26,7 +26,7 @@ class CreateOccurrencesTable extends Migration
             $table->morphs('source');
 
             $table->decimal('latitude', 10, 8);
-            $table->decimal('longitude', 10, 8);
+            $table->decimal('longitude', 11, 8);
 
             $table->timestamp('started_at');
             $table->timestamp('ended_at')->nullable();
