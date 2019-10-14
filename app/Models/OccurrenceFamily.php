@@ -10,6 +10,8 @@ use LengthException;
 
 class OccurrenceFamily extends Model
 {
+    use Concerns\Cacheable;
+
     /**
      * {@inheritDoc}
      */

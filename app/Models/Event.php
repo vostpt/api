@@ -11,6 +11,8 @@ use LengthException;
 
 class Event extends Model
 {
+    use Concerns\Cacheable;
+
     /**
      * {@inheritDoc}
      */
