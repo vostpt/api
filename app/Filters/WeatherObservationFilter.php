@@ -212,4 +212,34 @@ class WeatherObservationFilter extends Filter implements Contracts\WeatherObserv
             $this->timestampTo ? $this->timestampTo->toDateString() : null,
         ]);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUrlParameters(): array
+    {
+        $parameters = [];
+
+        if ($this->districts) {
+            $parameters['districts'] = $this->districts;
+        }
+
+        if ($this->counties) {
+            $parameters['counties'] = $this->counties;
+        }
+
+        if ($this->stations) {
+            $parameters['stations'] = $this->stations;
+        }
+
+        if ($this->timestampFrom) {
+            $parameters['timestamp_from'] = $this->timestampFrom->toDateString();
+        }
+
+        if ($this->timestampTo) {
+            $parameters['timestamp_to'] = $this->timestampTo->toDateString();
+        }
+
+        return \array_merge(parent::getUrlParameters(), $parameters);
+    }
 }
