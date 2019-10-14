@@ -46,9 +46,7 @@ class UserController extends Controller
             $filter->withRoles(...$request->input('roles', []));
         }
 
-        $paginator = $this->createPaginator(User::class, $userRepository->createQueryBuilder(), $filter);
-
-        return response()->paginator($paginator, new UserSerializer());
+        return response()->paginator($userRepository->getPaginator($filter), new UserSerializer());
     }
 
     /**

@@ -38,9 +38,7 @@ class DistrictController extends Controller
             $filter->withSearch($request->input('search'), (bool) $request->input('exact', false));
         }
 
-        $paginator = $this->createPaginator(District::class, $districtRepository->createQueryBuilder(), $filter);
-
-        return response()->paginator($paginator, new DistrictSerializer());
+        return response()->paginator($districtRepository->getPaginator($filter), new DistrictSerializer());
     }
 
     /**

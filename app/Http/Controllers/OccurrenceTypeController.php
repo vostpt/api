@@ -8,7 +8,6 @@ use Illuminate\Http\JsonResponse;
 use VOSTPT\Filters\Contracts\OccurrenceTypeFilter;
 use VOSTPT\Http\Requests\OccurrenceType\Index;
 use VOSTPT\Http\Serializers\OccurrenceTypeSerializer;
-use VOSTPT\Models\OccurrenceType;
 use VOSTPT\Repositories\Contracts\OccurrenceTypeRepository;
 
 class OccurrenceTypeController extends Controller
@@ -42,9 +41,7 @@ class OccurrenceTypeController extends Controller
             $filter->withSpecies(...$request->input('species', []));
         }
 
-        $paginator = $this->createPaginator(OccurrenceType::class, $occurrenceTypeRepository->createQueryBuilder(), $filter);
-
-        return response()->paginator($paginator, new OccurrenceTypeSerializer(), [
+        return response()->paginator($occurrenceTypeRepository->getPaginator($filter), new OccurrenceTypeSerializer(), [
             'species',
         ]);
     }

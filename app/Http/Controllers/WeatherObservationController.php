@@ -60,9 +60,7 @@ class WeatherObservationController extends Controller
             $filter->withTimestampTo(Carbon::parse($to));
         }
 
-        $paginator = $this->createPaginator(WeatherObservation::class, $occurrenceRepository->createQueryBuilder(), $filter);
-
-        return response()->paginator($paginator, new WeatherObservationSerializer(), [
+        return response()->paginator($occurrenceRepository->getPaginator($filter), new WeatherObservationSerializer(), [
             'station',
             'station.county',
         ]);

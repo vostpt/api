@@ -42,9 +42,7 @@ class OccurrenceSpeciesController extends Controller
             $filter->withFamilies(...$request->input('families', []));
         }
 
-        $paginator = $this->createPaginator(OccurrenceSpecies::class, $occurrenceSpeciesRepository->createQueryBuilder(), $filter);
-
-        return response()->paginator($paginator, new OccurrenceSpeciesSerializer(), [
+        return response()->paginator($occurrenceSpeciesRepository->getPaginator($filter), new OccurrenceSpeciesSerializer(), [
             'family',
         ]);
     }

@@ -42,9 +42,7 @@ class ParishController extends Controller
             $filter->withCounties(...$request->input('counties', []));
         }
 
-        $paginator = $this->createPaginator(Parish::class, $parishRepository->createQueryBuilder(), $filter);
-
-        return response()->paginator($paginator, new ParishSerializer());
+        return response()->paginator($parishRepository->getPaginator($filter), new ParishSerializer());
     }
 
     /**

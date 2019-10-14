@@ -70,9 +70,7 @@ class OccurrenceController extends Controller
             $filter->withEndedAt(Carbon::parse($endedAt));
         }
 
-        $paginator = $this->createPaginator(Occurrence::class, $occurrenceRepository->createQueryBuilder(), $filter);
-
-        return response()->paginator($paginator, new OccurrenceSerializer(), [
+        return response()->paginator($occurrenceRepository->getPaginator($filter), new OccurrenceSerializer(), [
             'type',
             'status',
             'parish',
