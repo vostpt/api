@@ -10,6 +10,8 @@ use LengthException;
 
 class District extends Model
 {
+    use Concerns\Cacheable;
+
     /**
      * {@inheritDoc}
      */

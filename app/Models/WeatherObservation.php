@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class WeatherObservation extends Model
 {
+    use Concerns\Cacheable;
+
     /**
      * {@inheritDoc}
      */

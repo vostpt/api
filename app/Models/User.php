@@ -16,6 +16,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Model implements Authenticatable, AuthorizableContract, JWTSubject
 {
     use Authorizable;
+    use Concerns\Cacheable;
     use HasRoles;
 
     /**

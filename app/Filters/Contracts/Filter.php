@@ -165,4 +165,11 @@ interface Filter
      * @return string
      */
     public function getSignature(bool $hash = false): string;
+
+    /**
+     * Get parameters to append to a URL.
+     *
+     * @return array
+     */
+    public function getUrlParameters(): array;
 }

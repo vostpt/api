@@ -6,7 +6,7 @@ namespace VOSTPT\Repositories\Contracts;
 
 use VOSTPT\Models\County;
 
-interface CountyRepository extends Repository
+interface CountyRepository extends Repository, Paginator
 {
     /**
      * Find a County by code.

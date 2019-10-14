@@ -9,6 +9,8 @@ use VOSTPT\Models\District;
 
 class DistrictRepository extends Repository implements Contracts\DistrictRepository
 {
+    use Concerns\Paginator;
+
     /**
      * {@inheritDoc}
      */

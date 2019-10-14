@@ -8,7 +8,6 @@ use Illuminate\Http\JsonResponse;
 use VOSTPT\Filters\Contracts\OccurrenceStatusFilter;
 use VOSTPT\Http\Requests\OccurrenceStatus\Index;
 use VOSTPT\Http\Serializers\OccurrenceStatusSerializer;
-use VOSTPT\Models\OccurrenceStatus;
 use VOSTPT\Repositories\Contracts\OccurrenceStatusRepository;
 
 class OccurrenceStatusController extends Controller
@@ -38,8 +37,6 @@ class OccurrenceStatusController extends Controller
             $filter->withSearch($request->input('search'), (bool) $request->input('exact', false));
         }
 
-        $paginator = $this->createPaginator(OccurrenceStatus::class, $occurrenceStatusRepository->createQueryBuilder(), $filter);
-
-        return response()->paginator($paginator, new OccurrenceStatusSerializer());
+        return response()->paginator($occurrenceStatusRepository->getPaginator($filter), new OccurrenceStatusSerializer());
     }
 }

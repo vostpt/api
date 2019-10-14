@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace VOSTPT\Repositories\Contracts;
 
-interface UserRepository extends Repository
+interface UserRepository extends Repository, Paginator
 {
     //
 }

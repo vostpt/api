@@ -6,7 +6,7 @@ namespace VOSTPT\Repositories\Contracts;
 
 use VOSTPT\Models\OccurrenceType;
 
-interface OccurrenceTypeRepository extends Repository
+interface OccurrenceTypeRepository extends Repository, Paginator
 {
     /**
      * Find an OccurrenceType by code.

@@ -9,6 +9,8 @@ use LengthException;
 
 class Acronym extends Model
 {
+    use Concerns\Cacheable;
+
     /**
      * {@inheritDoc}
      */

@@ -8,7 +8,6 @@ use Illuminate\Http\JsonResponse;
 use VOSTPT\Filters\Contracts\OccurrenceFamilyFilter;
 use VOSTPT\Http\Requests\OccurrenceFamily\Index;
 use VOSTPT\Http\Serializers\OccurrenceFamilySerializer;
-use VOSTPT\Models\OccurrenceFamily;
 use VOSTPT\Repositories\Contracts\OccurrenceFamilyRepository;
 
 class OccurrenceFamilyController extends Controller
@@ -38,8 +37,6 @@ class OccurrenceFamilyController extends Controller
             $filter->withSearch($request->input('search'), (bool) $request->input('exact', false));
         }
 
-        $paginator = $this->createPaginator(OccurrenceFamily::class, $occurrenceFamilyRepository->createQueryBuilder(), $filter);
-
-        return response()->paginator($paginator, new OccurrenceFamilySerializer());
+        return response()->paginator($occurrenceFamilyRepository->getPaginator($filter), new OccurrenceFamilySerializer());
     }
 }

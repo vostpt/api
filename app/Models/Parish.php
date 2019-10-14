@@ -10,6 +10,8 @@ use LengthException;
 
 class Parish extends Model
 {
+    use Concerns\Cacheable;
+
     /**
      * {@inheritDoc}
      */

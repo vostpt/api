@@ -278,4 +278,23 @@ abstract class Filter implements Contracts\Filter
 
         return $hash ? \sha1($signature) : $signature;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUrlParameters(): array
+    {
+        $parameters = [
+            'page[size]' => $this->pageSize,
+            'sort'       => $this->sortColumn,
+            'order'      => $this->sortOrder,
+        ];
+
+        if ($this->search) {
+            $parameters['search'] = $this->search;
+            $parameters['exact']  = (int) $this->exactMatch;
+        }
+
+        return $parameters;
+    }
 }

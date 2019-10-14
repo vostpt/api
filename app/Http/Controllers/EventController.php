@@ -49,9 +49,7 @@ class EventController extends Controller
             $filter->withParishes(...$request->input('parishes', []));
         }
 
-        $paginator = $this->createPaginator(Event::class, $eventRepository->createQueryBuilder(), $filter);
-
-        return response()->paginator($paginator, new EventSerializer());
+        return response()->paginator($eventRepository->getPaginator($filter), new EventSerializer());
     }
 
     /**

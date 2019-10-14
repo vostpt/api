@@ -11,6 +11,8 @@ use LengthException;
 
 class OccurrenceType extends Model
 {
+    use Concerns\Cacheable;
+
     /**
      * {@inheritDoc}
      */

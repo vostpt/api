@@ -9,6 +9,8 @@ use VOSTPT\Models\Acronym;
 
 class AcronymRepository extends Repository implements Contracts\AcronymRepository
 {
+    use Concerns\Paginator;
+
     /**
      * {@inheritDoc}
      */

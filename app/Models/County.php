@@ -10,6 +10,8 @@ use LengthException;
 
 class County extends Model
 {
+    use Concerns\Cacheable;
+
     /**
      * {@inheritDoc}
      */

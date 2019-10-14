@@ -6,7 +6,7 @@ namespace VOSTPT\Repositories\Contracts;
 
 use VOSTPT\Models\Parish;
 
-interface ParishRepository extends Repository
+interface ParishRepository extends Repository, Paginator
 {
     /**
      * Find a Parish by code.

@@ -9,6 +9,8 @@ use VOSTPT\Models\Event;
 
 class EventRepository extends Repository implements Contracts\EventRepository
 {
+    use Concerns\Paginator;
+
     /**
      * {@inheritDoc}
      */

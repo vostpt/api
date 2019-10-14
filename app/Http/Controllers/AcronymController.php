@@ -41,9 +41,7 @@ class AcronymController extends Controller
             $filter->withSearch($request->input('search'), (bool) $request->input('exact', false));
         }
 
-        $paginator = $this->createPaginator(Acronym::class, $acronymRepository->createQueryBuilder(), $filter);
-
-        return response()->paginator($paginator, new AcronymSerializer());
+        return response()->paginator($acronymRepository->getPaginator($filter), new AcronymSerializer());
     }
 
     /**

@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use VOSTPT\Models\WeatherObservation;
 use VOSTPT\Models\WeatherStation;
 
-interface WeatherObservationRepository extends Repository
+interface WeatherObservationRepository extends Repository, Paginator
 {
     /**
      * @param WeatherStation $station

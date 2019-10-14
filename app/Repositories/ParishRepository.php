@@ -9,6 +9,8 @@ use VOSTPT\Models\Parish;
 
 class ParishRepository extends Repository implements Contracts\ParishRepository
 {
+    use Concerns\Paginator;
+
     /**
      * {@inheritDoc}
      */

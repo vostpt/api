@@ -10,6 +10,8 @@ use LengthException;
 
 class OccurrenceStatus extends Model
 {
+    use Concerns\Cacheable;
+
     public const FALSE_ALERT          = 1;
     public const SURVEILLANCE         = 2;
     public const DISPATCH             = 3;
