@@ -208,8 +208,8 @@ class WeatherObservationFilter extends Filter implements Contracts\WeatherObserv
             \implode(',', $this->districts),
             \implode(',', $this->counties),
             \implode(',', $this->stations),
-            $this->timestampFrom ? $this->timestampFrom->toDateTimeString() : null,
-            $this->timestampTo ? $this->timestampTo->toDateTimeString() : null,
+            $this->timestampFrom ? $this->timestampFrom->toDateString() : null,
+            $this->timestampTo ? $this->timestampTo->toDateString() : null,
         ]);
     }
 }
