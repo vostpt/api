@@ -6,7 +6,6 @@ namespace VOSTPT\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Bus\Dispatcher as BusDispatcher;
-use Illuminate\Contracts\Cache\Repository as Cache;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -27,13 +26,10 @@ class OccurrenceReportController extends Controller
     private $filesystem;
 
     /**
-     * @param Cache      $cache
      * @param Filesystem $filesystem
      */
-    public function __construct(Cache $cache, Filesystem $filesystem)
+    public function __construct(Filesystem $filesystem)
     {
-        parent::__construct($cache);
-
         $this->filesystem = $filesystem;
     }
 
