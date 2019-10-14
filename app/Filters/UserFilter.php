@@ -111,4 +111,18 @@ class UserFilter extends Filter implements Contracts\UserFilter
             \implode(',', $this->roles),
         ]);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUrlParameters(): array
+    {
+        $parameters = [];
+
+        if ($this->roles) {
+            $parameters['roles'] = $this->roles;
+        }
+
+        return \array_merge(parent::getUrlParameters(), $parameters);
+    }
 }
