@@ -10,6 +10,8 @@ use VOSTPT\Models\Occurrence;
 
 class OccurrenceRepository extends Repository implements Contracts\OccurrenceRepository
 {
+    use Concerns\Paginator;
+
     /**
      * {@inheritDoc}
      */

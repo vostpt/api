@@ -9,6 +9,8 @@ use VOSTPT\Models\User;
 
 class UserRepository extends Repository implements Contracts\UserRepository
 {
+    use Concerns\Paginator;
+
     /**
      * {@inheritDoc}
      */

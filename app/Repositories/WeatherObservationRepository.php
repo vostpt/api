@@ -11,6 +11,8 @@ use VOSTPT\Models\WeatherStation;
 
 class WeatherObservationRepository extends Repository implements Contracts\WeatherObservationRepository
 {
+    use Concerns\Paginator;
+
     /**
      * {@inheritDoc}
      */

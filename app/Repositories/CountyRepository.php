@@ -9,6 +9,8 @@ use VOSTPT\Models\County;
 
 class CountyRepository extends Repository implements Contracts\CountyRepository
 {
+    use Concerns\Paginator;
+
     /**
      * {@inheritDoc}
      */

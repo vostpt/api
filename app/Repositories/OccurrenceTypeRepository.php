@@ -9,6 +9,8 @@ use VOSTPT\Models\OccurrenceType;
 
 class OccurrenceTypeRepository extends Repository implements Contracts\OccurrenceTypeRepository
 {
+    use Concerns\Paginator;
+
     /**
      * {@inheritDoc}
      */
