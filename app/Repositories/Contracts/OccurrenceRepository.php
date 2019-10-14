@@ -6,7 +6,7 @@ namespace VOSTPT\Repositories\Contracts;
 
 use Illuminate\Database\Eloquent\Collection;
 
-interface OccurrenceRepository extends Repository
+interface OccurrenceRepository extends Repository, Paginator
 {
     /**
      * Get all the stalled Occurrences.

@@ -6,7 +6,7 @@ namespace VOSTPT\Repositories\Contracts;
 
 use VOSTPT\Models\OccurrenceStatus;
 
-interface OccurrenceStatusRepository extends Repository
+interface OccurrenceStatusRepository extends Repository, Paginator
 {
     /**
      * Find an OccurrenceStatus by code.
