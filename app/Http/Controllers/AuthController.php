@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace VOSTPT\Http\Controllers;
 
 use Illuminate\Contracts\Auth\Factory as Auth;
-use Illuminate\Contracts\Cache\Repository as Cache;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Tymon\JWTAuth\Manager as JWTManager;
@@ -24,15 +23,10 @@ class AuthController extends Controller
     private $jwtManager;
 
     /**
-     * Auth controller constructor.
-     *
-     * @param Cache      $cache
      * @param JWTManager $jwtManager
      */
-    public function __construct(Cache $cache, JWTManager $jwtManager)
+    public function __construct(JWTManager $jwtManager)
     {
-        parent::__construct($cache);
-
         $this->jwtManager = $jwtManager;
     }
 
@@ -42,6 +36,7 @@ class AuthController extends Controller
      * @param Authenticate $request
      * @param Auth         $auth
      *
+     * @throws \Tymon\JWTAuth\Exceptions\TokenBlacklistedException
      * @throws \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException
      *
      * @return \Illuminate\Http\JsonResponse
@@ -63,6 +58,8 @@ class AuthController extends Controller
      * @param Refresh $request
      * @param Auth    $auth
      *
+     * @throws \Tymon\JWTAuth\Exceptions\TokenBlacklistedException
+     *
      * @return JsonResponse
      */
     public function refresh(Refresh $request, Auth $auth): JsonResponse
@@ -74,6 +71,8 @@ class AuthController extends Controller
      * Verify the access token of a User.
      *
      * @param Verify $request
+     *
+     * @throws \Tymon\JWTAuth\Exceptions\TokenBlacklistedException
      *
      * @return JsonResponse
      */
@@ -87,6 +86,8 @@ class AuthController extends Controller
      *
      * @param string $token
      * @param int    $status
+     *
+     * @throws \Tymon\JWTAuth\Exceptions\TokenBlacklistedException
      *
      * @return \Illuminate\Http\JsonResponse
      */
