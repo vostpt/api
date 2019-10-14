@@ -131,4 +131,22 @@ class EventFilter extends Filter implements Contracts\EventFilter
             \implode(',', $this->parishes),
         ]);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUrlParameters(): array
+    {
+        $parameters = [];
+
+        if ($this->types) {
+            $parameters['types'] = $this->types;
+        }
+
+        if ($this->parishes) {
+            $parameters['parishes'] = $this->parishes;
+        }
+
+        return \array_merge(parent::getUrlParameters(), $parameters);
+    }
 }

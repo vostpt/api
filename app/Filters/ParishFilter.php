@@ -95,4 +95,18 @@ class ParishFilter extends Filter implements Contracts\ParishFilter
             \implode(',', $this->counties),
         ]);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUrlParameters(): array
+    {
+        $parameters = [];
+
+        if ($this->counties) {
+            $parameters['counties'] = $this->counties;
+        }
+
+        return \array_merge(parent::getUrlParameters(), $parameters);
+    }
 }

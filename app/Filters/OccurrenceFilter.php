@@ -282,8 +282,50 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
             \implode(',', $this->districts),
             \implode(',', $this->counties),
             \implode(',', $this->parishes),
-            $this->startedAt ? $this->startedAt->toDateTimeString() : null,
-            $this->endedAt ? $this->endedAt->toDateTimeString() : null,
+            $this->startedAt ? $this->startedAt->toDateString() : null,
+            $this->endedAt ? $this->endedAt->toDateString() : null,
         ]);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUrlParameters(): array
+    {
+        $parameters = [];
+
+        if ($this->events) {
+            $parameters['events'] = $this->events;
+        }
+
+        if ($this->types) {
+            $parameters['types'] = $this->types;
+        }
+
+        if ($this->statuses) {
+            $parameters['statuses'] = $this->statuses;
+        }
+
+        if ($this->districts) {
+            $parameters['districts'] = $this->districts;
+        }
+
+        if ($this->counties) {
+            $parameters['counties'] = $this->counties;
+        }
+
+        if ($this->parishes) {
+            $parameters['parishes'] = $this->parishes;
+        }
+
+        if ($this->startedAt) {
+            $parameters['started_at'] = $this->startedAt->toDateString();
+        }
+
+        if ($this->endedAt) {
+            $parameters['ended_at'] = $this->endedAt->toDateString();
+        }
+
+        return \array_merge(parent::getUrlParameters(), $parameters);
     }
 }

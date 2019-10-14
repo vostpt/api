@@ -96,4 +96,18 @@ class CountyFilter extends Filter implements Contracts\CountyFilter
             \implode(',', $this->districts),
         ]);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUrlParameters(): array
+    {
+        $parameters = [];
+
+        if ($this->districts) {
+            $parameters['districts'] = $this->districts;
+        }
+
+        return \array_merge(parent::getUrlParameters(), $parameters);
+    }
 }

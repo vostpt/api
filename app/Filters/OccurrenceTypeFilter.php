@@ -97,4 +97,18 @@ class OccurrenceTypeFilter extends Filter implements Contracts\OccurrenceTypeFil
             \implode(',', $this->species),
         ]);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUrlParameters(): array
+    {
+        $parameters = [];
+
+        if ($this->species) {
+            $parameters['species'] = $this->species;
+        }
+
+        return \array_merge(parent::getUrlParameters(), $parameters);
+    }
 }
