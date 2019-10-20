@@ -22,6 +22,9 @@ class Index extends Request
             'page.size' => [
                 'integer',
             ],
+            'ids.*' => [
+                Rule::exists('weather_observations', 'id'),
+            ],
             'search' => [
                 'string',
             ],

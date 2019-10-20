@@ -32,6 +32,9 @@ class Index extends Request
             'page.size' => [
                 'integer',
             ],
+            'ids.*' => [
+                Rule::exists('users', 'id'),
+            ],
             'search' => [
                 'string',
             ],

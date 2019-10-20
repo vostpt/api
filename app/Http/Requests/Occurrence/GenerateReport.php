@@ -16,6 +16,9 @@ class GenerateReport extends Request
     public function rules(): array
     {
         $rules = [
+            'ids.*' => [
+                Rule::exists('occurrences', 'id'),
+            ],
             'search' => [
                 'string',
             ],
