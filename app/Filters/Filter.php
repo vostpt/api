@@ -176,11 +176,17 @@ abstract class Filter implements Contracts\Filter
      */
     public function withSearch(string $text, bool $exactMatch = false): Contracts\Filter
     {
-        $this->exactMatch = $exactMatch;
+        // Lowercase the search text and escape any pattern matching characters
+        $normalisedText = \mb_strtolower(\str_replace(['%', '_'], ['\\%', '\\_'], $text));
 
-        // Normalise search patterns
-        foreach (\preg_split('/\s+/', $text, 0, PREG_SPLIT_NO_EMPTY) as $word) {
-            $this->search[] = \mb_strtolower(\str_replace('%', '\%', $word));
+        // Keep empty strings depending if an exact match is required or not
+        $this->search = \preg_split($exactMatch ? '/\s/' : '/\s+/', $normalisedText);
+
+        // Remove duplicates and sort values if an exact match is not required
+        if (! $this->exactMatch = $exactMatch) {
+            $this->search = \array_unique($this->search, SORT_STRING);
+
+            \sort($this->search, SORT_STRING);
         }
 
         return $this;
@@ -265,7 +271,7 @@ abstract class Filter implements Contracts\Filter
             $this->pageNumber,
             $this->pageSize,
             (int) $this->exactMatch,
-            \implode(',', $this->search),
+            \implode(' ', $this->search),
         ];
     }
 
