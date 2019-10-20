@@ -123,7 +123,7 @@ interface Filter
     public function setPageSize(int $items): self;
 
     /**
-     * Add a search for filtering.
+     * Add basic text search for filtering.
      *
      * @param string $text
      * @param bool   $exactMatch
