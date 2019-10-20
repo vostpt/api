@@ -271,7 +271,7 @@ abstract class Filter implements Contracts\Filter
             $this->pageNumber,
             $this->pageSize,
             (int) $this->exactMatch,
-            \implode(',', $this->search),
+            \implode(' ', $this->search),
         ];
     }
 
