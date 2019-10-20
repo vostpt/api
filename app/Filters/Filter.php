@@ -200,7 +200,7 @@ abstract class Filter implements Contracts\Filter
     protected function applyIds(Builder $builder): void
     {
         if ($this->ids) {
-            $builder->whereIn('id', $this->ids);
+            $builder->whereIn($builder->qualifyColumn('id'), $this->ids);
         }
     }
 
