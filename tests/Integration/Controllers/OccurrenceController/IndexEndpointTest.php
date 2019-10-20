@@ -68,6 +68,9 @@ class IndexEndpointTest extends TestCase
                 'number' => 'second',
                 'size'   => 'ten',
             ],
+            'ids' => [
+                123,
+            ],
             'search' => '',
             'exact'  => 'yes',
             'events' => [
@@ -144,6 +147,12 @@ class IndexEndpointTest extends TestCase
                     'detail' => 'The selected order is invalid.',
                     'meta'   => [
                         'field' => 'order',
+                    ],
+                ],
+                [
+                    'detail' => 'The selected ids.0 is invalid.',
+                    'meta'   => [
+                        'field' => 'ids.0',
                     ],
                 ],
                 [
@@ -243,6 +252,7 @@ class IndexEndpointTest extends TestCase
             ],
             'started_at' => $yesterday->toDateString(),
             'ended_at'   => $today->toDateString(),
+            'ids'        => \range(1, 20),
             'search'     => '0 1 2 3 4 5 6 7 8 9',
             'sort'       => 'locality',
             'order'      => 'asc',
