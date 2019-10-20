@@ -33,6 +33,10 @@ class OccurrenceTypeController extends Controller
             ->setPageNumber((int) $request->input('page.number', $filter->getPageNumber()))
             ->setPageSize((int) $request->input('page.size', $filter->getPageSize()));
 
+        if ($request->has('ids')) {
+            $filter->withIds(...$request->input('ids', []));
+        }
+
         if ($request->has('search')) {
             $filter->withSearch($request->input('search'), (bool) $request->input('exact', false));
         }
