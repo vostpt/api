@@ -61,6 +61,9 @@ class IndexEndpointTest extends TestCase
                 'number' => 'second',
                 'size'   => 'ten',
             ],
+            'ids' => [
+                123,
+            ],
             'search'    => '',
             'exact'     => 'yes',
             'districts' => [
@@ -111,6 +114,12 @@ class IndexEndpointTest extends TestCase
                     ],
                 ],
                 [
+                    'detail' => 'The selected ids.0 is invalid.',
+                    'meta'   => [
+                        'field' => 'ids.0',
+                    ],
+                ],
+                [
                     'detail' => 'The selected districts.0 is invalid.',
                     'meta'   => [
                         'field' => 'districts.0',
@@ -136,6 +145,7 @@ class IndexEndpointTest extends TestCase
                 'number' => 2,
                 'size'   => 2,
             ],
+            'ids'       => \range(1, 20),
             'search'    => '0 1 2 3 4 5 6 7 8 9',
             'districts' => [
                 $district->getKey(),

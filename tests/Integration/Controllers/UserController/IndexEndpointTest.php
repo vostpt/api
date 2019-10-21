@@ -84,6 +84,9 @@ class IndexEndpointTest extends TestCase
                 'number' => 'second',
                 'size'   => 'ten',
             ],
+            'ids' => [
+                123,
+            ],
             'search' => '',
             'exact'  => 'yes',
             'sort'   => 'id',
@@ -137,6 +140,12 @@ class IndexEndpointTest extends TestCase
                     ],
                 ],
                 [
+                    'detail' => 'The selected ids.0 is invalid.',
+                    'meta'   => [
+                        'field' => 'ids.0',
+                    ],
+                ],
+                [
                     'detail' => 'The roles.0 value must be one of: administrator, contributor, moderator',
                     'meta'   => [
                         'field' => 'roles.0',
@@ -167,6 +176,7 @@ class IndexEndpointTest extends TestCase
                 'number' => 2,
                 'size'   => 5,
             ],
+            'ids'    => \range(1, 20),
             'search' => 'a b c d e f 0 1 2 3 4 5 6 7 8 9',
             'sort'   => 'surname',
             'order'  => 'asc',

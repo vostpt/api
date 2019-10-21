@@ -22,6 +22,9 @@ class Index extends Request
             'page.size' => [
                 'integer',
             ],
+            'ids.*' => [
+                Rule::exists('counties', 'id'),
+            ],
             'search' => [
                 'string',
             ],

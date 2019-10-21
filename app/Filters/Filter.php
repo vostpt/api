@@ -38,6 +38,13 @@ abstract class Filter implements Contracts\Filter
     protected $pageSize = 50;
 
     /**
+     * Ids for filtering.
+     *
+     * @var array
+     */
+    protected $ids = [];
+
+    /**
      * Text search for filtering.
      *
      * @var array
@@ -174,6 +181,32 @@ abstract class Filter implements Contracts\Filter
     /**
      * {@inheritDoc}
      */
+    public function withIds(...$ids): Contracts\Filter
+    {
+        $this->ids = \array_unique($ids, SORT_NUMERIC);
+
+        \sort($this->ids, SORT_NUMERIC);
+
+        return $this;
+    }
+
+    /**
+     * Apply id filtering.
+     *
+     * @param Builder $builder
+     *
+     * @return void
+     */
+    protected function applyIds(Builder $builder): void
+    {
+        if ($this->ids) {
+            $builder->whereIn($builder->qualifyColumn('id'), $this->ids);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function withSearch(string $text, bool $exactMatch = false): Contracts\Filter
     {
         // Lowercase the search text and escape any pattern matching characters
@@ -253,6 +286,9 @@ abstract class Filter implements Contracts\Filter
         // Apply relation eager loading
         $this->applyRelations($builder);
 
+        // Apply id filtering
+        $this->applyIds($builder);
+
         // Apply text search filtering
         $this->applySearch($builder);
 
@@ -270,6 +306,7 @@ abstract class Filter implements Contracts\Filter
             $this->sortOrder,
             $this->pageNumber,
             $this->pageSize,
+            \implode(',', $this->ids),
             (int) $this->exactMatch,
             \implode(' ', $this->search),
         ];
@@ -295,6 +332,10 @@ abstract class Filter implements Contracts\Filter
             'sort'       => $this->sortColumn,
             'order'      => $this->sortOrder,
         ];
+
+        if ($this->ids) {
+            $parameters['ids'] = $this->ids;
+        }
 
         if ($this->search) {
             $parameters['search'] = $this->search;

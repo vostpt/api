@@ -10,6 +10,7 @@ index:
       - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/page_number.yaml'
       - $ref: '../common/parameters/page_size.yaml'
+      - $ref: '../common/parameters/ids.yaml'
       - $ref: '../common/parameters/search.yaml'
       - $ref: '../common/parameters/exact.yaml'
       - name: counties

@@ -10,6 +10,7 @@ index:
       - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/page_number.yaml'
       - $ref: '../common/parameters/page_size.yaml'
+      - $ref: '../common/parameters/ids.yaml'
       - $ref: '../common/parameters/search.yaml'
       - $ref: '../common/parameters/exact.yaml'
       - name: events
@@ -253,6 +254,7 @@ index-occurrence-families:
       - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/page_number.yaml'
       - $ref: '../common/parameters/page_size.yaml'
+      - $ref: '../common/parameters/ids.yaml'
       - $ref: '../common/parameters/search.yaml'
       - $ref: '../common/parameters/exact.yaml'
       - name: sort
@@ -323,6 +325,7 @@ index-occurrence-species:
       - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/page_number.yaml'
       - $ref: '../common/parameters/page_size.yaml'
+      - $ref: '../common/parameters/ids.yaml'
       - $ref: '../common/parameters/search.yaml'
       - $ref: '../common/parameters/exact.yaml'
       - name: families
@@ -405,6 +408,7 @@ index-occurrence-types:
       - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/page_number.yaml'
       - $ref: '../common/parameters/page_size.yaml'
+      - $ref: '../common/parameters/ids.yaml'
       - $ref: '../common/parameters/search.yaml'
       - $ref: '../common/parameters/exact.yaml'
       - name: species
@@ -487,6 +491,7 @@ index-occurrence-statuses:
       - $ref: '../common/parameters/accept.yaml'
       - $ref: '../common/parameters/page_number.yaml'
       - $ref: '../common/parameters/page_size.yaml'
+      - $ref: '../common/parameters/ids.yaml'
       - $ref: '../common/parameters/search.yaml'
       - $ref: '../common/parameters/exact.yaml'
       - name: sort
@@ -555,6 +560,7 @@ reports-generate:
     parameters:
       - $ref: '../common/parameters/content_type.yaml'
       - $ref: '../common/parameters/accept.yaml'
+      - $ref: '../common/parameters/ids.yaml'
       - $ref: '../common/parameters/search.yaml'
       - $ref: '../common/parameters/exact.yaml'
       - name: events

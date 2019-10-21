@@ -64,6 +64,9 @@ class GenerateReportEndpointTest extends TestCase
     public function itFailsToGenerateOccurrenceReportDueToValidation(): void
     {
         $response = $this->json('GET', route('occurrences::reports::generate'), [
+            'ids' => [
+                123,
+            ],
             'search' => '',
             'exact'  => 'yes',
             'events' => [
@@ -128,6 +131,12 @@ class GenerateReportEndpointTest extends TestCase
                     'detail' => 'The selected order is invalid.',
                     'meta'   => [
                         'field' => 'order',
+                    ],
+                ],
+                [
+                    'detail' => 'The selected ids.0 is invalid.',
+                    'meta'   => [
+                        'field' => 'ids.0',
                     ],
                 ],
                 [
@@ -223,6 +232,7 @@ class GenerateReportEndpointTest extends TestCase
             ],
             'started_at' => $yesterday->toDateString(),
             'ended_at'   => $today->toDateString(),
+            'ids'        => \range(1, 20),
             'search'     => '0 1 2 3 4 5 6 7 8 9',
             'sort'       => 'locality',
             'order'      => 'asc',

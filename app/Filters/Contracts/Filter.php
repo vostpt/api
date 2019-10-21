@@ -123,6 +123,15 @@ interface Filter
     public function setPageSize(int $items): self;
 
     /**
+     * Include ids for filtering.
+     *
+     * @param int[] $ids
+     *
+     * @return self
+     */
+    public function withIds(...$ids): self;
+
+    /**
      * Add basic text search for filtering.
      *
      * @param string $text

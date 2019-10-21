@@ -61,6 +61,9 @@ class IndexEndpointTest extends TestCase
                 'number' => 'second',
                 'size'   => 'ten',
             ],
+            'ids' => [
+                123,
+            ],
             'search'  => '',
             'exact'   => 'yes',
             'species' => [
@@ -111,6 +114,12 @@ class IndexEndpointTest extends TestCase
                     ],
                 ],
                 [
+                    'detail' => 'The selected ids.0 is invalid.',
+                    'meta'   => [
+                        'field' => 'ids.0',
+                    ],
+                ],
+                [
                     'detail' => 'The selected species.0 is invalid.',
                     'meta'   => [
                         'field' => 'species.0',
@@ -139,6 +148,7 @@ class IndexEndpointTest extends TestCase
             'species' => [
                 $species->getKey(),
             ],
+            'ids'    => \range(1, 20),
             'search' => '0 1 2 3 4 5 6 7 8 9',
             'sort'   => 'name',
             'order'  => 'asc',
