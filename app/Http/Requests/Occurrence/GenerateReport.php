@@ -16,6 +16,9 @@ class GenerateReport extends Request
     public function rules(): array
     {
         $rules = [
+            'ids' => [
+                'array',
+            ],
             'ids.*' => [
                 Rule::exists('occurrences', 'id'),
             ],
@@ -25,20 +28,38 @@ class GenerateReport extends Request
             'exact' => [
                 'boolean',
             ],
+            'events' => [
+                'array',
+            ],
             'events.*' => [
                 Rule::exists('events', 'id'),
+            ],
+            'types' => [
+                'array',
             ],
             'types.*' => [
                 Rule::exists('occurrence_types', 'id'),
             ],
+            'statuses' => [
+                'array',
+            ],
             'statuses.*' => [
                 Rule::exists('occurrence_statuses', 'id'),
+            ],
+            'districts' => [
+                'array',
             ],
             'districts.*' => [
                 Rule::exists('districts', 'id'),
             ],
+            'counties' => [
+                'array',
+            ],
             'counties.*' => [
                 Rule::exists('counties', 'id'),
+            ],
+            'parishes' => [
+                'array',
             ],
             'parishes.*' => [
                 Rule::exists('parishes', 'id'),

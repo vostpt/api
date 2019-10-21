@@ -22,6 +22,9 @@ class Index extends Request
             'page.size' => [
                 'integer',
             ],
+            'ids' => [
+                'array',
+            ],
             'ids.*' => [
                 Rule::exists('events', 'id'),
             ],
@@ -31,8 +34,14 @@ class Index extends Request
             'exact' => [
                 'boolean',
             ],
+            'types' => [
+                'array',
+            ],
             'types.*' => [
                 Rule::exists('event_types', 'id'),
+            ],
+            'parishes' => [
+                'array',
             ],
             'parishes.*' => [
                 Rule::exists('parishes', 'id'),

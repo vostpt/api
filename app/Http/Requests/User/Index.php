@@ -32,6 +32,9 @@ class Index extends Request
             'page.size' => [
                 'integer',
             ],
+            'ids' => [
+                'array',
+            ],
             'ids.*' => [
                 Rule::exists('users', 'id'),
             ],
@@ -46,6 +49,9 @@ class Index extends Request
             ],
             'order' => [
                 Rule::in(UserFilter::getOrderValues()),
+            ],
+            'roles' => [
+                'array',
             ],
             'roles.*' => [
                 new ValidRole(),
