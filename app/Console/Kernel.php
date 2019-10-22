@@ -6,6 +6,7 @@ namespace VOSTPT\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use VOSTPT\Jobs\Api\ResponseCacheBuster;
 use VOSTPT\Jobs\Ipma\SurfaceObservationFetcher;
 use VOSTPT\Jobs\Ipma\WarningFetcher;
 use VOSTPT\Jobs\ProCiv\OccurrenceCloser;
@@ -23,10 +24,16 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
+        // Fetch/Close ProCiv occurrences
         $schedule->job(new OccurrenceFetcher())->everyFiveMinutes();
         $schedule->job(new OccurrenceCloser())->everyThirtyMinutes();
+
+        // Fetch IPMA warnings and surface observations
         $schedule->job(new WarningFetcher())->everyThirtyMinutes();
         $schedule->job(new SurfaceObservationFetcher())->everyThirtyMinutes();
+
+        // Bust the API response cache
+        $schedule->job(new ResponseCacheBuster())->everyFiveMinutes();
     }
 
     /**
