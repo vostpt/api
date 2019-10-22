@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace VOSTPT\Models\Observers;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Log;
 
 class CacheableObserver
 {
@@ -15,11 +13,13 @@ class CacheableObserver
      *
      * @param Model $model
      *
+     * @throws \Exception
+     *
      * @return void
      */
     public function created(Model $model): void
     {
-        $this->flushCache($model);
+        $this->markForCacheBust($model);
     }
 
     /**
@@ -27,11 +27,13 @@ class CacheableObserver
      *
      * @param Model $model
      *
+     * @throws \Exception
+     *
      * @return void
      */
     public function updated(Model $model): void
     {
-        $this->flushCache($model);
+        $this->markForCacheBust($model);
     }
 
     /**
@@ -39,26 +41,26 @@ class CacheableObserver
      *
      * @param Model $model
      *
+     * @throws \Exception
+     *
      * @return void
      */
     public function deleted(Model $model): void
     {
-        $this->flushCache($model);
+        $this->markForCacheBust($model);
     }
 
     /**
-     * Flush the cache of a model class.
+     * Mark cache for bust.
      *
      * @param Model $model
      *
+     * @throws \Exception
+     *
      * @return void
      */
-    private function flushCache(Model $model): void
+    private function markForCacheBust(Model $model): void
     {
-        $tag = \get_class($model);
-
-        Log::info(\sprintf('Flushing "%s" cache', $tag));
-
-        Cache::tags($tag)->flush();
+        add_cache_bust_tag(\get_class($model));
     }
 }
