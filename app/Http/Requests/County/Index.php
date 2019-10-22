@@ -22,6 +22,9 @@ class Index extends Request
             'page.size' => [
                 'integer',
             ],
+            'ids' => [
+                'array',
+            ],
             'ids.*' => [
                 Rule::exists('counties', 'id'),
             ],
@@ -30,6 +33,9 @@ class Index extends Request
             ],
             'exact' => [
                 'boolean',
+            ],
+            'districts' => [
+                'array',
             ],
             'districts.*' => [
                 Rule::exists('districts', 'id'),

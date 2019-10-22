@@ -17,9 +17,9 @@ index-and-create:
       - $ref: '../common/parameters/ids.yaml'
       - $ref: '../common/parameters/search.yaml'
       - $ref: '../common/parameters/exact.yaml'
-      - name: roles
+      - name: roles[]
         in: query
-        description: Filter by associated roles
+        description: User roles to filter by
         schema:
           type: array
           items:

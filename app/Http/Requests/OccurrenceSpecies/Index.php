@@ -22,6 +22,9 @@ class Index extends Request
             'page.size' => [
                 'integer',
             ],
+            'ids' => [
+                'array',
+            ],
             'ids.*' => [
                 Rule::exists('occurrence_species', 'id'),
             ],
@@ -30,6 +33,9 @@ class Index extends Request
             ],
             'exact' => [
                 'boolean',
+            ],
+            'families' => [
+                'array',
             ],
             'families.*' => [
                 Rule::exists('occurrence_families', 'id'),

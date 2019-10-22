@@ -22,6 +22,9 @@ class Index extends Request
             'page.size' => [
                 'integer',
             ],
+            'ids' => [
+                'array',
+            ],
             'ids.*' => [
                 Rule::exists('acronyms', 'id'),
             ],

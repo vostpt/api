@@ -22,6 +22,9 @@ class Index extends Request
             'page.size' => [
                 'integer',
             ],
+            'ids' => [
+                'array',
+            ],
             'ids.*' => [
                 Rule::exists('weather_observations', 'id'),
             ],
@@ -31,11 +34,20 @@ class Index extends Request
             'exact' => [
                 'boolean',
             ],
+            'districts' => [
+                'array',
+            ],
             'districts.*' => [
                 Rule::exists('districts', 'id'),
             ],
+            'counties' => [
+                'array',
+            ],
             'counties.*' => [
                 Rule::exists('counties', 'id'),
+            ],
+            'stations' => [
+                'array',
             ],
             'stations.*' => [
                 Rule::exists('weather_stations', 'id'),

@@ -13,9 +13,9 @@ index:
       - $ref: '../common/parameters/ids.yaml'
       - $ref: '../common/parameters/search.yaml'
       - $ref: '../common/parameters/exact.yaml'
-      - name: districts
+      - name: districts[]
         in: query
-        description: Filter by District ids
+        description: District ids to filter by
         schema:
           type: array
           items:

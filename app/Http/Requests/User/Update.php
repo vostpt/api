@@ -46,7 +46,9 @@ class Update extends Request
             'password_confirmation' => [
                 'required_with:password',
             ],
-
+            'roles' => [
+                'array',
+            ],
             'roles.*' => [
                 Rule::exists('roles', 'name'),
             ],

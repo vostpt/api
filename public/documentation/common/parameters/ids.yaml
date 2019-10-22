@@ -1,4 +1,4 @@
-name: ids
+name: ids[]
 in: query
 description: Ids to filter by
 schema:
