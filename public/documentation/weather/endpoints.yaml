@@ -13,33 +13,33 @@ index:
       - $ref: '../common/parameters/ids.yaml'
       - $ref: '../common/parameters/search.yaml'
       - $ref: '../common/parameters/exact.yaml'
-      - name: districts
+      - name: districts[]
         in: query
-        description: Filter by District ids
+        description: District ids to filter by
         schema:
           type: array
           items:
             type: string
             example: 1
-      - name: counties
+      - name: counties[]
         in: query
-        description: Filter by County ids
+        description: County ids to filter by
         schema:
           type: array
           items:
             type: string
             example: 1
-      - name: parishes
+      - name: parishes[]
         in: query
-        description: Filter by Parish ids
+        description: Parish ids to filter by
         schema:
           type: array
           items:
             type: string
             example: 1
-      - name: stations
+      - name: stations[]
         in: query
-        description: Filter by WeatherStation ids
+        description: WeatherStation ids to filter by
         schema:
           type: array
           items:

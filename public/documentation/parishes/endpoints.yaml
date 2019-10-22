@@ -13,9 +13,9 @@ index:
       - $ref: '../common/parameters/ids.yaml'
       - $ref: '../common/parameters/search.yaml'
       - $ref: '../common/parameters/exact.yaml'
-      - name: counties
+      - name: counties[]
         in: query
-        description: Filter by County ids
+        description: County ids to filter by
         schema:
           type: array
           items:

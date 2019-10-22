@@ -13,49 +13,49 @@ index:
       - $ref: '../common/parameters/ids.yaml'
       - $ref: '../common/parameters/search.yaml'
       - $ref: '../common/parameters/exact.yaml'
-      - name: events
+      - name: events[]
         in: query
-        description: Filter by Event ids
+        description: Event ids to filter by
         schema:
           type: array
           items:
             type: string
             example: 1
-      - name: types
+      - name: types[]
         in: query
-        description: Filter by Type ids
+        description: Type ids to filter by
         schema:
           type: array
           items:
             type: string
             example: 1
-      - name: statuses
+      - name: statuses[]
         in: query
-        description: Filter by Status ids
+        description: Status ids to filter by
         schema:
           type: array
           items:
             type: string
             example: 1
-      - name: districts
+      - name: districts[]
         in: query
-        description: Filter by District ids
+        description: District ids to filter by
         schema:
           type: array
           items:
             type: string
             example: 1
-      - name: counties
+      - name: counties[]
         in: query
-        description: Filter by County ids
+        description: County ids to filter by
         schema:
           type: array
           items:
             type: string
             example: 1
-      - name: parishes
+      - name: parishes[]
         in: query
-        description: Filter by Parish ids
+        description: Parish ids to filter by
         schema:
           type: array
           items:
@@ -328,9 +328,9 @@ index-occurrence-species:
       - $ref: '../common/parameters/ids.yaml'
       - $ref: '../common/parameters/search.yaml'
       - $ref: '../common/parameters/exact.yaml'
-      - name: families
+      - name: families[]
         in: query
-        description: Filter by OccurrenceFamily ids
+        description: OccurrenceFamily ids to filter by
         schema:
           type: array
           items:
@@ -411,9 +411,9 @@ index-occurrence-types:
       - $ref: '../common/parameters/ids.yaml'
       - $ref: '../common/parameters/search.yaml'
       - $ref: '../common/parameters/exact.yaml'
-      - name: species
+      - name: species[]
         in: query
-        description: Filter by OccurrenceSpecies ids
+        description: OccurrenceSpecies ids to filter by
         schema:
           type: array
           items:
@@ -563,49 +563,49 @@ reports-generate:
       - $ref: '../common/parameters/ids.yaml'
       - $ref: '../common/parameters/search.yaml'
       - $ref: '../common/parameters/exact.yaml'
-      - name: events
+      - name: events[]
         in: query
-        description: Filter by Event ids
+        description: Event ids to filter by
         schema:
           type: array
           items:
             type: string
             example: 1
-      - name: types
+      - name: types[]
         in: query
-        description: Filter by Type ids
+        description: Type ids to filter by
         schema:
           type: array
           items:
             type: string
             example: 1
-      - name: statuses
+      - name: statuses[]
         in: query
-        description: Filter by Status ids
+        description: Status ids to filter by
         schema:
           type: array
           items:
             type: string
             example: 1
-      - name: districts
+      - name: districts[]
         in: query
-        description: Filter by District ids
+        description: District ids to filter by
         schema:
           type: array
           items:
             type: string
             example: 1
-      - name: counties
+      - name: counties[]
         in: query
-        description: Filter by County ids
+        description: County ids to filter by
         schema:
           type: array
           items:
             type: string
             example: 1
-      - name: parishes
+      - name: parishes[]
         in: query
-        description: Filter by Parish ids
+        description: Parish ids to filter by
         schema:
           type: array
           items:
