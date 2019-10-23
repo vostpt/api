@@ -13,7 +13,7 @@ class ApiResponseCacheBustCommand extends Command
     /**
      * {@inheritDoc}
      */
-    protected $signature = 'api:response-cache:bust';
+    protected $signature = 'api:bust:response-cache';
 
     /**
      * {@inheritDoc}
