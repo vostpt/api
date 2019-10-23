@@ -9,6 +9,10 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
+        <testsuite name="API Commands Integration Tests">
+            <directory suffix="Test.php">./tests/Integration/Commands/Api</directory>
+        </testsuite>
+
         <testsuite name="IPMA Commands Integration Tests">
             <directory suffix="Test.php">./tests/Integration/Commands/Ipma</directory>
         </testsuite>
