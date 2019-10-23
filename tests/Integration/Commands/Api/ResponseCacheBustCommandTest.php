@@ -21,7 +21,7 @@ class ResponseCacheBustCommandTest extends TestCase
     {
         $this->assertFalse(Cache::has('tags_for_cache_busting'));
 
-        $this->artisan('api:response-cache:bust');
+        $this->artisan('api:bust:response-cache');
 
         $this->assertFalse(Cache::has('tags_for_cache_busting'));
     }
@@ -37,7 +37,7 @@ class ResponseCacheBustCommandTest extends TestCase
 
         $this->assertTrue(Cache::has('tags_for_cache_busting'));
 
-        $this->artisan('api:response-cache:bust');
+        $this->artisan('api:bust:response-cache');
 
         $this->assertFalse(Cache::has('tags_for_cache_busting'));
     }
