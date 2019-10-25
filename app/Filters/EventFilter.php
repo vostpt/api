@@ -41,8 +41,6 @@ class EventFilter extends Filter implements Contracts\EventFilter
             'events.id',
             'events.name',
             'events.description',
-            'events.latitude',
-            'events.longitude',
         ];
     }
 
