@@ -124,14 +124,14 @@ class IndexEndpointTest extends TestCase
      */
     public function itSuccessfullyIndexesAcronyms(): void
     {
-        factory(Acronym::class, 20)->create();
+        $ids = factory(Acronym::class, 20)->create()->pluck('id')->all();
 
         $response = $this->json('GET', route('acronyms::index'), [
             'page' => [
                 'number' => 2,
                 'size'   => 2,
             ],
-            'ids'    => \range(1, 20),
+            'ids'    => $ids,
             'search' => 'a b c d e f g i j k l m n o p q r s',
             'sort'   => 'initials',
             'order'  => 'asc',
