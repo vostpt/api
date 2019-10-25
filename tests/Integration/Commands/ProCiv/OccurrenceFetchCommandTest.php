@@ -33,10 +33,6 @@ class OccurrenceFetchCommandTest extends TestCase
 
         $this->app->instance(LoggerInterface::class, new NullLogger());
 
-        $this->assertDatabaseMissing('prociv_occurrences', [
-            'remote_id' => '2019170027060',
-        ]);
-
         // Despacho de 1º Alerta
         factory(OccurrenceStatus::class)->create([
             'code' => 4,
@@ -68,6 +64,10 @@ class OccurrenceFetchCommandTest extends TestCase
             'remote_id' => '2019070021974',
         ])->parent()->save($existingOccurrence);
 
+        $this->assertDatabaseMissing('prociv_occurrences', [
+            'remote_id' => '2019170027060',
+        ]);
+
         $this->artisan('prociv:fetch:occurrences');
 
         $this->assertDatabaseHas('prociv_occurrences', [
@@ -75,7 +75,7 @@ class OccurrenceFetchCommandTest extends TestCase
         ]);
 
         $this->assertDatabaseHas('prociv_occurrence_logs', [
-            'occurrence_id' => 2,
+            'reinforcement_groups' => 'EAUF 02 FEPC, GRIF 01 e GRIF 02 FEPC, GRIF 01  Coimbra, GRIF 01 Vila Real, CATA Viseu.',
         ]);
     }
 }
