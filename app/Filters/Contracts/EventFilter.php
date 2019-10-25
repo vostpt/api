@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace VOSTPT\Filters\Contracts;
 
-interface EventFilter extends Filter
+interface EventFilter extends Filter, GeoLocator
 {
     /**
      * Include types for filtering.
