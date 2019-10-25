@@ -70,6 +70,18 @@ class Index extends Request
             'parishes.*' => [
                 Rule::exists('parishes', 'id'),
             ],
+            'latitude' => [
+                'numeric',
+                'required_with:longitude',
+            ],
+            'longitude' => [
+                'numeric',
+                'required_with:latitude',
+            ],
+            'radius' => [
+                'numeric',
+                'between:1,200',
+            ],
             'started_at' => [
                 'date_format:Y-m-d',
             ],
