@@ -6,7 +6,7 @@ namespace VOSTPT\Filters\Contracts;
 
 use Carbon\Carbon;
 
-interface OccurrenceFilter extends Filter
+interface OccurrenceFilter extends Filter, GeoLocator
 {
     /**
      * Include events for filtering.
