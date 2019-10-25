@@ -83,8 +83,6 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
         return [
             'occurrences.id',
             'occurrences.locality',
-            'occurrences.latitude',
-            'occurrences.longitude',
         ];
     }
 
