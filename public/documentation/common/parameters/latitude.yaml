@@ -1,0 +1,7 @@
+name: latitude
+in: query
+description: Geolocation latitude
+schema:
+  type: number
+  format: double
+  example: 38.166749

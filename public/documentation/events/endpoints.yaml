@@ -29,6 +29,9 @@ index-and-create:
           items:
             type: string
             example: 1
+      - $ref: '../common/parameters/latitude.yaml'
+      - $ref: '../common/parameters/longitude.yaml'
+      - $ref: '../common/parameters/radius.yaml'
       - name: sort
         in: query
         description: Field used for sorting results
