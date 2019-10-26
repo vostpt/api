@@ -40,6 +40,17 @@ services:
     networks:
       - vost_network
 
+  test_database:
+    container_name: vost_test_database
+    image: mariadb:10.4.6
+    environment:
+      MYSQL_DATABASE: vost_api
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_HOST: "%"
+    restart: unless-stopped
+    networks:
+      - vost_network
+
   redis:
     container_name: vost_redis
     image: redis:4.0.9-alpine
