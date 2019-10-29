@@ -87,14 +87,12 @@ class OccurrenceReport extends Report
             ->join('prociv_occurrences', 'prociv_occurrences.id', '=', 'occurrences.source_id')
             ->leftJoin('prociv_occurrence_logs', function (JoinClause $join) {
                 $join->on('prociv_occurrence_logs.occurrence_id', '=', 'prociv_occurrences.id')
-                    ->whereRaw(
-                        <<< SQL
+                    ->whereRaw(<<< SQL
                         prociv_occurrence_logs.created_at = (
                             SELECT MAX(created_at) FROM prociv_occurrence_logs
                             WHERE prociv_occurrence_logs.occurrence_id = prociv_occurrences.id
                         )
-SQL
-                    );
+                    SQL);
             });
 
         $builder->addSelect([
