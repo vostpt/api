@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 class EventFilter extends Filter implements Contracts\EventFilter
 {
+    use Concerns\GeoLocator;
+
     /**
      * Event types for filtering.
      *
@@ -39,8 +41,6 @@ class EventFilter extends Filter implements Contracts\EventFilter
             'events.id',
             'events.name',
             'events.description',
-            'events.latitude',
-            'events.longitude',
         ];
     }
 
@@ -119,6 +119,9 @@ class EventFilter extends Filter implements Contracts\EventFilter
         if ($this->parishes) {
             $builder->whereIn('parish_id', $this->parishes);
         }
+
+        // Apply Haversine formula
+        $this->applyHaversine($builder);
     }
 
     /**
@@ -129,6 +132,9 @@ class EventFilter extends Filter implements Contracts\EventFilter
         return \array_merge(parent::getSignatureElements(), [
             \implode(',', $this->types),
             \implode(',', $this->parishes),
+            $this->latitude,
+            $this->longitude,
+            $this->radius,
         ]);
     }
 
@@ -145,6 +151,12 @@ class EventFilter extends Filter implements Contracts\EventFilter
 
         if ($this->parishes) {
             $parameters['parishes'] = $this->parishes;
+        }
+
+        if ($this->latitude && $this->longitude) {
+            $parameters['latitude']  = $this->latitude;
+            $parameters['longitude'] = $this->longitude;
+            $parameters['radius']    = $this->radius;
         }
 
         return \array_merge(parent::getUrlParameters(), $parameters);

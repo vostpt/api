@@ -53,6 +53,14 @@ class EventController extends Controller
             $filter->withParishes(...$request->input('parishes', []));
         }
 
+        if ($request->has('latitude', 'longitude')) {
+            $filter->withCoordinates(
+                (float) $request->input('latitude'),
+                (float) $request->input('longitude'),
+                (int) $request->input('radius', 10)
+            );
+        }
+
         return response()->paginator($eventRepository->getPaginator($filter), new EventSerializer());
     }
 

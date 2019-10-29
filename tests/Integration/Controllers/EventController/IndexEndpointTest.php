@@ -73,8 +73,11 @@ class IndexEndpointTest extends TestCase
             'parishes' => [
                 1,
             ],
-            'sort'  => 'id',
-            'order' => 'up',
+            'latitude'  => 'north',
+            'longitude' => 'east',
+            'radius'    => 500,
+            'sort'      => 'id',
+            'order'     => 'up',
         ], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');
@@ -103,6 +106,24 @@ class IndexEndpointTest extends TestCase
                     'detail' => 'The exact field must be true or false.',
                     'meta'   => [
                         'field' => 'exact',
+                    ],
+                ],
+                [
+                    'detail' => 'The latitude must be a number.',
+                    'meta'   => [
+                        'field' => 'latitude',
+                    ],
+                ],
+                [
+                    'detail' => 'The longitude must be a number.',
+                    'meta'   => [
+                        'field' => 'longitude',
+                    ],
+                ],
+                [
+                    'detail' => 'The radius must be between 1 and 200.',
+                    'meta'   => [
+                        'field' => 'radius',
                     ],
                 ],
                 [
@@ -147,17 +168,22 @@ class IndexEndpointTest extends TestCase
         $type   = factory(EventType::class)->create();
         $parish = factory(Parish::class)->create();
 
-        factory(Event::class, 20)->create([
+        $latitude  = 38.166749;
+        $longitude = -7.891448;
+
+        $ids = factory(Event::class, 20)->create([
             'type_id'   => $type->getKey(),
             'parish_id' => $parish->getKey(),
-        ]);
+            'latitude'  => $latitude,
+            'longitude' => $longitude,
+        ])->pluck('id')->all();
 
         $response = $this->json('GET', route('events::index'), [
             'page' => [
                 'number' => 2,
                 'size'   => 2,
             ],
-            'ids'    => \range(1, 20),
+            'ids'    => $ids,
             'search' => '0 1 2 3 4 5 6 7 8 9',
             'types'  => [
                 $type->getKey(),
@@ -165,8 +191,11 @@ class IndexEndpointTest extends TestCase
             'parishes' => [
                 $parish->getKey(),
             ],
-            'sort'  => 'description',
-            'order' => 'asc',
+            'latitude'  => $latitude,
+            'longitude' => $longitude,
+            'radius'    => 1,
+            'sort'      => 'description',
+            'order'     => 'asc',
         ], static::VALID_CONTENT_TYPE_HEADER);
 
         $response->assertHeader('Content-Type', 'application/vnd.api+json');

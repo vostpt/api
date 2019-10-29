@@ -1,0 +1,7 @@
+name: longitude
+in: query
+description: Geolocation longitude
+schema:
+  type: number
+  format: double
+  example: -7.891448

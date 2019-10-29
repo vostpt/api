@@ -186,10 +186,10 @@ class IndexEndpointTest extends TestCase
             'county_id' => $county->getKey(),
         ]);
 
-        factory(WeatherObservation::class, 20)->create([
+        $ids = factory(WeatherObservation::class, 20)->create([
             'station_id' => $station->getKey(),
             'timestamp'  => Carbon::now(),
-        ]);
+        ])->pluck('id')->all();
 
         $response = $this->json('GET', route('weather::observations::index'), [
             'page' => [
@@ -207,7 +207,7 @@ class IndexEndpointTest extends TestCase
             ],
             'timestamp_from' => Carbon::yesterday()->toDateString(),
             'timestamp_to'   => Carbon::tomorrow()->toDateString(),
-            'ids'            => \range(1, 20),
+            'ids'            => $ids,
             'search'         => '0 1 2 3 4 5 6 7 8 9',
             'sort'           => 'temperature',
             'order'          => 'asc',

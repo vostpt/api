@@ -2,6 +2,12 @@ language: php
 
 dist: bionic
 
+env:
+  - DB_HOST=localhost DB_USERNAME=travis
+
+addons:
+  mariadb: '10.4'
+
 php:
   - '7.2'
 
@@ -14,6 +20,10 @@ before_install:
   - echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 before_script:
+  # Database setup
+  - sudo mysql -e 'create database vost_api;'
+  - sudo mysql -e 'CREATE USER IF NOT EXISTS travis@localhost; GRANT ALL ON *.* TO travis@localhost;'
+
   # Install project dependencies
   - composer install --no-interaction
 

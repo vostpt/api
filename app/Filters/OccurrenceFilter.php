@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
 {
+    use Concerns\GeoLocator;
+
     /**
      * Events for filtering.
      *
@@ -81,8 +83,6 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
         return [
             'occurrences.id',
             'occurrences.locality',
-            'occurrences.latitude',
-            'occurrences.longitude',
         ];
     }
 
@@ -259,6 +259,9 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
             $builder->whereIn('parish_id', $this->parishes);
         }
 
+        // Apply Haversine formula
+        $this->applyHaversine($builder);
+
         // Apply started at date filtering
         if ($this->startedAt) {
             $builder->whereDate('started_at', '>=', $this->startedAt->toDateString());
@@ -282,6 +285,9 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
             \implode(',', $this->districts),
             \implode(',', $this->counties),
             \implode(',', $this->parishes),
+            $this->latitude,
+            $this->longitude,
+            $this->radius,
             $this->startedAt ? $this->startedAt->toDateString() : null,
             $this->endedAt ? $this->endedAt->toDateString() : null,
         ]);
@@ -316,6 +322,12 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
 
         if ($this->parishes) {
             $parameters['parishes'] = $this->parishes;
+        }
+
+        if ($this->latitude && $this->longitude) {
+            $parameters['latitude']  = $this->latitude;
+            $parameters['longitude'] = $this->longitude;
+            $parameters['radius']    = $this->radius;
         }
 
         if ($this->startedAt) {

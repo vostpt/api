@@ -124,14 +124,14 @@ class IndexEndpointTest extends TestCase
      */
     public function itSuccessfullyIndexesOccurrenceFamilies(): void
     {
-        factory(OccurrenceFamily::class, 20)->create();
+        $ids = factory(OccurrenceFamily::class, 20)->create()->pluck('id')->all();
 
         $response = $this->json('GET', route('occurrences::families::index'), [
             'page' => [
                 'number' => 2,
                 'size'   => 2,
             ],
-            'ids'    => \range(1, 20),
+            'ids'    => $ids,
             'search' => '0 1 2 3 4 5 6 7 8 9',
             'sort'   => 'name',
             'order'  => 'asc',

@@ -91,6 +91,9 @@ class IndexEndpointTest extends TestCase
             'parishes' => [
                 1,
             ],
+            'latitude'   => 'north',
+            'longitude'  => 'east',
+            'radius'     => 500,
             'started_at' => '2000-12-31',
             'ended_at'   => '2000-01-01',
             'sort'       => 'id',
@@ -123,6 +126,24 @@ class IndexEndpointTest extends TestCase
                     'detail' => 'The exact field must be true or false.',
                     'meta'   => [
                         'field' => 'exact',
+                    ],
+                ],
+                [
+                    'detail' => 'The latitude must be a number.',
+                    'meta'   => [
+                        'field' => 'latitude',
+                    ],
+                ],
+                [
+                    'detail' => 'The longitude must be a number.',
+                    'meta'   => [
+                        'field' => 'longitude',
+                    ],
+                ],
+                [
+                    'detail' => 'The radius must be between 1 and 200.',
+                    'meta'   => [
+                        'field' => 'radius',
                     ],
                 ],
                 [
@@ -214,18 +235,28 @@ class IndexEndpointTest extends TestCase
         $yesterday = Carbon::yesterday();
         $today     = Carbon::now();
 
+        $latitude  = 38.166749;
+        $longitude = -7.891448;
+
         $occurrences = factory(Occurrence::class, 20)->make([
             'event_id'   => $event->getKey(),
             'type_id'    => $type->getKey(),
             'status_id'  => $status->getKey(),
             'parish_id'  => $parish->getKey(),
+            'latitude'   => $latitude,
+            'longitude'  => $longitude,
             'started_at' => $yesterday,
             'ended_at'   => $today,
         ]);
 
-        factory(ProCivOccurrence::class, 20)->create()->each(function (ProCivOccurrence $proCivOccurrence, $index) use ($occurrences) {
+        $proCivOccurrences = factory(ProCivOccurrence::class, 20)->create()->each(function (ProCivOccurrence $proCivOccurrence, $index) use ($occurrences) {
             $proCivOccurrence->parent()->save($occurrences[$index]);
         });
+
+        // Get the Occurrence ids
+        $ids = $proCivOccurrences->map(function ($proCivOccurrence) {
+            return $proCivOccurrence->parent->id;
+        })->all();
 
         $response = $this->json('GET', route('occurrences::index'), [
             'page' => [
@@ -250,9 +281,12 @@ class IndexEndpointTest extends TestCase
             'parishes' => [
                 $parish->getKey(),
             ],
+            'latitude'   => $latitude,
+            'longitude'  => $longitude,
+            'radius'     => 1,
             'started_at' => $yesterday->toDateString(),
             'ended_at'   => $today->toDateString(),
-            'ids'        => \range(1, 20),
+            'ids'        => $ids,
             'search'     => '0 1 2 3 4 5 6 7 8 9',
             'sort'       => 'locality',
             'order'      => 'asc',

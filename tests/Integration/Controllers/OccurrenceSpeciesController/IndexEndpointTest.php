@@ -136,9 +136,9 @@ class IndexEndpointTest extends TestCase
     {
         $family = factory(OccurrenceFamily::class)->create();
 
-        factory(OccurrenceSpecies::class, 20)->create([
+        $ids = factory(OccurrenceSpecies::class, 20)->create([
             'family_id' => $family->id,
-        ]);
+        ])->pluck('id')->all();
 
         $response = $this->json('GET', route('occurrences::species::index'), [
             'page' => [
@@ -148,7 +148,7 @@ class IndexEndpointTest extends TestCase
             'families' => [
                 $family->getKey(),
             ],
-            'ids'    => \range(1, 20),
+            'ids'    => $ids,
             'search' => '0 1 2 3 4 5 6 7 8 9',
             'sort'   => 'name',
             'order'  => 'asc',

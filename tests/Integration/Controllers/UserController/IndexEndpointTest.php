@@ -164,19 +164,19 @@ class IndexEndpointTest extends TestCase
 
         $token = auth()->login($user);
 
-        factory(User::class, 20)->create()->each(function (User $user) {
+        $ids = factory(User::class, 20)->create()->each(function (User $user) {
             $user->assign([
                 Role::MODERATOR,
                 Role::CONTRIBUTOR,
             ]);
-        });
+        })->pluck('id')->all();
 
         $response = $this->json('GET', route('users::index'), [
             'page' => [
                 'number' => 2,
                 'size'   => 5,
             ],
-            'ids'    => \range(1, 20),
+            'ids'    => $ids,
             'search' => 'a b c d e f 0 1 2 3 4 5 6 7 8 9',
             'sort'   => 'surname',
             'order'  => 'asc',

@@ -136,16 +136,16 @@ class IndexEndpointTest extends TestCase
     {
         $district = factory(District::class)->create();
 
-        factory(County::class, 20)->create([
+        $ids = factory(County::class, 20)->create([
             'district_id' => $district->getKey(),
-        ]);
+        ])->pluck('id')->all();
 
         $response = $this->json('GET', route('counties::index'), [
             'page' => [
                 'number' => 2,
                 'size'   => 2,
             ],
-            'ids'       => \range(1, 20),
+            'ids'       => $ids,
             'search'    => '0 1 2 3 4 5 6 7 8 9',
             'districts' => [
                 $district->getKey(),
