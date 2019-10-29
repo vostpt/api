@@ -42,7 +42,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": "7.2.19"
+            "php": "7.3.11"
         }
     },
     "extra": {
