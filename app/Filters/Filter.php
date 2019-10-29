@@ -95,7 +95,7 @@ abstract class Filter implements Contracts\Filter
     /**
      * {@inheritDoc}
      */
-    public function setSortColumn(string $column): Contracts\Filter
+    public function setSortColumn(string $column): void
     {
         if (! \in_array($column, static::getSortableColumns(), true)) {
             throw new OutOfBoundsException(\sprintf(
@@ -105,8 +105,6 @@ abstract class Filter implements Contracts\Filter
         }
 
         $this->sortColumn = $column;
-
-        return $this;
     }
 
     /**
@@ -120,7 +118,7 @@ abstract class Filter implements Contracts\Filter
     /**
      * {@inheritDoc}
      */
-    public function setSortOrder(string $order): Contracts\Filter
+    public function setSortOrder(string $order): void
     {
         if (! \in_array(\mb_strtolower($order), static::getOrderValues(), true)) {
             throw new OutOfBoundsException(\sprintf(
@@ -130,8 +128,6 @@ abstract class Filter implements Contracts\Filter
         }
 
         $this->sortOrder = $order;
-
-        return $this;
     }
 
     /**
@@ -145,15 +141,13 @@ abstract class Filter implements Contracts\Filter
     /**
      * {@inheritDoc}
      */
-    final public function setPageNumber(int $page): Contracts\Filter
+    final public function setPageNumber(int $page): void
     {
         if ($page < 1) {
             throw new OutOfBoundsException('The page number must be equal or greater than one');
         }
 
         $this->pageNumber = $page;
-
-        return $this;
     }
 
     /**
@@ -167,27 +161,23 @@ abstract class Filter implements Contracts\Filter
     /**
      * {@inheritDoc}
      */
-    final public function setPageSize(int $items): Contracts\Filter
+    final public function setPageSize(int $items): void
     {
         if ($items < 1) {
             throw new OutOfBoundsException('The page size number must be equal or greater than one');
         }
 
         $this->pageSize = $items;
-
-        return $this;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function withIds(...$ids): Contracts\Filter
+    public function withIds(...$ids): void
     {
         $this->ids = \array_unique($ids, SORT_NUMERIC);
 
         \sort($this->ids, SORT_NUMERIC);
-
-        return $this;
     }
 
     /**
@@ -207,7 +197,7 @@ abstract class Filter implements Contracts\Filter
     /**
      * {@inheritDoc}
      */
-    public function withSearch(string $text, bool $exactMatch = false): Contracts\Filter
+    public function withSearch(string $text, bool $exactMatch = false): void
     {
         // Lowercase the search text and escape any pattern matching characters
         $normalisedText = \mb_strtolower(\str_replace(['%', '_'], ['\\%', '\\_'], $text));
@@ -221,8 +211,6 @@ abstract class Filter implements Contracts\Filter
 
             \sort($this->search, SORT_STRING);
         }
-
-        return $this;
     }
 
     /**
@@ -254,11 +242,9 @@ abstract class Filter implements Contracts\Filter
     /**
      * {@inheritDoc}
      */
-    public function withRelations(array $relations): Contracts\Filter
+    public function withRelations(array $relations): void
     {
         $this->relations = $relations;
-
-        return $this;
     }
 
     /**

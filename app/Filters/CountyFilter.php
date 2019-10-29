@@ -65,13 +65,11 @@ class CountyFilter extends Filter implements Contracts\CountyFilter
     /**
      * {@inheritDoc}
      */
-    public function withDistricts(...$districts): Contracts\CountyFilter
+    public function withDistricts(...$districts): void
     {
         $this->districts = \array_unique($districts, SORT_NUMERIC);
 
         \sort($this->districts, SORT_NUMERIC);
-
-        return $this;
     }
 
     /**

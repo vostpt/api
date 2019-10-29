@@ -70,7 +70,7 @@ class UserFilter extends Filter implements Contracts\UserFilter
     /**
      * {@inheritDoc}
      */
-    public function withRoles(string ...$roles): Contracts\UserFilter
+    public function withRoles(string ...$roles): void
     {
         $availableRoles = Role::pluck('name')->all();
 
@@ -85,8 +85,6 @@ class UserFilter extends Filter implements Contracts\UserFilter
         $this->roles = \array_unique($roles, SORT_STRING);
 
         \sort($this->roles, SORT_STRING);
-
-        return $this;
     }
 
     /**

@@ -106,57 +106,47 @@ class WeatherObservationFilter extends Filter implements Contracts\WeatherObserv
     /**
      * {@inheritDoc}
      */
-    public function withDistricts(...$districts): Contracts\WeatherObservationFilter
+    public function withDistricts(...$districts): void
     {
         $this->districts = \array_unique($districts, SORT_NUMERIC);
 
         \sort($this->districts, SORT_NUMERIC);
-
-        return $this;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function withCounties(...$counties): Contracts\WeatherObservationFilter
+    public function withCounties(...$counties): void
     {
         $this->counties = \array_unique($counties, SORT_NUMERIC);
 
         \sort($this->counties, SORT_NUMERIC);
-
-        return $this;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function withStations(...$stations): Contracts\WeatherObservationFilter
+    public function withStations(...$stations): void
     {
         $this->stations = \array_unique($stations, SORT_NUMERIC);
 
         \sort($this->stations, SORT_NUMERIC);
-
-        return $this;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function withTimestampFrom(Carbon $from): Contracts\WeatherObservationFilter
+    public function withTimestampFrom(Carbon $from): void
     {
         $this->timestampFrom = $from;
-
-        return $this;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function withTimestampTo(Carbon $to): Contracts\WeatherObservationFilter
+    public function withTimestampTo(Carbon $to): void
     {
         $this->timestampTo = $to;
-
-        return $this;
     }
 
     /**

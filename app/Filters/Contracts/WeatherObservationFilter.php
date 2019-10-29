@@ -13,43 +13,43 @@ interface WeatherObservationFilter extends Filter
      *
      * @param int[] $districts
      *
-     * @return self
+     * @return void
      */
-    public function withDistricts(...$districts): self;
+    public function withDistricts(...$districts): void;
 
     /**
      * Include counties for filtering.
      *
      * @param int[] $counties
      *
-     * @return self
+     * @return void
      */
-    public function withCounties(...$counties): self;
+    public function withCounties(...$counties): void;
 
     /**
      * Include weather stations for filtering.
      *
      * @param int[] $stations
      *
-     * @return self
+     * @return void
      */
-    public function withStations(...$stations): self;
+    public function withStations(...$stations): void;
 
     /**
      * Include timestamp from for filtering.
      *
      * @param Carbon $from
      *
-     * @return self
+     * @return void
      */
-    public function withTimestampFrom(Carbon $from): self;
+    public function withTimestampFrom(Carbon $from): void;
 
     /**
      * Include timestamp to for filtering.
      *
      * @param Carbon $to
      *
-     * @return self
+     * @return void
      */
-    public function withTimestampTo(Carbon $to): self;
+    public function withTimestampTo(Carbon $to): void;
 }

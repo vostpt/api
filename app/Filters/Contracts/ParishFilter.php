@@ -11,7 +11,7 @@ interface ParishFilter extends Filter
      *
      * @param int[] $counties
      *
-     * @return self
+     * @return void
      */
-    public function withCounties(...$counties): self;
+    public function withCounties(...$counties): void;
 }

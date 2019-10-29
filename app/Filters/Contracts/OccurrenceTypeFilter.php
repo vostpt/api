@@ -11,7 +11,7 @@ interface OccurrenceTypeFilter extends Filter
      *
      * @param int[] $species
      *
-     * @return self
+     * @return void
      */
-    public function withSpecies(...$species): self;
+    public function withSpecies(...$species): void;
 }

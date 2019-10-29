@@ -126,93 +126,77 @@ class OccurrenceFilter extends Filter implements Contracts\OccurrenceFilter
     /**
      * {@inheritDoc}
      */
-    public function withEvents(...$events): Contracts\OccurrenceFilter
+    public function withEvents(...$events): void
     {
         $this->events = \array_unique($events, SORT_NUMERIC);
 
         \sort($this->events, SORT_NUMERIC);
-
-        return $this;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function withTypes(...$types): Contracts\OccurrenceFilter
+    public function withTypes(...$types): void
     {
         $this->types = \array_unique($types, SORT_NUMERIC);
 
         \sort($this->types, SORT_NUMERIC);
-
-        return $this;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function withStatuses(...$statuses): Contracts\OccurrenceFilter
+    public function withStatuses(...$statuses): void
     {
         $this->statuses = \array_unique($statuses, SORT_NUMERIC);
 
         \sort($this->statuses, SORT_NUMERIC);
-
-        return $this;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function withDistricts(...$districts): Contracts\OccurrenceFilter
+    public function withDistricts(...$districts): void
     {
         $this->districts = \array_unique($districts, SORT_NUMERIC);
 
         \sort($this->districts, SORT_NUMERIC);
-
-        return $this;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function withCounties(...$counties): Contracts\OccurrenceFilter
+    public function withCounties(...$counties): void
     {
         $this->counties = \array_unique($counties, SORT_NUMERIC);
 
         \sort($this->counties, SORT_NUMERIC);
-
-        return $this;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function withParishes(...$parishes): Contracts\OccurrenceFilter
+    public function withParishes(...$parishes): void
     {
         $this->parishes = \array_unique($parishes, SORT_NUMERIC);
 
         \sort($this->parishes, SORT_NUMERIC);
-
-        return $this;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function withStartedAt(Carbon $startedAt): Contracts\OccurrenceFilter
+    public function withStartedAt(Carbon $startedAt): void
     {
         $this->startedAt = $startedAt;
-
-        return $this;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function withEndedAt(Carbon $endedAt): Contracts\OccurrenceFilter
+    public function withEndedAt(Carbon $endedAt): void
     {
         $this->endedAt = $endedAt;
-
-        return $this;
     }
 
     /**

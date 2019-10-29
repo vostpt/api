@@ -66,13 +66,11 @@ class OccurrenceSpeciesFilter extends Filter implements Contracts\OccurrenceSpec
     /**
      * {@inheritDoc}
      */
-    public function withFamilies(...$families): Contracts\OccurrenceSpeciesFilter
+    public function withFamilies(...$families): void
     {
         $this->families = \array_unique($families, SORT_NUMERIC);
 
         \sort($this->families, SORT_NUMERIC);
-
-        return $this;
     }
 
     /**
