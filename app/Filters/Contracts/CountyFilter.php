@@ -11,7 +11,7 @@ interface CountyFilter extends Filter
      *
      * @param int[] $districts
      *
-     * @return self
+     * @return void
      */
-    public function withDistricts(...$districts): self;
+    public function withDistricts(...$districts): void;
 }

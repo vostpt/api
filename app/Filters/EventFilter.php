@@ -82,25 +82,21 @@ class EventFilter extends Filter implements Contracts\EventFilter
     /**
      * {@inheritDoc}
      */
-    public function withTypes(...$types): Contracts\EventFilter
+    public function withTypes(...$types): void
     {
         $this->types = \array_unique($types, SORT_NUMERIC);
 
         \sort($this->types, SORT_NUMERIC);
-
-        return $this;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function withParishes(...$parishes): Contracts\EventFilter
+    public function withParishes(...$parishes): void
     {
         $this->parishes = \array_unique($parishes, SORT_NUMERIC);
 
         \sort($this->parishes, SORT_NUMERIC);
-
-        return $this;
     }
 
     /**

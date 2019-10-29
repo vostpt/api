@@ -11,7 +11,7 @@ interface OccurrenceSpeciesFilter extends Filter
      *
      * @param int[] $families
      *
-     * @return self
+     * @return void
      */
-    public function withFamilies(...$families): self;
+    public function withFamilies(...$families): void;
 }

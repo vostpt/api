@@ -31,10 +31,10 @@ class WeatherObservationController extends Controller
         WeatherObservationFilter $filter,
         WeatherObservationRepository $occurrenceRepository
     ): JsonResponse {
-        $filter->setSortColumn($request->input('sort', $filter->getSortColumn()))
-            ->setSortOrder($request->input('order', $filter->getSortOrder()))
-            ->setPageNumber((int) $request->input('page.number', $filter->getPageNumber()))
-            ->setPageSize((int) $request->input('page.size', $filter->getPageSize()));
+        $filter->setSortColumn($request->input('sort', $filter->getSortColumn()));
+        $filter->setSortOrder($request->input('order', $filter->getSortOrder()));
+        $filter->setPageNumber((int) $request->input('page.number', $filter->getPageNumber()));
+        $filter->setPageSize((int) $request->input('page.size', $filter->getPageSize()));
 
         if ($request->has('ids')) {
             $filter->withIds(...$request->input('ids', []));

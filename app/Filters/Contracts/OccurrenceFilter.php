@@ -13,70 +13,70 @@ interface OccurrenceFilter extends Filter, GeoLocator
      *
      * @param int[] $events
      *
-     * @return self
+     * @return void
      */
-    public function withEvents(...$events): self;
+    public function withEvents(...$events): void;
 
     /**
      * Include types for filtering.
      *
      * @param int[] $types
      *
-     * @return self
+     * @return void
      */
-    public function withTypes(...$types): self;
+    public function withTypes(...$types): void;
 
     /**
      * Include statuses for filtering.
      *
      * @param int[] $statuses
      *
-     * @return self
+     * @return void
      */
-    public function withStatuses(...$statuses): self;
+    public function withStatuses(...$statuses): void;
 
     /**
      * Include districts for filtering.
      *
      * @param int[] $districts
      *
-     * @return self
+     * @return void
      */
-    public function withDistricts(...$districts): self;
+    public function withDistricts(...$districts): void;
 
     /**
      * Include counties for filtering.
      *
      * @param int[] $counties
      *
-     * @return self
+     * @return void
      */
-    public function withCounties(...$counties): self;
+    public function withCounties(...$counties): void;
 
     /**
      * Include parishes for filtering.
      *
      * @param int[] $parishes
      *
-     * @return self
+     * @return void
      */
-    public function withParishes(...$parishes): self;
+    public function withParishes(...$parishes): void;
 
     /**
      * Include started at date for filtering.
      *
      * @param Carbon $startedAt
      *
-     * @return self
+     * @return void
      */
-    public function withStartedAt(Carbon $startedAt): self;
+    public function withStartedAt(Carbon $startedAt): void;
 
     /**
      * Include ended at date for filtering.
      *
      * @param Carbon $endedAt
      *
-     * @return self
+     * @return void
      */
-    public function withEndedAt(Carbon $endedAt): self;
+    public function withEndedAt(Carbon $endedAt): void;
 }

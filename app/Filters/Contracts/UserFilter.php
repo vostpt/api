@@ -13,7 +13,7 @@ interface UserFilter extends Filter
      *
      * @throws \OutOfBoundsException
      *
-     * @return self
+     * @return void
      */
-    public function withRoles(string ...$roles): self;
+    public function withRoles(string ...$roles): void;
 }

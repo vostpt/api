@@ -64,9 +64,9 @@ interface Filter
      *
      * @throws \OutOfBoundsException
      *
-     * @return self
+     * @return void
      */
-    public function setSortColumn(string $column): self;
+    public function setSortColumn(string $column): void;
 
     /**
      * Get the sorting order.
@@ -82,9 +82,9 @@ interface Filter
      *
      * @throws \OutOfBoundsException
      *
-     * @return self
+     * @return void
      */
-    public function setSortOrder(string $order): self;
+    public function setSortOrder(string $order): void;
 
     /**
      * Get the page number.
@@ -100,9 +100,9 @@ interface Filter
      *
      * @throws \OutOfBoundsException
      *
-     * @return self
+     * @return void
      */
-    public function setPageNumber(int $page): self;
+    public function setPageNumber(int $page): void;
 
     /**
      * Get the number of items per page.
@@ -118,18 +118,18 @@ interface Filter
      *
      * @throws \OutOfBoundsException
      *
-     * @return self
+     * @return void
      */
-    public function setPageSize(int $items): self;
+    public function setPageSize(int $items): void;
 
     /**
      * Include ids for filtering.
      *
      * @param int[] $ids
      *
-     * @return self
+     * @return void
      */
-    public function withIds(...$ids): self;
+    public function withIds(...$ids): void;
 
     /**
      * Add basic text search for filtering.
@@ -137,18 +137,18 @@ interface Filter
      * @param string $text
      * @param bool   $exactMatch
      *
-     * @return self
+     * @return void
      */
-    public function withSearch(string $text, bool $exactMatch = false): self;
+    public function withSearch(string $text, bool $exactMatch = false): void;
 
     /**
      * Add relations to eager load.
      *
      * @param array $relations
      *
-     * @return self
+     * @return void
      */
-    public function withRelations(array $relations): self;
+    public function withRelations(array $relations): void;
 
     /**
      * Apply filters to the Query Builder.

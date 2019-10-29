@@ -11,16 +11,16 @@ interface EventFilter extends Filter, GeoLocator
      *
      * @param int[] $types
      *
-     * @return self
+     * @return void
      */
-    public function withTypes(...$types): self;
+    public function withTypes(...$types): void;
 
     /**
      * Include parishes for filtering.
      *
      * @param int[] $parishes
      *
-     * @return self
+     * @return void
      */
-    public function withParishes(...$parishes): self;
+    public function withParishes(...$parishes): void;
 }

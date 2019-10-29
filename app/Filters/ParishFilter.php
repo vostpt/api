@@ -64,13 +64,11 @@ class ParishFilter extends Filter implements Contracts\ParishFilter
     /**
      * {@inheritDoc}
      */
-    public function withCounties(...$counties): Contracts\ParishFilter
+    public function withCounties(...$counties): void
     {
         $this->counties = \array_unique($counties, SORT_NUMERIC);
 
         \sort($this->counties, SORT_NUMERIC);
-
-        return $this;
     }
 
     /**
