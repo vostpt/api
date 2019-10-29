@@ -29,10 +29,11 @@ docker-compose up --detach --build
 
 Once the services are all up and running, you should see the following output: 
 ```sh
-Starting vost_api     ... done
-Starting vost_nginx   ... done
-Starting vost_redis   ... done
-Starting vost_mariadb ... done
+Starting vost_api           ... done
+Starting vost_mariadb       ... done
+Starting vost_redis         ... done
+Starting vost_nginx         ... done
+Starting vost_test_database ... done
 ```
 
 In order to run commands (`composer`, `artisan`, ...) in the **API** container, log into it via:
