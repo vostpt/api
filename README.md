@@ -87,6 +87,28 @@ Each available job/task, has a corresponding artisan command for local developme
  
 >**NOTE:** Job/Task & Command output is sent to the application log file (`storage/logs/laravel-YYYY-MM-DD.log`).
 
+## Queues
+The best way to handle queues is using [Supervisor](http://supervisord.org/).
+
+Once installed, add the following configuration (with the proper adaptations) and start the service.
+
+```ini
+[program:api-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=php /path/to/api/artisan queue:work redis --sleep=3 --tries=3
+autostart=true
+autorestart=true
+user=www-data
+numprocs=4
+redirect_stderr=true
+stdout_logfile=/path/to/api/storage/logs/supervisor.log
+```
+
+For local development, the easiest way to test queued jobs is by running the following command:
+```sh
+php artisan queue:listen
+```
+
 ## API documentation
 Documentation for the available API endpoints can be accessed [locally](http://api.vost.test/documentation/) or [online](http://api.vost.pt/documentation/).
 
