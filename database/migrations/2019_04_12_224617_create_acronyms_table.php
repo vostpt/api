@@ -15,7 +15,7 @@ class CreateAcronymsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('acronyms', function (Blueprint $table) {
+        Schema::create('acronyms', static function (Blueprint $table): void {
             $table->smallIncrements('id');
 
             $table->string('initials')->unique();

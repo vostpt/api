@@ -164,7 +164,7 @@ class IndexEndpointTest extends TestCase
 
         $token = auth()->login($user);
 
-        $ids = factory(User::class, 20)->create()->each(function (User $user) {
+        $ids = factory(User::class, 20)->create()->each(static function (User $user): void {
             $user->assign([
                 Role::MODERATOR,
                 Role::CONTRIBUTOR,

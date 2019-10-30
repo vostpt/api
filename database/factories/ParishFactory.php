@@ -13,9 +13,9 @@ use VOSTPT\Models\Parish;
 |
 */
 
-$factory->define(Parish::class, function (Faker $faker) {
+$factory->define(Parish::class, static function (Faker $faker) {
     return [
-        'county_id' => function () {
+        'county_id' => static function () {
             return factory(County::class)->create()->getKey();
         },
         'code' => $faker->unique()->numerify('######'),

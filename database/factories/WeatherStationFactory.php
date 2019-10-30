@@ -13,9 +13,9 @@ use VOSTPT\Models\WeatherStation;
 |
 */
 
-$factory->define(WeatherStation::class, function (Faker $faker) {
+$factory->define(WeatherStation::class, static function (Faker $faker) {
     return [
-        'county_id' => function () {
+        'county_id' => static function () {
             return factory(County::class)->create()->getKey();
         },
         'entity' => $faker->unique()->company,

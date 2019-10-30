@@ -12,7 +12,7 @@ use VOSTPT\Models\OccurrenceFamily;
 |
 */
 
-$factory->define(OccurrenceFamily::class, function (Faker $faker) {
+$factory->define(OccurrenceFamily::class, static function (Faker $faker) {
     return [
         'code' => $faker->unique()->numberBetween(1000, 9999),
         'name' => $faker->unique()->sentence(),

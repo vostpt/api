@@ -15,7 +15,7 @@ class CreateOccurrenceStatusesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('occurrence_statuses', function (Blueprint $table) {
+        Schema::create('occurrence_statuses', static function (Blueprint $table): void {
             $table->tinyIncrements('id');
 
             $table->unsignedTinyInteger('code')->unique();

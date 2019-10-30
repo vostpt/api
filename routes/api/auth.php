@@ -12,7 +12,7 @@ use VOSTPT\Http\Controllers\AuthController;
 |
 */
 
-Route::prefix('v1/auth')->name('auth::')->group(function () {
+Route::prefix('v1/auth')->name('auth::')->group(static function (): void {
     Route::post('/', [
         AuthController::class,
         'authenticate',

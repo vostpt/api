@@ -88,7 +88,7 @@ class DownloadReportEndpointTest extends TestCase
     {
         $occurrences = factory(Occurrence::class, 20)->make();
 
-        factory(ProCivOccurrence::class, 20)->create()->each(function (ProCivOccurrence $proCivOccurrence, $index) use ($occurrences) {
+        factory(ProCivOccurrence::class, 20)->create()->each(static function (ProCivOccurrence $proCivOccurrence, $index) use ($occurrences): void {
             $proCivOccurrence->parent()->save($occurrences[$index]);
         });
 

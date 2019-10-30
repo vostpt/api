@@ -13,9 +13,9 @@ use VOSTPT\Models\WeatherStation;
 |
 */
 
-$factory->define(WeatherObservation::class, function (Faker $faker) {
+$factory->define(WeatherObservation::class, static function (Faker $faker) {
     return [
-        'station_id' => function () {
+        'station_id' => static function () {
             return factory(WeatherStation::class)->create()->getKey();
         },
         'temperature'          => $faker->randomFloat(1, 1, 50),

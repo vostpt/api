@@ -12,7 +12,7 @@ use VOSTPT\Http\Controllers\CountyController;
 |
 */
 
-Route::prefix('v1/counties')->name('counties::')->group(function () {
+Route::prefix('v1/counties')->name('counties::')->group(static function (): void {
     Route::get('/', [
         CountyController::class,
         'index',

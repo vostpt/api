@@ -16,18 +16,18 @@ use VOSTPT\Models\Parish;
 |
 */
 
-$factory->define(Occurrence::class, function (Faker $faker) {
+$factory->define(Occurrence::class, static function (Faker $faker) {
     return [
-        'event_id' => function () {
+        'event_id' => static function () {
             return factory(Event::class)->create()->getKey();
         },
-        'type_id' => function () {
+        'type_id' => static function () {
             return factory(OccurrenceType::class)->create()->getKey();
         },
-        'status_id' => function () {
+        'status_id' => static function () {
             return factory(OccurrenceStatus::class)->create()->getKey();
         },
-        'parish_id' => function () {
+        'parish_id' => static function () {
             return factory(Parish::class)->create()->getKey();
         },
         'locality'   => $faker->sentence(),

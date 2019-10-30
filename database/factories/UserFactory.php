@@ -12,7 +12,7 @@ use VOSTPT\Models\User;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(User::class, static function (Faker $faker) {
     return [
         'name'     => $faker->firstName,
         'surname'  => $faker->lastName,

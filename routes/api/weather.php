@@ -12,8 +12,8 @@ use VOSTPT\Http\Controllers\WeatherObservationController;
 |
 */
 
-Route::prefix('v1/weather')->name('weather::')->group(function () {
-    Route::prefix('observations')->name('observations::')->group(function () {
+Route::prefix('v1/weather')->name('weather::')->group(static function (): void {
+    Route::prefix('observations')->name('observations::')->group(static function (): void {
         Route::get('/', [
             WeatherObservationController::class,
             'index',

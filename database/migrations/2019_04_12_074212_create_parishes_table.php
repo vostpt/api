@@ -15,7 +15,7 @@ class CreateParishesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('parishes', function (Blueprint $table) {
+        Schema::create('parishes', static function (Blueprint $table): void {
             $table->smallIncrements('id');
             $table->unsignedSmallInteger('county_id');
 

@@ -15,7 +15,7 @@ class CreateOccurrencesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('occurrences', function (Blueprint $table) {
+        Schema::create('occurrences', static function (Blueprint $table): void {
             $table->increments('id');
             $table->unsignedInteger('event_id')->nullable();
             $table->unsignedTinyInteger('type_id');

@@ -16,7 +16,7 @@ class GuzzleClientServiceProvider extends ServiceProvider implements DeferrableP
      */
     public function register(): void
     {
-        $this->app->bind(Client::class, function () {
+        $this->app->bind(Client::class, static function () {
             return new Client([
                 // Do not throw exceptions on HTTP 4xx/5xx status
                 RequestOptions::HTTP_ERRORS => false,

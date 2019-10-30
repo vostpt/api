@@ -59,16 +59,16 @@ trait GeoLocator
     {
         if ($this->latitude && $this->longitude) {
             $sql = <<< SQL
-                (
-                    ? * ACOS(
-                        COS(RADIANS(?)) *
-                        COS(RADIANS(latitude)) *
-                        COS(RADIANS(longitude) - RADIANS(?)) +
-                        SIN(RADIANS(?)) *
-                        SIN(RADIANS(latitude))
-                    )
-                ) <= ?
-            SQL;
+                    (
+                        ? * ACOS(
+                            COS(RADIANS(?)) *
+                            COS(RADIANS(latitude)) *
+                            COS(RADIANS(longitude) - RADIANS(?)) +
+                            SIN(RADIANS(?)) *
+                            SIN(RADIANS(latitude))
+                        )
+                    ) <= ?
+                SQL;
 
             $builder->whereRaw($sql, [
                 6371, // Earth radius (in kilometers)

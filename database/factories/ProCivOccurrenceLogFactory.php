@@ -13,9 +13,9 @@ use VOSTPT\Models\ProCivOccurrenceLog;
 |
 */
 
-$factory->define(ProCivOccurrenceLog::class, function (Faker $faker) {
+$factory->define(ProCivOccurrenceLog::class, static function (Faker $faker) {
     return [
-        'occurrence_id' => function () {
+        'occurrence_id' => static function () {
             return factory(ProCivOccurrence::class)->create()->getKey();
         },
 

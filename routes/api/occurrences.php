@@ -17,7 +17,7 @@ use VOSTPT\Http\Controllers\OccurrenceTypeController;
 |
 */
 
-Route::prefix('v1/occurrences')->name('occurrences::')->group(function () {
+Route::prefix('v1/occurrences')->name('occurrences::')->group(static function (): void {
     Route::get('/reports', [
         OccurrenceReportController::class,
         'generate',

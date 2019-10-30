@@ -12,7 +12,7 @@ use VOSTPT\Http\Controllers\IpmaWarningController;
 |
 */
 
-Route::prefix('v1/ipma')->name('ipma::')->group(function () {
+Route::prefix('v1/ipma')->name('ipma::')->group(static function (): void {
     Route::get('/warnings', [
         IpmaWarningController::class,
         'index',

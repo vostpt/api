@@ -15,7 +15,7 @@ class CreateEventTypesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('event_types', function (Blueprint $table) {
+        Schema::create('event_types', static function (Blueprint $table): void {
             $table->tinyIncrements('id');
 
             $table->string('name')->unique();

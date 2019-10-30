@@ -223,7 +223,7 @@ abstract class Filter implements Contracts\Filter
     protected function applySearch(Builder $builder): void
     {
         if ($this->search) {
-            $builder->where(function (Builder $query) {
+            $builder->where(function (Builder $query): void {
                 foreach (static::getSearchableColumns() as $column) {
                     if ($this->exactMatch) {
                         $query->orWhere($column, 'LIKE', \implode(' ', $this->search));

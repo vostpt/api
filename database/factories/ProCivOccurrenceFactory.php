@@ -12,7 +12,7 @@ use VOSTPT\Models\ProCivOccurrence;
 |
 */
 
-$factory->define(ProCivOccurrence::class, function (Faker $faker) {
+$factory->define(ProCivOccurrence::class, static function (Faker $faker) {
     return [
         'remote_id'         => $faker->unique()->numerify('#############'),
         'ground_assets'     => $faker->numberBetween(1, 8),

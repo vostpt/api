@@ -16,7 +16,7 @@ class ResponseServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(FactoryContract::class, function ($app) {
+        $this->app->singleton(FactoryContract::class, static function ($app) {
             return new ResponseFactory($app[ViewFactory::class], $app['redirect']);
         });
     }

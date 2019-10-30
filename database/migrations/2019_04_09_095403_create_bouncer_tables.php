@@ -16,7 +16,7 @@ class CreateBouncerTables extends Migration
      */
     public function up(): void
     {
-        Schema::create(Models::table('abilities'), function (Blueprint $table) {
+        Schema::create(Models::table('abilities'), static function (Blueprint $table): void {
             $table->increments('id');
             $table->string('name');
             $table->string('title')->nullable();
@@ -28,7 +28,7 @@ class CreateBouncerTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create(Models::table('roles'), function (Blueprint $table) {
+        Schema::create(Models::table('roles'), static function (Blueprint $table): void {
             $table->increments('id');
             $table->string('name');
             $table->string('title')->nullable();
@@ -42,7 +42,7 @@ class CreateBouncerTables extends Migration
             );
         });
 
-        Schema::create(Models::table('assigned_roles'), function (Blueprint $table) {
+        Schema::create(Models::table('assigned_roles'), static function (Blueprint $table): void {
             $table->increments('id');
             $table->integer('role_id')->unsigned()->index();
             $table->integer('entity_id')->unsigned();
@@ -61,7 +61,7 @@ class CreateBouncerTables extends Migration
                   ->onUpdate('cascade')->onDelete('cascade');
         });
 
-        Schema::create(Models::table('permissions'), function (Blueprint $table) {
+        Schema::create(Models::table('permissions'), static function (Blueprint $table): void {
             $table->increments('id');
             $table->integer('ability_id')->unsigned()->index();
             $table->integer('entity_id')->unsigned()->nullable();
