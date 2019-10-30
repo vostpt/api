@@ -140,7 +140,7 @@ class WarningFetcher implements ShouldQueue
         }
 
         $warnings = collect($results)
-            ->filter(function (array $warning) {
+            ->filter(static function (array $warning) {
                 return \in_array($warning['awarenessLevelID'], self::ALLOWED_AWARENESS_LEVELS, true);
             })->map(function (array $warning) {
                 return \array_merge($warning, [

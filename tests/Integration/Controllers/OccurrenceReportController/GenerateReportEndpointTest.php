@@ -233,12 +233,12 @@ class GenerateReportEndpointTest extends TestCase
             'ended_at'   => $today,
         ]);
 
-        $proCivOccurrences = factory(ProCivOccurrence::class, 20)->create()->each(function (ProCivOccurrence $proCivOccurrence, $index) use ($occurrences) {
+        $proCivOccurrences = factory(ProCivOccurrence::class, 20)->create()->each(static function (ProCivOccurrence $proCivOccurrence, $index) use ($occurrences): void {
             $proCivOccurrence->parent()->save($occurrences[$index]);
         });
 
         // Get the Occurrence ids
-        $ids = $proCivOccurrences->map(function ($proCivOccurrence) {
+        $ids = $proCivOccurrences->map(static function ($proCivOccurrence) {
             return $proCivOccurrence->parent->id;
         })->all();
 

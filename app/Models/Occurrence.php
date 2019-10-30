@@ -115,7 +115,7 @@ class Occurrence extends Model
     {
         // An Occurrence is considered stalled, when the state isn't
         // set to closed and the last update was at least 1h ago
-        return $query->whereHas('status', function ($query) {
+        return $query->whereHas('status', static function ($query): void {
             $query->whereNotIn('code', [
                 OccurrenceStatus::CLOSED,
                 OccurrenceStatus::CLOSED_BY_VOST,

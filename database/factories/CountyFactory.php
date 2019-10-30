@@ -13,9 +13,9 @@ use VOSTPT\Models\District;
 |
 */
 
-$factory->define(County::class, function (Faker $faker) {
+$factory->define(County::class, static function (Faker $faker) {
     return [
-        'district_id' => function () {
+        'district_id' => static function () {
             return factory(District::class)->create()->getKey();
         },
         'code' => $faker->unique()->numerify('######'),

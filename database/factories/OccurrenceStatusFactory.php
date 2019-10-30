@@ -12,7 +12,7 @@ use VOSTPT\Models\OccurrenceStatus;
 |
 */
 
-$factory->define(OccurrenceStatus::class, function (Faker $faker) {
+$factory->define(OccurrenceStatus::class, static function (Faker $faker) {
     return [
         'code' => $faker->unique()->numberBetween(1, 255),
         'name' => $faker->unique()->sentence(),

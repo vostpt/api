@@ -12,7 +12,7 @@ use VOSTPT\Http\Controllers\DistrictController;
 |
 */
 
-Route::prefix('v1/districts')->name('districts::')->group(function () {
+Route::prefix('v1/districts')->name('districts::')->group(static function (): void {
     Route::get('/', [
         DistrictController::class,
         'index',

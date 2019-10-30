@@ -14,7 +14,7 @@ use VOSTPT\Http\Controllers\UserRoleController;
 |
 */
 
-Route::prefix('v1/users')->name('users::')->group(function () {
+Route::prefix('v1/users')->name('users::')->group(static function (): void {
     Route::get('/', [
         UserController::class,
         'index',

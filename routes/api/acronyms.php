@@ -12,7 +12,7 @@ use VOSTPT\Http\Controllers\AcronymController;
 |
 */
 
-Route::prefix('v1/acronyms')->name('acronyms::')->group(function () {
+Route::prefix('v1/acronyms')->name('acronyms::')->group(static function (): void {
     Route::get('/', [
         AcronymController::class,
         'index',

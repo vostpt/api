@@ -12,7 +12,7 @@ use VOSTPT\Models\EventType;
 |
 */
 
-$factory->define(EventType::class, function (Faker $faker) {
+$factory->define(EventType::class, static function (Faker $faker) {
     return [
         'name' => $faker->unique()->sentence(),
     ];

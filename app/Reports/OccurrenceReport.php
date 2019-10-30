@@ -85,14 +85,14 @@ class OccurrenceReport extends Report
         $builder->join('occurrence_types', 'occurrence_types.id', '=', 'occurrences.type_id')
             ->join('occurrence_statuses', 'occurrence_statuses.id', '=', 'occurrences.status_id')
             ->join('prociv_occurrences', 'prociv_occurrences.id', '=', 'occurrences.source_id')
-            ->leftJoin('prociv_occurrence_logs', function (JoinClause $join) {
+            ->leftJoin('prociv_occurrence_logs', static function (JoinClause $join): void {
                 $join->on('prociv_occurrence_logs.occurrence_id', '=', 'prociv_occurrences.id')
                     ->whereRaw(<<< SQL
-                        prociv_occurrence_logs.created_at = (
-                            SELECT MAX(created_at) FROM prociv_occurrence_logs
-                            WHERE prociv_occurrence_logs.occurrence_id = prociv_occurrences.id
-                        )
-                    SQL);
+                            prociv_occurrence_logs.created_at = (
+                                SELECT MAX(created_at) FROM prociv_occurrence_logs
+                                WHERE prociv_occurrence_logs.occurrence_id = prociv_occurrences.id
+                            )
+                        SQL);
             });
 
         $builder->addSelect([

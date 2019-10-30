@@ -14,12 +14,12 @@ use VOSTPT\Models\Parish;
 |
 */
 
-$factory->define(Event::class, function (Faker $faker) {
+$factory->define(Event::class, static function (Faker $faker) {
     return [
-        'type_id' => function () {
+        'type_id' => static function () {
             return factory(EventType::class)->create()->getKey();
         },
-        'parish_id' => function () {
+        'parish_id' => static function () {
             return factory(Parish::class)->create()->getKey();
         },
         'name'        => $faker->sentence(),

@@ -13,9 +13,9 @@ use VOSTPT\Models\WeatherStation;
 |
 */
 
-$factory->define(WeatherSensor::class, function (Faker $faker) {
+$factory->define(WeatherSensor::class, static function (Faker $faker) {
     return [
-        'station_id' => function () {
+        'station_id' => static function () {
             return factory(WeatherStation::class)->create()->getKey();
         },
         'type'       => $faker->name,

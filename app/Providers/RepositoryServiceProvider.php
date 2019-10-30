@@ -85,7 +85,7 @@ class RepositoryServiceProvider extends ServiceProvider
         ];
 
         foreach ($repositories as $interface => $classes) {
-            $this->app->singleton($interface, function () use ($classes) {
+            $this->app->singleton($interface, static function () use ($classes) {
                 [$concrete] = $classes;
 
                 return new $concrete();
@@ -93,7 +93,7 @@ class RepositoryServiceProvider extends ServiceProvider
 
             // Apply decorators
             if (\count($classes) === 2) {
-                $this->app->extend($interface, function (Repository $repository) use ($classes) {
+                $this->app->extend($interface, static function (Repository $repository) use ($classes) {
                     [, $decorator] = $classes;
 
                     return new $decorator($repository);

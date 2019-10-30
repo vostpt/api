@@ -12,7 +12,7 @@ use VOSTPT\Http\Controllers\ParishController;
 |
 */
 
-Route::prefix('v1/parishes')->name('parishes::')->group(function () {
+Route::prefix('v1/parishes')->name('parishes::')->group(static function (): void {
     Route::get('/', [
         ParishController::class,
         'index',

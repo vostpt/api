@@ -15,7 +15,7 @@ class CreateProcivOccurrenceLogsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('prociv_occurrence_logs', function (Blueprint $table) {
+        Schema::create('prociv_occurrence_logs', static function (Blueprint $table): void {
             $table->increments('id');
             $table->unsignedInteger('occurrence_id');
 

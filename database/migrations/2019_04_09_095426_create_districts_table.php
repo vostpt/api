@@ -15,7 +15,7 @@ class CreateDistrictsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('districts', function (Blueprint $table) {
+        Schema::create('districts', static function (Blueprint $table): void {
             $table->tinyIncrements('id');
 
             $table->string('code')->unique();

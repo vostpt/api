@@ -15,7 +15,7 @@ class CreateProcivOccurrencesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('prociv_occurrences', function (Blueprint $table) {
+        Schema::create('prociv_occurrences', static function (Blueprint $table): void {
             $table->increments('id');
             $table->string('remote_id')->unique();
 

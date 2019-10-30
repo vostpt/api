@@ -40,7 +40,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes(): void
     {
-        $this->app['router']->group(['middleware' => 'web'], function () {
+        $this->app['router']->group(['middleware' => 'web'], function (): void {
             require base_path('routes/web/fallback.php');
         });
     }
@@ -54,7 +54,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes(): void
     {
-        $this->app['router']->group(['middleware' => 'api'], function () {
+        $this->app['router']->group(['middleware' => 'api'], function (): void {
             require base_path('routes/api/acronyms.php');
             require base_path('routes/api/auth.php');
             require base_path('routes/api/counties.php');

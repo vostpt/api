@@ -15,7 +15,7 @@ class CreateOccurrenceTypesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('occurrence_types', function (Blueprint $table) {
+        Schema::create('occurrence_types', static function (Blueprint $table): void {
             $table->tinyIncrements('id');
             $table->unsignedTinyInteger('species_id');
 

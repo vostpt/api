@@ -15,7 +15,7 @@ class CreateOccurrenceFamiliesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('occurrence_families', function (Blueprint $table) {
+        Schema::create('occurrence_families', static function (Blueprint $table): void {
             $table->tinyIncrements('id');
 
             $table->unsignedSmallInteger('code')->unique();

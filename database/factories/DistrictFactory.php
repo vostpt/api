@@ -12,7 +12,7 @@ use VOSTPT\Models\District;
 |
 */
 
-$factory->define(District::class, function (Faker $faker) {
+$factory->define(District::class, static function (Faker $faker) {
     return [
         'code' => $faker->unique()->numerify('######'),
         'name' => \sprintf('%s District', $faker->unique()->name),

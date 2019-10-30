@@ -20,12 +20,12 @@ class ServiceClientServiceProvider extends ServiceProvider implements Deferrable
     public function register(): void
     {
         // IPMA API service client
-        $this->app->singleton(IpmaApiServiceClientContract::class, function ($app) {
+        $this->app->singleton(IpmaApiServiceClientContract::class, static function ($app) {
             return new IpmaApiServiceClient($app[Client::class], $app['config']['services.ipma.api.hostname']);
         });
 
         // ProCiv Website service client
-        $this->app->singleton(ProCivWebsiteServiceClientContract::class, function ($app) {
+        $this->app->singleton(ProCivWebsiteServiceClientContract::class, static function ($app) {
             return new ProCivWebsiteServiceClient($app[Client::class], $app['config']['services.prociv.website.hostname']);
         });
     }

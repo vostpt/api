@@ -24,6 +24,12 @@ return PhpCsFixer\Config::create()
         'no_alias_functions'                => true,
         'trailing_comma_in_multiline_array' => true,
         'mb_str_functions'                  => true,
+        'ternary_to_null_coalescing'        => true,
+        'heredoc_indentation'               => true,
+        'random_api_migration'              => true,
+        'void_return'                       => true,
+        'static_lambda'                     => true,
+        'strict_comparison'                 => true,
         'ordered_imports'                   => [
             'sort_algorithm' => 'alpha',
         ],

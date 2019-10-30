@@ -12,7 +12,7 @@ use VOSTPT\Http\Controllers\EventController;
 |
 */
 
-Route::prefix('v1/events')->name('events::')->group(function () {
+Route::prefix('v1/events')->name('events::')->group(static function (): void {
     Route::get('/', [
         EventController::class,
         'index',

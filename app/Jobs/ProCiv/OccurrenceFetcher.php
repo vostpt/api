@@ -107,7 +107,7 @@ class OccurrenceFetcher implements ShouldQueue
         $response = $this->serviceClient->getOccurrenceHistory();
 
         foreach ($response['Data'] as $data) {
-            DB::transaction(function () use ($data) {
+            DB::transaction(function () use ($data): void {
                 if ($proCivOccurrence = $this->proCivOccurrenceRepository->findByRemoteId($data['Numero'])) {
                     $occurrence = $proCivOccurrence->parent;
                 } else {
@@ -173,7 +173,7 @@ class OccurrenceFetcher implements ShouldQueue
         $response = $this->serviceClient->getMainOccurrences();
 
         foreach ($response['Data'] as $data) {
-            DB::transaction(function () use ($data) {
+            DB::transaction(function () use ($data): void {
                 $proCivOccurrence = $this->proCivOccurrenceRepository->findByRemoteId($data['Numero']);
 
                 $this->logger->info(\sprintf('Storing ProCiv occurrence log for %s', $data['Numero']));

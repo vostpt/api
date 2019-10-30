@@ -15,7 +15,7 @@ class CreateWeatherObservationsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('weather_observations', function (Blueprint $table) {
+        Schema::create('weather_observations', static function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->unsignedSmallInteger('station_id');
 

@@ -62,7 +62,7 @@ class UserController extends Controller
      */
     public function create(Create $request): JsonResponse
     {
-        $user = DB::transaction(function () use ($request) {
+        $user = DB::transaction(static function () use ($request) {
             $user = new User();
 
             $user->name = $request->input('name');
@@ -108,7 +108,7 @@ class UserController extends Controller
      */
     public function update(Update $request, User $user): JsonResponse
     {
-        $user = DB::transaction(function () use ($request, $user) {
+        $user = DB::transaction(static function () use ($request, $user) {
             if ($request->has('name')) {
                 $user->name = $request->input('name');
             }
