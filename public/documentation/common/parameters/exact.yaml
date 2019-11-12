@@ -3,4 +3,4 @@ in: query
 description: Enable exact match when searching
 schema:
   type: boolean
-  default: false
+  default: 0
