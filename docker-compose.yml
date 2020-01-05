@@ -18,11 +18,9 @@ services:
   api:
     container_name: vost_api
     build: .docker/php
-    user: "1000:1000"
     expose:
       - 9000
     volumes:
-      - /etc/passwd:/etc/passwd:ro
       - .:/var/www/api.vost.test
     restart: unless-stopped
     networks:
