@@ -134,7 +134,7 @@ class WarningFetcher implements ShouldQueue
 
         try {
             $results = $this->serviceClient->getWarnings();
-        } catch (HttpException|ClientExceptionInterface $exception) {
+        } catch (HttpException | ClientExceptionInterface $exception) {
             $this->logger->error($exception->getMessage());
 
             return false;

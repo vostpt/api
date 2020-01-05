@@ -88,7 +88,7 @@ class SurfaceObservationFetcher implements ShouldQueue
 
         try {
             $results = $this->serviceClient->getSurfaceObservations();
-        } catch (HttpException|ClientExceptionInterface $exception) {
+        } catch (HttpException | ClientExceptionInterface $exception) {
             $this->logger->error($exception->getMessage());
 
             return false;
