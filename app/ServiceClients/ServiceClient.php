@@ -64,17 +64,22 @@ abstract class ServiceClient implements Contracts\ServiceClient
      * Parse the service response.
      *
      * @param \Psr\Http\Message\ResponseInterface $response
+     * @param \Psr\Http\Message\RequestInterface  $request
      *
      * @return mixed
      *
      * @throws HttpException
      */
-    protected function parseResponse(ResponseInterface $response)
+    protected function parseResponse(ResponseInterface $response, RequestInterface $request)
     {
         $code = $response->getStatusCode();
 
         if ($code >= 400) {
-            throw new HttpException($code, $response->getReasonPhrase());
+            throw new HttpException($code, \sprintf(
+                '%s (%s)',
+                $request->getUri(),
+                $response->getReasonPhrase()
+            ));
         }
 
         return \json_decode($response->getBody()->getContents(), true);
@@ -116,7 +121,7 @@ abstract class ServiceClient implements Contracts\ServiceClient
 
         $response = $this->httpClient->sendRequest($request);
 
-        return $this->parseResponse($response);
+        return $this->parseResponse($response, $request);
     }
 
     /**
