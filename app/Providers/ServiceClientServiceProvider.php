@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace VOSTPT\Providers;
 
-use GuzzleHttp\Client;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
+use Psr\Http\Client\ClientInterface;
 use VOSTPT\ServiceClients\Contracts\IpmaApiServiceClient as IpmaApiServiceClientContract;
 use VOSTPT\ServiceClients\Contracts\ProCivWebsiteServiceClient as ProCivWebsiteServiceClientContract;
 use VOSTPT\ServiceClients\IpmaApiServiceClient;
@@ -21,12 +21,12 @@ class ServiceClientServiceProvider extends ServiceProvider implements Deferrable
     {
         // IPMA API service client
         $this->app->singleton(IpmaApiServiceClientContract::class, static function ($app) {
-            return new IpmaApiServiceClient($app[Client::class], $app['config']['services.ipma.api.hostname']);
+            return new IpmaApiServiceClient($app[ClientInterface::class], $app['config']['services.ipma.api.hostname']);
         });
 
         // ProCiv Website service client
         $this->app->singleton(ProCivWebsiteServiceClientContract::class, static function ($app) {
-            return new ProCivWebsiteServiceClient($app[Client::class], $app['config']['services.prociv.website.hostname']);
+            return new ProCivWebsiteServiceClient($app[ClientInterface::class], $app['config']['services.prociv.website.hostname']);
         });
     }
 

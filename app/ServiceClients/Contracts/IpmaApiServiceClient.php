@@ -9,18 +9,20 @@ interface IpmaApiServiceClient extends ServiceClient
     /**
      * Get warnings.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      * @return array
+     *
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function getWarnings(): array;
 
     /**
      * Get surface observations.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      * @return array
+     *
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function getSurfaceObservations(): array;
 }

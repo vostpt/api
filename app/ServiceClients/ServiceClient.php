@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace VOSTPT\ServiceClients;
 
-use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Psr7\Request;
 use InvalidArgumentException;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -15,7 +16,7 @@ abstract class ServiceClient implements Contracts\ServiceClient
     /**
      * HTTP client.
      *
-     * @var HttpClient
+     * @var ClientInterface
      */
     protected $httpClient;
 
@@ -27,14 +28,12 @@ abstract class ServiceClient implements Contracts\ServiceClient
     protected $hostname;
 
     /**
-     * Service client constructor.
+     * @param ClientInterface $httpClient
+     * @param string          $hostname
      *
-     * @param HttpClient $httpClient
-     * @param string     $hostname
-     *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
-    public function __construct(HttpClient $httpClient, string $hostname)
+    public function __construct(ClientInterface $httpClient, string $hostname)
     {
         if (\filter_var($hostname, FILTER_VALIDATE_URL) === false) {
             throw new InvalidArgumentException('Invalid hostname: '.$hostname);
@@ -66,9 +65,9 @@ abstract class ServiceClient implements Contracts\ServiceClient
      *
      * @param \Psr\Http\Message\ResponseInterface $response
      *
-     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
-     *
      * @return mixed
+     *
+     * @throws HttpException
      */
     protected function parseResponse(ResponseInterface $response)
     {
@@ -85,6 +84,7 @@ abstract class ServiceClient implements Contracts\ServiceClient
      * Check if the request requires body data.
      *
      * @param string $method
+     *
      * @return bool
      */
     protected function requiresBody(string $method): bool
@@ -114,7 +114,7 @@ abstract class ServiceClient implements Contracts\ServiceClient
 
         $request = new Request($method, $url, \array_merge($headers, $this->getDefaultHeaders()), $body ?? null);
 
-        $response = $this->httpClient->send($request);
+        $response = $this->httpClient->sendRequest($request);
 
         return $this->parseResponse($response);
     }

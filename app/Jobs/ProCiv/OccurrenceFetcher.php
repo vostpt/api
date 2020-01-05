@@ -67,9 +67,10 @@ class OccurrenceFetcher implements ShouldQueue
      * @param ParishRepository           $parishRepository
      * @param \Psr\Log\LoggerInterface   $logger
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      * @return bool
+     *
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function handle(
         ProCivWebsiteServiceClient $serviceClient,
@@ -96,9 +97,10 @@ class OccurrenceFetcher implements ShouldQueue
     /**
      * Fetch ProCiv occurrences.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      * @return bool
+     *
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     private function fetchProCivOccurrences(): bool
     {
@@ -162,9 +164,10 @@ class OccurrenceFetcher implements ShouldQueue
     /**
      * Fetch ProCiv occurrence details.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      * @return bool
+     *
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     private function fetchProCivOccurrenceDetails(): bool
     {
