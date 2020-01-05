@@ -20,7 +20,7 @@ class OccurrenceCloseCommandTest extends TestCase
     /**
      * @test
      */
-    public function itSuccessfullyFetchesSurfaceObservations(): void
+    public function itSuccessfullyClosesOccurrences(): void
     {
         $this->app->instance(LoggerInterface::class, new NullLogger());
 
