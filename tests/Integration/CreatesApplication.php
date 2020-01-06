@@ -19,6 +19,9 @@ trait CreatesApplication
 
         $app->make(Kernel::class)->bootstrap();
 
+        // Clear the cache
+        $app['cache.store']->flush();
+
         return $app;
     }
 }

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Commands\Ipma;
 
-use GuzzleHttp\Client;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Cache;
+use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Psr\Log\Test\TestLogger;
@@ -22,11 +22,11 @@ class WarningFetchCommandTest extends TestCase
     /**
      * @test
      */
-    public function itSuccessfullyFetchesSurfaceObservations(): void
+    public function itSuccessfullyFetchesWarnings(): void
     {
         $response = $this->createHttpResponse('tests/data/Ipma/Warnings.json');
 
-        $this->app->instance(Client::class, $this->createHttpClient($response));
+        $this->app->instance(ClientInterface::class, $this->createHttpClient($response));
 
         $this->app->instance(LoggerInterface::class, new NullLogger());
 
@@ -44,11 +44,11 @@ class WarningFetchCommandTest extends TestCase
     /**
      * @test
      */
-    public function itFailsToFetchSurfaceObservations(): void
+    public function itFailsToFetchWarnings(): void
     {
         $response = $this->createHttpResponse(null, 404);
 
-        $this->app->instance(Client::class, $this->createHttpClient($response));
+        $this->app->instance(ClientInterface::class, $this->createHttpClient($response));
 
         $this->app->instance(LoggerInterface::class, new TestLogger());
 
@@ -56,6 +56,6 @@ class WarningFetchCommandTest extends TestCase
 
         $logger = $this->app[LoggerInterface::class];
 
-        $this->assertTrue($logger->hasRecordThatContains('Client error: `GET https://api.ipma.pt/json/warnings_www.json` resulted in a `404 Not Found`', 'error'));
+        $this->assertTrue($logger->hasRecordThatContains('https://api.ipma.pt/json/warnings_www.json (Not Found)', 'error'));
     }
 }

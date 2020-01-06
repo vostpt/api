@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration\Commands\ProCiv;
 
-use GuzzleHttp\Client;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Psr\Http\Client\ClientInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use VOSTPT\Models\Occurrence;
@@ -29,7 +29,7 @@ class OccurrenceFetchCommandTest extends TestCase
         $response1 = $this->createHttpResponse('tests/data/ProCiv/OccurrencesByLocation.json');
         $response2 = $this->createHttpResponse('tests/data/ProCiv/MainOccurrences.json');
 
-        $this->app->instance(Client::class, $this->createHttpClient($response1, $response2));
+        $this->app->instance(ClientInterface::class, $this->createHttpClient($response1, $response2));
 
         $this->app->instance(LoggerInterface::class, new NullLogger());
 

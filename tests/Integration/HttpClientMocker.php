@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace VOSTPT\Tests\Integration;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use Http\Client\HttpClient;
+use Http\Mock\Client as MockHttpClient;
 use Psr\Http\Message\ResponseInterface;
 
 trait HttpClientMocker
@@ -15,13 +14,17 @@ trait HttpClientMocker
     /**
      * @param ResponseInterface[] $responses
      *
-     * @return Client
+     * @return HttpClient
      */
-    protected function createHttpClient(ResponseInterface ...$responses): Client
+    protected function createHttpClient(ResponseInterface ...$responses): HttpClient
     {
-        return new Client([
-            'handler' => HandlerStack::create(new MockHandler($responses)),
-        ]);
+        $httpClient = new MockHttpClient();
+
+        foreach ($responses as $response) {
+            $httpClient->addResponse($response);
+        }
+
+        return $httpClient;
     }
 
     /**

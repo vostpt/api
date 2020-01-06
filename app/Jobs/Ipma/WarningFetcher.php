@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace VOSTPT\Jobs\Ipma;
 
 use Carbon\Carbon;
-use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Cache\Repository as Cache;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Log\LoggerInterface;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use VOSTPT\Models\County;
 use VOSTPT\Repositories\Contracts\CountyRepository;
 use VOSTPT\ServiceClients\Contracts\IpmaApiServiceClient;
@@ -133,7 +134,7 @@ class WarningFetcher implements ShouldQueue
 
         try {
             $results = $this->serviceClient->getWarnings();
-        } catch (GuzzleException $exception) {
+        } catch (HttpException | ClientExceptionInterface $exception) {
             $this->logger->error($exception->getMessage());
 
             return false;

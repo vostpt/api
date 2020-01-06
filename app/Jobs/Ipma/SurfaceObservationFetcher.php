@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace VOSTPT\Jobs\Ipma;
 
 use Carbon\Carbon;
-use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use VOSTPT\Models\WeatherObservation;
 use VOSTPT\Models\WeatherStation;
 use VOSTPT\Repositories\Contracts\WeatherObservationRepository;
@@ -87,7 +88,7 @@ class SurfaceObservationFetcher implements ShouldQueue
 
         try {
             $results = $this->serviceClient->getSurfaceObservations();
-        } catch (GuzzleException $exception) {
+        } catch (HttpException | ClientExceptionInterface $exception) {
             $this->logger->error($exception->getMessage());
 
             return false;

@@ -41,10 +41,10 @@ interface ServiceClient
      * @param array  $parameters
      * @param array  $headers
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
-     *
      * @return \Psr\Http\Message\ResponseInterface|mixed
+     *
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function request(string $method, string $path, array $parameters = [], array $headers = []);
 
@@ -55,9 +55,10 @@ interface ServiceClient
      * @param array  $parameters
      * @param array  $headers
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      * @return \Psr\Http\Message\ResponseInterface|mixed
+     *
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function get(string $path, array $parameters = [], array $headers = []);
 
@@ -68,9 +69,10 @@ interface ServiceClient
      * @param array  $parameters
      * @param array  $headers
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      * @return \Psr\Http\Message\ResponseInterface|mixed
+     *
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function post(string $path, array $parameters = [], array $headers = []);
 
@@ -81,9 +83,10 @@ interface ServiceClient
      * @param array  $parameters
      * @param array  $headers
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      * @return \Psr\Http\Message\ResponseInterface|mixed
+     *
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function put(string $path, array $parameters = [], array $headers = []);
 
@@ -94,9 +97,10 @@ interface ServiceClient
      * @param array  $parameters
      * @param array  $headers
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      * @return \Psr\Http\Message\ResponseInterface|mixed
+     *
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function delete(string $path, array $parameters = [], array $headers = []);
 }

@@ -9,18 +9,20 @@ interface ProCivWebsiteServiceClient extends ServiceClient
     /**
      * Get main occurrences.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      * @return array
+     *
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function getMainOccurrences(): array;
 
     /**
      * Get occurrence history.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      * @return array
+     *
+     * @throws \Psr\Http\Client\ClientExceptionInterface
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function getOccurrenceHistory(): array;
 }
