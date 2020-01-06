@@ -7,7 +7,7 @@ declare(strict_types=1);
  */
 return [
     [
-        'station_number' => 501,
+        'station_number' => 1200501,
         'name'           => 'Flores / Aeroporto',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '39.45730000',
@@ -17,7 +17,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 502,
+        'station_number' => 1200502,
         'name'           => 'Corvo / Aeroporto',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '39.67081111',
@@ -27,7 +27,7 @@ return [
         'started_at'     => '2002-05-11',
     ],
     [
-        'station_number' => 506,
+        'station_number' => 1200506,
         'name'           => 'Horta / Observatório Príncipe Alberto do Mónaco',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '38.52977778',
@@ -37,7 +37,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 511,
+        'station_number' => 1200511,
         'name'           => 'Angra do Heroísmo / Observatório José Agostinho',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '38.65992500',
@@ -47,7 +47,7 @@ return [
         'started_at'     => '2000-03-13',
     ],
     [
-        'station_number' => 512,
+        'station_number' => 1200512,
         'name'           => 'Ponta Delgada - Nordela',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '37.74412222',
@@ -57,7 +57,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 515,
+        'station_number' => 1200515,
         'name'           => 'Santa Maria / Aeroporto',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '36.97319444',
@@ -67,7 +67,7 @@ return [
         'started_at'     => '2002-04-25',
     ],
     [
-        'station_number' => 521,
+        'station_number' => 1200521,
         'name'           => 'Santa Catarina / Aeroporto',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '32.69316667',
@@ -77,7 +77,7 @@ return [
         'started_at'     => '2014-11-14',
     ],
     [
-        'station_number' => 522,
+        'station_number' => 1200522,
         'name'           => 'Funchal / Observatório',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '32.64752500',
@@ -87,7 +87,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 524,
+        'station_number' => 1200524,
         'name'           => 'Porto Santo / Aeroporto',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '33.07145833',
@@ -97,7 +97,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 531,
+        'station_number' => 1200531,
         'name'           => 'Cabo Carvoeiro / Farol',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '39.36140833',
@@ -107,7 +107,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 533,
+        'station_number' => 1200533,
         'name'           => 'Sagres / Quartel da Marinha',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '37.01283611',
@@ -117,7 +117,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 535,
+        'station_number' => 1200535,
         'name'           => 'Lisboa / Geofísico',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '38.71907778',
@@ -127,7 +127,7 @@ return [
         'started_at'     => '1999-07-12',
     ],
     [
-        'station_number' => 541,
+        'station_number' => 1200541,
         'name'           => 'Sines - Monte Chãos',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '37.95450278',
@@ -137,7 +137,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 545,
+        'station_number' => 1200545,
         'name'           => 'Porto - Pedras Rubras',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '41.23227500',
@@ -147,7 +147,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 548,
+        'station_number' => 1200548,
         'name'           => 'Coimbra / Aeródromo',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '40.15760000',
@@ -157,7 +157,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 551,
+        'station_number' => 1200551,
         'name'           => 'Viana do Castelo - Chafé',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '41.64887500',
@@ -167,7 +167,7 @@ return [
         'started_at'     => '2006-03-01',
     ],
     [
-        'station_number' => 554,
+        'station_number' => 1200554,
         'name'           => 'Faro / Aeroporto',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '37.01657778',
@@ -177,7 +177,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 558,
+        'station_number' => 1200558,
         'name'           => 'Évora / Aeródromo',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '38.53654167',
@@ -187,7 +187,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 560,
+        'station_number' => 1200560,
         'name'           => 'Viseu / Aeródromo',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '40.71492778',
@@ -197,7 +197,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 562,
+        'station_number' => 1200562,
         'name'           => 'Beja',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '38.02572778',
@@ -207,7 +207,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 567,
+        'station_number' => 1200567,
         'name'           => 'Vila Real / Aeródromo',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '41.27420833',
@@ -217,7 +217,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 568,
+        'station_number' => 1200568,
         'name'           => 'Penhas Douradas / Observatório',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '40.41136667',
@@ -227,7 +227,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 570,
+        'station_number' => 1200570,
         'name'           => 'Castelo Branco, Centro Coordenador',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '39.83944444',
@@ -237,7 +237,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 571,
+        'station_number' => 1200571,
         'name'           => 'Portalegre',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '39.29418333',
@@ -247,7 +247,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 575,
+        'station_number' => 1200575,
         'name'           => 'Bragança',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '41.80388333',
@@ -257,7 +257,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 579,
+        'station_number' => 1200579,
         'name'           => 'Lisboa - Gago Coutinho',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '38.76620278',
@@ -267,7 +267,7 @@ return [
         'started_at'     => '1996-01-01',
     ],
     [
-        'station_number' => 912,
+        'station_number' => 1200507,
         'name'           => 'Graciosa / Aeródromo',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '39.09110000',
@@ -277,7 +277,7 @@ return [
         'started_at'     => '2002-05-08',
     ],
     [
-        'station_number' => 922,
+        'station_number' => 1200504,
         'name'           => 'Pico / Aeródromo',
         'sensor_type'    => 'Estação Automática Principal (EMA I)',
         'latitude'       => '38.55325556',
@@ -287,7 +287,7 @@ return [
         'started_at'     => '2002-05-11',
     ],
     [
-        'station_number' => 513,
+        'station_number' => 1210513,
         'name'           => 'Ponta Delgada / Observatório Afonso Chaves',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '37.74657500',
@@ -297,7 +297,7 @@ return [
         'started_at'     => '2009-11-25',
     ],
     [
-        'station_number' => 520,
+        'station_number' => 1210520,
         'name'           => 'Selvagem Grande',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '30.14536944',
@@ -307,7 +307,7 @@ return [
         'started_at'     => '2016-08-23',
     ],
     [
-        'station_number' => 577,
+        'station_number' => 1210577,
         'name'           => 'Odemira - S. Teotónio',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '37.54710833',
@@ -317,7 +317,7 @@ return [
         'started_at'     => '1999-09-09',
     ],
     [
-        'station_number' => 604,
+        'station_number' => 1210604,
         'name'           => 'Vila Nova de Cerveira / Aeródromo',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '41.97313056',
@@ -327,7 +327,7 @@ return [
         'started_at'     => '1999-04-25',
     ],
     [
-        'station_number' => 605,
+        'station_number' => 1210605,
         'name'           => 'Monção - Valinha',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '42.07336111',
@@ -337,7 +337,7 @@ return [
         'started_at'     => '1996-05-14',
     ],
     [
-        'station_number' => 606,
+        'station_number' => 1210606,
         'name'           => 'Lamas de Mouro',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '42.04296667',
@@ -347,7 +347,7 @@ return [
         'started_at'     => '1999-11-18',
     ],
     [
-        'station_number' => 611,
+        'station_number' => 1210611,
         'name'           => 'Montalegre',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '41.82278333',
@@ -357,7 +357,7 @@ return [
         'started_at'     => '1999-05-14',
     ],
     [
-        'station_number' => 612,
+        'station_number' => 1210612,
         'name'           => 'Vinhais',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '41.84340000',
@@ -367,7 +367,7 @@ return [
         'started_at'     => '2010-08-27',
     ],
     [
-        'station_number' => 615,
+        'station_number' => 1210615,
         'name'           => 'Ponte de Lima / Escola Agrícola',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '41.76383889',
@@ -377,7 +377,7 @@ return [
         'started_at'     => '1999-06-02',
     ],
     [
-        'station_number' => 616,
+        'station_number' => 1210616,
         'name'           => 'Chaves / Aeródromo',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '41.72520000',
@@ -387,7 +387,7 @@ return [
         'started_at'     => '1996-05-13',
     ],
     [
-        'station_number' => 619,
+        'station_number' => 1210619,
         'name'           => 'Cabril - S. Lourenço',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '41.70971667',
@@ -397,7 +397,7 @@ return [
         'started_at'     => '1996-05-13',
     ],
     [
-        'station_number' => 622,
+        'station_number' => 1210622,
         'name'           => 'Braga - Merelim',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '41.57586944',
@@ -407,7 +407,7 @@ return [
         'started_at'     => '1996-05-13',
     ],
     [
-        'station_number' => 630,
+        'station_number' => 1210630,
         'name'           => 'Cabeceiras de Basto',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '41.48897222',
@@ -417,7 +417,7 @@ return [
         'started_at'     => '1999-11-24',
     ],
     [
-        'station_number' => 632,
+        'station_number' => 1210632,
         'name'           => 'Mirandela',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '41.51478611',
@@ -427,7 +427,7 @@ return [
         'started_at'     => '1999-07-23',
     ],
     [
-        'station_number' => 633,
+        'station_number' => 1210633,
         'name'           => 'Macedo de Cavaleiros - Izeda-Morais',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '41.56765556',
@@ -437,7 +437,7 @@ return [
         'started_at'     => '1999-12-07',
     ],
     [
-        'station_number' => 635,
+        'station_number' => 1210635,
         'name'           => 'Miranda do Douro',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '41.49882222',
@@ -447,7 +447,7 @@ return [
         'started_at'     => '1999-06-09',
     ],
     [
-        'station_number' => 637,
+        'station_number' => 1210637,
         'name'           => 'Mogadouro',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '41.33511111',
@@ -457,7 +457,7 @@ return [
         'started_at'     => '1999-06-11',
     ],
     [
-        'station_number' => 644,
+        'station_number' => 1210644,
         'name'           => 'Carrazêda de Ansiães',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '41.24295000',
@@ -467,7 +467,7 @@ return [
         'started_at'     => '2001-12-21',
     ],
     [
-        'station_number' => 649,
+        'station_number' => 1210649,
         'name'           => 'Porto - S.Gens',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '41.18445278',
@@ -477,7 +477,7 @@ return [
         'started_at'     => '2009-09-24',
     ],
     [
-        'station_number' => 654,
+        'station_number' => 1210654,
         'name'           => 'Moncorvo',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '41.18986944',
@@ -487,7 +487,7 @@ return [
         'started_at'     => '2001-12-07',
     ],
     [
-        'station_number' => 655,
+        'station_number' => 1210655,
         'name'           => 'Pinhão',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '41.17277500',
@@ -497,7 +497,7 @@ return [
         'started_at'     => '2009-11-30',
     ],
     [
-        'station_number' => 657,
+        'station_number' => 1210657,
         'name'           => 'Luzim',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '41.14588611',
@@ -507,7 +507,7 @@ return [
         'started_at'     => '2009-12-22',
     ],
     [
-        'station_number' => 663,
+        'station_number' => 1210663,
         'name'           => 'Moimenta da Beira',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '40.98566111',
@@ -517,7 +517,7 @@ return [
         'started_at'     => '2001-12-07',
     ],
     [
-        'station_number' => 666,
+        'station_number' => 1210666,
         'name'           => 'Trancoso / Bandarra',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '40.78116667',
@@ -527,7 +527,7 @@ return [
         'started_at'     => '1999-06-03',
     ],
     [
-        'station_number' => 669,
+        'station_number' => 1210669,
         'name'           => 'Arouca',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '40.92694167',
@@ -537,7 +537,7 @@ return [
         'started_at'     => '2013-11-18',
     ],
     [
-        'station_number' => 671,
+        'station_number' => 1210671,
         'name'           => 'Figueira de Castelo Rodrigo - V.Torpim',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '40.83029722',
@@ -547,7 +547,7 @@ return [
         'started_at'     => '1999-06-15',
     ],
     [
-        'station_number' => 683,
+        'station_number' => 1210683,
         'name'           => 'Guarda',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '40.52855833',
@@ -557,7 +557,7 @@ return [
         'started_at'     => '2000-02-01',
     ],
     [
-        'station_number' => 685,
+        'station_number' => 1210685,
         'name'           => 'Nelas',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '40.52349722',
@@ -567,7 +567,7 @@ return [
         'started_at'     => '1996-12-28',
     ],
     [
-        'station_number' => 686,
+        'station_number' => 1210686,
         'name'           => 'Pampilhosa da Serra',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '40.14565278',
@@ -577,7 +577,7 @@ return [
         'started_at'     => '2001-12-06',
     ],
     [
-        'station_number' => 687,
+        'station_number' => 1210687,
         'name'           => 'Covilhã',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '40.26434722',
@@ -587,7 +587,7 @@ return [
         'started_at'     => '1999-05-05',
     ],
     [
-        'station_number' => 690,
+        'station_number' => 1210690,
         'name'           => 'Aldeia Souto - Quinta Lageosa',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '40.35425833',
@@ -597,7 +597,7 @@ return [
         'started_at'     => '2010-01-21',
     ],
     [
-        'station_number' => 697,
+        'station_number' => 1210697,
         'name'           => 'Lousã - Aeródromo',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '40.14392500',
@@ -607,7 +607,7 @@ return [
         'started_at'     => '1997-05-26',
     ],
     [
-        'station_number' => 698,
+        'station_number' => 1210698,
         'name'           => 'Fundão',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '40.14063611',
@@ -617,7 +617,7 @@ return [
         'started_at'     => '2010-01-21',
     ],
     [
-        'station_number' => 702,
+        'station_number' => 1210702,
         'name'           => 'Aveiro / Universidade',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '40.63540000',
@@ -627,7 +627,7 @@ return [
         'started_at'     => '1996-11-29',
     ],
     [
-        'station_number' => 704,
+        'station_number' => 1210704,
         'name'           => 'Dunas de Mira',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '40.44595556',
@@ -637,7 +637,7 @@ return [
         'started_at'     => '2009-10-01',
     ],
     [
-        'station_number' => 705,
+        'station_number' => 1210705,
         'name'           => 'Anadia / Estação Vitivinícola da Bairrada',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '40.43885833',
@@ -647,7 +647,7 @@ return [
         'started_at'     => '1999-12-29',
     ],
     [
-        'station_number' => 707,
+        'station_number' => 1210707,
         'name'           => 'Coimbra - Bencanta',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '40.21346944',
@@ -657,7 +657,7 @@ return [
         'started_at'     => '2009-06-17',
     ],
     [
-        'station_number' => 713,
+        'station_number' => 1210713,
         'name'           => 'Figueira da Foz - Vila Verde',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '40.13976389',
@@ -667,7 +667,7 @@ return [
         'started_at'     => '1999-10-22',
     ],
     [
-        'station_number' => 716,
+        'station_number' => 1210716,
         'name'           => 'Ansião',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '39.89765278',
@@ -677,7 +677,7 @@ return [
         'started_at'     => '1999-10-15',
     ],
     [
-        'station_number' => 718,
+        'station_number' => 1210718,
         'name'           => 'Leiria / Aeródromo',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '39.78055278',
@@ -687,7 +687,7 @@ return [
         'started_at'     => '2007-12-28',
     ],
     [
-        'station_number' => 721,
+        'station_number' => 1210721,
         'name'           => 'São Pedro de Moel',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '39.76361944',
@@ -697,7 +697,7 @@ return [
         'started_at'     => '2010-01-06',
     ],
     [
-        'station_number' => 724,
+        'station_number' => 1210724,
         'name'           => 'Tomar - Vale Donas',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '39.59212778',
@@ -707,7 +707,7 @@ return [
         'started_at'     => '1996-05-10',
     ],
     [
-        'station_number' => 726,
+        'station_number' => 1210726,
         'name'           => 'Alcobaça / Estação Fruticultura Vieira Natividade',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '39.54801111',
@@ -717,7 +717,7 @@ return [
         'started_at'     => '1996-05-09',
     ],
     [
-        'station_number' => 729,
+        'station_number' => 1210729,
         'name'           => 'Rio Maior / ETAR',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '39.31391944',
@@ -727,7 +727,7 @@ return [
         'started_at'     => '1996-05-15',
     ],
     [
-        'station_number' => 734,
+        'station_number' => 1210734,
         'name'           => 'Santarém - Fonte Boa / Est. Zootécnica',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '39.20126111',
@@ -737,7 +737,7 @@ return [
         'started_at'     => '1996-05-15',
     ],
     [
-        'station_number' => 739,
+        'station_number' => 1210739,
         'name'           => 'Torres Vedras - Dois Portos',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '39.04389444',
@@ -747,7 +747,7 @@ return [
         'started_at'     => '1995-01-12',
     ],
     [
-        'station_number' => 744,
+        'station_number' => 1210744,
         'name'           => 'Coruche / Estação de Regadio (INIA)',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.94151944',
@@ -757,7 +757,7 @@ return [
         'started_at'     => '1996-11-07',
     ],
     [
-        'station_number' => 746,
+        'station_number' => 1210746,
         'name'           => 'Santa Cruz / Aeródromo',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '39.12594167',
@@ -767,7 +767,7 @@ return [
         'started_at'     => '2009-12-30',
     ],
     [
-        'station_number' => 747,
+        'station_number' => 1210747,
         'name'           => 'Colares',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.81257500',
@@ -777,7 +777,7 @@ return [
         'started_at'     => '2012-02-13',
     ],
     [
-        'station_number' => 750,
+        'station_number' => 1210750,
         'name'           => 'Cabo da Roca',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.78171111',
@@ -787,7 +787,7 @@ return [
         'started_at'     => '2012-05-09',
     ],
     [
-        'station_number' => 762,
+        'station_number' => 1210762,
         'name'           => 'Lisboa - Tapada da Ajuda',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.70956111',
@@ -797,7 +797,7 @@ return [
         'started_at'     => '2009-03-06',
     ],
     [
-        'station_number' => 765,
+        'station_number' => 1210765,
         'name'           => 'Cabo Raso / Farol',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.70903056',
@@ -807,7 +807,7 @@ return [
         'started_at'     => '1996-11-04',
     ],
     [
-        'station_number' => 766,
+        'station_number' => 1210766,
         'name'           => 'Barreiro - Lavradio',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.67449167',
@@ -817,7 +817,7 @@ return [
         'started_at'     => '1996-11-05',
     ],
     [
-        'station_number' => 767,
+        'station_number' => 1210767,
         'name'           => 'Pegões',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.65079444',
@@ -827,7 +827,7 @@ return [
         'started_at'     => '2009-12-15',
     ],
     [
-        'station_number' => 770,
+        'station_number' => 1210770,
         'name'           => 'Setúbal / Estação de Fruticultura',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.54849722',
@@ -837,7 +837,7 @@ return [
         'started_at'     => '1996-11-06',
     ],
     [
-        'station_number' => 773,
+        'station_number' => 1210773,
         'name'           => 'Almada - Praia da Rainha',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.61698056',
@@ -847,7 +847,7 @@ return [
         'started_at'     => '2001-11-26',
     ],
     [
-        'station_number' => 776,
+        'station_number' => 1210776,
         'name'           => 'Alcácer do Sal - Barrosinha',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.36356389',
@@ -857,7 +857,7 @@ return [
         'started_at'     => '1996-05-15',
     ],
     [
-        'station_number' => 783,
+        'station_number' => 1210783,
         'name'           => 'Alvalade',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '37.94680556',
@@ -867,7 +867,7 @@ return [
         'started_at'     => '1997-05-28',
     ],
     [
-        'station_number' => 788,
+        'station_number' => 1210788,
         'name'           => 'Zambujeira',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '37.58195833',
@@ -877,7 +877,7 @@ return [
         'started_at'     => '2010-02-05',
     ],
     [
-        'station_number' => 789,
+        'station_number' => 1210789,
         'name'           => 'Aljezur',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '37.32542778',
@@ -887,7 +887,7 @@ return [
         'started_at'     => '2001-11-27',
     ],
     [
-        'station_number' => 790,
+        'station_number' => 1210790,
         'name'           => 'Foía',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '37.31430000',
@@ -897,7 +897,7 @@ return [
         'started_at'     => '2011-01-18',
     ],
     [
-        'station_number' => 800,
+        'station_number' => 1210800,
         'name'           => 'Sabugal - Martim Rei',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '40.33918056',
@@ -907,7 +907,7 @@ return [
         'started_at'     => '1999-06-18',
     ],
     [
-        'station_number' => 803,
+        'station_number' => 1210803,
         'name'           => 'Zebreira',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '39.84955556',
@@ -917,7 +917,7 @@ return [
         'started_at'     => '1999-07-07',
     ],
     [
-        'station_number' => 806,
+        'station_number' => 1210806,
         'name'           => 'Proença-a-Nova - Moitas',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '39.72857222',
@@ -927,7 +927,7 @@ return [
         'started_at'     => '1997-05-26',
     ],
     [
-        'station_number' => 812,
+        'station_number' => 1210812,
         'name'           => 'Alvega',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '39.46110278',
@@ -937,7 +937,7 @@ return [
         'started_at'     => '1999-07-30',
     ],
     [
-        'station_number' => 824,
+        'station_number' => 1210824,
         'name'           => 'Avis - Benavila',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '39.10690000',
@@ -947,7 +947,7 @@ return [
         'started_at'     => '1999-12-09',
     ],
     [
-        'station_number' => 826,
+        'station_number' => 1210826,
         'name'           => 'Mora',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.94068333',
@@ -957,7 +957,7 @@ return [
         'started_at'     => '2009-09-03',
     ],
     [
-        'station_number' => 835,
+        'station_number' => 1210835,
         'name'           => 'Elvas / Est. Melhoramento Plantas',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.88960000',
@@ -967,7 +967,7 @@ return [
         'started_at'     => '1996-11-08',
     ],
     [
-        'station_number' => 837,
+        'station_number' => 1210837,
         'name'           => 'Estremoz - Techocas',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.86213333',
@@ -977,7 +977,7 @@ return [
         'started_at'     => '1995-01-12',
     ],
     [
-        'station_number' => 840,
+        'station_number' => 1210840,
         'name'           => 'Reguengos - S.Pedro do Corval',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.48486667',
@@ -987,7 +987,7 @@ return [
         'started_at'     => '2010-01-27',
     ],
     [
-        'station_number' => 847,
+        'station_number' => 1210847,
         'name'           => 'Viana do Alentejo',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.33191944',
@@ -997,7 +997,7 @@ return [
         'started_at'     => '2011-01-18',
     ],
     [
-        'station_number' => 848,
+        'station_number' => 1210848,
         'name'           => 'Portel - Oriola',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.31759444',
@@ -1007,7 +1007,7 @@ return [
         'started_at'     => '1999-12-03',
     ],
     [
-        'station_number' => 851,
+        'station_number' => 1210851,
         'name'           => 'Amareleja',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.20070000',
@@ -1017,7 +1017,7 @@ return [
         'started_at'     => '2015-02-20',
     ],
     [
-        'station_number' => 863,
+        'station_number' => 1210863,
         'name'           => 'Mértola - Vale Formoso',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '37.75750833',
@@ -1027,7 +1027,7 @@ return [
         'started_at'     => '1997-05-27',
     ],
     [
-        'station_number' => 864,
+        'station_number' => 1210864,
         'name'           => 'Castro Verde - Neves Corvo',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '37.57650000',
@@ -1037,7 +1037,7 @@ return [
         'started_at'     => '1997-05-28',
     ],
     [
-        'station_number' => 865,
+        'station_number' => 1210865,
         'name'           => 'Alcoutim - Martim Longo',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '37.43756944',
@@ -1047,7 +1047,7 @@ return [
         'started_at'     => '1999-12-21',
     ],
     [
-        'station_number' => 866,
+        'station_number' => 1210866,
         'name'           => 'Vila Real de S.António',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '37.18710556',
@@ -1057,7 +1057,7 @@ return [
         'started_at'     => '2011-01-18',
     ],
     [
-        'station_number' => 867,
+        'station_number' => 1210867,
         'name'           => 'Castro Marim / Reserva Nacional do Sapal',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '37.22951389',
@@ -1067,7 +1067,7 @@ return [
         'started_at'     => '1999-09-23',
     ],
     [
-        'station_number' => 878,
+        'station_number' => 1210878,
         'name'           => 'Portimão / Aeródromo',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '37.14748056',
@@ -1077,7 +1077,7 @@ return [
         'started_at'     => '1999-12-10',
     ],
     [
-        'station_number' => 881,
+        'station_number' => 1210881,
         'name'           => 'Olhão / EPPO',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '37.03295278',
@@ -1087,7 +1087,7 @@ return [
         'started_at'     => '2008-01-01',
     ],
     [
-        'station_number' => 927,
+        'station_number' => 1200510,
         'name'           => 'São Jorge / Aeródromo',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '38.66418889',
@@ -1097,7 +1097,7 @@ return [
         'started_at'     => '2012-09-14',
     ],
     [
-        'station_number' => 932,
+        'station_number' => 1210932,
         'name'           => 'Nordeste - S.Miguel',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '37.82882778',
@@ -1107,7 +1107,7 @@ return [
         'started_at'     => '2002-05-01',
     ],
     [
-        'station_number' => 956,
+        'station_number' => 1210956,
         'name'           => 'Porto Moniz',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '32.86735000',
@@ -1117,7 +1117,7 @@ return [
         'started_at'     => '2014-03-07',
     ],
     [
-        'station_number' => 960,
+        'station_number' => 1210960,
         'name'           => 'Ponta de S. Jorge',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '32.83446944',
@@ -1127,7 +1127,7 @@ return [
         'started_at'     => '2002-03-14',
     ],
     [
-        'station_number' => 965,
+        'station_number' => 1210965,
         'name'           => 'Santana',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '32.80823889',
@@ -1137,7 +1137,7 @@ return [
         'started_at'     => '2010-08-01',
     ],
     [
-        'station_number' => 967,
+        'station_number' => 1210967,
         'name'           => 'São Vicente',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '32.80018333',
@@ -1147,7 +1147,7 @@ return [
         'started_at'     => '2010-08-01',
     ],
     [
-        'station_number' => 970,
+        'station_number' => 1210970,
         'name'           => 'Bica da Cana',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '32.75646944',
@@ -1157,7 +1157,7 @@ return [
         'started_at'     => '2010-08-01',
     ],
     [
-        'station_number' => 972,
+        'station_number' => 1210972,
         'name'           => 'Pico Alto',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '32.69444444',
@@ -1167,7 +1167,7 @@ return [
         'started_at'     => '2015-01-01',
     ],
     [
-        'station_number' => 973,
+        'station_number' => 1210973,
         'name'           => 'Chão do Areeiro',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '32.72207500',
@@ -1177,7 +1177,7 @@ return [
         'started_at'     => '2002-03-15',
     ],
     [
-        'station_number' => 974,
+        'station_number' => 1210974,
         'name'           => 'Pico do Areeiro',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '32.73523333',
@@ -1187,7 +1187,7 @@ return [
         'started_at'     => '2015-01-01',
     ],
     [
-        'station_number' => 975,
+        'station_number' => 1210975,
         'name'           => 'Santo da Serra',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '32.72589722',
@@ -1197,7 +1197,7 @@ return [
         'started_at'     => '2010-08-01',
     ],
     [
-        'station_number' => 978,
+        'station_number' => 1210978,
         'name'           => 'Caniçal - São Lourenço',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '32.74843333',
@@ -1207,7 +1207,7 @@ return [
         'started_at'     => '2009-07-10',
     ],
     [
-        'station_number' => 980,
+        'station_number' => 1210980,
         'name'           => 'Lombo da Terça',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '32.83145000',
@@ -1217,7 +1217,7 @@ return [
         'started_at'     => '2009-07-11',
     ],
     [
-        'station_number' => 984,
+        'station_number' => 1210984,
         'name'           => 'Quinta Grande',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '32.66297222',
@@ -1227,7 +1227,7 @@ return [
         'started_at'     => '2010-08-01',
     ],
     [
-        'station_number' => 986,
+        'station_number' => 1210986,
         'name'           => 'Lugar de Baixo',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '32.68122778',
@@ -1237,7 +1237,7 @@ return [
         'started_at'     => '2002-03-14',
     ],
     [
-        'station_number' => 990,
+        'station_number' => 1210990,
         'name'           => 'Ponta do Pargo',
         'sensor_type'    => 'Estação Automática Climatológica (EMA II)',
         'latitude'       => '32.81384167',
@@ -1247,7 +1247,7 @@ return [
         'started_at'     => '2002-03-14',
     ],
     [
-        'station_number' => 546,
+        'station_number' => 1240546,
         'name'           => 'Porto - Serra do Pilar',
         'sensor_type'    => 'Estação Automática Urbana (RUEMA)',
         'latitude'       => '41.13851944',
@@ -1257,7 +1257,7 @@ return [
         'started_at'     => '2009-02-01',
     ],
     [
-        'station_number' => 566,
+        'station_number' => 1240566,
         'name'           => 'Vila Real / Cidade',
         'sensor_type'    => 'Estação Automática Urbana (RUEMA)',
         'latitude'       => '41.30898056',
@@ -1267,7 +1267,7 @@ return [
         'started_at'     => '2010-05-31',
     ],
     [
-        'station_number' => 610,
+        'station_number' => 1240610,
         'name'           => 'Viana do Castelo / Cidade',
         'sensor_type'    => 'Estação Automática Urbana (RUEMA)',
         'latitude'       => '41.69504722',
@@ -1277,7 +1277,7 @@ return [
         'started_at'     => '2011-03-02',
     ],
     [
-        'station_number' => 675,
+        'station_number' => 1240675,
         'name'           => 'Viseu / Cidade',
         'sensor_type'    => 'Estação Automática Urbana (RUEMA)',
         'latitude'       => '40.66273889',
@@ -1287,7 +1287,7 @@ return [
         'started_at'     => '2011-03-31',
     ],
     [
-        'station_number' => 820,
+        'station_number' => 1240820,
         'name'           => 'Portalegre / Cidade',
         'sensor_type'    => 'Estação Automática Urbana (RUEMA)',
         'latitude'       => '39.26754444',
@@ -1297,7 +1297,7 @@ return [
         'started_at'     => '2010-10-27',
     ],
     [
-        'station_number' => 903,
+        'station_number' => 1240903,
         'name'           => 'Porto - Massarelos',
         'sensor_type'    => 'Estação Automática Urbana (RUEMA)',
         'latitude'       => '41.15256667',
@@ -1307,7 +1307,7 @@ return [
         'started_at'     => '2002-01-01',
     ],
     [
-        'station_number' => 916,
+        'station_number' => 1240916,
         'name'           => 'Leiria / Cidade',
         'sensor_type'    => 'Estação Automática Urbana (RUEMA)',
         'latitude'       => '39.74434167',
@@ -1317,17 +1317,17 @@ return [
         'started_at'     => '2005-05-01',
     ],
     [
-        'station_number' => 928,
-        'name'           => 'Barreiro',
+        'station_number' => 6210879,
+        'name'           => 'Portimão (Praia da Rocha)',
         'sensor_type'    => 'Estação Automática Urbana (RUEMA)',
-        'latitude'       => '38.65435000',
-        'longitude'      => '-9.06719722',
-        'altitude'       => 15,
-        'county'         => '150400',
-        'started_at'     => '2002-01-01',
+        'latitude'       => '37.11670461',
+        'longitude'      => '-8.52946314',
+        'altitude'       => 11,
+        'county'         => '081100',
+        'started_at'     => null,
     ],
     [
-        'station_number' => 929,
+        'station_number' => 1240929,
         'name'           => 'Setúbal',
         'sensor_type'    => 'Estação Automática Urbana (RUEMA)',
         'latitude'       => '38.52385000',
@@ -1337,7 +1337,7 @@ return [
         'started_at'     => '2002-01-01',
     ],
     [
-        'station_number' => 935,
+        'station_number' => 1240935,
         'name'           => 'Amadora',
         'sensor_type'    => 'Estação Automática Urbana (RUEMA)',
         'latitude'       => '38.75757778',
@@ -1347,7 +1347,7 @@ return [
         'started_at'     => '2002-01-01',
     ],
     [
-        'station_number' => 971,
+        'station_number' => 1240971,
         'name'           => 'Funchal - Lido',
         'sensor_type'    => 'Estação Automática Urbana (RUEMA)',
         'latitude'       => '32.63655000',
@@ -1357,17 +1357,17 @@ return [
         'started_at'     => '2002-01-01',
     ],
     [
-        'station_number' => 624,
-        'name'           => 'Detetor Braga, Aeródromo - Palmeira',
-        'sensor_type'    => 'Detetor Descargas Elétricas',
-        'latitude'       => '41.5864',
-        'longitude'      => '-8.44518',
-        'altitude'       => 138,
-        'county'         => '030300',
-        'started_at'     => '2006-06-01',
+        'station_number' => 6213021,
+        'name'           => 'Tondela, Caramulinho',
+        'sensor_type'    => 'Estação Automática Urbana (RUEMA)',
+        'latitude'       => '40.54575278',
+        'longitude'      => '-8.20829722',
+        'altitude'       => 1004,
+        'county'         => '182100',
+        'started_at'     => null,
     ],
     [
-        'station_number' => 570,
+        'station_number' => 1200570,
         'name'           => 'Castelo Branco, Centro Coordenador',
         'sensor_type'    => 'Detetor Descargas Elétricas',
         'latitude'       => '39.8393',
@@ -1377,37 +1377,7 @@ return [
         'started_at'     => '2006-06-01',
     ],
     [
-        'station_number' => 537,
-        'name'           => 'Detetor Alverca, Aeródromo',
-        'sensor_type'    => 'Detetor Descargas Elétricas',
-        'latitude'       => '38.8836',
-        'longitude'      => '-9.0307527',
-        'altitude'       => 65,
-        'county'         => '111400',
-        'started_at'     => '2006-06-01',
-    ],
-    [
-        'station_number' => 889,
-        'name'           => 'Detetor Olhão, R. N. da Ria Formosa',
-        'sensor_type'    => 'Detetor Descargas Elétricas',
-        'latitude'       => '37.0305',
-        'longitude'      => '-7.8174',
-        'altitude'       => 79,
-        'county'         => '081000',
-        'started_at'     => '2006-06-01',
-    ],
-    [
-        'station_number' => 508,
-        'name'           => 'Lajes, St. Rita',
-        'sensor_type'    => 'Radiosondagem',
-        'latitude'       => '38.7677',
-        'longitude'      => '-27.0855',
-        'altitude'       => 112,
-        'county'         => '430200',
-        'started_at'     => null,
-    ],
-    [
-        'station_number' => 522,
+        'station_number' => 1200522,
         'name'           => 'Funchal / Observatório',
         'sensor_type'    => 'Radiosondagem',
         'latitude'       => '32.647525',
@@ -1417,7 +1387,7 @@ return [
         'started_at'     => null,
     ],
     [
-        'station_number' => 579,
+        'station_number' => 1200579,
         'name'           => 'Lisboa - Gago Coutinho',
         'sensor_type'    => 'Radiosondagem',
         'latitude'       => '38.7661833',
